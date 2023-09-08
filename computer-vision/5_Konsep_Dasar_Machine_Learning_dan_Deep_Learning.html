@@ -1,0 +1,897 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.3.353">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+
+<title>Computer Vision - 5 Konsep Dasar Machine Learning dan Deep Learning dalam Klasifikasi Objek</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+</style>
+
+
+<script src="site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="site_libs/quarto-nav/headroom.min.js"></script>
+<script src="site_libs/clipboard/clipboard.min.js"></script>
+<script src="site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="site_libs/quarto-search/fuse.min.js"></script>
+<script src="site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="./">
+<link href="./6_Evaluasi.html" rel="next">
+<link href="./4_Feature_Extraction_and_Matching.html" rel="prev">
+<script src="site_libs/quarto-html/quarto.js"></script>
+<script src="site_libs/quarto-html/popper.min.js"></script>
+<script src="site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="site_libs/quarto-html/anchor.min.js"></script>
+<link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-text-highlighting-styles">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting-dark.css" rel="prefetch" class="quarto-color-scheme quarto-color-alternate" id="quarto-text-highlighting-styles">
+<script src="site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
+<link href="site_libs/bootstrap/bootstrap-dark.min.css" rel="prefetch" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
+<script id="quarto-search-options" type="application/json">{
+  "location": "sidebar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "start",
+  "type": "textbox",
+  "limit": 20,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit"
+  }
+}</script>
+
+
+</head>
+
+<body class="nav-sidebar floating">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+  <nav class="quarto-secondary-nav">
+    <div class="container-fluid d-flex">
+      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+        <i class="bi bi-layout-text-sidebar-reverse"></i>
+      </button>
+      <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./Konsep.html"><b> Konsep </b></a></li><li class="breadcrumb-item"><a href="./5_Konsep_Dasar_Machine_Learning_dan_Deep_Learning.html">5 Konsep Dasar Machine Learning dan Deep Learning dalam Klasifikasi Objek</a></li></ol></nav>
+      <a class="flex-grow-1" role="button" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
+      </a>
+      <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
+        <i class="bi bi-search"></i>
+      </button>
+    </div>
+  </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article">
+<!-- sidebar -->
+  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal sidebar-navigation floating overflow-auto">
+    <div class="pt-lg-2 mt-2 text-left sidebar-header">
+    <div class="sidebar-title mb-0 py-0">
+      <a href="./">Computer Vision</a> 
+        <div class="sidebar-tools-main">
+  <a href="" class="quarto-color-scheme-toggle quarto-navigation-tool  px-1" onclick="window.quartoToggleColorScheme(); return false;" title="Toggle dark mode"><i class="bi"></i></a>
+</div>
+    </div>
+      </div>
+        <div class="mt-2 flex-shrink-0 align-items-center">
+        <div class="sidebar-search">
+        <div id="quarto-search" class="" title="Search"></div>
+        </div>
+        </div>
+    <div class="sidebar-menu-container"> 
+    <ul class="list-unstyled mt-1">
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><strong>Pengantar</strong></span></a>
+  </div>
+</li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a href="./Konsep.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><b> Konsep </b></span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./1_Pengenalan_Computer_Vision_dan_Python.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">1 Pengenalan Computer Vision dan Python</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./2_Python.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">2 Python</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./3_Dasar_dasar_Image_Processing.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">3 Dasar-dasar Image Processing</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./4_Feature_Extraction_and_Matching.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">4 Feature Extraction and Matching</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./5_Konsep_Dasar_Machine_Learning_dan_Deep_Learning.html" class="sidebar-item-text sidebar-link active">
+ <span class="menu-text">5 Konsep Dasar Machine Learning dan Deep Learning dalam Klasifikasi Objek</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./6_Evaluasi.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">6 Metode Evaluasi dalam Computer Vision</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a href="./daftar_studi_kasus.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><b> Studi Kasus </b></span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-2" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./Studi_Kasus_1.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Studi Kasus 1</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./Studi_Kasus_2.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Studi Kasus 2</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./Studi_Kasus_3.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Studi Kasus 3</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./Studi_Kasus_4.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Studi Kasus 4</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+    </ul>
+    </div>
+</nav>
+<div id="quarto-sidebar-glass" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass"></div>
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">Table of contents</h2>
+   
+  <ul>
+  <li><a href="#pengenalan-klasifikasi-objek" id="toc-pengenalan-klasifikasi-objek" class="nav-link active" data-scroll-target="#pengenalan-klasifikasi-objek">Pengenalan Klasifikasi Objek</a></li>
+  <li><a href="#k-nearest-neighbors-knn" id="toc-k-nearest-neighbors-knn" class="nav-link" data-scroll-target="#k-nearest-neighbors-knn">K-Nearest Neighbors (KNN)</a></li>
+  <li><a href="#convolutional-neural-network-cnn" id="toc-convolutional-neural-network-cnn" class="nav-link" data-scroll-target="#convolutional-neural-network-cnn">Convolutional Neural Network (CNN)</a></li>
+  <li><a href="#transfer-learning" id="toc-transfer-learning" class="nav-link" data-scroll-target="#transfer-learning">Transfer Learning</a>
+  <ul class="collapse">
+  <li><a href="#definisi-dan-konsep-dasar-transfer-learning" id="toc-definisi-dan-konsep-dasar-transfer-learning" class="nav-link" data-scroll-target="#definisi-dan-konsep-dasar-transfer-learning">Definisi dan Konsep Dasar Transfer Learning</a></li>
+  <li><a href="#langkah-langkah-transfer-learning-pada-cnn" id="toc-langkah-langkah-transfer-learning-pada-cnn" class="nav-link" data-scroll-target="#langkah-langkah-transfer-learning-pada-cnn">Langkah-langkah Transfer Learning pada CNN</a></li>
+  <li><a href="#mobilenet" id="toc-mobilenet" class="nav-link" data-scroll-target="#mobilenet">MobileNet</a></li>
+  </ul></li>
+  </ul>
+</nav>
+    </div>
+<!-- main -->
+<main class="content" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<h1 class="title">5 Konsep Dasar Machine Learning dan Deep Learning dalam Klasifikasi Objek</h1>
+</div>
+
+
+
+<div class="quarto-title-meta">
+
+    
+  
+    
+  </div>
+  
+
+</header>
+
+<section id="pengenalan-klasifikasi-objek" class="level2">
+<h2 class="anchored" data-anchor-id="pengenalan-klasifikasi-objek">Pengenalan Klasifikasi Objek</h2>
+<p>Klasifikasi gambar mengacu pada proses pengelompokan atau pelabelan gambar ke dalam kelas atau kategori yang berbeda berdasarkan konten visualnya. Ini adalah tugas mendasar dalam visi komputer dan pembelajaran mesin. Tujuan dari klasifikasi gambar adalah untuk mengembangkan algoritma atau model yang secara otomatis dapat mengenali dan memberikan label atau kategori yang tepat pada gambar yang diberikan.<br>
+Algoritma klasifikasi gambar menggunakan berbagai teknik dan pendekatan untuk menganalisis fitur visual dari sebuah gambar dan membuat prediksi. Teknik-teknik ini dapat berkisar dari metode tradisional yang didasarkan pada fitur buatan tangan hingga model pembelajaran mendalam yang lebih canggih.<br>
+Berikut adalah beberapa poin penting tentang klasifikasi gambar:</p>
+<ul>
+<li>Ekstraksi fitur: Algoritma klasifikasi gambar mengekstrak fitur yang relevan dari gambar untuk merepresentasikan konten visualnya. Fitur-fitur ini dapat mencakup warna, tekstur, bentuk, dan informasi spasial. Contoh algoritma yang dapat digunakan untuk ekstraksi fitur adalah HOG dan SIFT.<br>
+</li>
+<li>Fase pelatihan: Pada tahap pelatihan, sebuah model dilatih menggunakan kumpulan data berlabel, di mana setiap gambar dikaitkan dengan kelas atau kategori yang diketahui. Model belajar mengenali pola dan hubungan antara fitur yang diekstrak dan label yang sesuai.<br>
+</li>
+<li>Fase klasifikasi: Pada fase klasifikasi, model yang telah dilatih digunakan untuk memprediksi kelas atau kategori gambar baru yang belum terlihat. Model ini menganalisis fitur visual dari gambar input dan membandingkannya dengan pola yang telah dipelajari untuk membuat prediksi.<br>
+</li>
+<li>Supervised Learning: Klasifikasi gambar biasanya dilakukan dengan menggunakan algoritma pembelajaran yang diawasi, di mana set data pelatihan diberi label dengan anotasi kebenaran dasar. Model belajar dari contoh-contoh berlabel ini untuk menggeneralisasi dan membuat prediksi pada data yang tidak terlihat.</li>
+<li>Deep Learning: Model pembelajaran mendalam, seperti convolutional neural network (CNN), telah merevolusi klasifikasi gambar. CNN dirancang untuk secara otomatis mempelajari representasi hirarkis gambar, menangkap fitur tingkat rendah dan tingkat tinggi. Mereka telah mencapai kinerja canggih pada berbagai tugas klasifikasi gambar.</li>
+<li>Aplikasi: Klasifikasi gambar memiliki banyak aplikasi di berbagai bidang, termasuk pengenalan objek, deteksi wajah, pencitraan medis, kendaraan otonom, dan pengambilan gambar berbasis konten.</li>
+</ul>
+</section>
+<section id="k-nearest-neighbors-knn" class="level2">
+<h2 class="anchored" data-anchor-id="k-nearest-neighbors-knn">K-Nearest Neighbors (KNN)</h2>
+<div class="quarto-video ratio ratio-16x9"><iframe data-external="1" src="https://www.youtube.com/embed/HNoZHBDa_dA" title="" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen=""></iframe></div>
+<p>K-Nearest Neighbors adalah salah satu algoritma Supervised Learning yang dapat digunakan untuk melakukan klasifikasi citra. Algoritma ini termasuk dalam jenis algoritma pembelajaran berbasis instans atau instance-based learning. KNN bekerja berdasarkan objek yang memiliki atribut yang mirip cenderung memiliki label atau nilai target yang mirip pula.</p>
+<p><strong>Konsep Dasar:</strong></p>
+<ul>
+<li>KNN beroperasi dengan menggunakan data latih yang berlabel dan mengklasifikasikan atau memperkirakan label dari data yang tidak diketahui.<br>
+</li>
+<li>KNN menggunakan jarak (euclidean, manhattan, dll.) untuk mengukur kedekatan antara data.<br>
+</li>
+<li>Konsep dasar KNN adalah “yang mirip, dikelompokkan bersama.”<br>
+</li>
+<li>KNN tidak melakukan proses pembelajaran pada tahap pelatihan, tetapi menyimpan semua data latih sebagai basis pengetahuan.</li>
+</ul>
+<div style="text-align:center">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="Asset/knnilustration.png" class="img-fluid figure-img"></p>
+<figcaption class="figure-caption">Gambar 5.1 Ilustrasi KNN</figcaption>
+</figure>
+</div>
+</div>
+<p><strong>Langkah-Langkah KNN:</strong></p>
+<ul>
+<li>Menentukan jumlah tetangga terdekat (K) yang akan digunakan dalam pengklasifikasian.<br>
+</li>
+<li>Menghitung jarak antara data yang tidak diketahui dengan setiap contoh data latih menggunakan metrik jarak yang sesuai.<br>
+</li>
+<li>Mengidentifikasi K contoh data latih terdekat berdasarkan jarak yang dihitung sebelumnya.<br>
+</li>
+<li>Menggunakan mayoritas voting (untuk klasifikasi) atau rata-rata (untuk regresi) dari label tetangga terdekat untuk memprediksi label atau nilai target dari data yang tidak diketahui.<br>
+</li>
+<li>Mengeluarkan prediksi sebagai hasil.</li>
+</ul>
+<p><strong>Pemilihan Nilai K:</strong></p>
+<ul>
+<li>Pemilihan nilai K yang tepat sangat penting dalam KNN. Nilai K yang salah dapat mengakibatkan overfitting atau underfitting.<br>
+</li>
+<li>Jika K terlalu kecil (misalnya K = 1), model akan cenderung terlalu responsif terhadap data latih yang spesifik dan lebih rentan terhadap noise.<br>
+</li>
+<li>Jika K terlalu besar, informasi dari tetangga yang sebenarnya relevan dapat terlupakan, yang dapat menyebabkan kesalahan klasifikasi.</li>
+</ul>
+<p><strong>Perhitungan Jarak</strong><br>
+Perhitungan jarak dalam KNN adalah langkah penting dalam menentukan tetangga terdekat untuk titik data yang diberikan. Metrik jarak mengukur kemiripan atau ketidakmiripan antara dua titik data dan digunakan untuk menemukan K tetangga terdekat. Ada beberapa perhitungan jarak yang bisa digunakan dalam algoritma KNN:</p>
+<ol type="a">
+<li><p>Jarak Euclidean: Ini adalah jarak garis lurus antara dua titik dalam ruang Euclidean. Metrik ini menghitung akar kuadrat dari jumlah perbedaan kuadrat antara fitur-fitur yang sesuai dari dua titik data.</p>
+<p>Bila dalam kasus lain terdapat lebih dari 2 variabel, kita bisa menggunakan rumus euclidean distance seperti gambar 5.2. Mirip dengan rumus pythagoras, hanya saja Euclidean Distance memiliki dimensi lebih dari 2.</p></li>
+</ol>
+<div style="text-align:center">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="Asset/euclideanrumus.png" class="img-fluid figure-img"></p>
+<figcaption class="figure-caption">Gambar 5.2 Rumus Euclidean Distance</figcaption>
+</figure>
+</div>
+</div>
+<ol start="2" type="a">
+<li>Jarak Manhattan: Juga dikenal sebagai jarak blok kota atau jarak L1, jarak ini menghitung jumlah perbedaan absolut antara fitur-fitur yang sesuai dari dua titik data. Jarak ini mengukur jarak dengan bergerak hanya dalam arah horizontal atau vertikal. Perhitungan Manhattan Distance dapat dituliskan seperti pada Gambar 5.3.</li>
+</ol>
+<div style="text-align:center">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="Asset/manhattandistance.png" class="img-fluid figure-img"></p>
+<figcaption class="figure-caption">Gambar 5.3 Rumus Manhattan Distance</figcaption>
+</figure>
+</div>
+</div>
+<ol start="3" type="a">
+<li>Jarak Minkowski: Ini adalah generalisasi dari jarak Euclidean dan Manhattan. Jarak ini menghitung akar ke-n dari jumlah nilai absolut yang dipangkatkan dengan pangkat n dari perbedaan antara fitur-fitur yang sesuai dari dua titik data. Perhitungan Minkowski Distance dapat dituliskan seperti pada gambar 5.4.</li>
+</ol>
+<div style="text-align:center">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="Asset/minkowskidistance.png" class="img-fluid figure-img"></p>
+<figcaption class="figure-caption">Gambar 5.4 Rumus Minkowski Distance</figcaption>
+</figure>
+</div>
+</div>
+<div style="text-align:center">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="Asset/perbandingan_jarak.jpg" class="img-fluid figure-img"></p>
+<figcaption class="figure-caption">Gambar 5.5 Perbandingan Perhitungan Jarak dalam KNN</figcaption>
+</figure>
+</div>
+</div>
+<p><strong>Kelebihan K-Nearest Neighbors:</strong></p>
+<ul>
+<li>Sederhana dan mudah diimplementasikan.<br>
+</li>
+<li>KNN dapat digunakan untuk masalah klasifikasi dan regresi.<br>
+</li>
+<li>Algoritma non-parametrik, sehingga tidak bergantung pada asumsi tertentu tentang distribusi data.<br>
+</li>
+<li>Mampu menangani data yang kompleks, termasuk data yang tidak linear.</li>
+</ul>
+<p><strong>Kekurangan K-Nearest Neighbors:</strong></p>
+<ul>
+<li>KNN membutuhkan penyimpanan data latih yang lengkap untuk membuat prediksi, yang dapat memakan banyak memori.<br>
+</li>
+<li>KNN memiliki kompleksitas komputasi yang tinggi saat menghitung jarak ke semua contoh data latih.<br>
+</li>
+<li>Rentan terhadap adanya atribut yang dominan karena menggunakan jarak euclidean, sehingga atribut dengan skala besar dapat mendominasi atribut dengan skala kecil.</li>
+</ul>
+</section>
+<section id="convolutional-neural-network-cnn" class="level2">
+<h2 class="anchored" data-anchor-id="convolutional-neural-network-cnn">Convolutional Neural Network (CNN)</h2>
+<p>Convolutional Neural Network (CNN) adalah algoritma Deep Learning yang dirancang khusus untuk bekerja dengan gambar dan video. Algoritma ini mengambil gambar sebagai input, mengekstrak dan mempelajari fitur-fitur dari gambar tersebut, dan mengklasifikasikannya berdasarkan fitur-fitur yang telah dipelajari.</p>
+<p>Algoritma ini terinspirasi dari cara kerja bagian otak manusia, yaitu Korteks Visual. Korteks visual adalah bagian dari otak manusia yang bertanggung jawab dalam memproses informasi visual dari dunia luar. Bagian ini terdiri dari beberapa lapisan, di mana setiap lapisan memiliki fungsinya sendiri. Setiap lapisan mengekstrak informasi tertentu dari gambar atau visual, dan pada akhirnya semua informasi yang diterima dari setiap lapisan digabungkan untuk menginterpretasikan atau mengklasifikasikan gambar atau visual tersebut.</p>
+<p>Demikian pula, CNN memiliki berbagai filter, di mana setiap filter mengekstrak informasi tertentu dari gambar seperti tepi, berbagai jenis bentuk (vertikal, horizontal, bulat), dan sebagainya. Semua informasi ini kemudian digabungkan untuk mengidentifikasi gambar tersebut.</p>
+<div style="text-align:center">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="Asset/cnnillustration.jpeg" class="img-fluid figure-img"></p>
+<figcaption class="figure-caption">Gambar 5.6 Ilustrasi CNN</figcaption>
+</figure>
+</div>
+</div>
+<p><strong>Konsep Dasar CNN:</strong></p>
+<ul>
+<li>CNN terdiri dari beberapa lapisan yang berbeda, termasuk lapisan konvolusi, lapisan pooling, dan lapisan fully connected.<br>
+</li>
+<li>Arsitektur CNN didasarkan pada prinsip penggunaan ulang parameter dengan menggunakan filter konvolusi yang sama pada seluruh data input.<br>
+</li>
+<li>Konvolusi adalah operasi yang melibatkan pergeseran filter konvolusi (kernel) pada data input untuk menghasilkan peta fitur atau feature map.<br>
+</li>
+<li>Pooling digunakan untuk mengurangi dimensi spasial dari feature map yang dihasilkan oleh lapisan konvolusi.<br>
+</li>
+<li>Fully connected layer menghubungkan setiap neuron di lapisan sebelumnya ke setiap neuron di lapisan berikutnya, mirip dengan jaringan saraf biasa.</li>
+</ul>
+<p>Untuk gambaran lebih detailnya dapat kita lihat di <a href="http://playground.tensorflow.org/">Tensorflow Playground</a></p>
+<p><strong>Langkah-langkah Algoritma CNN</strong></p>
+<ol type="a">
+<li><p>Convolutional Layer</p>
+<p>Langkah pertama adalah lapisan konvolusi, di mana filter konvolusi bergerak melalui data input dan melakukan operasi konvolusi. Filter konvolusi berukuran kecil dan dapat dipelajari oleh algoritma. Setiap filter menghasilkan peta fitur dengan mengekstraksi pola spesifik dari data input. Selama konvolusi, filter dikalikan dengan bagian dari data input yang sedang diperiksa dan hasilnya dijumlahkan untuk membentuk elemen peta fitur.</p></li>
+</ol>
+<div style="text-align:center">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="Asset/convolutional.jpeg" class="img-fluid figure-img"></p>
+<figcaption class="figure-caption">Gambar 5.7 Ilustrasi Convolutional</figcaption>
+</figure>
+</div>
+</div>
+<p>Dengan menggeser convolve filter disetiap kemungkinan posisi filter pada gambar, dihasilkan sebuah activation map.</p>
+<div style="text-align:center">
+<p><img src="Asset/conv2.gif" class="img-fluid"></p>
+</div>
+<p>Proses ini diulang dengan beberapa filter berbeda, hingga menghasilkan gambar baru yang merupakan kumpulan dari activation maps.</p>
+<ol start="2" type="a">
+<li><p>Pooling Layer</p>
+<p>Setelah lapisan konvolusi, lapisan pooling digunakan untuk mengurangi resolusi spasial dari peta fitur.<br>
+Tujuan pooling adalah untuk mengurangi dimensi dan kompleksitas komputasi sambil mempertahankan fitur penting.<br>
+Metode pooling yang paling umum digunakan adalah max pooling. Namun terdapat metode pooling lain yang dapat digunakan seperti Average Pooling dan L2 Norm Pooling.</p></li>
+</ol>
+<div style="text-align:center">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="Asset/pooling.png" class="img-fluid figure-img"></p>
+<figcaption class="figure-caption">Gambar 5.8 Perbedaan Max Pooling dan Average Pooling</figcaption>
+</figure>
+</div>
+</div>
+<ol start="3" type="a">
+<li><p>Flattening</p>
+<p>Flattening merupakan proses mengubah representasi matriks multidimensional menjadi vektor satu dimensi. Proses flattening dilakukan dengan mengambil semua elemen dalam matriks multidimensional dan menyusunnya menjdi satu baris.</p></li>
+</ol>
+<div style="text-align:center">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="Asset/flatening.png" class="img-fluid figure-img"></p>
+<figcaption class="figure-caption">Gambar 5.9 Proses Flattening</figcaption>
+</figure>
+</div>
+</div>
+<ol start="4" type="a">
+<li><p>Fully Connected Layer</p>
+<p>Setelah diperatakan menjadi vektor dan disambungkan ke lapisan fully connected.<br>
+Lapisan ini bertindak sebagai klasifikasi akhir atau lapisan regresi, di mana prediksi akhir dilakukan berdasarkan fitur-fitur yang telah dipelajari.</p></li>
+</ol>
+<div style="text-align:center">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="Asset/fullyconnectedLayer.jpg" class="img-fluid figure-img"></p>
+<figcaption class="figure-caption">Gambar 5.10 Fully Connected Layer</figcaption>
+</figure>
+</div>
+</div>
+<ol start="5" type="a">
+<li><p>Pelatihan</p>
+<p>Dalam fase pelatihan, CNN memperbarui bobot dan bias filter konvolusi serta parameter lapisan fully connected dengan meminimalkan fungsi loss antara prediksi dan label yang benar.<br>
+Optimizer seperti Stochastic Gradient Descent (SGD) atau Adam digunakan untuk mengatur laju pembelajaran dan memperbarui parameter secara iteratif.</p></li>
+</ol>
+</section>
+<section id="transfer-learning" class="level2">
+<h2 class="anchored" data-anchor-id="transfer-learning">Transfer Learning</h2>
+<section id="definisi-dan-konsep-dasar-transfer-learning" class="level3">
+<h3 class="anchored" data-anchor-id="definisi-dan-konsep-dasar-transfer-learning">Definisi dan Konsep Dasar Transfer Learning</h3>
+<p>Transfer learning merupakan proses atau pendekatan dalam pembelajaran mesin dimana pengetahuan yang didapatkan dari pelatihan model pada suatu tugas, dapat digunakan pada tugas lain yang memiliki kemiripan dengan masalah yang sedang dipecahkan. Pada konteks Convolutional Neural Networks (CNN), transfer learning mengacu pada penggunaan model yang sebelumnya sudah dilatih pada tugas pemrosesan citra untuk diadaptasi ke tugas yang baru. Dalam pengembangan model Convolutional Neural Networks (CNN), transfer learning cukup penting, dikarenakan transfer learning dapat menghemat waktu dan sumber daya, hal ini dikarenakan untuk melatih model CNN dari awal membutuhkan waktu yang cukup lama serta komputasi yang besar. Sedangkan jika menggunakan transfer learning kita dapat menggunakan model yang sudah ada. Yang kedua, performa akan menjadi lebih baik dikarenakan model telah mempelajari fitur-fitur umum dari data citra yang dapat diimplementasikan pada tugas yang baru. Jika kita memiliki dataset yang terbatas, transfer learning dapat membantu dalam pemanfaatan pengetahuan yang sudah ada dari dataset yang lebih banyak pada tugas sebelumnya. Transfer learning juga dapat mengatasi masalah overfitting yang sering terjadi pada model yang dilatih menggunakan dataset yang kecil. Semakin mirip tugas pertama dengan tugas yang baru maka akan semakin lebih baik. Dalam Deep Learning, pelatihan model pada tugas pertama dinamakan pre-training, sedangkan penerapan model yang sudah dilatih pada tugas pertama ke training model tugas baru dinamakan fine-tuning.</p>
+<div style="text-align:center">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="Asset/transferlearning.png" class="img-fluid figure-img"></p>
+<figcaption class="figure-caption">Gambar 5.11 Illustrasi Transfer Learning pada CNN</figcaption>
+</figure>
+</div>
+</div>
+</section>
+<section id="langkah-langkah-transfer-learning-pada-cnn" class="level3">
+<h3 class="anchored" data-anchor-id="langkah-langkah-transfer-learning-pada-cnn">Langkah-langkah Transfer Learning pada CNN</h3>
+<p>Setelah memahami definisi dan konsep dasar dari transfer learning, selanjutnya adalah memahami langkah-langkah transfer learning khususnya pada Convolutional Neural Networks (CNN). Berikut merupakan langkah-langkah yang diperlukan :</p>
+<ul>
+<li><p>Seleksi model dasar<br>
+Pertama-tama dilakukan pemilihan arsitektur dasar model CNN. Terdapat beberapa arsitektur yang terbukti efektif dalam pemrosesan citra yaitu seperti VGG, ResNet, Inception dan MobileNet. Arsitektur-arsitektur tersebut memiliki berbagai lapisan konvolusi, pooling dan fully connected yang akan membantu dalam ekstraksi fitur.</p></li>
+<li><p>Feature Extraction Setelah memilih arsitektur dasar model, selanjutnya model dasar tersebut digunakan sebagai ekstraktor fitur. Pada lapisan-lapisan konvolusi awal telah mempelajari fitur-fitur umum dari dataset yang besar dan beragam. Fitur-fitur tersebut merupakan hasil ekstraksi pola yaitu tepi, tekstur, dan bentuk dari gambar.</p></li>
+<li><p>Fine-tuning<br>
+Lapisan-lapisan akhir kebanyakan berfungsi sebagai klasifikasi atau regresi, dengan dilakukan fine-tuning model dapat menyesuaikan representasi-fitur yang lebih spesifik untuk tugas yang baru. Pada fine-tuning, model dapat dilatih ulang menggunakan dataset khusus disesuaikan dengan tugas yang ingin diselesaikan.</p></li>
+<li><p>Freezing Layers<br>
+Dalam transfer learning, freezing layer tidak selalu wajib diterapkan dikarenakan hal tersebut bergantung pada karakteristik tugas dan sumberdaya yang tersedia. Freezing layer merupakan pengamanan nilai bobot pada beberapa lapisan awal model dasar(lapisan konvolusi awal) sehingga tidak mengalami perubahan pada pelatihan ulang. Hal ini mengakibatkan fitur-fitur umum tetap tidak berubah, sedangkan lapisan akhir yang lebih spesifik disesuaikan.</p></li>
+<li><p>Domain Similarity<br>
+Transfer learning yang paling efektif yaitu ketika domain data pelatihan awal(domain asal) memiliki kemiripan atau kesamaan dengan domain data tugas baru(domain target).Domain adalah kumpulan data yang berasal dari sumber tertentu. Sedangkan domain similarity sendiri merupakan sejauh mana dua domain data memiliki kemiripan atau kesamaan dalam hal fitur, distribusi, karakteristik, atau pola. Jika kedua domain kemiripannya tinggi, maka akan berpotensi besar untuk diadaptasi karena relevan.</p></li>
+<li><p>Data Augmentation<br>
+Augmentasi data merupakan teknik untuk memperkaya dataset pelatihan yaitu dengan berbagai variasi citra seperti rotasi, pergeseran, dan perubahan ukuran citra. Dengan begitu peningkatan generalisasi model akan meningkat.</p></li>
+<li><p>Pengaturan Parameter<br>
+Selama transfer learning, perlu dilakukan penyesuaian parameter seperti learning rate dan batch size supaya sesuai dengan karakteristik dataset dan tugas baru.</p></li>
+<li><p>Evaluasi dan Fine-tuning<br>
+Setelah tahap fine-tuning, model dievaluasi pada dataset validasi dan, jika diperlukan, dapat dilakukan fine-tuning lebih lanjut guna memperbaiki performa.</p></li>
+</ul>
+</section>
+<section id="mobilenet" class="level3">
+<h3 class="anchored" data-anchor-id="mobilenet">MobileNet</h3>
+<p>Pada tahap seleksi model dasar pada fine tuning, terdapat beberapa arsitektur yang dapat dipilih seperti VGG, ResNet, Inception dan MobileNet. Pada kali ini akan dibahas mengenai MobileNet. Arsitektur MobileNet adalah salah satu arsitektur pada Convolutional Neural Networks (CNN) yang berguna dalam mengatasi kebutuhan computing resource yang berlebih. Arsitektur ini dibuat oleh para peneliti Google yang mana dapat digunakan untuk ponsel. Konvolusi pada MobileNet terbagi menjadi dua yaitu depthwise convolution dan pointwise convolution seperti pada gambar 5.12 dan gambar 5.13. Pada gambar 5.14 merupakan arsitektur dari MobileNet.</p>
+<div style="text-align:center">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="Asset/mobilenet1.png" class="img-fluid figure-img"></p>
+<figcaption class="figure-caption">Gambar 5.12 Konvolusi Standar (a) dibagi menjadi dua lapisan: depthwise convolution (b) dan pointwise convolution (c) untuk membuat sebuah filter secara mendalam (depthwise)</figcaption>
+</figure>
+</div>
+</div>
+<div style="text-align:center">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="Asset/mobilenet2.png" class="img-fluid figure-img"></p>
+<figcaption class="figure-caption">Gambar 5.13 Kiri: lapisan konvolusi standard dengan batchnorm dan ReLU. Kanan: Depthwise convolution dan Pointwise convolution dengan batchnorm dan ReLU.</figcaption>
+</figure>
+</div>
+</div>
+<div style="text-align:center">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="Asset/mobilenet3.png" class="img-fluid figure-img"></p>
+<figcaption class="figure-caption">Gambar 5.14 Arsitektur MobileNet</figcaption>
+</figure>
+</div>
+</div>
+<p>MobileNet memiliki beberapa versi, per September 2021 versi MobileNet terdapat 3 versi yaitu MobileNetV1, MobileNetV2, dan MobileNetV3. Untuk MobileNetV2 dirilis pada April 2017 lalu. MobileNetV2 masih menggunakan depthwise dan pointwise convolution. Dari versi MobileNetV1 ke MobileNetV2 dilakukan peningkatan yaitu dengan menambahkan dua fitur baru yaitu linear bottleneck dan shortcut connections antar bottlenecks. Struktur arsitektur dari MobileNetV2 dapat dilihat pada gambar 4 di bawah.</p>
+<div style="text-align:center">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="Asset/mobilenetv2.png" class="img-fluid figure-img"></p>
+<figcaption class="figure-caption">Gambar 5.15 Arsitektur MobilenetV2. Kotak biru menunjukkan blok pembentukkan konvolusi linear bottleneck</figcaption>
+</figure>
+</div>
+</div>
+<p>Diantara model terdapat input dan output pada bagian bottleneck, sedangkan pada layer bagian dalam dilakukan enkapsulasi kemampuan model guna mengubah input dari konsep tingkat yang lebih rendah (i.e.&nbsp;piksel) ke deskriptor tingkat yang lebih tinggi (i.e.&nbsp;kategori gambar). Shortcut antar bottlenecks memungkinkan training atau pelatihan yang lebih cepat dan akurasi yang lebih baik, hal ini seperti koneksi residual pada CNN tradisional.</p>
+<div style="text-align:center">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="Asset/mobilenetars.png" class="img-fluid figure-img"></p>
+<figcaption class="figure-caption">Gambar 5.16 Arsitektur MobileNet V2</figcaption>
+</figure>
+</div>
+</div>
+
+
+</section>
+</section>
+
+</main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+window.document.addEventListener("DOMContentLoaded", function (event) {
+  const toggleBodyColorMode = (bsSheetEl) => {
+    const mode = bsSheetEl.getAttribute("data-mode");
+    const bodyEl = window.document.querySelector("body");
+    if (mode === "dark") {
+      bodyEl.classList.add("quarto-dark");
+      bodyEl.classList.remove("quarto-light");
+    } else {
+      bodyEl.classList.add("quarto-light");
+      bodyEl.classList.remove("quarto-dark");
+    }
+  }
+  const toggleBodyColorPrimary = () => {
+    const bsSheetEl = window.document.querySelector("link#quarto-bootstrap");
+    if (bsSheetEl) {
+      toggleBodyColorMode(bsSheetEl);
+    }
+  }
+  toggleBodyColorPrimary();  
+  const disableStylesheet = (stylesheets) => {
+    for (let i=0; i < stylesheets.length; i++) {
+      const stylesheet = stylesheets[i];
+      stylesheet.rel = 'prefetch';
+    }
+  }
+  const enableStylesheet = (stylesheets) => {
+    for (let i=0; i < stylesheets.length; i++) {
+      const stylesheet = stylesheets[i];
+      stylesheet.rel = 'stylesheet';
+    }
+  }
+  const manageTransitions = (selector, allowTransitions) => {
+    const els = window.document.querySelectorAll(selector);
+    for (let i=0; i < els.length; i++) {
+      const el = els[i];
+      if (allowTransitions) {
+        el.classList.remove('notransition');
+      } else {
+        el.classList.add('notransition');
+      }
+    }
+  }
+  const toggleColorMode = (alternate) => {
+    // Switch the stylesheets
+    const alternateStylesheets = window.document.querySelectorAll('link.quarto-color-scheme.quarto-color-alternate');
+    manageTransitions('#quarto-margin-sidebar .nav-link', false);
+    if (alternate) {
+      enableStylesheet(alternateStylesheets);
+      for (const sheetNode of alternateStylesheets) {
+        if (sheetNode.id === "quarto-bootstrap") {
+          toggleBodyColorMode(sheetNode);
+        }
+      }
+    } else {
+      disableStylesheet(alternateStylesheets);
+      toggleBodyColorPrimary();
+    }
+    manageTransitions('#quarto-margin-sidebar .nav-link', true);
+    // Switch the toggles
+    const toggles = window.document.querySelectorAll('.quarto-color-scheme-toggle');
+    for (let i=0; i < toggles.length; i++) {
+      const toggle = toggles[i];
+      if (toggle) {
+        if (alternate) {
+          toggle.classList.add("alternate");     
+        } else {
+          toggle.classList.remove("alternate");
+        }
+      }
+    }
+    // Hack to workaround the fact that safari doesn't
+    // properly recolor the scrollbar when toggling (#1455)
+    if (navigator.userAgent.indexOf('Safari') > 0 && navigator.userAgent.indexOf('Chrome') == -1) {
+      manageTransitions("body", false);
+      window.scrollTo(0, 1);
+      setTimeout(() => {
+        window.scrollTo(0, 0);
+        manageTransitions("body", true);
+      }, 40);  
+    }
+  }
+  const isFileUrl = () => { 
+    return window.location.protocol === 'file:';
+  }
+  const hasAlternateSentinel = () => {  
+    let styleSentinel = getColorSchemeSentinel();
+    if (styleSentinel !== null) {
+      return styleSentinel === "alternate";
+    } else {
+      return false;
+    }
+  }
+  const setStyleSentinel = (alternate) => {
+    const value = alternate ? "alternate" : "default";
+    if (!isFileUrl()) {
+      window.localStorage.setItem("quarto-color-scheme", value);
+    } else {
+      localAlternateSentinel = value;
+    }
+  }
+  const getColorSchemeSentinel = () => {
+    if (!isFileUrl()) {
+      const storageValue = window.localStorage.getItem("quarto-color-scheme");
+      return storageValue != null ? storageValue : localAlternateSentinel;
+    } else {
+      return localAlternateSentinel;
+    }
+  }
+  let localAlternateSentinel = 'default';
+  // Dark / light mode switch
+  window.quartoToggleColorScheme = () => {
+    // Read the current dark / light value 
+    let toAlternate = !hasAlternateSentinel();
+    toggleColorMode(toAlternate);
+    setStyleSentinel(toAlternate);
+  };
+  // Ensure there is a toggle, if there isn't float one in the top right
+  if (window.document.querySelector('.quarto-color-scheme-toggle') === null) {
+    const a = window.document.createElement('a');
+    a.classList.add('top-right');
+    a.classList.add('quarto-color-scheme-toggle');
+    a.href = "";
+    a.onclick = function() { try { window.quartoToggleColorScheme(); } catch {} return false; };
+    const i = window.document.createElement("i");
+    i.classList.add('bi');
+    a.appendChild(i);
+    window.document.body.appendChild(a);
+  }
+  // Switch to dark mode if need be
+  if (hasAlternateSentinel()) {
+    toggleColorMode(true);
+  } else {
+    toggleColorMode(false);
+  }
+  const icon = "";
+  const anchorJS = new window.AnchorJS();
+  anchorJS.options = {
+    placement: 'right',
+    icon: icon
+  };
+  anchorJS.add('.anchored');
+  const isCodeAnnotation = (el) => {
+    for (const clz of el.classList) {
+      if (clz.startsWith('code-annotation-')) {                     
+        return true;
+      }
+    }
+    return false;
+  }
+  const clipboard = new window.ClipboardJS('.code-copy-button', {
+    text: function(trigger) {
+      const codeEl = trigger.previousElementSibling.cloneNode(true);
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+    }
+  });
+  clipboard.on('success', function(e) {
+    // button target
+    const button = e.trigger;
+    // don't keep focus
+    button.blur();
+    // flash "checked"
+    button.classList.add('code-copy-button-checked');
+    var currentTitle = button.getAttribute("title");
+    button.setAttribute("title", "Copied!");
+    let tooltip;
+    if (window.bootstrap) {
+      button.setAttribute("data-bs-toggle", "tooltip");
+      button.setAttribute("data-bs-placement", "left");
+      button.setAttribute("data-bs-title", "Copied!");
+      tooltip = new bootstrap.Tooltip(button, 
+        { trigger: "manual", 
+          customClass: "code-copy-button-tooltip",
+          offset: [0, -8]});
+      tooltip.show();    
+    }
+    setTimeout(function() {
+      if (tooltip) {
+        tooltip.hide();
+        button.removeAttribute("data-bs-title");
+        button.removeAttribute("data-bs-toggle");
+        button.removeAttribute("data-bs-placement");
+      }
+      button.setAttribute("title", currentTitle);
+      button.classList.remove('code-copy-button-checked');
+    }, 1000);
+    // clear code selection
+    e.clearSelection();
+  });
+  function tippyHover(el, contentFn) {
+    const config = {
+      allowHTML: true,
+      content: contentFn,
+      maxWidth: 500,
+      delay: 100,
+      arrow: false,
+      appendTo: function(el) {
+          return el.parentElement;
+      },
+      interactive: true,
+      interactiveBorder: 10,
+      theme: 'quarto',
+      placement: 'bottom-start'
+    };
+    window.tippy(el, config); 
+  }
+  const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+  for (var i=0; i<noterefs.length; i++) {
+    const ref = noterefs[i];
+    tippyHover(ref, function() {
+      // use id or data attribute instead here
+      let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+      try { href = new URL(href).hash; } catch {}
+      const id = href.replace(/^#\/?/, "");
+      const note = window.document.getElementById(id);
+      return note.innerHTML;
+    });
+  }
+      let selectedAnnoteEl;
+      const selectorForAnnotation = ( cell, annotation) => {
+        let cellAttr = 'data-code-cell="' + cell + '"';
+        let lineAttr = 'data-code-annotation="' +  annotation + '"';
+        const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+        return selector;
+      }
+      const selectCodeLines = (annoteEl) => {
+        const doc = window.document;
+        const targetCell = annoteEl.getAttribute("data-target-cell");
+        const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+        const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+        const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+        const lineIds = lines.map((line) => {
+          return targetCell + "-" + line;
+        })
+        let top = null;
+        let height = null;
+        let parent = null;
+        if (lineIds.length > 0) {
+            //compute the position of the single el (top and bottom and make a div)
+            const el = window.document.getElementById(lineIds[0]);
+            top = el.offsetTop;
+            height = el.offsetHeight;
+            parent = el.parentElement.parentElement;
+          if (lineIds.length > 1) {
+            const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+            const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+            height = bottom - top;
+          }
+          if (top !== null && height !== null && parent !== null) {
+            // cook up a div (if necessary) and position it 
+            let div = window.document.getElementById("code-annotation-line-highlight");
+            if (div === null) {
+              div = window.document.createElement("div");
+              div.setAttribute("id", "code-annotation-line-highlight");
+              div.style.position = 'absolute';
+              parent.appendChild(div);
+            }
+            div.style.top = top - 2 + "px";
+            div.style.height = height + 4 + "px";
+            let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+            if (gutterDiv === null) {
+              gutterDiv = window.document.createElement("div");
+              gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+              gutterDiv.style.position = 'absolute';
+              const codeCell = window.document.getElementById(targetCell);
+              const gutter = codeCell.querySelector('.code-annotation-gutter');
+              gutter.appendChild(gutterDiv);
+            }
+            gutterDiv.style.top = top - 2 + "px";
+            gutterDiv.style.height = height + 4 + "px";
+          }
+          selectedAnnoteEl = annoteEl;
+        }
+      };
+      const unselectCodeLines = () => {
+        const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+        elementsIds.forEach((elId) => {
+          const div = window.document.getElementById(elId);
+          if (div) {
+            div.remove();
+          }
+        });
+        selectedAnnoteEl = undefined;
+      };
+      // Attach click handler to the DT
+      const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+      for (const annoteDlNode of annoteDls) {
+        annoteDlNode.addEventListener('click', (event) => {
+          const clickedEl = event.target;
+          if (clickedEl !== selectedAnnoteEl) {
+            unselectCodeLines();
+            const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+            if (activeEl) {
+              activeEl.classList.remove('code-annotation-active');
+            }
+            selectCodeLines(clickedEl);
+            clickedEl.classList.add('code-annotation-active');
+          } else {
+            // Unselect the line
+            unselectCodeLines();
+            clickedEl.classList.remove('code-annotation-active');
+          }
+        });
+      }
+  const findCites = (el) => {
+    const parentEl = el.parentElement;
+    if (parentEl) {
+      const cites = parentEl.dataset.cites;
+      if (cites) {
+        return {
+          el,
+          cites: cites.split(' ')
+        };
+      } else {
+        return findCites(el.parentElement)
+      }
+    } else {
+      return undefined;
+    }
+  };
+  var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+  for (var i=0; i<bibliorefs.length; i++) {
+    const ref = bibliorefs[i];
+    const citeInfo = findCites(ref);
+    if (citeInfo) {
+      tippyHover(citeInfo.el, function() {
+        var popup = window.document.createElement('div');
+        citeInfo.cites.forEach(function(cite) {
+          var citeDiv = window.document.createElement('div');
+          citeDiv.classList.add('hanging-indent');
+          citeDiv.classList.add('csl-entry');
+          var biblioDiv = window.document.getElementById('ref-' + cite);
+          if (biblioDiv) {
+            citeDiv.innerHTML = biblioDiv.innerHTML;
+          }
+          popup.appendChild(citeDiv);
+        });
+        return popup.innerHTML;
+      });
+    }
+  }
+});
+</script>
+<nav class="page-navigation">
+  <div class="nav-page nav-page-previous">
+      <a href="./4_Feature_Extraction_and_Matching.html" class="pagination-link">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text">4 Feature Extraction and Matching</span>
+      </a>          
+  </div>
+  <div class="nav-page nav-page-next">
+      <a href="./6_Evaluasi.html" class="pagination-link">
+        <span class="nav-page-text">6 Metode Evaluasi dalam Computer Vision</span> <i class="bi bi-arrow-right-short"></i>
+      </a>
+  </div>
+</nav>
+</div> <!-- /content -->
+
+
+
+</body></html>

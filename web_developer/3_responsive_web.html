@@ -1,0 +1,834 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.3.353">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+
+<title>Junior Web Developer - 3. Responsive Web Design</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+/* CSS for syntax highlighting */
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+</style>
+
+
+<script src="site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="site_libs/quarto-nav/headroom.min.js"></script>
+<script src="site_libs/clipboard/clipboard.min.js"></script>
+<script src="site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="site_libs/quarto-search/fuse.min.js"></script>
+<script src="site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="./">
+<link href="./4_pembuatan_front_page.html" rel="next">
+<link href="./2_pengenalan_tools.html" rel="prev">
+<script src="site_libs/quarto-html/quarto.js"></script>
+<script src="site_libs/quarto-html/popper.min.js"></script>
+<script src="site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="site_libs/quarto-html/anchor.min.js"></script>
+<link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-text-highlighting-styles">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting-dark.css" rel="prefetch" class="quarto-color-scheme quarto-color-alternate" id="quarto-text-highlighting-styles">
+<script src="site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
+<link href="site_libs/bootstrap/bootstrap-dark.min.css" rel="prefetch" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
+<script id="quarto-search-options" type="application/json">{
+  "location": "sidebar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "start",
+  "type": "textbox",
+  "limit": 20,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit"
+  }
+}</script>
+
+
+</head>
+
+<body class="nav-sidebar floating">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+  <nav class="quarto-secondary-nav">
+    <div class="container-fluid d-flex">
+      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+        <i class="bi bi-layout-text-sidebar-reverse"></i>
+      </button>
+      <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./konsep.html"><b>Konsep</b></a></li><li class="breadcrumb-item"><a href="./3_responsive_web.html">3. Responsive Web Design</a></li></ol></nav>
+      <a class="flex-grow-1" role="button" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
+      </a>
+      <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
+        <i class="bi bi-search"></i>
+      </button>
+    </div>
+  </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article">
+<!-- sidebar -->
+  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal sidebar-navigation floating overflow-auto">
+    <div class="pt-lg-2 mt-2 text-left sidebar-header">
+    <div class="sidebar-title mb-0 py-0">
+      <a href="./">Junior Web Developer</a> 
+        <div class="sidebar-tools-main">
+  <a href="" class="quarto-color-scheme-toggle quarto-navigation-tool  px-1" onclick="window.quartoToggleColorScheme(); return false;" title="Toggle dark mode"><i class="bi"></i></a>
+</div>
+    </div>
+      </div>
+        <div class="mt-2 flex-shrink-0 align-items-center">
+        <div class="sidebar-search">
+        <div id="quarto-search" class="" title="Search"></div>
+        </div>
+        </div>
+    <div class="sidebar-menu-container"> 
+    <ul class="list-unstyled mt-1">
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><strong>Pengantar</strong></span></a>
+  </div>
+</li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a href="./konsep.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><b>Konsep</b></span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./1_konsep_dasar_web.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">1. Konsep Dasar Web Programmming</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./2_pengenalan_tools.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">2. Pengenalan Tools</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./3_responsive_web.html" class="sidebar-item-text sidebar-link active">
+ <span class="menu-text">3. Responsive Web Design</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./4_pembuatan_front_page.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">4. Front Page</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./5_konsep_database.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">5. Konsep Database</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./6_praktik_database_todolist.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">6. Praktik Database</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./9_penguji_web.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">7. Pengujian Web</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a href="./studi_kasus.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><b>Studi Kasus</b></span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-2" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./7_program_todolist.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">To Do List</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./8_studi_kasus_poliklinik.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Poliklinik</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+    </ul>
+    </div>
+</nav>
+<div id="quarto-sidebar-glass" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass"></div>
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">On this page</h2>
+   
+  <ul>
+  <li><a href="#pengenalan-responsive-web-design" id="toc-pengenalan-responsive-web-design" class="nav-link active" data-scroll-target="#pengenalan-responsive-web-design">Pengenalan Responsive Web Design</a></li>
+  <li><a href="#responsive-web-design-framework-bootstrap" id="toc-responsive-web-design-framework-bootstrap" class="nav-link" data-scroll-target="#responsive-web-design-framework-bootstrap">Responsive Web Design Framework (Bootstrap)</a>
+  <ul class="collapse">
+  <li><a href="#mengapa-menggunakan-bootstrap" id="toc-mengapa-menggunakan-bootstrap" class="nav-link" data-scroll-target="#mengapa-menggunakan-bootstrap">Mengapa menggunakan Bootstrap?</a></li>
+  <li><a href="#html5" id="toc-html5" class="nav-link" data-scroll-target="#html5">HTML5</a></li>
+  <li><a href="#grid-system" id="toc-grid-system" class="nav-link" data-scroll-target="#grid-system">Grid System</a></li>
+  <li><a href="#fungsi-bootsrtap-yang-umum-digunakan" id="toc-fungsi-bootsrtap-yang-umum-digunakan" class="nav-link" data-scroll-target="#fungsi-bootsrtap-yang-umum-digunakan">Fungsi Bootsrtap yang umum digunakan</a></li>
+  <li><a href="#komponen-yang-umum-digunakan" id="toc-komponen-yang-umum-digunakan" class="nav-link" data-scroll-target="#komponen-yang-umum-digunakan">Komponen yang umum digunakan</a></li>
+  </ul></li>
+  </ul>
+</nav>
+    </div>
+<!-- main -->
+<main class="content" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<h1 class="title">3. Responsive Web Design</h1>
+  <div class="quarto-categories">
+    <div class="quarto-category">ui</div>
+    <div class="quarto-category">bootstrap</div>
+    <div class="quarto-category">responsive</div>
+  </div>
+  </div>
+
+
+
+<div class="quarto-title-meta">
+
+    
+  
+    
+  </div>
+  
+
+</header>
+
+<section id="pengenalan-responsive-web-design" class="level2">
+<h2 class="anchored" data-anchor-id="pengenalan-responsive-web-design">Pengenalan Responsive Web Design</h2>
+<p>Desain Web Responsif (Responsive Web Design) merupakan penggunaan HTML dan CSS untuk dapat mengubah ukuran, menyembunyikan, mengecilkan, atau memperbesar situs web secara otomatis, agar dapat terlihat bagus pada semua perangkat (desktop, tablet, dan handphone). <br></p>
+<div class="quarto-figure quarto-figure-center" style="text-align:center;">
+<figure class="figure">
+<p><img src="assets/responsive/responsive_web.jpg" class="img-fluid figure-img" style="width:70.0%"></p>
+<figcaption class="figure-caption">Responsive Web</figcaption>
+</figure>
+</div>
+<p><br></p>
+<p>Halaman web responsive dilakukan dengan menambahkan elemen meta pada dokumen HTML seperti berikut: <br></p>
+<div class="sourceCode" id="cb1"><pre class="sourceCode html code-with-copy"><code class="sourceCode html"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="kw">&lt;meta</span> <span class="er">name</span><span class="ot">=</span><span class="st">"viewport"</span> <span class="er">content</span><span class="ot">=</span><span class="st">"width=device-width, initial-scale=1.0"</span><span class="kw">&gt;</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p><br></p>
+<p>Penambahan elemen meta digunakan untuk mengatur viewport pada dokumen HTML sehingga dapat tampil lintas perangkat. Pada penambahan elemen meta tersebut juga akan memberikan instruksi ke web browser dalam mengatur dimensi dan skala halaman web. <br></p>
+<p><strong>Responsive pada Image</strong> <br></p>
+<p>Penerapan responsive dapat diberlakukan juga pada image dengan menambahkan atribut width dengan nilai 100%. <br></p>
+<div class="sourceCode" id="cb2"><pre class="sourceCode html code-with-copy"><code class="sourceCode html"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="kw">&lt;img</span> <span class="er">src</span><span class="ot">=</span><span class="st">"images.jpg"</span> <span class="er">style</span><span class="ot">=</span><span class="st">"width:100%;"</span><span class="kw">&gt;</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p><strong>Responsive pada Text</strong> <br></p>
+<p>Responsive pada text dapat diterapkan dengan menggunakan unit “vw”, yang berarti “viewport width” atau “lebar viewport”.Viewport adalah ukuran jendela browser. 1 vw adalah 1% dari lebar viewport. Jika viewport lebar 50cm, 1vw adalah 0,5cm. <br></p>
+<div class="sourceCode" id="cb3"><pre class="sourceCode html code-with-copy"><code class="sourceCode html"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="kw">&lt;h1</span> <span class="er">style</span><span class="ot">=</span><span class="st">"font-size:10vw"</span><span class="kw">&gt;</span>Hello World<span class="kw">&lt;/h1&gt;</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p><br></p>
+</section>
+<section id="responsive-web-design-framework-bootstrap" class="level2">
+<h2 class="anchored" data-anchor-id="responsive-web-design-framework-bootstrap">Responsive Web Design Framework (Bootstrap)</h2>
+<p>Bootstrap merupakan HTML, CSS dan Javascript framework paling popular untuk mengambangkan responsive web design yang mengutamakan tampilan mobile (mobile first) Bootstrap dapat diunduh secara gratis pada laman <a href="https://getbootstrap.com/">https://getbootstrap.com/</a>. Sampai saat modul ini dibuat versi terakhir adalah Bootstrap v5.3.</p>
+<section id="mengapa-menggunakan-bootstrap" class="level3">
+<h3 class="anchored" data-anchor-id="mengapa-menggunakan-bootstrap">Mengapa menggunakan Bootstrap?</h3>
+<p>Banyak keuntungan dan kemudahan yang diberikan Bootstrap diantaranya adalah: <br></p>
+<p>Berikut adalah beberapa penjelasan mengenai Bootstrap: <br></p>
+<ul>
+<li><p>Responsif: Salah satu fitur utama Bootstrap adalah kemampuannya untuk menghasilkan tampilan yang responsif secara otomatis. Dengan menggunakan class CSS yang telah disediakan oleh Bootstrap, elemen-elemen halaman web dapat menyesuaikan diri dengan baik pada berbagai perangkat dan ukuran layar, mulai dari desktop hingga perangkat mobile.</p></li>
+<li><p>Grid System: Bootstrap menyediakan sistem grid yang fleksibel untuk membagi layout halaman web menjadi kolom-kolom yang responsif. Grid system ini memungkinkan pengaturan layout yang mudah dan dapat diatur untuk menciptakan tampilan yang rapi dan terstruktur pada berbagai perangkat.</p></li>
+<li><p>Komponen Siap Pakai: Bootstrap menyediakan beragam komponen UI siap pakai seperti tombol, navigasi, formulir, jumbotron, kartu, jendela modal, dan banyak lagi. Komponen ini telah dirancang dengan baik dan dapat langsung digunakan dalam proyek tanpa perlu memikirkan desain atau gaya dasar, menghemat waktu dan usaha pengembangan.</p></li>
+<li><p>Gaya dan Tema: Bootstrap memiliki gaya dan tema default yang estetis dan modern. Selain itu, Bootstrap juga menyediakan beragam tema kustom yang dapat diterapkan dengan mudah untuk memberikan tampilan yang unik dan sesuai dengan kebutuhan proyek Anda. Anda juga dapat menyesuaikan gaya dan tema Bootstrap sesuai dengan preferensi Anda sendiri.</p></li>
+<li><p>Kompatibilitas Browser: Bootstrap dirancang untuk mendukung sebagian besar browser modern. Ini berarti tampilan dan fungsionalitas situs web yang dibangun dengan menggunakan Bootstrap akan konsisten dan berfungsi dengan baik di berbagai browser yang umum digunakan.</p></li>
+<li><p>Dokumentasi dan Komunitas: Bootstrap memiliki dokumentasi yang sangat baik, lengkap dengan contoh-contoh kode dan penjelasan yang rinci. Selain itu, karena popularitasnya, Bootstrap memiliki komunitas pengembang yang besar dan aktif, yang dapat memberikan dukungan dan sumber daya yang berguna untuk menjawab pertanyaan, memecahkan masalah, dan berbagi pengalaman.</p></li>
+</ul>
+<p><br></p>
+</section>
+<section id="html5" class="level3">
+<h3 class="anchored" data-anchor-id="html5">HTML5</h3>
+<p>Penambahan doctype dilakukan untuk menetapkan dokumen HTML sebagai HTML versi 5 (HTML5), agar dapat menggunakan elemen-elemen HTML5 dan properti CSS Bootstrap. Sebagai contohnya pada script berikut. <br></p>
+<div class="sourceCode" id="cb4"><pre class="sourceCode html code-with-copy"><code class="sourceCode html"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="dt">&lt;!DOCTYPE </span>html<span class="dt">&gt;</span></span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a><span class="kw">&lt;html&gt;</span></span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a><span class="kw">&lt;/html&gt;</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p><br></p>
+<p>Jika menggunakan Text Editor Visual Studio Code, ketika mengetikan html di awal kode maka akan muncul snippets yang memunculkan beberapa pilihan template kode <br></p>
+<div class="quarto-figure quarto-figure-center" style="text-align:center;">
+<figure class="figure">
+<p><img src="assets/tools/vscode/snippets.png" class="img-fluid figure-img" style="width:70.0%"></p>
+<figcaption class="figure-caption">Snippets</figcaption>
+</figure>
+</div>
+</section>
+<section id="grid-system" class="level3">
+<h3 class="anchored" data-anchor-id="grid-system">Grid System</h3>
+<p>Pada Bootstrap menerapkan grid system dengan 12 (dua belas) kolom pada setiap halaman. Jika kita tidak menginginkan layout menggunakan ke-12 kolom, kita bisa mengelompokkan kolom bersama untuk membuat kolom yang lebih lebar. Sebagai contoh gambaran dari grid system dengan 12 kolom ditampilkan seperti pada gambar di bawah ini. <br></p>
+<div class="quarto-figure quarto-figure-center" style="text-align:center;">
+<figure class="figure">
+<p><img src="assets/responsive/grid.png" class="img-fluid figure-img" style="width:70.0%"></p>
+<figcaption class="figure-caption">Contoh Grid System Bootstrap</figcaption>
+</figure>
+</div>
+<p><br> Sistem grid pada bootstrap dapat menyesuaikan terhadap enam keadaan atau ukuran diantaranya adalah : <br></p>
+<ul>
+<li>Ekstra kecil atau extra small (xs)</li>
+<li>Kecil atau small (sm)</li>
+<li>Sedang atau medium (md)</li>
+<li>Besar atau large (lg)</li>
+<li>Ekstra besar atau extra large (xl)</li>
+<li>Ekstra ekstra besar atau extra extra large (xxl) <br></li>
+</ul>
+<div class="quarto-figure quarto-figure-center" style="text-align:center;">
+<figure class="figure">
+<p><img src="assets/responsive/gridtable.png" class="img-fluid figure-img" style="width:70.0%"></p>
+<figcaption class="figure-caption">Tabel Breakpoint Grid</figcaption>
+</figure>
+</div>
+</section>
+<section id="fungsi-bootsrtap-yang-umum-digunakan" class="level3">
+<h3 class="anchored" data-anchor-id="fungsi-bootsrtap-yang-umum-digunakan">Fungsi Bootsrtap yang umum digunakan</h3>
+<ol type="1">
+<li><p><strong>Grid</strong> <br> Seperti yang telah dijelaskan pada <a href="#grid-system">Grid System</a>, bahwa pada bootstrap dapat mengelompokkan layout menjadi 12 kolom, dimana kita dapat menggunakan grid ini dengan kelas row yang didalamnya terdapat kelas col, seperti berikut:<br></p>
+<div class="sourceCode" id="cb5"><pre class="sourceCode html code-with-copy"><code class="sourceCode html"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="kw">&lt;div</span> <span class="er">class</span><span class="ot">=</span><span class="st">"row"</span><span class="kw">&gt;</span></span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>    <span class="kw">&lt;div</span> <span class="er">class</span><span class="ot">=</span><span class="st">"col"</span><span class="kw">&gt;&lt;/div&gt;</span></span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>    ...</span>
+<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a><span class="kw">&lt;/div&gt;</span><span class="co">&lt;!-- row--&gt;</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p><br> Dalam kelas col ini dapat dituliskan dengan value seperti col-4, yang artinya objek yang diberikan kelas tersebut pada row atau baris akan mengisi sebanyak 4 kolom. Dalam 1 row tersebut dapat berisi dengan akumulai 12 kolom. <br><br> Selain iitu juga bisa dikombinasikan dengan class breakpoint. Pada seperti yang dijelaskan pada tabel penjelasan grid system bahwa kolom akan mengikuti ukuran breakppoint dari device yang dimasukkan. Misalkan col-md-4, maka ketika ukuran dari device yang digunakan lebih besar dari atau sama dengan 768px maka tampilan kolom akan mendatar memenuhi row, namun akan berubah tampilannya jika ukuran devicenya berkurang 1 pixel saja (kurang dari 768px).</p></li>
+<li><p><strong>Warna</strong> <br> Terdapat beberapa template kelas warna yang disediakan oleh Bootstrap diantaranya <br></p>
+<ul>
+<li>Primary: (Biru tua)</li>
+<li>Secondary: (Abu-abu)</li>
+<li>Success: (Hijau)</li>
+<li>Danger: (Merah)</li>
+<li>Warning: (Kuning)</li>
+<li>Info: (Biru cerah)</li>
+<li>Light: (Putih atau hampir putih)</li>
+<li>Dark: (Hitam atau hampir hitam) <br></li>
+</ul>
+<p>Pemilihan warna juga merupakan hal yang sangat penting dan perlu diperhatikan.Pemilihan warna akan sangat berpengaruh pada tampilan atau UI sehingga akan mempercantik tampilan dan menarik bagi user. Selain itu dengan warna yang sesuai akan membantu menyampaikan fungsi dari fitur, misalnya merah menandakan suatu yang penting yang memerlukan perhatian lebih, hal tersebut akan memudahkan konsumen dalam menggunakan aplikasi atau disebut <em>user experience</em></p></li>
+<li><p><strong>Typografi</strong> <br> Dalam cara penulisan pada bootstrap memberikan kemudahan dalam mengatur tampilan teks, melalui beberapa class, seperti <br></p>
+<ul>
+<li><p><strong>Heading</strong>, selain menggunakan tag <code>&lt;h1&gt;,&lt;h2&gt;,..,&lt;h6&gt;</code> pada bootstrap juga terdapat kelas heading contohnya:<br></p>
+<div class="sourceCode" id="cb6"><pre class="sourceCode html code-with-copy"><code class="sourceCode html"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="kw">&lt;p</span> <span class="er">class</span><span class="ot">=</span><span class="st">"h1"</span><span class="kw">&gt;</span>Heading 1<span class="kw">&lt;p&gt;</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div></li>
+<li><p><strong>Display</strong>, dengan manambahkan class display pada teks akan memberikan tampilan teks yang besar namun dengan style font yang tipis, misalnya: <br></p>
+<div class="sourceCode" id="cb7"><pre class="sourceCode html code-with-copy"><code class="sourceCode html"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="kw">&lt;p</span> <span class="er">class</span><span class="ot">=</span><span class="st">"display-1"</span><span class="kw">&gt;</span>Display 1<span class="kw">&lt;/p&gt;</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div></li>
+<li><p><strong>Font Size</strong>, class font size atau yang ditulis fs memberikan styling berupa ukuran dari teks dimana semakin besar nilai fs akan semakin kecil font yang ditampilkan: <br></p>
+<div class="sourceCode" id="cb8"><pre class="sourceCode html code-with-copy"><code class="sourceCode html"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="kw">&lt;p</span> <span class="er">class</span><span class="ot">=</span><span class="st">"fs-1"</span><span class="kw">&gt;</span>ini teks<span class="kw">&lt;/p&gt;</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div></li>
+<li><p><strong>Font Weight</strong>, melalui font weight dapat memberikan pengaturan terhadap tebal tipis dari font atau teks, dengan parameter bolder, bold, light, lighter, dan normal, berikut contoh penggunaannya: <br></p>
+<div class="sourceCode" id="cb9"><pre class="sourceCode html code-with-copy"><code class="sourceCode html"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="kw">&lt;p</span> <span class="er">class</span><span class="ot">=</span><span class="st">"fw-bold"</span><span class="kw">&gt;</span>Ini tebal<span class="kw">&lt;/p&gt;</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div></li>
+<li><p><strong>Font Style</strong>, dengan font style kita dapat merubah style dari font atau teks bold dan italic tanpa menggunakan tag html <code>&lt;b&gt; dan &lt;i&gt;</code>, atau sebagai berikut: <br></p>
+<div class="sourceCode" id="cb10"><pre class="sourceCode html code-with-copy"><code class="sourceCode html"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="kw">&lt;p</span> <span class="er">class</span><span class="ot">=</span><span class="st">"fst-italic"</span><span class="kw">&gt;</span>ini font style<span class="kw">&lt;/p&gt;</span></span>
+<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a><span class="kw">&lt;p</span> <span class="er">class</span><span class="ot">=</span><span class="st">"fst-normal"</span><span class="kw">&gt;</span>ini font style<span class="kw">&lt;/p&gt;</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div></li>
+</ul></li>
+<li><p>Spacing &amp; Sizing <br></p>
+<p>Pengaturan Spasi dan ukuran pada Bootstrap dapat menggunakan padding dan margin, Padding merupakan bagian yang membatasi konten dengan border, sedangkan margin merupakkan bagian yang membatasi antara border dengan bagian luar dari konten. Pengaturan margin dan padding dapat dilakukan dengan mudah hanya dengan menambahkan class m untuk margin dan p untuk padding yang diikuti dengan parameter t (top), b (bottom), s (start), e (end), x (menambahkan pada kedua sis horizontal), y (menambahkan pada kedua sisi vertikal), serta diikuti oleh besar margin atau padding yang diinginkan dengan nilai mulai dari 1 hingga 5, atau seperti berikut:</p>
+<pre><code> ```html
+ &lt;!-- Heading --&gt;
+ &lt;div class="item mt-5 mb-3"&gt;item1&lt;/div&gt;
+ &lt;div class="item ms-2 me-3"&gt;item2&lt;/div&gt;
+ &lt;div class="item my-5"&gt;item3&lt;/div&gt;
+ &lt;div class="item mx-3"&gt;item4&lt;/div&gt;
+ &lt;div class="item m-3"&gt;item4&lt;/div&gt;
+
+ &lt;!-- Padding --&gt;
+ &lt;div class="item pt-5 pb-3"&gt;item1&lt;/div&gt;
+ &lt;div class="item ps-2 pe-3"&gt;item2&lt;/div&gt;
+ &lt;div class="item py-5"&gt;item3&lt;/div&gt;
+ &lt;div class="item px-3"&gt;item4&lt;/div&gt;
+ &lt;div class="item p-3"&gt;item4&lt;/div&gt;
+ ```</code></pre></li>
+</ol>
+<div class="quarto-figure quarto-figure-center" style="text-align:center;">
+<figure class="figure">
+<p><img src="assets/responsive/margin-padding.png" class="img-fluid figure-img" style="width:70.0%"></p>
+<figcaption class="figure-caption">Margin-Padding-Border</figcaption>
+</figure>
+</div>
+<p><br></p>
+</section>
+<section id="komponen-yang-umum-digunakan" class="level3">
+<h3 class="anchored" data-anchor-id="komponen-yang-umum-digunakan">Komponen yang umum digunakan</h3>
+<ol type="1">
+<li><strong>Navbar</strong> Navbar pada bootstrap sudah memiliki kemampuan untuk responsif ketika ukuran dari perangkat yang digunakan terlalu kecil untuk menampilkan konten atau menu didalamnya akan otomatis menjadi <em>humberger menu</em>, berikut salah satu contoh dokumentasi navbar yang umum digunakan.</li>
+</ol>
+<div class="quarto-figure quarto-figure-center" style="text-align:center;">
+<figure class="figure">
+<p><img src="assets/responsive/navbar.png" class="img-fluid figure-img" style="width:70.0%"></p>
+<figcaption class="figure-caption">Navbar</figcaption>
+</figure>
+</div>
+<ol start="2" type="1">
+<li>Table Pada class yang disediakan bootstrap terdapat beberapa pilihan tampilan table dan modifikasi yang diberikan, dengan memasukkan tag table ke dalam div yang diberikan kelas dari table yang diinginkan misalnya seperti berikut :</li>
+</ol>
+<div class="quarto-figure quarto-figure-center" style="text-align:center;">
+<figure class="figure">
+<p><img src="assets/responsive/table.png" class="img-fluid figure-img" style="width:70.0%"></p>
+<figcaption class="figure-caption">Table</figcaption>
+</figure>
+</div>
+<ol start="3" type="1">
+<li>Button Tombol merupakan bagian terpenting dalam suatu tampilan website yang dapat mengirimkan input dari pengguna ke server. Dalam bootstrap terdapat beberapa variasi yang diberikan untuk penggunaan tombol atau button misalnya warna, bentuk, style, rounded dan masih banyak lagi yang bisa didalami melalui dokumentasi yang ada pada halaman bootstrap</li>
+</ol>
+<div class="quarto-figure quarto-figure-center" style="text-align:center;">
+<figure class="figure">
+<p><img src="assets/responsive/button.png" class="img-fluid figure-img" style="width:70.0%"></p>
+<figcaption class="figure-caption">Button</figcaption>
+</figure>
+</div>
+<ol start="4" type="1">
+<li>Card Pada website blog atau e-commerce biasanya menampilkan artikel-artikel mereka pada card dapat menampilkan gambar, serta deskripsi atau tombol untuk melihat lebih banyak mengenai informasi dari blog tersebut. berikut adalah contoh penggunaan card:</li>
+</ol>
+<div class="quarto-figure quarto-figure-center" style="text-align:center;">
+<figure class="figure">
+<p><img src="assets/responsive/card.png" class="img-fluid figure-img" style="width:70.0%"></p>
+<figcaption class="figure-caption">Card</figcaption>
+</figure>
+</div>
+<br>
+<hr>
+<div class="callout callout-style-simple callout-none no-icon callout-titled" title="Responsive design menggunakan Bootstrap">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Responsive design menggunakan Bootstrap
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p><em>Berikut penjelasan mengenai penggunaan bootstrap dan elemen-elemen yang banyak digunakan!</em></p>
+<div class="quarto-video ratio ratio-16x9"><iframe data-external="1" src="https://www.youtube.com/embed/VWY3yFcq-Ho" title="" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen=""></iframe></div>
+</div>
+</div>
+
+
+</section>
+</section>
+
+</main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+window.document.addEventListener("DOMContentLoaded", function (event) {
+  const toggleBodyColorMode = (bsSheetEl) => {
+    const mode = bsSheetEl.getAttribute("data-mode");
+    const bodyEl = window.document.querySelector("body");
+    if (mode === "dark") {
+      bodyEl.classList.add("quarto-dark");
+      bodyEl.classList.remove("quarto-light");
+    } else {
+      bodyEl.classList.add("quarto-light");
+      bodyEl.classList.remove("quarto-dark");
+    }
+  }
+  const toggleBodyColorPrimary = () => {
+    const bsSheetEl = window.document.querySelector("link#quarto-bootstrap");
+    if (bsSheetEl) {
+      toggleBodyColorMode(bsSheetEl);
+    }
+  }
+  toggleBodyColorPrimary();  
+  const disableStylesheet = (stylesheets) => {
+    for (let i=0; i < stylesheets.length; i++) {
+      const stylesheet = stylesheets[i];
+      stylesheet.rel = 'prefetch';
+    }
+  }
+  const enableStylesheet = (stylesheets) => {
+    for (let i=0; i < stylesheets.length; i++) {
+      const stylesheet = stylesheets[i];
+      stylesheet.rel = 'stylesheet';
+    }
+  }
+  const manageTransitions = (selector, allowTransitions) => {
+    const els = window.document.querySelectorAll(selector);
+    for (let i=0; i < els.length; i++) {
+      const el = els[i];
+      if (allowTransitions) {
+        el.classList.remove('notransition');
+      } else {
+        el.classList.add('notransition');
+      }
+    }
+  }
+  const toggleColorMode = (alternate) => {
+    // Switch the stylesheets
+    const alternateStylesheets = window.document.querySelectorAll('link.quarto-color-scheme.quarto-color-alternate');
+    manageTransitions('#quarto-margin-sidebar .nav-link', false);
+    if (alternate) {
+      enableStylesheet(alternateStylesheets);
+      for (const sheetNode of alternateStylesheets) {
+        if (sheetNode.id === "quarto-bootstrap") {
+          toggleBodyColorMode(sheetNode);
+        }
+      }
+    } else {
+      disableStylesheet(alternateStylesheets);
+      toggleBodyColorPrimary();
+    }
+    manageTransitions('#quarto-margin-sidebar .nav-link', true);
+    // Switch the toggles
+    const toggles = window.document.querySelectorAll('.quarto-color-scheme-toggle');
+    for (let i=0; i < toggles.length; i++) {
+      const toggle = toggles[i];
+      if (toggle) {
+        if (alternate) {
+          toggle.classList.add("alternate");     
+        } else {
+          toggle.classList.remove("alternate");
+        }
+      }
+    }
+    // Hack to workaround the fact that safari doesn't
+    // properly recolor the scrollbar when toggling (#1455)
+    if (navigator.userAgent.indexOf('Safari') > 0 && navigator.userAgent.indexOf('Chrome') == -1) {
+      manageTransitions("body", false);
+      window.scrollTo(0, 1);
+      setTimeout(() => {
+        window.scrollTo(0, 0);
+        manageTransitions("body", true);
+      }, 40);  
+    }
+  }
+  const isFileUrl = () => { 
+    return window.location.protocol === 'file:';
+  }
+  const hasAlternateSentinel = () => {  
+    let styleSentinel = getColorSchemeSentinel();
+    if (styleSentinel !== null) {
+      return styleSentinel === "alternate";
+    } else {
+      return false;
+    }
+  }
+  const setStyleSentinel = (alternate) => {
+    const value = alternate ? "alternate" : "default";
+    if (!isFileUrl()) {
+      window.localStorage.setItem("quarto-color-scheme", value);
+    } else {
+      localAlternateSentinel = value;
+    }
+  }
+  const getColorSchemeSentinel = () => {
+    if (!isFileUrl()) {
+      const storageValue = window.localStorage.getItem("quarto-color-scheme");
+      return storageValue != null ? storageValue : localAlternateSentinel;
+    } else {
+      return localAlternateSentinel;
+    }
+  }
+  let localAlternateSentinel = 'default';
+  // Dark / light mode switch
+  window.quartoToggleColorScheme = () => {
+    // Read the current dark / light value 
+    let toAlternate = !hasAlternateSentinel();
+    toggleColorMode(toAlternate);
+    setStyleSentinel(toAlternate);
+  };
+  // Ensure there is a toggle, if there isn't float one in the top right
+  if (window.document.querySelector('.quarto-color-scheme-toggle') === null) {
+    const a = window.document.createElement('a');
+    a.classList.add('top-right');
+    a.classList.add('quarto-color-scheme-toggle');
+    a.href = "";
+    a.onclick = function() { try { window.quartoToggleColorScheme(); } catch {} return false; };
+    const i = window.document.createElement("i");
+    i.classList.add('bi');
+    a.appendChild(i);
+    window.document.body.appendChild(a);
+  }
+  // Switch to dark mode if need be
+  if (hasAlternateSentinel()) {
+    toggleColorMode(true);
+  } else {
+    toggleColorMode(false);
+  }
+  const icon = "";
+  const anchorJS = new window.AnchorJS();
+  anchorJS.options = {
+    placement: 'right',
+    icon: icon
+  };
+  anchorJS.add('.anchored');
+  const isCodeAnnotation = (el) => {
+    for (const clz of el.classList) {
+      if (clz.startsWith('code-annotation-')) {                     
+        return true;
+      }
+    }
+    return false;
+  }
+  const clipboard = new window.ClipboardJS('.code-copy-button', {
+    text: function(trigger) {
+      const codeEl = trigger.previousElementSibling.cloneNode(true);
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+    }
+  });
+  clipboard.on('success', function(e) {
+    // button target
+    const button = e.trigger;
+    // don't keep focus
+    button.blur();
+    // flash "checked"
+    button.classList.add('code-copy-button-checked');
+    var currentTitle = button.getAttribute("title");
+    button.setAttribute("title", "Copied!");
+    let tooltip;
+    if (window.bootstrap) {
+      button.setAttribute("data-bs-toggle", "tooltip");
+      button.setAttribute("data-bs-placement", "left");
+      button.setAttribute("data-bs-title", "Copied!");
+      tooltip = new bootstrap.Tooltip(button, 
+        { trigger: "manual", 
+          customClass: "code-copy-button-tooltip",
+          offset: [0, -8]});
+      tooltip.show();    
+    }
+    setTimeout(function() {
+      if (tooltip) {
+        tooltip.hide();
+        button.removeAttribute("data-bs-title");
+        button.removeAttribute("data-bs-toggle");
+        button.removeAttribute("data-bs-placement");
+      }
+      button.setAttribute("title", currentTitle);
+      button.classList.remove('code-copy-button-checked');
+    }, 1000);
+    // clear code selection
+    e.clearSelection();
+  });
+  function tippyHover(el, contentFn) {
+    const config = {
+      allowHTML: true,
+      content: contentFn,
+      maxWidth: 500,
+      delay: 100,
+      arrow: false,
+      appendTo: function(el) {
+          return el.parentElement;
+      },
+      interactive: true,
+      interactiveBorder: 10,
+      theme: 'quarto',
+      placement: 'bottom-start'
+    };
+    window.tippy(el, config); 
+  }
+  const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+  for (var i=0; i<noterefs.length; i++) {
+    const ref = noterefs[i];
+    tippyHover(ref, function() {
+      // use id or data attribute instead here
+      let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+      try { href = new URL(href).hash; } catch {}
+      const id = href.replace(/^#\/?/, "");
+      const note = window.document.getElementById(id);
+      return note.innerHTML;
+    });
+  }
+      let selectedAnnoteEl;
+      const selectorForAnnotation = ( cell, annotation) => {
+        let cellAttr = 'data-code-cell="' + cell + '"';
+        let lineAttr = 'data-code-annotation="' +  annotation + '"';
+        const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+        return selector;
+      }
+      const selectCodeLines = (annoteEl) => {
+        const doc = window.document;
+        const targetCell = annoteEl.getAttribute("data-target-cell");
+        const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+        const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+        const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+        const lineIds = lines.map((line) => {
+          return targetCell + "-" + line;
+        })
+        let top = null;
+        let height = null;
+        let parent = null;
+        if (lineIds.length > 0) {
+            //compute the position of the single el (top and bottom and make a div)
+            const el = window.document.getElementById(lineIds[0]);
+            top = el.offsetTop;
+            height = el.offsetHeight;
+            parent = el.parentElement.parentElement;
+          if (lineIds.length > 1) {
+            const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+            const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+            height = bottom - top;
+          }
+          if (top !== null && height !== null && parent !== null) {
+            // cook up a div (if necessary) and position it 
+            let div = window.document.getElementById("code-annotation-line-highlight");
+            if (div === null) {
+              div = window.document.createElement("div");
+              div.setAttribute("id", "code-annotation-line-highlight");
+              div.style.position = 'absolute';
+              parent.appendChild(div);
+            }
+            div.style.top = top - 2 + "px";
+            div.style.height = height + 4 + "px";
+            let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+            if (gutterDiv === null) {
+              gutterDiv = window.document.createElement("div");
+              gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+              gutterDiv.style.position = 'absolute';
+              const codeCell = window.document.getElementById(targetCell);
+              const gutter = codeCell.querySelector('.code-annotation-gutter');
+              gutter.appendChild(gutterDiv);
+            }
+            gutterDiv.style.top = top - 2 + "px";
+            gutterDiv.style.height = height + 4 + "px";
+          }
+          selectedAnnoteEl = annoteEl;
+        }
+      };
+      const unselectCodeLines = () => {
+        const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+        elementsIds.forEach((elId) => {
+          const div = window.document.getElementById(elId);
+          if (div) {
+            div.remove();
+          }
+        });
+        selectedAnnoteEl = undefined;
+      };
+      // Attach click handler to the DT
+      const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+      for (const annoteDlNode of annoteDls) {
+        annoteDlNode.addEventListener('click', (event) => {
+          const clickedEl = event.target;
+          if (clickedEl !== selectedAnnoteEl) {
+            unselectCodeLines();
+            const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+            if (activeEl) {
+              activeEl.classList.remove('code-annotation-active');
+            }
+            selectCodeLines(clickedEl);
+            clickedEl.classList.add('code-annotation-active');
+          } else {
+            // Unselect the line
+            unselectCodeLines();
+            clickedEl.classList.remove('code-annotation-active');
+          }
+        });
+      }
+  const findCites = (el) => {
+    const parentEl = el.parentElement;
+    if (parentEl) {
+      const cites = parentEl.dataset.cites;
+      if (cites) {
+        return {
+          el,
+          cites: cites.split(' ')
+        };
+      } else {
+        return findCites(el.parentElement)
+      }
+    } else {
+      return undefined;
+    }
+  };
+  var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+  for (var i=0; i<bibliorefs.length; i++) {
+    const ref = bibliorefs[i];
+    const citeInfo = findCites(ref);
+    if (citeInfo) {
+      tippyHover(citeInfo.el, function() {
+        var popup = window.document.createElement('div');
+        citeInfo.cites.forEach(function(cite) {
+          var citeDiv = window.document.createElement('div');
+          citeDiv.classList.add('hanging-indent');
+          citeDiv.classList.add('csl-entry');
+          var biblioDiv = window.document.getElementById('ref-' + cite);
+          if (biblioDiv) {
+            citeDiv.innerHTML = biblioDiv.innerHTML;
+          }
+          popup.appendChild(citeDiv);
+        });
+        return popup.innerHTML;
+      });
+    }
+  }
+});
+</script>
+<nav class="page-navigation">
+  <div class="nav-page nav-page-previous">
+      <a href="./2_pengenalan_tools.html" class="pagination-link">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text">2. Pengenalan Tools</span>
+      </a>          
+  </div>
+  <div class="nav-page nav-page-next">
+      <a href="./4_pembuatan_front_page.html" class="pagination-link">
+        <span class="nav-page-text">4. Front Page</span> <i class="bi bi-arrow-right-short"></i>
+      </a>
+  </div>
+</nav>
+</div> <!-- /content -->
+
+
+
+</body></html>

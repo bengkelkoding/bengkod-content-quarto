@@ -1,0 +1,859 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.3.353">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+
+<title>Game Programming - 9. Translasi Objek 3D</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+/* CSS for syntax highlighting */
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+</style>
+
+
+<script src="site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="site_libs/quarto-nav/headroom.min.js"></script>
+<script src="site_libs/clipboard/clipboard.min.js"></script>
+<script src="site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="site_libs/quarto-search/fuse.min.js"></script>
+<script src="site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="./">
+<link href="./studi-kasus.html" rel="next">
+<link href="./game-prak-10.html" rel="prev">
+<script src="site_libs/quarto-html/quarto.js"></script>
+<script src="site_libs/quarto-html/popper.min.js"></script>
+<script src="site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="site_libs/quarto-html/anchor.min.js"></script>
+<link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-text-highlighting-styles">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting-dark.css" rel="prefetch" class="quarto-color-scheme quarto-color-alternate" id="quarto-text-highlighting-styles">
+<script src="site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
+<link href="site_libs/bootstrap/bootstrap-dark.min.css" rel="prefetch" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
+<script id="quarto-search-options" type="application/json">{
+  "location": "sidebar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "start",
+  "type": "textbox",
+  "limit": 20,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit"
+  }
+}</script>
+
+
+</head>
+
+<body class="nav-sidebar floating">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+  <nav class="quarto-secondary-nav">
+    <div class="container-fluid d-flex">
+      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+        <i class="bi bi-layout-text-sidebar-reverse"></i>
+      </button>
+      <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./konsep.html"><b>Konsep</b></a></li><li class="breadcrumb-item"><a href="./game-prak-11.html">9. Translasi Objek 3D</a></li></ol></nav>
+      <a class="flex-grow-1" role="button" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
+      </a>
+      <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
+        <i class="bi bi-search"></i>
+      </button>
+    </div>
+  </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article">
+<!-- sidebar -->
+  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal sidebar-navigation floating overflow-auto">
+    <div class="pt-lg-2 mt-2 text-left sidebar-header">
+    <div class="sidebar-title mb-0 py-0">
+      <a href="./">Game Programming</a> 
+        <div class="sidebar-tools-main">
+  <a href="" class="quarto-color-scheme-toggle quarto-navigation-tool  px-1" onclick="window.quartoToggleColorScheme(); return false;" title="Toggle dark mode"><i class="bi"></i></a>
+</div>
+    </div>
+      </div>
+        <div class="mt-2 flex-shrink-0 align-items-center">
+        <div class="sidebar-search">
+        <div id="quarto-search" class="" title="Search"></div>
+        </div>
+        </div>
+    <div class="sidebar-menu-container"> 
+    <ul class="list-unstyled mt-1">
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><b>Pengantar</b></span></a>
+  </div>
+</li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a href="./konsep.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><b>Konsep</b></span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./game-prak-1.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">1. Download dan Install Unity</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./game-prak-2.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">2. Menghubungkan object dengan variabel</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./game-prak-3.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">3. Animation sprite 2D</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./game-prak-4.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">4. Persiapan Asset Game</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./game-prak-5.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">5. Android Deployment</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./game-prak-7.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">6. Standard Asset 2D dan Instant Development</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./game-prak-9.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">7. Save &amp; Load dengan Playerpref</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./game-prak-10.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">8. Koordinat 2D vs 3D dan sistem arah tangan</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./game-prak-11.html" class="sidebar-item-text sidebar-link active">
+ <span class="menu-text">9. Translasi Objek 3D</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a href="./studi-kasus.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><b>Studi Kasus</b></span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-2" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./game-prak-12.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Game AI</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./game-prak-14.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Game Augmented Reality</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a href="./contoh-produk.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><b>Contoh Produk</b></span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-3" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./produk/the-forest-warior.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">The Forest Warior</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./produk/chandramawa-brand-new-color.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Chandramawa: Brand New Color</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./produk/bengkel-gizi.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Bengkel Gizi</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./produk/last-beat.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Last Beat</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./produk/what-a-nightmare.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">What a Nightmare</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+    </ul>
+    </div>
+</nav>
+<div id="quarto-sidebar-glass" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass"></div>
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">Table of contents</h2>
+   
+  <ul>
+  <li><a href="#pendahuluan" id="toc-pendahuluan" class="nav-link active" data-scroll-target="#pendahuluan">Pendahuluan</a></li>
+  <li><a href="#translasi-objek-3d" id="toc-translasi-objek-3d" class="nav-link" data-scroll-target="#translasi-objek-3d">Translasi Objek 3D</a></li>
+  <li><a href="#rotasi-objek-3d" id="toc-rotasi-objek-3d" class="nav-link" data-scroll-target="#rotasi-objek-3d">Rotasi Objek 3D</a></li>
+  <li><a href="#physic-engine-objek-3d" id="toc-physic-engine-objek-3d" class="nav-link" data-scroll-target="#physic-engine-objek-3d">Physic Engine Objek 3D</a></li>
+  <li><a href="#deteksi-tumbukan-objek-3d" id="toc-deteksi-tumbukan-objek-3d" class="nav-link" data-scroll-target="#deteksi-tumbukan-objek-3d">Deteksi Tumbukan Objek 3D</a></li>
+  <li><a href="#orbit-camera-pada-karakter-player-opsional" id="toc-orbit-camera-pada-karakter-player-opsional" class="nav-link" data-scroll-target="#orbit-camera-pada-karakter-player-opsional">Orbit Camera pada karakter Player (Opsional)</a></li>
+  <li><a href="#latihan" id="toc-latihan" class="nav-link" data-scroll-target="#latihan">Latihan</a></li>
+  <li><a href="#referensi" id="toc-referensi" class="nav-link" data-scroll-target="#referensi">REFERENSI</a></li>
+  <li><a href="#mekanisme-pengumpulan-praktikum-mingguan" id="toc-mekanisme-pengumpulan-praktikum-mingguan" class="nav-link" data-scroll-target="#mekanisme-pengumpulan-praktikum-mingguan">Mekanisme Pengumpulan Praktikum Mingguan</a></li>
+  </ul>
+</nav>
+    </div>
+<!-- main -->
+<main class="content" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<h1 class="title">9. Translasi Objek 3D</h1>
+</div>
+
+
+
+<div class="quarto-title-meta">
+
+    
+  
+    
+  </div>
+  
+
+</header>
+
+<section id="pendahuluan" class="level2">
+<h2 class="anchored" data-anchor-id="pendahuluan">Pendahuluan</h2>
+<p>Saat ini, kita sudah di penghujung pembuatan game 3D. Meskipun tidak banyak yang dipelajari dari pembuatan game 3D, kamu masih dapat belajar sendiri lebih lanjut. Pada pertemuan ini, kita akan kembali membuat beberapa program yang terkait tengan interaksi objek 3D. Pada unity transformasi yang ada pada objek game 2D atau 3D tidak jauh berbeda karena pada dasarnya unity dirancang untuk game 3D. <strong>Mari kita mulai dengan melanjutkan project “Coba3D”</strong>.</p>
+</section>
+<section id="translasi-objek-3d" class="level2">
+<h2 class="anchored" data-anchor-id="translasi-objek-3d">Translasi Objek 3D</h2>
+<p>Masih ingatkah kamu pada pertemuan ke-3 dan 4 tentang transformasi dan kendali (control)? Jika masih coba buka kode program “ObjectMovement.cs”. Disana kita mendefinisikan sendiri beberapa trigger vektor seperti vektor kekanan, kekiri, keatas, kebawah, maju, dan mundur. Disana terlihat hanya ada satu vektor posisi yang hanya memiliki nilai 1 atau -1. Jika menggunakan sistem kaidah tangan kiri posisi y = 1 digunakan untuk triger nilai positif yang disimbolkan oleh arah jari telunjuk yang menunjuk ke atas. Untuk nilai x positif mengikuti arah ibu jari yang menunjuk ke kanan. Terakhir, nilai z positif mengikuti arah jari tengah yang menunjuk kearah depan.</p>
+<p><strong>PRAKTIKUM:</strong></p>
+<ol type="1">
+<li>Copy dan paste file ObjectMovement.cs pada project <strong>“Latihan3_2D”</strong> kedalam project <strong>“Coba3D”</strong>.</li>
+<li>Buat scene baru dengan nama Transformasi.</li>
+<li>Buat objek Cube dan rename dengan nama “Kotak” dengan posisi x,y,z = 0.</li>
+<li>Masukkan kode ObjectMovement kedalam objek Kotak.</li>
+<li>Dahulu didalam method Update() kita sudah membuat kode program untuk translasi kekanan, kekiri, keatas, dan kebawah yang masing-masing memiliki kendali keyboard panah kanan, kiri, atas, dan bawah. Sekarang kita akan tambahkan kendali keyboard “W” untuk maju dan “S” untuk mundur. Tambahkan kode berikut didalam method Update():</li>
+</ol>
+<div class="sourceCode" id="cb1"><pre class="sourceCode c# code-with-copy"><code class="sourceCode cs"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="kw">if</span> <span class="op">(</span>Input<span class="op">.</span><span class="fu">GetKey</span><span class="op">(</span>KeyCode<span class="op">.</span><span class="fu">W</span><span class="op">))</span> <span class="op">{</span></span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>     transform<span class="op">.</span><span class="fu">position</span> <span class="op">=</span> transform<span class="op">.</span><span class="fu">position</span> <span class="op">+</span> <span class="op">(</span>maju <span class="op">*</span> speed <span class="op">*</span> Time<span class="op">.</span><span class="fu">deltaTime</span><span class="op">);</span></span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="kw">if</span> <span class="op">(</span>Input<span class="op">.</span><span class="fu">GetKey</span><span class="op">(</span>KeyCode<span class="op">.</span><span class="fu">S</span><span class="op">))</span> <span class="op">{</span></span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a>   transform<span class="op">.</span><span class="fu">position</span> <span class="op">=</span> transform<span class="op">.</span><span class="fu">position</span> <span class="op">+</span> <span class="op">(</span>mundur <span class="op">*</span> speed <span class="op">*</span> Time<span class="op">.</span><span class="fu">deltaTime</span><span class="op">);</span></span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a><span class="op">}</span> </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p><br> pastikan bahwa Vector 3 maju sudah didefinisikan terlebih dahulu.</p>
+<ol start="6" type="1">
+<li>Jalankan unity dan coba untuk menekan W dan S pada keyboard.</li>
+</ol>
+<p><strong>KUMPULKAN:</strong></p>
+<p>Screenshoot game tab coba tekan salah satu W atau S. Simpan dengan nama sc_11_01.jpg <br></p>
+</section>
+<section id="rotasi-objek-3d" class="level2">
+<h2 class="anchored" data-anchor-id="rotasi-objek-3d">Rotasi Objek 3D</h2>
+<p>Rotasi objek 3D sebetulnya sama dengan rotasi 2D yang pernah kita lakukan. Pada rotasi 2D yang kita lakukan adalah memutar kekanan dan kekiri. Sebetulnya memutar kekanan dan kekiri pada rotasi 2D yang pernah kita lakukan berbeda makna dengan rotasi 3D. Pada rotasi 3D hal itu disebut dengan roll (Lihat modul praktikum ke-3. Hal tersebut dikarenakan pada game 2D tidak pernah ada rotasi yaw atau pitch. Berikut adalah kode program untuk pitch,yaw,dan roll <strong>(tidak menggunakan method Rotate melainkan toQuartenion yang pernah kita buat sendiri di praktikum ke-3).</strong></p>
+<p><strong>Rotasi Pitch :</strong></p>
+<div class="sourceCode" id="cb2"><pre class="sourceCode c# code-with-copy"><code class="sourceCode cs"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>transform<span class="op">.</span><span class="fu">rotation</span> <span class="op">=</span> transform<span class="op">.</span><span class="fu">rotation</span> <span class="op">*</span> <span class="fu">toQuaternion</span> <span class="op">(</span>kekanan <span class="op">*</span>    speedRotasi <span class="op">*</span> Time<span class="op">.</span><span class="fu">deltaTime</span><span class="op">);</span> <span class="co">//pitch keatas</span></span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>atau</span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>transform<span class="op">.</span><span class="fu">rotation</span> <span class="op">=</span> transform<span class="op">.</span><span class="fu">rotation</span> <span class="op">*</span> <span class="fu">toQuaternion</span> <span class="op">(</span>kekiri <span class="op">*</span>    speedRotasi <span class="op">*</span> Time<span class="op">.</span><span class="fu">deltaTime</span><span class="op">);</span> <span class="co">//pitch kebawah</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p><strong>Rotasi yaw :</strong></p>
+<div class="sourceCode" id="cb3"><pre class="sourceCode c# code-with-copy"><code class="sourceCode cs"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>transform<span class="op">.</span><span class="fu">rotation</span> <span class="op">=</span> transform<span class="op">.</span><span class="fu">rotation</span> <span class="op">*</span> <span class="fu">toQuaternion</span> <span class="op">(</span>kebawah <span class="op">*</span>   speedRotasi <span class="op">*</span> Time<span class="op">.</span><span class="fu">deltaTime</span><span class="op">);</span>  <span class="co">//yaw kekanan</span></span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>atau</span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>transform<span class="op">.</span><span class="fu">rotation</span> <span class="op">=</span> transform<span class="op">.</span><span class="fu">rotation</span> <span class="op">*</span> <span class="fu">toQuaternion</span> <span class="op">(</span>keatas <span class="op">*</span>    speedRotasi <span class="op">*</span> Time<span class="op">.</span><span class="fu">deltaTime</span><span class="op">);</span>  <span class="co">//yaw kekiri</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p><strong>Rotasi roll :</strong></p>
+<div class="sourceCode" id="cb4"><pre class="sourceCode c# code-with-copy"><code class="sourceCode cs"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>transform<span class="op">.</span><span class="fu">rotation</span> <span class="op">=</span> transform<span class="op">.</span><span class="fu">rotation</span> <span class="op">*</span> <span class="fu">toQuaternion</span> <span class="op">(</span>maju <span class="op">*</span>   speedRotasi <span class="op">*</span> Time<span class="op">.</span><span class="fu">deltaTime</span><span class="op">);</span>  <span class="co">//roll kekiri</span></span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>atau</span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>transform<span class="op">.</span><span class="fu">rotation</span> <span class="op">=</span> transform<span class="op">.</span><span class="fu">rotation</span> <span class="op">*</span> <span class="fu">toQuaternion</span> <span class="op">(</span>mundur <span class="op">*</span>    speedRotasi <span class="op">*</span> Time<span class="op">.</span><span class="fu">deltaTime</span><span class="op">);</span>  <span class="co">//roll kekanan</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p><strong>PRAKTIKUM:</strong></p>
+<ol type="1">
+<li>Tetap pada script ObjectMovement.</li>
+<li>Pada bagian Update(), dahulu kita membuat rotasi dengan tombol D dan A untuk rotasi 2D (roll).</li>
+<li>Sekarang, ganti kode rotasi didalam Update dengan seluruh jenis rotasi pitch,yaw, dan roll:</li>
+</ol>
+<div class="sourceCode" id="cb5"><pre class="sourceCode c# code-with-copy"><code class="sourceCode cs"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="kw">if</span> <span class="op">(</span>Input<span class="op">.</span><span class="fu">GetMouseButton</span> <span class="op">(</span><span class="dv">0</span><span class="op">))</span> <span class="op">{</span></span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>            <span class="kw">if</span> <span class="op">(</span>Input<span class="op">.</span><span class="fu">GetKey</span> <span class="op">(</span>KeyCode<span class="op">.</span><span class="fu">J</span><span class="op">))</span></span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>                <span class="co">//buat kode roll kekanan</span></span>
+<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a>            <span class="kw">if</span> <span class="op">(</span>Input<span class="op">.</span><span class="fu">GetKey</span> <span class="op">(</span>KeyCode<span class="op">.</span><span class="fu">G</span><span class="op">))</span></span>
+<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a>                <span class="co">//buat kode roll kekiri</span></span>
+<span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a>            <span class="kw">if</span> <span class="op">(</span>Input<span class="op">.</span><span class="fu">GetKey</span> <span class="op">(</span>KeyCode<span class="op">.</span><span class="fu">Y</span><span class="op">))</span></span>
+<span id="cb5-7"><a href="#cb5-7" aria-hidden="true" tabindex="-1"></a>                <span class="co">//buat kode pitch keatas</span></span>
+<span id="cb5-8"><a href="#cb5-8" aria-hidden="true" tabindex="-1"></a>            <span class="kw">if</span> <span class="op">(</span>Input<span class="op">.</span><span class="fu">GetKey</span> <span class="op">(</span>KeyCode<span class="op">.</span><span class="fu">H</span><span class="op">))</span></span>
+<span id="cb5-9"><a href="#cb5-9" aria-hidden="true" tabindex="-1"></a>                <span class="co">//buat kode pitch kebawah</span></span>
+<span id="cb5-10"><a href="#cb5-10" aria-hidden="true" tabindex="-1"></a>            <span class="kw">if</span> <span class="op">(</span>Input<span class="op">.</span><span class="fu">GetKey</span> <span class="op">(</span>KeyCode<span class="op">.</span><span class="fu">T</span><span class="op">))</span></span>
+<span id="cb5-11"><a href="#cb5-11" aria-hidden="true" tabindex="-1"></a>                <span class="co">//buat kode yaw kekiri</span></span>
+<span id="cb5-12"><a href="#cb5-12" aria-hidden="true" tabindex="-1"></a>            <span class="kw">if</span> <span class="op">(</span>Input<span class="op">.</span><span class="fu">GetKey</span> <span class="op">(</span>KeyCode<span class="op">.</span><span class="fu">U</span><span class="op">))</span></span>
+<span id="cb5-13"><a href="#cb5-13" aria-hidden="true" tabindex="-1"></a>                <span class="co">//buat kode yaw kekanan</span></span>
+<span id="cb5-14"><a href="#cb5-14" aria-hidden="true" tabindex="-1"></a>        <span class="op">}</span></span>
+<span id="cb5-15"><a href="#cb5-15" aria-hidden="true" tabindex="-1"></a>        <span class="kw">else</span></span>
+<span id="cb5-16"><a href="#cb5-16" aria-hidden="true" tabindex="-1"></a>        <span class="op">{</span></span>
+<span id="cb5-17"><a href="#cb5-17" aria-hidden="true" tabindex="-1"></a>            <span class="co">//biarkan kosong</span></span>
+<span id="cb5-18"><a href="#cb5-18" aria-hidden="true" tabindex="-1"></a>        <span class="op">}</span> </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<ol start="4" type="1">
+<li>Isikan kode program yang di komentari dengan benar! (boleh menggunakan Quartenion.Euler atau method toQuartenion atau Vector3.Rotate, pilih salah satu)</li>
+<li>Masukan script ObjectMovement kedalam komponen dari objek Kotak.</li>
+<li>Jalankan unity, dan coba gerakkan rotasi objek dengan cara klik dan tahan mouse dan tekan G atau J atau yang lain sesuai aturan rotasi diatas.</li>
+</ol>
+<p><strong>KUMPULKAN:</strong></p>
+<p>Screenshoot game tab. Simpan dengan nama sc_11_02.jpg</p>
+<p><br></p>
+</section>
+<section id="physic-engine-objek-3d" class="level2">
+<h2 class="anchored" data-anchor-id="physic-engine-objek-3d">Physic Engine Objek 3D</h2>
+<p>Physic Engine untuk objek 3D menggunakan Rigidbody dan Collider. Namun demikian, mulai unity 5 keatas terdapat tambahan physic engine yaitu physic material. Physic material atau Physic material 2D (untuk objek 2D) untuk membuat efek permukaan objek misalnya ketika ingin membuat objek tersebut memantul. Physic material tidak akan diterangkan lebih lanjut, tetapi dapat dipelajari di <a href="https://docs.unity3d.com/Manual/class-PhysicMaterial.html" class="external" target="_blank">https://docs.unity3d.com/Manual/class-PhysicMaterial.html</a> .</p>
+<p>Untuk objek 3D, collider dan rigid body tidak menggunakan kata “2D” pada penamaan komponen tersebut. Terdapat 7 collider non legacy yang dapat diterapkan pada objek 3D, yaitu: box collider, capsule collider, mesh collider, spatial mapping collider, sphere collider, terrain collider, dan wheel collider. Dari nama-nama collider tersebut sudah terbayangkan bentuk objek yang akan dilingkupi oleh collider itu, misalnya box collider untuk objek yang berbentuk kubus. Pada objek-objek primitive, saat kita menambahkannya pada scene, secara default biasanya sudah memiliki collider. Tetapi belum miliki rigidbody.</p>
+<p><strong>PRAKTIKUM:</strong></p>
+<ol type="1">
+<li><p>Klik objek Kotak pada project Coba3D.</p></li>
+<li><p>Tambahkan component Rigidbody .</p></li>
+<li><p>Pastikan Use gravity tercentang atau gravity scale = 1 (pada unity versi 5.5 kebawah).</p></li>
+<li><p>Jalankan unity dan lihat apakah objek kotak sudah terjatuh atau belum.</p></li>
+<li><p>Jika sudah terjatuh. Hentikan unity.</p></li>
+<li><p>Tambahkan game objek penompang berbentuk Quad dan rename dengan nama Pijakan.</p></li>
+<li><p>Posisikan Pijakan pada x=0,y=-2,z=0 dan rotasi x=90,y dan z=0.</p></li>
+<li><p>Scale Pijakan dengan nilai x,y,z = 10.</p></li>
+<li><p>Buat material baru dengan standard shader dengan nama “matPijakan”, beri warna hitam.</p></li>
+<li><p>Masukkan material matPijakan kedalam komponen objek Pijakan. Seperti gambar dibawah ini. <br> <img src="assets/11/image001.png" class="img-fluid"></p></li>
+<li><p>Tambahkan object ThirdPersonController ke scene (Masuk pada Project Window, Assets-&gt;Standard Asset-&gt;Characters-&gt;ThirdPersonCharacter-&gt;Prefabs)</p></li>
+<li><p>Pastikan object ThirdPersonController memiliki transformasi seperti gambar berikut: <br> <img src="assets/11/image002.png" class="img-fluid"></p></li>
+<li><p>Klik objek Kotak pada hierarchy window dan lihat pada Inspector. Hilangkan komponen script ObjectMovement dari objek kotak tersebut. <br> <img src="assets/11/image003.png" class="img-fluid"></p></li>
+<li><p>Jalankan unity dan kendalikan objek ThirdPersonController untuk menabrak objek kotak.</p></li>
+</ol>
+<p><strong>KUMPULKAN:</strong></p>
+<p>Screenshoot game tab saat ThirdPersonController menabrak objek kotak. Simpan dengan nama sc_11_03.jpg</p>
+<p><br></p>
+</section>
+<section id="deteksi-tumbukan-objek-3d" class="level2">
+<h2 class="anchored" data-anchor-id="deteksi-tumbukan-objek-3d">Deteksi Tumbukan Objek 3D</h2>
+<p>Syarat deteksi tumbukan adalah terdapat komponen rigidbody dan collider pada kedua objek yang akan bertumbukan. Setelah kedua komponen itu ada, selanjutnya kita dapat menambahkan kode program dengan method OnCollisionEnter(), OnCollisionStay(), OnCollisionExit() atau OnTriggerEnter(), OnTriggerStay(), OnTriggerExit().</p>
+<p><strong>PRAKTIKUM:</strong></p>
+<ol type="1">
+<li>Klik objek Kotak pada project Coba3D.</li>
+<li>Buat tag baru dengan nama “enemy” dan atur pada objek Kotak.</li>
+<li>Buat UI text dan rename dengan nama “TextScore”. Biarkan Canvas apa adanya.</li>
+<li>Isikan pada Inspector Textscorem, width = 500, height = 250, Text = “Score = 0”.</li>
+<li>Tambahkan script baru pada objek ThirdPersonController dengan nama CollisionPlayerObjek.</li>
+<li>Tambahkan variabel teksScore pada script CollisionPlayerObjek dengan tipe Text (pastikan sudah menggunakan using UnityEngine.Text.</li>
+</ol>
+<div class="sourceCode" id="cb6"><pre class="sourceCode c# code-with-copy"><code class="sourceCode cs"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="kw">public</span> Text teksScore<span class="op">;</span> </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<ol start="7" type="1">
+<li>Tambahkan variabel score pada script CollisionPlayerObjek dengan tipe int.</li>
+</ol>
+<div class="sourceCode" id="cb7"><pre class="sourceCode c# code-with-copy"><code class="sourceCode cs"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="dt">int</span> score <span class="op">=</span> <span class="dv">0</span><span class="op">;</span> </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<ol start="8" type="1">
+<li>Tambahkan method OnCollisionEnter pada script CollisionPlayerObjek.</li>
+</ol>
+<div class="sourceCode" id="cb8"><pre class="sourceCode c# code-with-copy"><code class="sourceCode cs"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>    <span class="dt">void</span> <span class="fu">OnCollisionEnter</span><span class="op">(</span>Collision coll<span class="op">)</span></span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>    <span class="op">{</span></span>
+<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a>        <span class="kw">if</span> <span class="op">(</span>coll<span class="op">.</span><span class="fu">collider</span><span class="op">.</span><span class="fu">tag</span> <span class="op">==</span> <span class="st">"Enemy"</span><span class="op">)</span> <span class="op">{</span></span>
+<span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a>            score<span class="op">++;</span></span>
+<span id="cb8-5"><a href="#cb8-5" aria-hidden="true" tabindex="-1"></a>            teksScore<span class="op">.</span><span class="fu">text</span> <span class="op">=</span> <span class="st">"Score = "</span><span class="op">+</span>score<span class="op">.</span><span class="fu">ToString</span> <span class="op">();</span></span>
+<span id="cb8-6"><a href="#cb8-6" aria-hidden="true" tabindex="-1"></a>            <span class="fu">Destroy</span> <span class="op">(</span>coll<span class="op">.</span><span class="fu">gameObject</span><span class="op">);</span></span>
+<span id="cb8-7"><a href="#cb8-7" aria-hidden="true" tabindex="-1"></a>        <span class="op">}</span></span>
+<span id="cb8-8"><a href="#cb8-8" aria-hidden="true" tabindex="-1"></a>    <span class="op">}</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<ol start="9" type="1">
+<li><p>Masukkan objek teksScore kedalam variabel teksScore pada inspector ThirdPersonController. <br> <img src="assets/11/image004.png" class="img-fluid"></p></li>
+<li><p>Jalankan unity dan coba tumbukkan ThirdPersonController dengan Kotak.</p></li>
+</ol>
+<p><strong>KUMPULKAN:</strong></p>
+<p>Screenshoot game tab setelah ThirdPersonController menumbuk objek kotak. Simpan dengan nama sc_11_04.jpg</p>
+<p><br></p>
+</section>
+<section id="orbit-camera-pada-karakter-player-opsional" class="level2">
+<h2 class="anchored" data-anchor-id="orbit-camera-pada-karakter-player-opsional">Orbit Camera pada karakter Player (Opsional)</h2>
+<p>Pernahkan bermain game God Of War? Jika pernah, terdapat scene dimana player sedang berjalan pada kayu kecil dan dibawahnya adalah jurang api. Sekarang kita akan mencoba untuk membuat hal itu dengan kendali orang-ketiga dan arah dari mouse.</p>
+<p><strong>PRAKTIKUM:</strong></p>
+<ol type="1">
+<li><p>Klik objek Kotak pada project Coba3D. Posisikan seperti gambar berikut: <br> <img src="assets/11/image005.png" class="img-fluid"></p></li>
+<li><p>Klik objek ThirdPersonController dan posisikan seperti gambar berikut: <br> <img src="assets/11/image006.png" class="img-fluid"></p></li>
+<li><p>Klik objek Main Camera dan posisikan seperti gambar berikut: <br> <img src="assets/11/image007.png" class="img-fluid"></p></li>
+<li><p>Tambahkan script baru dengan nama “OrbitCamera” pada objek Main Camera. <br> <img src="assets/11/image008.png" class="img-fluid"></p></li>
+<li><p>Jalankan Unity dan analisa apa yang terjadi.</p></li>
+</ol>
+<p><strong>KUMPULKAN:</strong></p>
+<p>Screenshoot game tab setelah ThirdPersonController menumbuk objek kotak. Simpan dengan nama sc_11_05.jpg <br></p>
+</section>
+<section id="latihan" class="level2">
+<h2 class="anchored" data-anchor-id="latihan">Latihan</h2>
+<p>Jika sudah selesai praktikum, silahkan kembangkan game yang ada pada praktikum kali ini dengan pengetahuan yang sebelumnya sudah dipelajari dan kreativitas kamu. Buat game third-person control dengan berbagai macam interaksi.</p>
+<p><strong>KUMPULKAN:</strong></p>
+<p>Screenshoot game tab dimana game yang dibuat sudah merupakan modifikasi dari praktikum kali ini. Simpan dengan nama sc_11_06.jpg.</p>
+</section>
+<section id="referensi" class="level2">
+<h2 class="anchored" data-anchor-id="referensi">REFERENSI</h2>
+<ul>
+<li>Hocking, J. (2015). Unity in action. Manning Publications,.</li>
+<li>De Byl, P. (2017). Holistic Mobile Game Development with Unity Second Eds. CRC Press.</li>
+<li>Blackman, S., &amp; Tuliper, A. (2016). Learn Unity for Windows 10 Game Development. Apress.</li>
+<li><a href="https://docs.unity3d.com/ScriptReference/MonoBehaviour.OnTriggerEnter.html" class="external" target="_blank">https://docs.unity3d.com/ScriptReference/MonoBehaviour.OnTriggerEnter.html</a></li>
+<li><a href="https://docs.unity3d.com/ScriptReference/Collider.OnCollisionEnter.html" class="external" target="_blank">https://docs.unity3d.com/ScriptReference/Collider.OnCollisionEnter.html</a></li>
+</ul>
+</section>
+<section id="mekanisme-pengumpulan-praktikum-mingguan" class="level2">
+<h2 class="anchored" data-anchor-id="mekanisme-pengumpulan-praktikum-mingguan">Mekanisme Pengumpulan Praktikum Mingguan</h2>
+<p><strong>Untuk setiap mahasiswa:</strong> Buat 1 folder beri nama NIM lengkap. Masukkan file screenshot sc_11_01.jpg, sc_11_02.jpg, sc_11_03.jpg, sc_11_04, sc_11_05 dan sc_11_06.jpg . Kemudian rar atau zip folder NIM kamu tadi dan kirimkan ke ketua kelas.</p>
+<p>Contoh: A11200904997.rar</p>
+<p><strong>Untuk Ketua Kelas:</strong> Siapkan folder dengan nama Kode Kelas “_11” yang berisi kumpulan praktikum setiap mahasiswa. Lalu buat rar atau zip dan kirimkan ke email dosen.</p>
+<p>Contoh: A114401_11.rar</p>
+
+
+</section>
+
+</main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+window.document.addEventListener("DOMContentLoaded", function (event) {
+  const toggleBodyColorMode = (bsSheetEl) => {
+    const mode = bsSheetEl.getAttribute("data-mode");
+    const bodyEl = window.document.querySelector("body");
+    if (mode === "dark") {
+      bodyEl.classList.add("quarto-dark");
+      bodyEl.classList.remove("quarto-light");
+    } else {
+      bodyEl.classList.add("quarto-light");
+      bodyEl.classList.remove("quarto-dark");
+    }
+  }
+  const toggleBodyColorPrimary = () => {
+    const bsSheetEl = window.document.querySelector("link#quarto-bootstrap");
+    if (bsSheetEl) {
+      toggleBodyColorMode(bsSheetEl);
+    }
+  }
+  toggleBodyColorPrimary();  
+  const disableStylesheet = (stylesheets) => {
+    for (let i=0; i < stylesheets.length; i++) {
+      const stylesheet = stylesheets[i];
+      stylesheet.rel = 'prefetch';
+    }
+  }
+  const enableStylesheet = (stylesheets) => {
+    for (let i=0; i < stylesheets.length; i++) {
+      const stylesheet = stylesheets[i];
+      stylesheet.rel = 'stylesheet';
+    }
+  }
+  const manageTransitions = (selector, allowTransitions) => {
+    const els = window.document.querySelectorAll(selector);
+    for (let i=0; i < els.length; i++) {
+      const el = els[i];
+      if (allowTransitions) {
+        el.classList.remove('notransition');
+      } else {
+        el.classList.add('notransition');
+      }
+    }
+  }
+  const toggleColorMode = (alternate) => {
+    // Switch the stylesheets
+    const alternateStylesheets = window.document.querySelectorAll('link.quarto-color-scheme.quarto-color-alternate');
+    manageTransitions('#quarto-margin-sidebar .nav-link', false);
+    if (alternate) {
+      enableStylesheet(alternateStylesheets);
+      for (const sheetNode of alternateStylesheets) {
+        if (sheetNode.id === "quarto-bootstrap") {
+          toggleBodyColorMode(sheetNode);
+        }
+      }
+    } else {
+      disableStylesheet(alternateStylesheets);
+      toggleBodyColorPrimary();
+    }
+    manageTransitions('#quarto-margin-sidebar .nav-link', true);
+    // Switch the toggles
+    const toggles = window.document.querySelectorAll('.quarto-color-scheme-toggle');
+    for (let i=0; i < toggles.length; i++) {
+      const toggle = toggles[i];
+      if (toggle) {
+        if (alternate) {
+          toggle.classList.add("alternate");     
+        } else {
+          toggle.classList.remove("alternate");
+        }
+      }
+    }
+    // Hack to workaround the fact that safari doesn't
+    // properly recolor the scrollbar when toggling (#1455)
+    if (navigator.userAgent.indexOf('Safari') > 0 && navigator.userAgent.indexOf('Chrome') == -1) {
+      manageTransitions("body", false);
+      window.scrollTo(0, 1);
+      setTimeout(() => {
+        window.scrollTo(0, 0);
+        manageTransitions("body", true);
+      }, 40);  
+    }
+  }
+  const isFileUrl = () => { 
+    return window.location.protocol === 'file:';
+  }
+  const hasAlternateSentinel = () => {  
+    let styleSentinel = getColorSchemeSentinel();
+    if (styleSentinel !== null) {
+      return styleSentinel === "alternate";
+    } else {
+      return false;
+    }
+  }
+  const setStyleSentinel = (alternate) => {
+    const value = alternate ? "alternate" : "default";
+    if (!isFileUrl()) {
+      window.localStorage.setItem("quarto-color-scheme", value);
+    } else {
+      localAlternateSentinel = value;
+    }
+  }
+  const getColorSchemeSentinel = () => {
+    if (!isFileUrl()) {
+      const storageValue = window.localStorage.getItem("quarto-color-scheme");
+      return storageValue != null ? storageValue : localAlternateSentinel;
+    } else {
+      return localAlternateSentinel;
+    }
+  }
+  let localAlternateSentinel = 'default';
+  // Dark / light mode switch
+  window.quartoToggleColorScheme = () => {
+    // Read the current dark / light value 
+    let toAlternate = !hasAlternateSentinel();
+    toggleColorMode(toAlternate);
+    setStyleSentinel(toAlternate);
+  };
+  // Ensure there is a toggle, if there isn't float one in the top right
+  if (window.document.querySelector('.quarto-color-scheme-toggle') === null) {
+    const a = window.document.createElement('a');
+    a.classList.add('top-right');
+    a.classList.add('quarto-color-scheme-toggle');
+    a.href = "";
+    a.onclick = function() { try { window.quartoToggleColorScheme(); } catch {} return false; };
+    const i = window.document.createElement("i");
+    i.classList.add('bi');
+    a.appendChild(i);
+    window.document.body.appendChild(a);
+  }
+  // Switch to dark mode if need be
+  if (hasAlternateSentinel()) {
+    toggleColorMode(true);
+  } else {
+    toggleColorMode(false);
+  }
+  const icon = "";
+  const anchorJS = new window.AnchorJS();
+  anchorJS.options = {
+    placement: 'right',
+    icon: icon
+  };
+  anchorJS.add('.anchored');
+  const isCodeAnnotation = (el) => {
+    for (const clz of el.classList) {
+      if (clz.startsWith('code-annotation-')) {                     
+        return true;
+      }
+    }
+    return false;
+  }
+  const clipboard = new window.ClipboardJS('.code-copy-button', {
+    text: function(trigger) {
+      const codeEl = trigger.previousElementSibling.cloneNode(true);
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+    }
+  });
+  clipboard.on('success', function(e) {
+    // button target
+    const button = e.trigger;
+    // don't keep focus
+    button.blur();
+    // flash "checked"
+    button.classList.add('code-copy-button-checked');
+    var currentTitle = button.getAttribute("title");
+    button.setAttribute("title", "Copied!");
+    let tooltip;
+    if (window.bootstrap) {
+      button.setAttribute("data-bs-toggle", "tooltip");
+      button.setAttribute("data-bs-placement", "left");
+      button.setAttribute("data-bs-title", "Copied!");
+      tooltip = new bootstrap.Tooltip(button, 
+        { trigger: "manual", 
+          customClass: "code-copy-button-tooltip",
+          offset: [0, -8]});
+      tooltip.show();    
+    }
+    setTimeout(function() {
+      if (tooltip) {
+        tooltip.hide();
+        button.removeAttribute("data-bs-title");
+        button.removeAttribute("data-bs-toggle");
+        button.removeAttribute("data-bs-placement");
+      }
+      button.setAttribute("title", currentTitle);
+      button.classList.remove('code-copy-button-checked');
+    }, 1000);
+    // clear code selection
+    e.clearSelection();
+  });
+  function tippyHover(el, contentFn) {
+    const config = {
+      allowHTML: true,
+      content: contentFn,
+      maxWidth: 500,
+      delay: 100,
+      arrow: false,
+      appendTo: function(el) {
+          return el.parentElement;
+      },
+      interactive: true,
+      interactiveBorder: 10,
+      theme: 'quarto',
+      placement: 'bottom-start'
+    };
+    window.tippy(el, config); 
+  }
+  const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+  for (var i=0; i<noterefs.length; i++) {
+    const ref = noterefs[i];
+    tippyHover(ref, function() {
+      // use id or data attribute instead here
+      let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+      try { href = new URL(href).hash; } catch {}
+      const id = href.replace(/^#\/?/, "");
+      const note = window.document.getElementById(id);
+      return note.innerHTML;
+    });
+  }
+      let selectedAnnoteEl;
+      const selectorForAnnotation = ( cell, annotation) => {
+        let cellAttr = 'data-code-cell="' + cell + '"';
+        let lineAttr = 'data-code-annotation="' +  annotation + '"';
+        const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+        return selector;
+      }
+      const selectCodeLines = (annoteEl) => {
+        const doc = window.document;
+        const targetCell = annoteEl.getAttribute("data-target-cell");
+        const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+        const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+        const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+        const lineIds = lines.map((line) => {
+          return targetCell + "-" + line;
+        })
+        let top = null;
+        let height = null;
+        let parent = null;
+        if (lineIds.length > 0) {
+            //compute the position of the single el (top and bottom and make a div)
+            const el = window.document.getElementById(lineIds[0]);
+            top = el.offsetTop;
+            height = el.offsetHeight;
+            parent = el.parentElement.parentElement;
+          if (lineIds.length > 1) {
+            const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+            const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+            height = bottom - top;
+          }
+          if (top !== null && height !== null && parent !== null) {
+            // cook up a div (if necessary) and position it 
+            let div = window.document.getElementById("code-annotation-line-highlight");
+            if (div === null) {
+              div = window.document.createElement("div");
+              div.setAttribute("id", "code-annotation-line-highlight");
+              div.style.position = 'absolute';
+              parent.appendChild(div);
+            }
+            div.style.top = top - 2 + "px";
+            div.style.height = height + 4 + "px";
+            let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+            if (gutterDiv === null) {
+              gutterDiv = window.document.createElement("div");
+              gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+              gutterDiv.style.position = 'absolute';
+              const codeCell = window.document.getElementById(targetCell);
+              const gutter = codeCell.querySelector('.code-annotation-gutter');
+              gutter.appendChild(gutterDiv);
+            }
+            gutterDiv.style.top = top - 2 + "px";
+            gutterDiv.style.height = height + 4 + "px";
+          }
+          selectedAnnoteEl = annoteEl;
+        }
+      };
+      const unselectCodeLines = () => {
+        const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+        elementsIds.forEach((elId) => {
+          const div = window.document.getElementById(elId);
+          if (div) {
+            div.remove();
+          }
+        });
+        selectedAnnoteEl = undefined;
+      };
+      // Attach click handler to the DT
+      const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+      for (const annoteDlNode of annoteDls) {
+        annoteDlNode.addEventListener('click', (event) => {
+          const clickedEl = event.target;
+          if (clickedEl !== selectedAnnoteEl) {
+            unselectCodeLines();
+            const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+            if (activeEl) {
+              activeEl.classList.remove('code-annotation-active');
+            }
+            selectCodeLines(clickedEl);
+            clickedEl.classList.add('code-annotation-active');
+          } else {
+            // Unselect the line
+            unselectCodeLines();
+            clickedEl.classList.remove('code-annotation-active');
+          }
+        });
+      }
+  const findCites = (el) => {
+    const parentEl = el.parentElement;
+    if (parentEl) {
+      const cites = parentEl.dataset.cites;
+      if (cites) {
+        return {
+          el,
+          cites: cites.split(' ')
+        };
+      } else {
+        return findCites(el.parentElement)
+      }
+    } else {
+      return undefined;
+    }
+  };
+  var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+  for (var i=0; i<bibliorefs.length; i++) {
+    const ref = bibliorefs[i];
+    const citeInfo = findCites(ref);
+    if (citeInfo) {
+      tippyHover(citeInfo.el, function() {
+        var popup = window.document.createElement('div');
+        citeInfo.cites.forEach(function(cite) {
+          var citeDiv = window.document.createElement('div');
+          citeDiv.classList.add('hanging-indent');
+          citeDiv.classList.add('csl-entry');
+          var biblioDiv = window.document.getElementById('ref-' + cite);
+          if (biblioDiv) {
+            citeDiv.innerHTML = biblioDiv.innerHTML;
+          }
+          popup.appendChild(citeDiv);
+        });
+        return popup.innerHTML;
+      });
+    }
+  }
+});
+</script>
+<nav class="page-navigation">
+  <div class="nav-page nav-page-previous">
+      <a href="./game-prak-10.html" class="pagination-link">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text">8. Koordinat 2D vs 3D dan sistem arah tangan</span>
+      </a>          
+  </div>
+  <div class="nav-page nav-page-next">
+      <a href="./studi-kasus.html" class="pagination-link">
+        <span class="nav-page-text"><b>Studi Kasus</b></span> <i class="bi bi-arrow-right-short"></i>
+      </a>
+  </div>
+</nav>
+</div> <!-- /content -->
+
+
+
+</body></html>

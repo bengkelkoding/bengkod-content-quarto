@@ -1,0 +1,15 @@
+# <b>Konsep</b> {.unnumbered}
+<br>
+Pada kursus Data Science berisi tentang modul-modul, sebagai berikut:
+
+1. Data Science Tools
+2. Data Understanding
+3. Telaah Data
+4. Validasi Data
+5. Menentukan Objek atau Memilih Data
+6. Cleaning Data
+7. Transformasi Data
+8. Pemodelan Data Science
+9. Evaluasi Data
+10. Deployment
+

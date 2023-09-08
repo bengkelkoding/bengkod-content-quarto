@@ -1,0 +1,1156 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.3.353">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+
+<title>Game Programming - 1. Download dan Install Unity</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+/* CSS for syntax highlighting */
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+</style>
+
+
+<script src="site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="site_libs/quarto-nav/headroom.min.js"></script>
+<script src="site_libs/clipboard/clipboard.min.js"></script>
+<script src="site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="site_libs/quarto-search/fuse.min.js"></script>
+<script src="site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="./">
+<link href="./game-prak-2.html" rel="next">
+<link href="./konsep.html" rel="prev">
+<script src="site_libs/quarto-html/quarto.js"></script>
+<script src="site_libs/quarto-html/popper.min.js"></script>
+<script src="site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="site_libs/quarto-html/anchor.min.js"></script>
+<link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-text-highlighting-styles">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting-dark.css" rel="prefetch" class="quarto-color-scheme quarto-color-alternate" id="quarto-text-highlighting-styles">
+<script src="site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
+<link href="site_libs/bootstrap/bootstrap-dark.min.css" rel="prefetch" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
+<script id="quarto-search-options" type="application/json">{
+  "location": "sidebar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "start",
+  "type": "textbox",
+  "limit": 20,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit"
+  }
+}</script>
+
+
+</head>
+
+<body class="nav-sidebar floating">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+  <nav class="quarto-secondary-nav">
+    <div class="container-fluid d-flex">
+      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+        <i class="bi bi-layout-text-sidebar-reverse"></i>
+      </button>
+      <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./konsep.html"><b>Konsep</b></a></li><li class="breadcrumb-item"><a href="./game-prak-1.html">1. Download dan Install Unity</a></li></ol></nav>
+      <a class="flex-grow-1" role="button" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
+      </a>
+      <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
+        <i class="bi bi-search"></i>
+      </button>
+    </div>
+  </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article">
+<!-- sidebar -->
+  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal sidebar-navigation floating overflow-auto">
+    <div class="pt-lg-2 mt-2 text-left sidebar-header">
+    <div class="sidebar-title mb-0 py-0">
+      <a href="./">Game Programming</a> 
+        <div class="sidebar-tools-main">
+  <a href="" class="quarto-color-scheme-toggle quarto-navigation-tool  px-1" onclick="window.quartoToggleColorScheme(); return false;" title="Toggle dark mode"><i class="bi"></i></a>
+</div>
+    </div>
+      </div>
+        <div class="mt-2 flex-shrink-0 align-items-center">
+        <div class="sidebar-search">
+        <div id="quarto-search" class="" title="Search"></div>
+        </div>
+        </div>
+    <div class="sidebar-menu-container"> 
+    <ul class="list-unstyled mt-1">
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><b>Pengantar</b></span></a>
+  </div>
+</li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a href="./konsep.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><b>Konsep</b></span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./game-prak-1.html" class="sidebar-item-text sidebar-link active">
+ <span class="menu-text">1. Download dan Install Unity</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./game-prak-2.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">2. Menghubungkan object dengan variabel</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./game-prak-3.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">3. Animation sprite 2D</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./game-prak-4.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">4. Persiapan Asset Game</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./game-prak-5.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">5. Android Deployment</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./game-prak-7.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">6. Standard Asset 2D dan Instant Development</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./game-prak-9.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">7. Save &amp; Load dengan Playerpref</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./game-prak-10.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">8. Koordinat 2D vs 3D dan sistem arah tangan</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./game-prak-11.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">9. Translasi Objek 3D</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a href="./studi-kasus.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><b>Studi Kasus</b></span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-2" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./game-prak-12.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Game AI</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./game-prak-14.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Game Augmented Reality</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a href="./contoh-produk.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><b>Contoh Produk</b></span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-3" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./produk/the-forest-warior.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">The Forest Warior</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./produk/chandramawa-brand-new-color.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Chandramawa: Brand New Color</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./produk/bengkel-gizi.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Bengkel Gizi</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./produk/last-beat.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Last Beat</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./produk/what-a-nightmare.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">What a Nightmare</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+    </ul>
+    </div>
+</nav>
+<div id="quarto-sidebar-glass" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass"></div>
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">Table of contents</h2>
+   
+  <ul>
+  <li><a href="#membuat-project" id="toc-membuat-project" class="nav-link active" data-scroll-target="#membuat-project">Membuat Project</a></li>
+  <li><a href="#antarmuka-unity" id="toc-antarmuka-unity" class="nav-link" data-scroll-target="#antarmuka-unity">Antarmuka Unity</a>
+  <ul class="collapse">
+  <li><a href="#project-window" id="toc-project-window" class="nav-link" data-scroll-target="#project-window">Project Window</a></li>
+  <li><a href="#scene-view" id="toc-scene-view" class="nav-link" data-scroll-target="#scene-view">Scene View</a></li>
+  <li><a href="#hierarchy-window" id="toc-hierarchy-window" class="nav-link" data-scroll-target="#hierarchy-window">Hierarchy Window</a></li>
+  <li><a href="#inspector-window" id="toc-inspector-window" class="nav-link" data-scroll-target="#inspector-window">Inspector Window</a></li>
+  <li><a href="#toolbar" id="toc-toolbar" class="nav-link" data-scroll-target="#toolbar">Toolbar</a></li>
+  </ul></li>
+  <li><a href="#game-view" id="toc-game-view" class="nav-link" data-scroll-target="#game-view">Game View</a></li>
+  <li><a href="#permasalahan-yang-sering-muncul" id="toc-permasalahan-yang-sering-muncul" class="nav-link" data-scroll-target="#permasalahan-yang-sering-muncul">Permasalahan yang Sering Muncul</a></li>
+  <li><a href="#tools-pembuatan-asset-game" id="toc-tools-pembuatan-asset-game" class="nav-link" data-scroll-target="#tools-pembuatan-asset-game">Tools pembuatan Asset Game:</a>
+  <ul class="collapse">
+  <li><a href="#bitmap-graphics" id="toc-bitmap-graphics" class="nav-link" data-scroll-target="#bitmap-graphics">Bitmap Graphics</a></li>
+  <li><a href="#vector-graphics" id="toc-vector-graphics" class="nav-link" data-scroll-target="#vector-graphics">Vector Graphics</a></li>
+  <li><a href="#d-graphics" id="toc-d-graphics" class="nav-link" data-scroll-target="#d-graphics">3D Graphics</a></li>
+  <li><a href="#digital-sound-editors" id="toc-digital-sound-editors" class="nav-link" data-scroll-target="#digital-sound-editors">Digital Sound Editors</a></li>
+  <li><a href="#music-creation" id="toc-music-creation" class="nav-link" data-scroll-target="#music-creation">Music Creation</a></li>
+  </ul></li>
+  <li><a href="#game-assets-free" id="toc-game-assets-free" class="nav-link" data-scroll-target="#game-assets-free">Game Assets FREE</a>
+  <ul class="collapse">
+  <li><a href="#d-bitmap-and-vector-graphics" id="toc-d-bitmap-and-vector-graphics" class="nav-link" data-scroll-target="#d-bitmap-and-vector-graphics">2D Bitmap and Vector Graphics</a></li>
+  <li><a href="#d-graphics-1" id="toc-d-graphics-1" class="nav-link" data-scroll-target="#d-graphics-1">3D Graphics</a></li>
+  <li><a href="#digital-sound-and-music" id="toc-digital-sound-and-music" class="nav-link" data-scroll-target="#digital-sound-and-music">Digital Sound and Music</a></li>
+  </ul></li>
+  <li><a href="#menyimpan-dan-membuka-project" id="toc-menyimpan-dan-membuka-project" class="nav-link" data-scroll-target="#menyimpan-dan-membuka-project">Menyimpan dan membuka project</a>
+  <ul class="collapse">
+  <li><a href="#mekanisme-membuka-project" id="toc-mekanisme-membuka-project" class="nav-link" data-scroll-target="#mekanisme-membuka-project">Mekanisme membuka project</a></li>
+  <li><a href="#mekanisme-menyimpan-scene" id="toc-mekanisme-menyimpan-scene" class="nav-link" data-scroll-target="#mekanisme-menyimpan-scene">Mekanisme menyimpan scene</a></li>
+  </ul></li>
+  <li><a href="#manajemen-asset-game" id="toc-manajemen-asset-game" class="nav-link" data-scroll-target="#manajemen-asset-game">Manajemen Asset Game</a></li>
+  <li><a href="#game-object-camera-2d" id="toc-game-object-camera-2d" class="nav-link" data-scroll-target="#game-object-camera-2d">Game Object Camera 2D</a></li>
+  <li><a href="#aspect-ratio" id="toc-aspect-ratio" class="nav-link" data-scroll-target="#aspect-ratio">Aspect ratio</a></li>
+  <li><a href="#menghubungkan-game-object-dengan-c-script" id="toc-menghubungkan-game-object-dengan-c-script" class="nav-link" data-scroll-target="#menghubungkan-game-object-dengan-c-script">Menghubungkan Game Object dengan C# Script</a></li>
+  <li><a href="#variabel-dan-operasi" id="toc-variabel-dan-operasi" class="nav-link" data-scroll-target="#variabel-dan-operasi">Variabel dan Operasi</a>
+  <ul class="collapse">
+  <li><a href="#tipe-data" id="toc-tipe-data" class="nav-link" data-scroll-target="#tipe-data">Tipe Data</a></li>
+  <li><a href="#variabel" id="toc-variabel" class="nav-link" data-scroll-target="#variabel">Variabel</a></li>
+  <li><a href="#operasi" id="toc-operasi" class="nav-link" data-scroll-target="#operasi">Operasi</a></li>
+  </ul></li>
+  <li><a href="#logika-dan-perulangan" id="toc-logika-dan-perulangan" class="nav-link" data-scroll-target="#logika-dan-perulangan">Logika dan perulangan</a>
+  <ul class="collapse">
+  <li><a href="#pengambilan-keputusan" id="toc-pengambilan-keputusan" class="nav-link" data-scroll-target="#pengambilan-keputusan">Pengambilan Keputusan</a></li>
+  </ul></li>
+  <li><a href="#perulangan" id="toc-perulangan" class="nav-link" data-scroll-target="#perulangan">Perulangan</a></li>
+  <li><a href="#latihan" id="toc-latihan" class="nav-link" data-scroll-target="#latihan">Latihan</a></li>
+  <li><a href="#referensi" id="toc-referensi" class="nav-link" data-scroll-target="#referensi">REFERENSI</a></li>
+  <li><a href="#mekanisme-pengumpulan-praktikum-harian" id="toc-mekanisme-pengumpulan-praktikum-harian" class="nav-link" data-scroll-target="#mekanisme-pengumpulan-praktikum-harian">Mekanisme Pengumpulan Praktikum Harian</a></li>
+  </ul>
+</nav>
+    </div>
+<!-- main -->
+<main class="content" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<h1 class="title">1. Download dan Install Unity</h1>
+</div>
+
+
+
+<div class="quarto-title-meta">
+
+    
+  
+    
+  </div>
+  
+
+</header>
+
+<ol type="1">
+<li>Download Minimal versi Unity 5.3 atau Unity terbaru di: <a href="https://unity3d.com/get-unity/download?ref=personal" class="external" target="_blank">https://unity3d.com/get-unity/download?ref=personal</a> atau <a href="https://store.unity.com/" class="external" target="_blank">https://store.unity.com/</a></li>
+<li>Instal Unity yang sudah di download. Jika ditanya tentang standard asset. Instal atau centang juga standar asset Unity.</li>
+<li>Pertama kali instalasi pilih personal edition JANGAN PROFESIONAL.</li>
+<li>Untuk launch unity pertama kali HARUS ONLINE dan akan ditanya juga tentang profil dan email. Isikan terserah dengan email yang BENAR.</li>
+<li>Setelah memasukkan email, maka akan muncul pesan di email untuk validasi.</li>
+<li>Setelah di klik tautan pada email untuk validasi, Unity akan bisa digunakan baik online ataupun OFFLINE.</li>
+<li>Penjelasan untuk UI yang ada pada Unity bisa dilihat di: <a href="https://unity3d.com/learn/tutorials/topics/interface-essentials" class="external" target="_blank">https://unity3d.com/learn/tutorials/topics/interface-essentials</a></li>
+</ol>
+<p><strong>PRAKTIKUM (DIRUMAH):</strong></p>
+<p>Download dan install unity dirumah dengan menggunakan PC/Notebook pribadi!</p>
+<section id="membuat-project" class="level2">
+<h2 class="anchored" data-anchor-id="membuat-project">Membuat Project</h2>
+<p>Dibeberapa versi unity sebelum 5.6, ketika pertama kali membuka project unity (setelah instalasi unity) diwajibkan untuk online. Daftarkan diri kamu dengan cara sign up dan kemudian tunggu email verifikasi dari unity. Setelah itu, sign in unity dan isi survey. Pilih edisi “personal” untuk versi unity yang gratis. Jika ingin versi unity yang berbayar pilih edisi “profesional”. Setelah itu buat project baru dengan klik tab “NEW” pada sebelah kanan atas. Lalu klik “New Project”. Setelah itu akan muncul gambar seperti dibawah ini:</p>
+<p><img src="assets/1/image001.png" class="img-fluid"></p>
+<p>Project Name berupa nama project Game yang akan dibuat. Location merupakan direktori dimana projek game akan disimpan. Tombol 3D dan 2D merupakan tombol untuk menentukan apakah game yang akan dibuat merupakan game 3D atau 2D. Hal ini akan berpengaruh pada antarmuka unity selanjutnya. Kita dapat menggunakan asset game atau standard asset yang sudah disiapkan oleh Unity yang sebelumnya sudah di install terlebih dulu. Asset packages memungkinkan kita untuk dapat secara bebas menggunakan standard assets Unity. Jika sudah siap dengan persiapan project maka tekan “Create Project”.</p>
+<!-- praktikum -->
+<p><strong>PRAKTIKUM:</strong></p>
+<p>Buat project game 2D dengan nama “Latihan1_2D” dan simpan pada direktori selain “C:” ! (perhatikan bahwa tidak ada asset package yang dipilih)</p>
+<p><strong>KUMPULKAN:</strong></p>
+<p>Screenshoot ketika sedang akan membuat project baru dan berada dihalaman “Project”. Beri nama sc_01_01.jpg</p>
+</section>
+<section id="antarmuka-unity" class="level2">
+<h2 class="anchored" data-anchor-id="antarmuka-unity">Antarmuka Unity</h2>
+<p>Berikut adalah gambar antarmuka unity yang dibagi kedalam lima bagian utama: Project Window, Scene View, Hierarchy window, Inspector Window, dan Toolbar:</p>
+<p><img src="assets/1/image002.png" class="img-fluid"></p>
+<section id="project-window" class="level3">
+<h3 class="anchored" data-anchor-id="project-window">Project Window</h3>
+<p>Project window memperlihatkan aset-aset game yang masih mentah dimana kita dapat melakukan drag and drop aset game berupa gambar, suara, script, model 3d, dan asset lain. Disamping itu kita juga membuat bisa membuat script,folder, material, dll dengan melakukan klik kanan:</p>
+<p><img src="assets/1/image003.png" class="img-fluid"></p>
+</section>
+<section id="scene-view" class="level3">
+<h3 class="anchored" data-anchor-id="scene-view">Scene View</h3>
+<p>Scene view memperbolehkan kita untuk melakukan manipulasi langsung berupa menambahkan objek ke scene game atau mengedit objek. Scene view dapat memperlihatkan scene game dengan sudut pandang 2D atau 3D tergantung project yang sebelumnya sudah dipilih.</p>
+<p><img src="assets/1/image004.png" class="img-fluid"></p>
+</section>
+<section id="hierarchy-window" class="level3">
+<h3 class="anchored" data-anchor-id="hierarchy-window">Hierarchy Window</h3>
+<p>Hierarchy window merupakan representasi teks dari game objek yang terdapat pada Scene View. Struktur dari beberapa Game objek dalam satu scene diperlihatkan pada hierarchy window ini. Perhatikan bahwa game object berbeda dengan game asset. Game asset belum berbentuk game objek. Berikut adalah gambar hierarchy window yang memperlihatkan struktur game objek:</p>
+<p><img src="assets/1/image005.png" class="img-fluid"></p>
+</section>
+<section id="inspector-window" class="level3">
+<h3 class="anchored" data-anchor-id="inspector-window">Inspector Window</h3>
+<p>Inspector window akan memperlihatkan property dari setiap game objek yang ada. Untuk melihat property salah satu game objek. Pilih dan tekan salah satu game object di hierarchy window dan lihat propertinya di Inspector Window. Letak inspector window diperlihatkan pada gambar berikut:</p>
+<p><img src="assets/1/image006.png" class="img-fluid"></p>
+</section>
+<section id="toolbar" class="level3">
+<h3 class="anchored" data-anchor-id="toolbar">Toolbar</h3>
+<p>Toolbar menyediakan tools untuk menunjang pengembangan game dengan Unity. Berikut adalah gambar dari toolbar:</p>
+<p><img src="assets/1/image007.png" class="img-fluid"></p>
+</section>
+</section>
+<section id="game-view" class="level2">
+<h2 class="anchored" data-anchor-id="game-view">Game View</h2>
+<p>Game view letaknya disebelah tab Scene. Jika kita klik play button pada toolbar maka akan diarahkan ke Game View. Game View merupakan tampilan game yang telah dikembangkan. Pastikan ketika mengedit nilai di Inspector sudah dalam posisi Scene tab dan tidak dalam posisi “Play”.</p>
+<p><img src="assets/1/image008.png" class="img-fluid"></p>
+<!-- praktikum -->
+<p><strong>PRAKTIKUM:</strong></p>
+<p>Dari game project yang sudah dibuat lakukan hal berikut: 1. Masukan file “gambar1.png” dan drag kedalam Project Window. 2. Klik gambar yang ada di Project Window tersebut dan lihat di Inspector. 3. Screenshot Inspector dan beri nama sc_01_02.jpg 4. Klik gambar tadi yang ada di Project Window dan drag ke Scene View. 5. Klik Play 6. Screenshot keseluruhan editor Unity dan beri nama sc_01_03.jpg</p>
+<p><strong>KUMPULKAN:</strong></p>
+<p>Kumpulkan sc_01_02.jpg dan sc_01_03.jpg</p>
+</section>
+<section id="permasalahan-yang-sering-muncul" class="level2">
+<h2 class="anchored" data-anchor-id="permasalahan-yang-sering-muncul">Permasalahan yang Sering Muncul</h2>
+<ol type="1">
+<li>Jika terdapat INCOMPATIBLE maka cari versi Unity yang kompatibel dengan computer atau laptop. Biasanya terkait dengan 32 bit atau 64 bit.</li>
+<li>Jika masih bingung bisa ditanyakan ke :<a href="https://unity3d.com/community" class="external" target="_blank">https://unity3d.com/community</a> atau <a href="http://stackoverflow.com/" class="external" target="_blank">http://stackoverflow.com/</a></li>
+</ol>
+</section>
+<section id="tools-pembuatan-asset-game" class="level2">
+<h2 class="anchored" data-anchor-id="tools-pembuatan-asset-game">Tools pembuatan Asset Game:</h2>
+<section id="bitmap-graphics" class="level3">
+<h3 class="anchored" data-anchor-id="bitmap-graphics">Bitmap Graphics</h3>
+<ul>
+<li><a href="http://www.adobe.com/products/photoshop.html" class="external" target="_blank">Adobe Photoshop</a></li>
+<li><a href="http://www.painterartist.com/" class="external" target="_blank">Corel Painter</a></li>
+<li><a href="http://www.pixelmator.com/" class="external" target="_blank">Pixelmator</a></li>
+<li><a href="http://www.gimp.org/" class="external" target="_blank">GIMP</a> (free)</li>
+<li><a href="https://krita.org/" class="external" target="_blank">Krita</a> (free)</li>
+<li><a href="https://pixlr.com/editor/" class="external" target="_blank">Pixlr</a> (free)</li>
+</ul>
+</section>
+<section id="vector-graphics" class="level3">
+<h3 class="anchored" data-anchor-id="vector-graphics">Vector Graphics</h3>
+<ul>
+<li><a href="http://www.adobe.com/products/illustrator.html" class="external" target="_blank">Adobe Illustrator</a></li>
+<li><a href="http://www.adobe.com/products/flash.html" class="external" target="_blank">Adobe Flash</a></li>
+<li><a href="http://www.coreldraw.com/" class="external" target="_blank">Corel Draw</a></li>
+<li><a href="https://inkscape.org/" class="external" target="_blank">Inkscape</a> (free)</li>
+</ul>
+</section>
+<section id="d-graphics" class="level3">
+<h3 class="anchored" data-anchor-id="d-graphics">3D Graphics</h3>
+<ul>
+<li><a href="http://www.autodesk.com/products/maya" class="external" target="_blank">Autodesk Maya</a></li>
+<li><a href="http://www.autodesk.com/products/3ds-max" class="external" target="_blank">Autodesk 3dsmax</a></li>
+<li><a href="http://pixologic.com/" class="external" target="_blank">Zbrush</a></li>
+<li><a href="https://www.blender.org/" class="external" target="_blank">Blender</a> (free)</li>
+</ul>
+</section>
+<section id="digital-sound-editors" class="level3">
+<h3 class="anchored" data-anchor-id="digital-sound-editors">Digital Sound Editors</h3>
+<ul>
+<li><a href="http://adobe.com/products/audition.html" class="external" target="_blank">Adobe Audition</a></li>
+<li><a href="http://www.avid.com/us/products/family/pro-tools" class="external" target="_blank">Avid Pro Tools</a></li>
+<li><a href="http://audacityteam.org/" class="external" target="_blank">Audacity</a> (free)</li>
+</ul>
+</section>
+<section id="music-creation" class="level3">
+<h3 class="anchored" data-anchor-id="music-creation">Music Creation</h3>
+<ul>
+<li><a href="http://www.apple.com/logic-pro/" class="external" target="_blank">Apple Logic Pro</a></li>
+<li><a href="http://www.avid.com/us/products/family/pro-tools" class="external" target="_blank">Avid Pro Tools</a></li>
+<li><a href="http://www.apple.com/mac/garageband/" class="external" target="_blank">Apple GarageBand</a> (free)</li>
+<li><a href="https://www.image-line.com/" class="external" target="_blank">Image-Line Fruit Loops</a></li>
+<li><a href="https://www.propellerheads.se/reason" class="external" target="_blank">Propellerhead Reason</a></li>
+<li><a href="http://www.sonycreativesoftware.com/acidsoftware" class="external" target="_blank">Sony Acid</a></li>
+<li><a href="https://www.ableton.com/" class="external" target="_blank">Ableton Live</a></li>
+<li><a href="http://mixxx.org/" class="external" target="_blank">Mixxx</a> (free)</li>
+<li><a href="http://www.hydrogen-music.org/hcms/" class="external" target="_blank">Hydrogen</a>(free)</li>
+</ul>
+</section>
+</section>
+<section id="game-assets-free" class="level2">
+<h2 class="anchored" data-anchor-id="game-assets-free">Game Assets FREE</h2>
+<section id="d-bitmap-and-vector-graphics" class="level3">
+<h3 class="anchored" data-anchor-id="d-bitmap-and-vector-graphics">2D Bitmap and Vector Graphics</h3>
+<ul>
+<li><a href="https://www.assetstore.unity3d.com/" class="external" target="_blank">Unity Asset Store</a></li>
+<li><a href="http://opengameart.org/" class="external" target="_blank">opengameart.org</a></li>
+<li><a href="http://www.pexels.com/" class="external" target="_blank">www.pexels.com</a></li>
+<li><a href="http://www.shutterstock.com/" class="external" target="_blank">www.shutterstock.com</a></li>
+<li><a href="http://www.istockphoto.com/" class="external" target="_blank">www.istockphoto.com</a></li>
+</ul>
+</section>
+<section id="d-graphics-1" class="level3">
+<h3 class="anchored" data-anchor-id="d-graphics-1">3D Graphics</h3>
+<ul>
+<li><a href="https://www.assetstore.unity3d.com/" class="external" target="_blank">Unity Asset Store</a></li>
+<li><a href="http://www.turbosquid.com/" class="external" target="_blank">www.turbosquid.com</a></li>
+<li><a href="http://shop.bitgem3d.com/" class="external" target="_blank">shop.bitgem3d.com</a></li>
+<li><a href="http://tf3dm.com/" class="external" target="_blank">tf3dm.com</a></li>
+<li><a href="http://www.cgtrader.com/free-3d-models" class="external" target="_blank">www.cgtrader.com/free-3d-models</a></li>
+<li><a href="http://nasa3d.arc.nasa.gov/" class="external" target="_blank">http://nasa3d.arc.nasa.gov</a></li>
+<li><a href="http://www.creativecrash.com/" class="external" target="_blank">www.creativecrash.com</a></li>
+<li><a href="http://sketchfab.com/" class="external" target="_blank">sketchfab.com</a></li>
+<li><a href="http://opengameart.org/" class="external" target="_blank">opengameart.org</a></li>
+</ul>
+</section>
+<section id="digital-sound-and-music" class="level3">
+<h3 class="anchored" data-anchor-id="digital-sound-and-music">Digital Sound and Music</h3>
+<ul>
+<li><a href="https://www.assetstore.unity3d.com/" class="external" target="_blank">Unity Asset Store</a></li>
+<li><a href="http://www.freesound.org/" class="external" target="_blank">www.freesound.org</a></li>
+<li><a href="http://www.newgrounds.com/" class="external" target="_blank">www.newgrounds.com</a></li>
+<li><a href="http://incompetech.com/" class="external" target="_blank">incompetech.com</a></li>
+<li><a href="http://www.sounddogs.com/" class="external" target="_blank">www.sounddogs.com</a></li>
+</ul>
+</section>
+</section>
+<section id="menyimpan-dan-membuka-project" class="level2">
+<h2 class="anchored" data-anchor-id="menyimpan-dan-membuka-project">Menyimpan dan membuka project</h2>
+<p>Kita akan mencoba untuk melihat lebih dalam tentang pemrograman dasar yang ada pada Unity. Terdapat dua bahasa pemrograman yang dapat digunakan dalam unity yaitu, c# dan javascript. Pada matakuliah ini, hanya bahasa pemrograman c# yang akan diajarkan. <strong>Sebelum itu buat project 2D baru bernama “Latihan2_2D”. PASTIKAN layout editor unity adalah “Default”. Untuk merubahnya lihat gambar berikut:</strong></p>
+<p><img src="assets/1/image009.png" class="img-fluid"></p>
+<section id="mekanisme-membuka-project" class="level3">
+<h3 class="anchored" data-anchor-id="mekanisme-membuka-project">Mekanisme membuka project</h3>
+<p>Ketika project sudah dibuat maka secara otomatis akan terbentuk beberapa folder seperti: Assets, Library, dan ProjectSettings serta beberapa file solution Microsoft Visual Studio (.sln). Jadi untuk membuka project Unity dilakukan dengan cara klik “open” pada sebelah kanan atas unity sesaat setelah aplikasi unity dibuka.</p>
+<p><img src="assets/1/image010.png" class="img-fluid"></p>
+<p>Pilih folder project unity (dalam kasus ini folder project unity bernama “Latihan2_2D”) seperti gambar berikut:</p>
+<p><img src="assets/1/image011.png" class="img-fluid"></p>
+<p>Untuk versi unity 5.6 keatas, tidak perlu harus membuka unity. Buka project di windows dan cari file dengan ekstensi .scene kemudia double klik pada file .scene tersebut.</p>
+</section>
+<section id="mekanisme-menyimpan-scene" class="level3">
+<h3 class="anchored" data-anchor-id="mekanisme-menyimpan-scene">Mekanisme menyimpan scene</h3>
+<p>Pada unity menyimpan project dilakukan berdasarkan apa yang sudah dibuat pada Scene View. Sebagai contoh, kita sudah menambahkan beberapa game object seperti burung, musuh, papan score, dan lingkungan pegunungan pada scene view. Programmer bermaksud untuk membuat beberapa game object tadi menjadi kesatuan utuh untuk scene game level 1. Maka kemudian programmer menyimpan scene tersebut dengan nama level1.scene dan kemudian membuat scene baru untuk mulai mengerjakan scene level 2. Dengan contoh tersebut, maka kita dapat memahami bahwa satu project game dapat berisi banyak scene. Cara untuk menyimpan scene yaitu: File -&gt; Save Scenes atau CTRL+S.</p>
+<!-- praktikum -->
+<p><strong>PRAKTIKUM:</strong></p>
+<ol type="1">
+<li>Buat project 2D unity dengan nama “Latihan2_2D”.</li>
+<li>Tambahkan “gambar1.png” dalam project window unity.</li>
+<li>Drag/tarik gambar1 pada project window kedalam Scene View.</li>
+<li>Save scene dengan nama “Main.scene”</li>
+<li>Keluar dari aplikasi Unity.</li>
+<li>Buka project “Latihan2_2D”</li>
+<li>Perhatikan bahwa pada Scene View akan terdapat game objek gambar1</li>
+<li>Jika tidak terdapat game objek gambar1 tersebut maka lihat di project view</li>
+<li>Klik Assets dan kemudian double klik “Main.scene”</li>
+</ol>
+</section>
+</section>
+<section id="manajemen-asset-game" class="level2">
+<h2 class="anchored" data-anchor-id="manajemen-asset-game">Manajemen Asset Game</h2>
+<p>Saat ini kita akan fokus pada folder Assets dari project unity saja. Pada pertemuan sebelumnya, sudah ditambahkan sebuah gambar dan nantinya jika dilihat pada folder Asset tadi, maka file gambar tersebut akan muncul. Demikian juga apabila kita membuat folder di Project Window unity, maka didalam folder Asset akan tertambah folder tersebut. Asset game berbeda dengan game object. Biasanya minimum asset game untuk game 2D adalah beberapa file scene, gambar, tipe font, prefabs, dan suara. Untuk mempermudah penataan asset-aset game tersebut, biasanya programmer membuat folder-folder sesuai dengan tipe asetnya. Misalkan folder “Images” berisi kumpulan asset-aset gambar yang nantinya akan menjadi game object. <strong>PRAKTIKUM:</strong></p>
+<ol type="1">
+<li>Buat folder “Images”, “Fonts”, “Script”, “Sounds”, “Prefabs”, dan ”Scenes”.</li>
+<li>Drag atau tarik atau klik kanan-&gt;cut “gambar1.png” kedalam folder “Images”.</li>
+<li>Double klik folder “Images” dan pastikan “gambar1.png” ada didalamnya</li>
+<li>Untuk kembali ke Assets, Klik Assets pada samping kiri project window.</li>
+</ol>
+<p><strong>KUMPULKAN:</strong></p>
+<p>Screenshoot Project window dan simpan dengan nama sc_01_04.jpg</p>
+</section>
+<section id="game-object-camera-2d" class="level2">
+<h2 class="anchored" data-anchor-id="game-object-camera-2d">Game Object Camera 2D</h2>
+<p>Saat pertama kali membuat project unity, kita akan diberikan satu game objek yaitu “Main Camera” yang terlihat pada Hierarchy window. <strong>JANGAN HAPUS</strong> game object “Main Camera” tersebut. Pastikan bahwa Inspector property dari game object “Main Camera” tersebut terdapat Component “Camera”. Perhatikan bahwa property kamera untuk 2D adalah menggunakan proyeksi ortografis. Proyeksi tersebut ada pada property “Camera” dengan nama “Projection” dan nilainya adalah “Orthographic” atau lihat gambar berikut:</p>
+<p><img src="assets/1/image012.png" class="img-fluid"></p>
+<p><strong>Transform dan Camera biasanya disebut dengan istilah property component atau component dari suatu game object. Component pada unity akan dijelaskan lebih lanjut pada pertemuan selanjutnya.</strong></p>
+<p>Jika sudah seperti gambar diatas maka kita sudah siap untuk membuat game 2D. <strong>Biasanya kita tidak perlu merubah property apapun pada “Main Camera” karena sudah dibuat otomatis oleh unity saat kita membuat project.</strong></p>
+</section>
+<section id="aspect-ratio" class="level2">
+<h2 class="anchored" data-anchor-id="aspect-ratio">Aspect ratio</h2>
+<p>Aspect ratio merupakan perbandingan panjang (width) dan lebar (height) dari resolusi layar game yang akan dikembangkan. Hal ini penting mengingat beberapa monitor atau perangkat mobile memiliki beragam aspect ratio. Sebagai contoh, beberapa perangkat mobil menggunakan aspect ratio 16:9. Aspect ratio 16:9, berarti ukuran resolusi layar game yang dikembangkan seharusnya 1280x720 atau 1920x1080 (lihat detail: <a href="https://en.wikipedia.org/wiki/16:9" class="external" target="_blank">https://en.wikipedia.org/wiki/16:9</a> ). Di unity penggunaan aspect ratio ada pada Game tab disebelah Scene tab pada Scene view. Disana terdapat tulisan “Free Aspect” yang artinya membebaskan ukuran aspect ratio dari developer yang ingin mengembangkan game. Jika ingin merubah aspect ratio maka klik pada tulisan “Free Aspect” tersebut seperti pada gambar berikut:</p>
+<p><img src="assets/1/image013.png" class="img-fluid"></p>
+</section>
+<section id="menghubungkan-game-object-dengan-c-script" class="level2">
+<h2 class="anchored" data-anchor-id="menghubungkan-game-object-dengan-c-script">Menghubungkan Game Object dengan C# Script</h2>
+<p>Untuk membuat game objek baru pada scene view ada beberapa cara yaitu:</p>
+<p><strong>cara 1:</strong></p>
+<ol type="1">
+<li>klik GameObjects pada menu tab diatas -&gt; pilih 2D object -&gt; Sprite</li>
+<li>Lihat pada hierarchy window maka akan muncul “New Sprite”</li>
+<li>Rename dengan cara klik kanan-&gt;rename atau tekan F2 pada keyboard</li>
+<li>Rename dengan nama “My First GameObject”.</li>
+<li>Lihat Inspector pastikan nilai Transform Position x,y, dan z adalah 0, begitu juga dengan Rotasi x,y, dan z adalah 0. Nilai scale x,y, dan z pada inspector tetap 1.</li>
+<li>Isikan nilai “None (Sprite)” dengan “gambar1.png” dengan cara tarik atau drag “gambar1.png” pada Inspector property “Sprite Renderer” di game objek “My First GameObject”.</li>
+</ol>
+<p><strong>cara 2:</strong></p>
+<ol type="1">
+<li>Drag gambar “gambar1.png” di project window atau di Assets kedalam Scene</li>
+<li>Lihat Hierarchy window, dan akan muncul game objek baru dengan nama “gambar1”</li>
+<li>Rename dengan nama “My First GameObject”.</li>
+</ol>
+<p>Ada beberapa cara untuk menambahkan komponen script atau kode yang berkaitan dengan game objek (dalam hal ini adalah “My First GameObject”), yaitu:</p>
+<p><strong>cara 1:</strong></p>
+<ol type="1">
+<li><p>klik “My First GameObject” pada hierarchy window</p></li>
+<li><p>Lihat pada Inspector bagian bawah kemudian Add Component</p></li>
+<li><p>Tuliskan “New Script”</p></li>
+<li><p>Klik “New Script” lalu akan muncul box seperti gambar berikut: <br> <img src="assets/1/image014.png" class="img-fluid"></p></li>
+<li><p>Isikan nama script “Coba” dan pilih Language “C sharp”</p></li>
+<li><p>Create and Add</p></li>
+<li><p>LIhat project window dan terdapat file asset game dengan nama Coba.cs, agar rapi cut didalam folder Script.</p></li>
+</ol>
+<p><strong>cara 2:</strong></p>
+<ol type="1">
+<li><p>Lihat project window dan masuk dalam folder Script</p></li>
+<li><p>Klik kanan -&gt; Create -&gt; C# Script seperti terlihat pada gambar berikut: <br> <img src="assets/1/image015.png" class="img-fluid"></p></li>
+<li><p>Beri nama “Coba” atau rename “Coba”</p></li>
+<li><p>Tarik ke dalam game object “My First GameObject” atau didalam scene dimana terdapat objek “My First GameObject” atau didalam “Add Component” di Inspector “My First GameObject” Secara default script Coba.cs akan menjadi seperti gambar berikut:</p></li>
+</ol>
+<p><strong>Perhatikan bahwa Coba.cs HARUS sama dengan Coba setelah kata “public class”, jika berbeda, silahkan ganti nama file atau nama class.</strong></p>
+<p><img src="assets/1/image016.png" class="img-fluid"></p>
+<p>Pada dasarnya ketika membuat script “Coba” di Unity, kita sudah membuat kode Class “Coba”. Konsep Class tersebut ada pada Pemrograman Berorientasi Object atau Object oriented programming. Kamu dapat mempelajari konsep pemrograman tersebut secara mandiri dirumah untuk menguatkan pemrograman game.</p>
+<p>Class “Coba” merupakan turunan dari Class “MonoBehaviour” maka jangan lupa tambahkan header “using UnityEngine;”. Terdapat dua method atau fungsi utama dalam Class “Coba” yaitu “Start” dan “Update”.</p>
+<p>Method <strong>Start()</strong> -&gt; Method berisi perintah program yang akan dijalan ketika game object yang terhubung dengan kode “Coba” <strong>MULAI</strong>aktif.</p>
+<p>Method <strong>Update()</strong> -&gt; Method berisi perintah program yang akan dijalan ketika game object yang terhubung dengan kode “Coba” <strong>SEDANG AKTIF KETIKA FPS (Frame Per Second) JALAN aktif.</strong></p>
+<p>Isikan didalam method Start() kode seperti berikut:</p>
+<div class="sourceCode" id="cb1"><pre class="sourceCode c# code-with-copy"><code class="sourceCode cs"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>    <span class="dt">void</span> <span class="fu">Start</span> <span class="op">()</span> <span class="op">{</span></span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>        Debug<span class="op">.</span><span class="fu">Log</span> <span class="op">(</span><span class="st">"Hello World"</span><span class="op">);</span></span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>    <span class="op">}</span> </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Lalu jalan program dengan menekan tombol Run dan lihat di Console Output seperti pada gambar berikut: (console letaknya ada disebelah tab Project window)</p>
+<p><img src="assets/1/image017.png" class="img-fluid"></p>
+<p>Pastikan bahwa “Colapse” dan Clear on Play sudah menyala seperti gambar diatas. Untuk menyalakannya klik pada tulisannya. Tulisan 1 disamping ujung kanan “Hello World” berarti kode tersebut hanya di outputkan sekali.</p>
+<p>Fungsi <code>Debug.Log(“&lt;argumen&gt;”);</code> merupakan fungsi untuk mencetak sesuatu di console. Biasanya fungsi tersebut digunakan untuk debugging (mencari kesalahan program).</p>
+<!-- praktikum  -->
+<p><strong>PRAKTIKUM:</strong></p>
+<ol type="1">
+<li>Tambahkan kode program berikut didalam method Update():</li>
+</ol>
+<div class="sourceCode" id="cb2"><pre class="sourceCode c# code-with-copy"><code class="sourceCode cs"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="dt">void</span> <span class="fu">Update</span> <span class="op">()</span> <span class="op">{</span></span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>        Debug<span class="op">.</span><span class="fu">Log</span> <span class="op">(</span><span class="st">"Aku di ulang-ulang!"</span><span class="op">);</span></span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>    <span class="op">}</span> </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<ol start="2" type="1">
+<li>Perhatikan didalam console output bahwa kata “Aku di ulang-ulang” akan dieksekusi perkali-kali selama frame game sedang berjalan.</li>
+</ol>
+<p><strong>KUMPULKAN:</strong></p>
+<p>Screenshoot console output dan simpan dengan nama sc_01_05.jpg</p>
+</section>
+<section id="variabel-dan-operasi" class="level2">
+<h2 class="anchored" data-anchor-id="variabel-dan-operasi">Variabel dan Operasi</h2>
+<p>Selamat kita sudah dapat menjadi programmer game, tahap selanjutnya adalah memahami beberapa konsep seperti tipe data, penggunaan variable dan operasi. Pemorgraman C# merupakan bahasa pemrograman yang mirip dengan C++ dan Java. Library standard C# bergantung pada jenis .NET framework yang digunakan.</p>
+<section id="tipe-data" class="level3">
+<h3 class="anchored" data-anchor-id="tipe-data">Tipe Data</h3>
+<p>Beberapa tipe data dasar yang ada pada C# adalah sebagai berikut: byte, sbyte, short, ushort, int, uint, long, ulong, float, double, decimal, char, string, bool, dan object (<a href="https://msdn.microsoft.com/en-us/library/cs7y5x0x(v=vs.90).aspx" class="external" target="_blank">https://msdn.microsoft.com/en-us/library/cs7y5x0x(v=vs.90).aspx</a>). Namun pada Unity, terdapat tipe data tambahan seperty Vector2,Vector3, Quartenion, Transform, dll.</p>
+</section>
+<section id="variabel" class="level3">
+<h3 class="anchored" data-anchor-id="variabel">Variabel</h3>
+<p>Pembuatan variable mirip sekali dengan c++ dan Java. Berikut adalah sintaks pendefinisian variable:</p>
+<p><strong>Pendefinisian variable dengan men-assign nilai:</strong></p>
+<p><code>&lt;tipe data&gt;&lt;spasi&gt;&lt;nama_variabel&gt;=&lt;nilai&gt;;</code></p>
+<p>Contoh:</p>
+<div class="sourceCode" id="cb3"><pre class="sourceCode c# code-with-copy"><code class="sourceCode cs"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="dt">int</span> answer <span class="op">=</span> <span class="dv">42</span><span class="op">;</span></span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="dt">string</span> greeting <span class="op">=</span> <span class="st">"Hello, World!"</span><span class="op">;</span> </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p><strong>Pendefinisian variable tanpa men-assign nilai:</strong></p>
+<p><code>&lt;tipe data&gt;&lt;spasi&gt;&lt;nama_variabel&gt;</code>;</p>
+<p>Contoh:</p>
+<div class="sourceCode" id="cb4"><pre class="sourceCode c# code-with-copy"><code class="sourceCode cs"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="dt">int</span> answer<span class="op">;</span></span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a><span class="dt">string</span> greeting<span class="op">;</span> </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p><strong>Pendefinisian variable dengan access modifier:</strong></p>
+<div class="sourceCode" id="cb5"><pre class="sourceCode c# code-with-copy"><code class="sourceCode cs"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="op">&lt;</span>access modifier<span class="op">&gt;&lt;</span>tipe data<span class="op">&gt;&lt;</span>spasi<span class="op">&gt;&lt;</span>nama_variabel<span class="op">&gt;=&lt;</span>nilai<span class="op">&gt;;</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Contoh:</p>
+<div class="sourceCode" id="cb6"><pre class="sourceCode c# code-with-copy"><code class="sourceCode cs"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="kw">public</span> <span class="dt">int</span> a <span class="op">=</span> <span class="dv">55</span><span class="op">;</span></span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a><span class="kw">private</span> <span class="dt">float</span> b <span class="op">=</span> <span class="fl">2.5f</span><span class="op">;</span> </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p><strong>Pendefinisian variable konstanta:</strong></p>
+<p><code>const &lt;tipe data&gt;&lt;spasi&gt;&lt;nama_variabel&gt;</code></p>
+<p>Contoh:</p>
+<div class="sourceCode" id="cb7"><pre class="sourceCode c# code-with-copy"><code class="sourceCode cs"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="dt">const</span> <span class="dt">int</span> speedLimit <span class="op">=</span> <span class="dv">55</span><span class="op">;</span></span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a><span class="dt">const</span> <span class="dt">double</span> pi <span class="op">=</span> <span class="fl">3.14159265358979323846264338327950</span><span class="op">;</span> </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<!-- praktik -->
+<p><strong>PRAKTIKUM:</strong></p>
+<p><strong>&lt; Kasus Spesial &gt;</strong></p>
+<p>Ketika membuat variable dengan akses modifier “public”, pada editor unity akan otomatis muncul property field pada Inspector game object yang berkaitan dengan kode tersebut. Berikut adalah contoh kode programmnya:</p>
+<p><img src="assets/1/image018.png" class="img-fluid"></p>
+<p>Lihat editor Unity pada Inspector game object yang terkait dengan kode program tersebut:</p>
+<p><img src="assets/1/image019.png" class="img-fluid"></p>
+<p><strong>KUMPULKAN:</strong></p>
+<p>Jalankan unity dan lihat apa yang terjadi pada Console output, screenshot console output dan simpan dengan nama sc_01_06.jpg</p>
+</section>
+<section id="operasi" class="level3">
+<h3 class="anchored" data-anchor-id="operasi">Operasi</h3>
+<p>Operasi memungkinkan kita untuk melakukan manipulasi aritmatik atau logis pada suatu nilai atau variable. Beberapa operasi aritmatika yang sering digunakan adalah “+”,”-”,”*”,”/”,dan “%”. Untuk logika “&amp;&amp;”,”||”,”!”. Untuk hubungan relasi “==”,”!=”,”&gt;”,”&lt;”,”&gt;=”,”&lt;=”. Untuk operasi bit biner “&amp;”,”|”,”^”. Berikut adalah contoh penggunaan operasi matematika:</p>
+<div class="sourceCode" id="cb8"><pre class="sourceCode c# code-with-copy"><code class="sourceCode cs"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="dt">int</span> x <span class="op">=</span> <span class="dv">1</span><span class="op">;</span></span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a><span class="dt">int</span> y <span class="op">=</span> x <span class="op">+</span> <span class="dv">10</span> <span class="op">*</span> <span class="dv">100</span><span class="op">;</span>      <span class="co">// perkalian dulu</span></span>
+<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a><span class="dt">int</span> z <span class="op">=</span> <span class="op">(</span>x <span class="op">+</span> <span class="dv">10</span><span class="op">)</span> <span class="op">*</span> <span class="dv">100</span><span class="op">;</span>    <span class="co">// penjumlahan dulu krn ada kurung </span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Berikut adalah tabel ekspresi matematika dengan operator “+” dan “–“ untuk mempersingkat penulisan kode program: <img src="assets/1/image020.png" class="img-fluid"></p>
+</section>
+</section>
+<section id="logika-dan-perulangan" class="level2">
+<h2 class="anchored" data-anchor-id="logika-dan-perulangan">Logika dan perulangan</h2>
+<section id="pengambilan-keputusan" class="level3">
+<h3 class="anchored" data-anchor-id="pengambilan-keputusan">Pengambilan Keputusan</h3>
+<p>Logika yang dimaksudkan dalam pemrograman adalah tentang pengambilan keputusan. Misalkan kita memiliki variable score, jika score lebih dari 70 maka pemain akan menang, jika tidak, maka pemain akan kalah. Dalam pemrograman game konsep pengambilan keputusan ini sangatlah penting dan biasanya sering digunakan dalam berbagai kasus seperti: mekanik game, kontrol game, state machine, dll. Berikut adalah contoh kode program sederhana:</p>
+<div class="sourceCode" id="cb9"><pre class="sourceCode c# code-with-copy"><code class="sourceCode cs"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="kw">public</span> <span class="dt">string</span> score<span class="op">;</span></span>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a><span class="co">// Use this for initialization</span></span>
+<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a><span class="dt">void</span> <span class="fu">Start</span> <span class="op">()</span> <span class="op">{</span></span>
+<span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a>    <span class="kw">if</span> <span class="op">(</span>score <span class="op">&gt;</span> <span class="dv">70</span><span class="op">)</span></span>
+<span id="cb9-5"><a href="#cb9-5" aria-hidden="true" tabindex="-1"></a>        Debug<span class="op">.</span><span class="fu">Log</span> <span class="op">(</span><span class="st">"Menang"</span><span class="op">);</span></span>
+<span id="cb9-6"><a href="#cb9-6" aria-hidden="true" tabindex="-1"></a>    <span class="kw">else</span></span>
+<span id="cb9-7"><a href="#cb9-7" aria-hidden="true" tabindex="-1"></a>        Debug<span class="op">.</span><span class="fu">Log</span> <span class="op">(</span><span class="st">"Kalah"</span><span class="op">);</span></span>
+<span id="cb9-8"><a href="#cb9-8" aria-hidden="true" tabindex="-1"></a><span class="op">}</span> </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p><strong>contoh yang lain:</strong></p>
+<div class="sourceCode" id="cb10"><pre class="sourceCode c# code-with-copy"><code class="sourceCode cs"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="kw">if</span> <span class="op">(</span>isNabrak<span class="op">)</span></span>
+<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a>    Debug<span class="op">.</span><span class="fu">Log</span> <span class="op">(</span><span class="st">"Menang"</span><span class="op">);</span></span>
+<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a><span class="kw">else</span></span>
+<span id="cb10-4"><a href="#cb10-4" aria-hidden="true" tabindex="-1"></a>    Debug<span class="op">.</span><span class="fu">Log</span> <span class="op">(</span><span class="st">"Kalah"</span><span class="op">);</span> </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p><strong>contoh iternary:</strong></p>
+<div class="sourceCode" id="cb11"><pre class="sourceCode c# code-with-copy"><code class="sourceCode cs"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="kw">public</span> <span class="dt">bool</span> isNabrak<span class="op">;</span></span>
+<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a><span class="co">// Use this for initialization</span></span>
+<span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a><span class="dt">void</span> <span class="fu">Start</span> <span class="op">()</span> <span class="op">{</span></span>
+<span id="cb11-4"><a href="#cb11-4" aria-hidden="true" tabindex="-1"></a>    Debug<span class="op">.</span><span class="fu">Log</span> <span class="op">(</span>isNabrak<span class="op">?</span><span class="st">"Menang"</span><span class="op">:</span><span class="st">"Kalah"</span><span class="op">);</span></span>
+<span id="cb11-5"><a href="#cb11-5" aria-hidden="true" tabindex="-1"></a><span class="op">}</span> </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p><strong>contoh percabangan:</strong></p>
+<div class="sourceCode" id="cb12"><pre class="sourceCode c# code-with-copy"><code class="sourceCode cs"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="kw">public</span> <span class="dt">int</span> level<span class="op">;</span></span>
+<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a>    <span class="co">// Use this for initialization</span></span>
+<span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a>    <span class="dt">void</span> <span class="fu">Start</span> <span class="op">()</span> <span class="op">{</span></span>
+<span id="cb12-4"><a href="#cb12-4" aria-hidden="true" tabindex="-1"></a>        <span class="kw">switch</span> <span class="op">(</span>level<span class="op">)</span> <span class="op">{</span></span>
+<span id="cb12-5"><a href="#cb12-5" aria-hidden="true" tabindex="-1"></a>        <span class="kw">case</span> <span class="dv">1</span><span class="op">:</span></span>
+<span id="cb12-6"><a href="#cb12-6" aria-hidden="true" tabindex="-1"></a>            Debug<span class="op">.</span><span class="fu">Log</span> <span class="op">(</span><span class="st">"Sekarang di level 1"</span><span class="op">);</span></span>
+<span id="cb12-7"><a href="#cb12-7" aria-hidden="true" tabindex="-1"></a>            <span class="kw">break</span><span class="op">;</span></span>
+<span id="cb12-8"><a href="#cb12-8" aria-hidden="true" tabindex="-1"></a>        <span class="kw">case</span> <span class="dv">2</span><span class="op">:</span></span>
+<span id="cb12-9"><a href="#cb12-9" aria-hidden="true" tabindex="-1"></a>            Debug<span class="op">.</span><span class="fu">Log</span> <span class="op">(</span><span class="st">"Sekarang di level 2"</span><span class="op">);</span></span>
+<span id="cb12-10"><a href="#cb12-10" aria-hidden="true" tabindex="-1"></a>            <span class="kw">break</span><span class="op">;</span></span>
+<span id="cb12-11"><a href="#cb12-11" aria-hidden="true" tabindex="-1"></a>        <span class="kw">case</span> <span class="dv">3</span><span class="op">:</span></span>
+<span id="cb12-12"><a href="#cb12-12" aria-hidden="true" tabindex="-1"></a>            Debug<span class="op">.</span><span class="fu">Log</span> <span class="op">(</span><span class="st">"Sekarang di level 3"</span><span class="op">);</span></span>
+<span id="cb12-13"><a href="#cb12-13" aria-hidden="true" tabindex="-1"></a>            <span class="kw">break</span><span class="op">;</span></span>
+<span id="cb12-14"><a href="#cb12-14" aria-hidden="true" tabindex="-1"></a>        <span class="op">}</span></span>
+<span id="cb12-15"><a href="#cb12-15" aria-hidden="true" tabindex="-1"></a>    <span class="op">}</span> </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p><strong>contoh percabangan dengan if:</strong></p>
+<div class="sourceCode" id="cb13"><pre class="sourceCode c# code-with-copy"><code class="sourceCode cs"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="kw">public</span> <span class="dt">string</span> playerState<span class="op">;</span></span>
+<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a>    <span class="dt">int</span> status<span class="op">;</span></span>
+<span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a>    <span class="co">// Use this for initialization</span></span>
+<span id="cb13-4"><a href="#cb13-4" aria-hidden="true" tabindex="-1"></a>    <span class="dt">void</span> <span class="fu">Start</span> <span class="op">()</span> <span class="op">{</span></span>
+<span id="cb13-5"><a href="#cb13-5" aria-hidden="true" tabindex="-1"></a>        <span class="kw">if</span> <span class="op">(</span>playerState <span class="op">==</span> <span class="st">"run"</span><span class="op">)</span> <span class="op">{</span></span>
+<span id="cb13-6"><a href="#cb13-6" aria-hidden="true" tabindex="-1"></a>            Debug<span class="op">.</span><span class="fu">Log</span> <span class="op">(</span><span class="st">"player lari"</span><span class="op">);</span></span>
+<span id="cb13-7"><a href="#cb13-7" aria-hidden="true" tabindex="-1"></a>            status <span class="op">=</span> <span class="dv">1</span><span class="op">;</span></span>
+<span id="cb13-8"><a href="#cb13-8" aria-hidden="true" tabindex="-1"></a>        <span class="op">}</span> <span class="kw">else</span> <span class="kw">if</span> <span class="op">(</span>playerState <span class="op">==</span> <span class="st">"walk"</span><span class="op">)</span> <span class="op">{</span></span>
+<span id="cb13-9"><a href="#cb13-9" aria-hidden="true" tabindex="-1"></a>            Debug<span class="op">.</span><span class="fu">Log</span> <span class="op">(</span><span class="st">"player jalan"</span><span class="op">);</span></span>
+<span id="cb13-10"><a href="#cb13-10" aria-hidden="true" tabindex="-1"></a>            status <span class="op">=</span> <span class="dv">2</span><span class="op">;</span></span>
+<span id="cb13-11"><a href="#cb13-11" aria-hidden="true" tabindex="-1"></a>        <span class="op">}</span> <span class="kw">else</span> <span class="op">{</span></span>
+<span id="cb13-12"><a href="#cb13-12" aria-hidden="true" tabindex="-1"></a>            Debug<span class="op">.</span><span class="fu">Log</span> <span class="op">(</span><span class="st">"player idle"</span><span class="op">);</span></span>
+<span id="cb13-13"><a href="#cb13-13" aria-hidden="true" tabindex="-1"></a>            status <span class="op">=</span> <span class="dv">0</span><span class="op">;</span></span>
+<span id="cb13-14"><a href="#cb13-14" aria-hidden="true" tabindex="-1"></a>        <span class="op">}</span></span>
+<span id="cb13-15"><a href="#cb13-15" aria-hidden="true" tabindex="-1"></a>    <span class="op">}</span> </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Berikut adalah tabel symbol logika untuk pemrograman c#:</p>
+<p><img src="assets/1/image021.png" class="img-fluid"></p>
+</section>
+</section>
+<section id="perulangan" class="level2">
+<h2 class="anchored" data-anchor-id="perulangan">Perulangan</h2>
+<p>Dalam beberapa situasi mungkin kita diharuskan untuk mengeksekusi beberapa kode program dalam satu waktu. Jika kita menuliskan setiap kode program secara berulang-ulang, tentu hal tersebut sangatlah tidak efisien. Terkadang kita juga ingin melakukan perhitungan deret angka atau menghitung fungsi SUM. Solusi untuk permasalahan tersebut adalah dengan perulangan/iterasi/ looping. Berikut adalah contoh kode program perulangan:</p>
+<div class="sourceCode" id="cb14"><pre class="sourceCode c# code-with-copy"><code class="sourceCode cs"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="kw">for</span> <span class="op">(</span><span class="dt">int</span> i <span class="op">=</span> <span class="dv">0</span><span class="op">;</span> i <span class="op">&lt;</span> <span class="dv">10</span><span class="op">;</span> i<span class="op">++)</span> <span class="op">{</span></span>
+<span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a>            Debug<span class="op">.</span><span class="fu">Log</span> <span class="op">(</span><span class="st">"Enemy_"</span> <span class="op">+</span> i <span class="op">+</span> <span class="st">"_Spawn"</span><span class="op">);</span></span>
+<span id="cb14-3"><a href="#cb14-3" aria-hidden="true" tabindex="-1"></a>        <span class="op">}</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>contoh lain:</p>
+<div class="sourceCode" id="cb15"><pre class="sourceCode c# code-with-copy"><code class="sourceCode cs"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="dt">int</span> sum<span class="op">=</span><span class="dv">0</span><span class="op">;</span></span>
+<span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a>        <span class="kw">for</span> <span class="op">(</span><span class="dt">int</span> i <span class="op">=</span> <span class="dv">0</span><span class="op">;</span> i <span class="op">&lt;</span> <span class="dv">10</span><span class="op">;</span> i<span class="op">++)</span> <span class="op">{</span></span>
+<span id="cb15-3"><a href="#cb15-3" aria-hidden="true" tabindex="-1"></a>            sum <span class="op">+=</span> <span class="dv">1</span><span class="op">;</span></span>
+<span id="cb15-4"><a href="#cb15-4" aria-hidden="true" tabindex="-1"></a>        <span class="op">}</span></span>
+<span id="cb15-5"><a href="#cb15-5" aria-hidden="true" tabindex="-1"></a>        Debug<span class="op">.</span><span class="fu">Log</span> <span class="op">(</span><span class="st">"Nilai SUM = "</span><span class="op">+</span>sum<span class="op">);</span> </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</section>
+<section id="latihan" class="level2">
+<h2 class="anchored" data-anchor-id="latihan">Latihan</h2>
+<ol type="1">
+<li><p>Buat kode c# baru dan beri nama “CobaJalan” pada game object “My First GameObject”. <br> <img src="assets/1/image022.png" class="img-fluid"></p></li>
+<li><p>Pastikan Inspector dari “My First GameObject” seperti gambar berikut: (uncheck kode Coba agar kode tersebut tidak dieksekusi saat game dijalankan) <br> <img src="assets/1/image023.png" class="img-fluid"></p></li>
+<li><p>Isikan di pada Inspector property Coba Jalan (Script), Movespeed dengan nilai: 0.5 ; 1 ; 2</p></li>
+<li><p>Jalankan unity dan amati apa yang terjadi.</p></li>
+</ol>
+<p><strong>KUMPULKAN:</strong></p>
+<p>Screenshoot game tab dan simpan dengan nama sc_01_07.jpg</p>
+</section>
+<section id="referensi" class="level2">
+<h2 class="anchored" data-anchor-id="referensi">REFERENSI</h2>
+<ul>
+<li><a href="https://docs.unity3d.com/550/Documentation/Manual/" class="external" target="_blank">https://docs.unity3d.com/550/Documentation/Manual/</a> (Unity versi 5.5)</li>
+<li><a href="https://docs.unity3d.com/550/Documentation/Manual/GettingStarted.html" class="external" target="_blank">https://docs.unity3d.com/550/Documentation/Manual/GettingStarted.html</a></li>
+<li><a href="https://docs.unity3d.com/550/Documentation/Manual/LearningtheInterface.html" class="external" target="_blank">https://docs.unity3d.com/550/Documentation/Manual/LearningtheInterface.html</a></li>
+<li><a href="https://docs.unity3d.com/Manual/" class="external" target="_blank">https://docs.unity3d.com/Manual/</a> (Unity terbaru)</li>
+<li><a href="https://docs.unity3d.com/550/Documentation/Manual/CreatingAndUsingScripts.html" class="external" target="_blank">https://docs.unity3d.com/550/Documentation/Manual/CreatingAndUsingScripts.html</a></li>
+<li><a href="https://docs.unity3d.com/550/Documentation/Manual/VariablesAndTheInspector.html" class="external" target="_blank">https://docs.unity3d.com/550/Documentation/Manual/VariablesAndTheInspector.html</a></li>
+<li><a href="https://www.tutorialspoint.com/csharp/csharp_decision_making.htm" class="external" target="_blank">https://www.tutorialspoint.com/csharp/csharp_decision_making.htm</a></li>
+<li><a href="https://www.tutorialspoint.com/csharp/csharp_loops.htm" class="external" target="_blank">https://www.tutorialspoint.com/csharp/csharp_loops.htm</a></li>
+<li><a href="https://stackoverflow.com/questions/22467674/move-simple-object-in-unity-2d" class="external" target="_blank">https://stackoverflow.com/questions/22467674/move-simple-object-in-unity-2d</a></li>
+</ul>
+</section>
+<section id="mekanisme-pengumpulan-praktikum-harian" class="level2">
+<h2 class="anchored" data-anchor-id="mekanisme-pengumpulan-praktikum-harian">Mekanisme Pengumpulan Praktikum Harian</h2>
+<p><strong>Untuk setiap mahasiswa:</strong> Buat 1 folder beri nama NIM lengkap. Masukkan file screenshot sc_01_01.jpg, sc_01_02.jpg, sc_01_03.jpg, sc_01_04.jpg, sc_01_05.jpg, sc_01_06.jpg dan sc_01_07.jpg. Kemudian rar atau zip folder NIM kamu tadi dan kirimkan ke ketua kelas.</p>
+<p>Contoh: A11200904997.rar</p>
+<p><strong>Untuk Ketua Kelas:</strong> SIapkan folder dengan nama Kode Kelas “_01” yang berisi kumpulan praktikum setiap mahasiswa. Lalu buat rar atau zip dan kirimkan ke email dosen.</p>
+<p>Contoh: A114401_01.rar</p>
+
+
+</section>
+
+</main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+window.document.addEventListener("DOMContentLoaded", function (event) {
+  const toggleBodyColorMode = (bsSheetEl) => {
+    const mode = bsSheetEl.getAttribute("data-mode");
+    const bodyEl = window.document.querySelector("body");
+    if (mode === "dark") {
+      bodyEl.classList.add("quarto-dark");
+      bodyEl.classList.remove("quarto-light");
+    } else {
+      bodyEl.classList.add("quarto-light");
+      bodyEl.classList.remove("quarto-dark");
+    }
+  }
+  const toggleBodyColorPrimary = () => {
+    const bsSheetEl = window.document.querySelector("link#quarto-bootstrap");
+    if (bsSheetEl) {
+      toggleBodyColorMode(bsSheetEl);
+    }
+  }
+  toggleBodyColorPrimary();  
+  const disableStylesheet = (stylesheets) => {
+    for (let i=0; i < stylesheets.length; i++) {
+      const stylesheet = stylesheets[i];
+      stylesheet.rel = 'prefetch';
+    }
+  }
+  const enableStylesheet = (stylesheets) => {
+    for (let i=0; i < stylesheets.length; i++) {
+      const stylesheet = stylesheets[i];
+      stylesheet.rel = 'stylesheet';
+    }
+  }
+  const manageTransitions = (selector, allowTransitions) => {
+    const els = window.document.querySelectorAll(selector);
+    for (let i=0; i < els.length; i++) {
+      const el = els[i];
+      if (allowTransitions) {
+        el.classList.remove('notransition');
+      } else {
+        el.classList.add('notransition');
+      }
+    }
+  }
+  const toggleColorMode = (alternate) => {
+    // Switch the stylesheets
+    const alternateStylesheets = window.document.querySelectorAll('link.quarto-color-scheme.quarto-color-alternate');
+    manageTransitions('#quarto-margin-sidebar .nav-link', false);
+    if (alternate) {
+      enableStylesheet(alternateStylesheets);
+      for (const sheetNode of alternateStylesheets) {
+        if (sheetNode.id === "quarto-bootstrap") {
+          toggleBodyColorMode(sheetNode);
+        }
+      }
+    } else {
+      disableStylesheet(alternateStylesheets);
+      toggleBodyColorPrimary();
+    }
+    manageTransitions('#quarto-margin-sidebar .nav-link', true);
+    // Switch the toggles
+    const toggles = window.document.querySelectorAll('.quarto-color-scheme-toggle');
+    for (let i=0; i < toggles.length; i++) {
+      const toggle = toggles[i];
+      if (toggle) {
+        if (alternate) {
+          toggle.classList.add("alternate");     
+        } else {
+          toggle.classList.remove("alternate");
+        }
+      }
+    }
+    // Hack to workaround the fact that safari doesn't
+    // properly recolor the scrollbar when toggling (#1455)
+    if (navigator.userAgent.indexOf('Safari') > 0 && navigator.userAgent.indexOf('Chrome') == -1) {
+      manageTransitions("body", false);
+      window.scrollTo(0, 1);
+      setTimeout(() => {
+        window.scrollTo(0, 0);
+        manageTransitions("body", true);
+      }, 40);  
+    }
+  }
+  const isFileUrl = () => { 
+    return window.location.protocol === 'file:';
+  }
+  const hasAlternateSentinel = () => {  
+    let styleSentinel = getColorSchemeSentinel();
+    if (styleSentinel !== null) {
+      return styleSentinel === "alternate";
+    } else {
+      return false;
+    }
+  }
+  const setStyleSentinel = (alternate) => {
+    const value = alternate ? "alternate" : "default";
+    if (!isFileUrl()) {
+      window.localStorage.setItem("quarto-color-scheme", value);
+    } else {
+      localAlternateSentinel = value;
+    }
+  }
+  const getColorSchemeSentinel = () => {
+    if (!isFileUrl()) {
+      const storageValue = window.localStorage.getItem("quarto-color-scheme");
+      return storageValue != null ? storageValue : localAlternateSentinel;
+    } else {
+      return localAlternateSentinel;
+    }
+  }
+  let localAlternateSentinel = 'default';
+  // Dark / light mode switch
+  window.quartoToggleColorScheme = () => {
+    // Read the current dark / light value 
+    let toAlternate = !hasAlternateSentinel();
+    toggleColorMode(toAlternate);
+    setStyleSentinel(toAlternate);
+  };
+  // Ensure there is a toggle, if there isn't float one in the top right
+  if (window.document.querySelector('.quarto-color-scheme-toggle') === null) {
+    const a = window.document.createElement('a');
+    a.classList.add('top-right');
+    a.classList.add('quarto-color-scheme-toggle');
+    a.href = "";
+    a.onclick = function() { try { window.quartoToggleColorScheme(); } catch {} return false; };
+    const i = window.document.createElement("i");
+    i.classList.add('bi');
+    a.appendChild(i);
+    window.document.body.appendChild(a);
+  }
+  // Switch to dark mode if need be
+  if (hasAlternateSentinel()) {
+    toggleColorMode(true);
+  } else {
+    toggleColorMode(false);
+  }
+  const icon = "";
+  const anchorJS = new window.AnchorJS();
+  anchorJS.options = {
+    placement: 'right',
+    icon: icon
+  };
+  anchorJS.add('.anchored');
+  const isCodeAnnotation = (el) => {
+    for (const clz of el.classList) {
+      if (clz.startsWith('code-annotation-')) {                     
+        return true;
+      }
+    }
+    return false;
+  }
+  const clipboard = new window.ClipboardJS('.code-copy-button', {
+    text: function(trigger) {
+      const codeEl = trigger.previousElementSibling.cloneNode(true);
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+    }
+  });
+  clipboard.on('success', function(e) {
+    // button target
+    const button = e.trigger;
+    // don't keep focus
+    button.blur();
+    // flash "checked"
+    button.classList.add('code-copy-button-checked');
+    var currentTitle = button.getAttribute("title");
+    button.setAttribute("title", "Copied!");
+    let tooltip;
+    if (window.bootstrap) {
+      button.setAttribute("data-bs-toggle", "tooltip");
+      button.setAttribute("data-bs-placement", "left");
+      button.setAttribute("data-bs-title", "Copied!");
+      tooltip = new bootstrap.Tooltip(button, 
+        { trigger: "manual", 
+          customClass: "code-copy-button-tooltip",
+          offset: [0, -8]});
+      tooltip.show();    
+    }
+    setTimeout(function() {
+      if (tooltip) {
+        tooltip.hide();
+        button.removeAttribute("data-bs-title");
+        button.removeAttribute("data-bs-toggle");
+        button.removeAttribute("data-bs-placement");
+      }
+      button.setAttribute("title", currentTitle);
+      button.classList.remove('code-copy-button-checked');
+    }, 1000);
+    // clear code selection
+    e.clearSelection();
+  });
+  function tippyHover(el, contentFn) {
+    const config = {
+      allowHTML: true,
+      content: contentFn,
+      maxWidth: 500,
+      delay: 100,
+      arrow: false,
+      appendTo: function(el) {
+          return el.parentElement;
+      },
+      interactive: true,
+      interactiveBorder: 10,
+      theme: 'quarto',
+      placement: 'bottom-start'
+    };
+    window.tippy(el, config); 
+  }
+  const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+  for (var i=0; i<noterefs.length; i++) {
+    const ref = noterefs[i];
+    tippyHover(ref, function() {
+      // use id or data attribute instead here
+      let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+      try { href = new URL(href).hash; } catch {}
+      const id = href.replace(/^#\/?/, "");
+      const note = window.document.getElementById(id);
+      return note.innerHTML;
+    });
+  }
+      let selectedAnnoteEl;
+      const selectorForAnnotation = ( cell, annotation) => {
+        let cellAttr = 'data-code-cell="' + cell + '"';
+        let lineAttr = 'data-code-annotation="' +  annotation + '"';
+        const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+        return selector;
+      }
+      const selectCodeLines = (annoteEl) => {
+        const doc = window.document;
+        const targetCell = annoteEl.getAttribute("data-target-cell");
+        const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+        const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+        const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+        const lineIds = lines.map((line) => {
+          return targetCell + "-" + line;
+        })
+        let top = null;
+        let height = null;
+        let parent = null;
+        if (lineIds.length > 0) {
+            //compute the position of the single el (top and bottom and make a div)
+            const el = window.document.getElementById(lineIds[0]);
+            top = el.offsetTop;
+            height = el.offsetHeight;
+            parent = el.parentElement.parentElement;
+          if (lineIds.length > 1) {
+            const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+            const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+            height = bottom - top;
+          }
+          if (top !== null && height !== null && parent !== null) {
+            // cook up a div (if necessary) and position it 
+            let div = window.document.getElementById("code-annotation-line-highlight");
+            if (div === null) {
+              div = window.document.createElement("div");
+              div.setAttribute("id", "code-annotation-line-highlight");
+              div.style.position = 'absolute';
+              parent.appendChild(div);
+            }
+            div.style.top = top - 2 + "px";
+            div.style.height = height + 4 + "px";
+            let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+            if (gutterDiv === null) {
+              gutterDiv = window.document.createElement("div");
+              gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+              gutterDiv.style.position = 'absolute';
+              const codeCell = window.document.getElementById(targetCell);
+              const gutter = codeCell.querySelector('.code-annotation-gutter');
+              gutter.appendChild(gutterDiv);
+            }
+            gutterDiv.style.top = top - 2 + "px";
+            gutterDiv.style.height = height + 4 + "px";
+          }
+          selectedAnnoteEl = annoteEl;
+        }
+      };
+      const unselectCodeLines = () => {
+        const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+        elementsIds.forEach((elId) => {
+          const div = window.document.getElementById(elId);
+          if (div) {
+            div.remove();
+          }
+        });
+        selectedAnnoteEl = undefined;
+      };
+      // Attach click handler to the DT
+      const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+      for (const annoteDlNode of annoteDls) {
+        annoteDlNode.addEventListener('click', (event) => {
+          const clickedEl = event.target;
+          if (clickedEl !== selectedAnnoteEl) {
+            unselectCodeLines();
+            const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+            if (activeEl) {
+              activeEl.classList.remove('code-annotation-active');
+            }
+            selectCodeLines(clickedEl);
+            clickedEl.classList.add('code-annotation-active');
+          } else {
+            // Unselect the line
+            unselectCodeLines();
+            clickedEl.classList.remove('code-annotation-active');
+          }
+        });
+      }
+  const findCites = (el) => {
+    const parentEl = el.parentElement;
+    if (parentEl) {
+      const cites = parentEl.dataset.cites;
+      if (cites) {
+        return {
+          el,
+          cites: cites.split(' ')
+        };
+      } else {
+        return findCites(el.parentElement)
+      }
+    } else {
+      return undefined;
+    }
+  };
+  var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+  for (var i=0; i<bibliorefs.length; i++) {
+    const ref = bibliorefs[i];
+    const citeInfo = findCites(ref);
+    if (citeInfo) {
+      tippyHover(citeInfo.el, function() {
+        var popup = window.document.createElement('div');
+        citeInfo.cites.forEach(function(cite) {
+          var citeDiv = window.document.createElement('div');
+          citeDiv.classList.add('hanging-indent');
+          citeDiv.classList.add('csl-entry');
+          var biblioDiv = window.document.getElementById('ref-' + cite);
+          if (biblioDiv) {
+            citeDiv.innerHTML = biblioDiv.innerHTML;
+          }
+          popup.appendChild(citeDiv);
+        });
+        return popup.innerHTML;
+      });
+    }
+  }
+});
+</script>
+<nav class="page-navigation">
+  <div class="nav-page nav-page-previous">
+      <a href="./konsep.html" class="pagination-link">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><b>Konsep</b></span>
+      </a>          
+  </div>
+  <div class="nav-page nav-page-next">
+      <a href="./game-prak-2.html" class="pagination-link">
+        <span class="nav-page-text">2. Menghubungkan object dengan variabel</span> <i class="bi bi-arrow-right-short"></i>
+      </a>
+  </div>
+</nav>
+</div> <!-- /content -->
+
+
+
+</body></html>

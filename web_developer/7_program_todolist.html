@@ -1,0 +1,948 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.3.353">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+
+<title>Junior Web Developer - To Do List</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+/* CSS for syntax highlighting */
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+</style>
+
+
+<script src="site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="site_libs/quarto-nav/headroom.min.js"></script>
+<script src="site_libs/clipboard/clipboard.min.js"></script>
+<script src="site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="site_libs/quarto-search/fuse.min.js"></script>
+<script src="site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="./">
+<link href="./8_studi_kasus_poliklinik.html" rel="next">
+<link href="./studi_kasus.html" rel="prev">
+<script src="site_libs/quarto-html/quarto.js"></script>
+<script src="site_libs/quarto-html/popper.min.js"></script>
+<script src="site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="site_libs/quarto-html/anchor.min.js"></script>
+<link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-text-highlighting-styles">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting-dark.css" rel="prefetch" class="quarto-color-scheme quarto-color-alternate" id="quarto-text-highlighting-styles">
+<script src="site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
+<link href="site_libs/bootstrap/bootstrap-dark.min.css" rel="prefetch" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
+<script id="quarto-search-options" type="application/json">{
+  "location": "sidebar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "start",
+  "type": "textbox",
+  "limit": 20,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit"
+  }
+}</script>
+
+
+</head>
+
+<body class="nav-sidebar floating">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+  <nav class="quarto-secondary-nav">
+    <div class="container-fluid d-flex">
+      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+        <i class="bi bi-layout-text-sidebar-reverse"></i>
+      </button>
+      <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./studi_kasus.html"><b>Studi Kasus</b></a></li><li class="breadcrumb-item"><a href="./7_program_todolist.html">To Do List</a></li></ol></nav>
+      <a class="flex-grow-1" role="button" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
+      </a>
+      <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
+        <i class="bi bi-search"></i>
+      </button>
+    </div>
+  </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article">
+<!-- sidebar -->
+  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal sidebar-navigation floating overflow-auto">
+    <div class="pt-lg-2 mt-2 text-left sidebar-header">
+    <div class="sidebar-title mb-0 py-0">
+      <a href="./">Junior Web Developer</a> 
+        <div class="sidebar-tools-main">
+  <a href="" class="quarto-color-scheme-toggle quarto-navigation-tool  px-1" onclick="window.quartoToggleColorScheme(); return false;" title="Toggle dark mode"><i class="bi"></i></a>
+</div>
+    </div>
+      </div>
+        <div class="mt-2 flex-shrink-0 align-items-center">
+        <div class="sidebar-search">
+        <div id="quarto-search" class="" title="Search"></div>
+        </div>
+        </div>
+    <div class="sidebar-menu-container"> 
+    <ul class="list-unstyled mt-1">
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><strong>Pengantar</strong></span></a>
+  </div>
+</li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a href="./konsep.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><b>Konsep</b></span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./1_konsep_dasar_web.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">1. Konsep Dasar Web Programmming</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./2_pengenalan_tools.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">2. Pengenalan Tools</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./3_responsive_web.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">3. Responsive Web Design</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./4_pembuatan_front_page.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">4. Front Page</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./5_konsep_database.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">5. Konsep Database</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./6_praktik_database_todolist.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">6. Praktik Database</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./9_penguji_web.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">7. Pengujian Web</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a href="./studi_kasus.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><b>Studi Kasus</b></span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-2" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./7_program_todolist.html" class="sidebar-item-text sidebar-link active">
+ <span class="menu-text">To Do List</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./8_studi_kasus_poliklinik.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Poliklinik</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+    </ul>
+    </div>
+</nav>
+<div id="quarto-sidebar-glass" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass"></div>
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">On this page</h2>
+   
+  <ul>
+  <li><a href="#studi-kasus-program-to-do-list" id="toc-studi-kasus-program-to-do-list" class="nav-link active" data-scroll-target="#studi-kasus-program-to-do-list">Studi Kasus Program To Do List</a></li>
+  <li><a href="#server-lokal-xampp" id="toc-server-lokal-xampp" class="nav-link" data-scroll-target="#server-lokal-xampp">Server Lokal (XAMPP)</a></li>
+  <li><a href="#folder-di-htdocs" id="toc-folder-di-htdocs" class="nav-link" data-scroll-target="#folder-di-htdocs">Folder di htdocs</a></li>
+  <li><a href="#database" id="toc-database" class="nav-link" data-scroll-target="#database">Database</a></li>
+  <li><a href="#koneksi" id="toc-koneksi" class="nav-link" data-scroll-target="#koneksi">Koneksi</a></li>
+  <li><a href="#index" id="toc-index" class="nav-link" data-scroll-target="#index">Index</a>
+  <ul class="collapse">
+  <li><a href="#memulai-html" id="toc-memulai-html" class="nav-link" data-scroll-target="#memulai-html">1. Memulai html</a></li>
+  <li><a href="#judul-heading" id="toc-judul-heading" class="nav-link" data-scroll-target="#judul-heading">2. Judul (heading)</a></li>
+  <li><a href="#form" id="toc-form" class="nav-link" data-scroll-target="#form">3. Form</a></li>
+  <li><a href="#tabel" id="toc-tabel" class="nav-link" data-scroll-target="#tabel">4. Tabel</a></li>
+  </ul></li>
+  </ul>
+</nav>
+    </div>
+<!-- main -->
+<main class="content" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<h1 class="title">To Do List</h1>
+  <div class="quarto-categories">
+    <div class="quarto-category">studi kasus</div>
+  </div>
+  </div>
+
+
+
+<div class="quarto-title-meta">
+
+    
+  
+    
+  </div>
+  
+
+</header>
+
+<section id="studi-kasus-program-to-do-list" class="level2">
+<h2 class="anchored" data-anchor-id="studi-kasus-program-to-do-list">Studi Kasus Program To Do List</h2>
+<p>To Do List merupakan program untuk mencatat serangkaian kegiatan yang akan dikerjakan hingga diselesaikan pada waktu tertentu. Sehingga dalam program tersebut harus mampu menyimpan lalu menampilkan hingga mengubah atau menghapus data seperti kegiatan, tanggal dan keterangan apakah sudah dilaksanakan atau belum.</p>
+<p>Berikut adalah tampilan dari to do list untuk latihan membuat web sederhana.</p>
+<div class="quarto-figure quarto-figure-center" style="text-align:center;">
+<figure class="figure">
+<p><img src="assets/todolist/index.png" class="img-fluid figure-img" style="width:80.0%"></p>
+<figcaption class="figure-caption">Tampilan Index</figcaption>
+</figure>
+</div>
+<p>Sebelum kita mulai membuat program to do list tersebut ada beberapa tahapan yang diperlukan, seperti menghidupkan server yang digunakan (xampp), membuat database, koneksi, hingga membuat tampilan dari program.</p>
+</section>
+<section id="server-lokal-xampp" class="level2">
+<h2 class="anchored" data-anchor-id="server-lokal-xampp">Server Lokal (XAMPP)</h2>
+<p>Untuk dapat menampilkan file php memerlukan server sehingga diperlukan xampp untuk menampilkan php pada server dengan mengaktifkan apache. <br></p>
+<div class="quarto-figure quarto-figure-center" style="text-align:center;">
+<figure class="figure">
+<p><img src="assets/todolist/xampp.png" class="img-fluid figure-img" style="width:80.0%"></p>
+<figcaption class="figure-caption">Memulai XAMPP</figcaption>
+</figure>
+</div>
+<p><br> Pada panel xampp, klik start pada Apache dan MySQL untuk mengaktifkan. Apache diperlukan karena sebagai web server untuk mengakses localhost dan menampilkan file php. Sedangkan pada MySQL diperlukan untuk manajemen dan akses ke database.</p>
+</section>
+<section id="folder-di-htdocs" class="level2">
+<h2 class="anchored" data-anchor-id="folder-di-htdocs">Folder di htdocs</h2>
+<p>Untuk dapat mengakses website localhost dari xampp, diperlukan folder project di direktori C:\xampp\htdocs, sesuai dengan direktori xampp yang sedang aktif.</p>
+<ol type="1">
+<li>Buka direktori C:\xampp\htdocs. Untuk memastikan lokasi direktori xampp dapat klik tombol <strong>Explorer</strong> pada control panel xampp <br></li>
+</ol>
+<div class="quarto-figure quarto-figure-center" style="text-align:center;">
+<figure class="figure">
+<p><img src="assets/todolist/explorer.png" class="img-fluid figure-img" style="width:50.0%"></p>
+<figcaption class="figure-caption">Explorer XAMPP</figcaption>
+</figure>
+</div>
+<p><br></p>
+<ol start="2" type="1">
+<li>Setelah membuka folder xampp lalu htdocs, selanjutnya membuat folder projek.</li>
+</ol>
+<p><br></p>
+<div class="quarto-figure quarto-figure-center" style="text-align:center;">
+<figure class="figure">
+<p><img src="assets/todolist/folder-projek.png" class="img-fluid figure-img" style="width:80.0%"></p>
+<figcaption class="figure-caption">Folder Projek</figcaption>
+</figure>
+</div>
+<p><br> Folder projek ini digunakan sebagai tempat menyimpan file php dan file lain untuk yang digunakan untuk membuat web yang berhubungan dengan projek. <br></p>
+</section>
+<section id="database" class="level2">
+<h2 class="anchored" data-anchor-id="database">Database</h2>
+<p>Dari contoh di atas hanya diperlukan 1 tabel, yaitu tabel yang dapat menyimpan daftar kegiatan. Berikut adalah komponen-komponen dari tabel yang diperlukan. <br></p>
+<div class="quarto-figure quarto-figure-center" style="text-align:center;">
+<figure class="figure">
+<p><img src="assets/todolist/database.jpg" class="img-fluid figure-img" style="width:80.0%"></p>
+<figcaption class="figure-caption">Tabel Kegiatan</figcaption>
+</figure>
+</div>
+<p><br></p>
+<p>Membuat database pada localhost/phpmyadmin”</p>
+<ol type="1">
+<li>Membuaka <a href="http://localhost/phpmyadmin/">localhost/phpmyadmin</a>.</li>
+<li>Membuat database baru lalu membuat tabel baru dengan nama tabel “kegiatan”.</li>
+<li>Buat field dan sesuaikan pada tabel di atas mulai dari nama field, type dan sizenya.</li>
+</ol>
+<p>Proses pembuatan database secara lebih lengkap dapat diklik <a href="./6_praktik_database_todolist.html#membuat-database">disini</a></p>
+<p>Field “id” berfungsi sebagai primary key. Pada field isi, tgl_awal, dan tgl_akhir tidak memerlukan size karena bertipe text dan date. Pada field status bertipe int dengan size hanya 1 karena nantinya akan menyimpan nilai 0 dan 1 yang merepresentasikan belum dan sudah. <br></p>
+</section>
+<section id="koneksi" class="level2">
+<h2 class="anchored" data-anchor-id="koneksi">Koneksi</h2>
+<p>Koneksi diperlukan untuk menghubungkan php dengan database yang kita buat, dimana sebelumnya kita membuat database sql. Untuk menghubungkan php dengan sql menggunakan argumen mysqli_connect. Maka perlu membuat file <strong>koneksi.php</strong> lalu di <em>include</em>-kan pada file php yang terhubung dengan database. <br></p>
+<div class="sourceCode" id="cb1"><pre class="sourceCode php code-with-copy"><code class="sourceCode php"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="kw">&lt;?php</span> </span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="va">$databaseHost</span> <span class="op">=</span> <span class="st">'localhost'</span><span class="ot">;</span></span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="va">$databaseName</span> <span class="op">=</span> <span class="st">'kegiatan'</span><span class="ot">;</span></span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="va">$databaseUsername</span> <span class="op">=</span> <span class="st">'root'</span><span class="ot">;</span></span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a><span class="va">$databasePassword</span> <span class="op">=</span> <span class="st">''</span><span class="ot">;</span></span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a><span class="va">$mysqli</span> <span class="op">=</span> <span class="fu">mysqli_connect</span>(<span class="va">$databaseHost</span><span class="ot">,</span> <span class="va">$databaseUsername</span><span class="ot">,</span> </span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a>    <span class="va">$databasePassword</span><span class="ot">,</span> <span class="va">$databaseName</span>)<span class="ot">;</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p><br> Pada mysqli_connect terdapat beberapa parameter, yaitu mysql_host, mysql_host, mysql_user, mysql_password, dan mysql_database. <br></p>
+<ol type="1">
+<li><p><strong>mysql_host</strong> <br> Jika menjalankan MySQL menggunakan XAMPP di komputer yang sama dengan tempat web server Apache berjalan, maka alamat ini bisa diisi dengan “localhost” atau “127.0.0.1”. Namun jika MySQL server dijalankan dari perangkat komputer server lain, argumen ini akan berisi IP address dari komputer server tersebut. <br></p></li>
+<li><p><strong>mysql_user</strong> <br> berisi nama pengguna MySQL yang digunakan untuk login ke server database, seperti “root”, “admin”, atau “nama_anda”. Karena kita menggunakan MySQL dari XAMPP, secara default, nama pengguna yang digunakan adalah “root”. Jadi, jika Anda tidak mengubah pengaturan default XAMPP, Anda dapat menggunakan “root” sebagai nilai argumen nama pengguna saat memuat fungsi mysqli_connect(). <br></p></li>
+<li><p><strong>mysql_password</strong> <br> diisi dengan password user yang terdaftar pada server mysql. Secara default karena kita menggunakan MySQL dari xampp tanpa mengubah passwordnya maka nilai passwordnya adalah kosong sehingga dapat diisikan ““. <br></p></li>
+<li><p><strong>mysql_database</strong> <br> pada parameter mysql_database diisikan nama database yang telah kita buat. Database yang kita buat sebelumnya adalah kegiatan atau sesuai yang telah anda buat.</p></li>
+</ol>
+</section>
+<section id="index" class="level2">
+<h2 class="anchored" data-anchor-id="index">Index</h2>
+<p>Pada langkah sebelumnya kita telah membuat database dan koneksi untuk menghubungkan database dengan file php, selanjutnya adalah membuat file website. File website utama yang akan otomatis ditampilkan ketika telah membuka <code>localhost/(folder projek dalam htdoc)</code> adalah index.php. Pada file index perlu memuat atau me<em>load</em> file koneksi.php yang telah dibuat sebelumnya agar website dapat terhubung pada database yang telah dibuat. <br></p>
+<div class="sourceCode" id="cb2"><pre class="sourceCode php code-with-copy"><code class="sourceCode php"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="kw">&lt;?php</span></span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="kw">include_once</span>(<span class="st">"koneksi.php"</span>)<span class="ot">;</span></span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a><span class="kw">?&gt;</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Untuk memuat file php lain dapat menggunakan fungsi php yaitu require, require_once atau include atau include_once. Lalu apa perbedaan fungsi-fungsi tersebut? <br></p>
+<ul>
+<li>Jika fungsi include, ketika terjadi error pada file yang dipanggil maka akan menampilkan warning error pada kode yang error saja, namun kode-kode selanjutnya akan tetap dijalankan.</li>
+<li>Sedangkan fungsi require, ketika terjadi error pada file yang dipanggil maka akan menampilkan fatal error, atau menghentikan program yang berjalan sehingga kode program setelahnya tidak akan dieksekusi.</li>
+<li>Untuk include_once dan require_once sama dengan fungsi include dan require, namun fungsi itu hanya akan me<em>load</em> file sekali, sehingga ketika terdapat program yang memuat file yang sama setelahnya tidak akan dijalankan.</li>
+</ul>
+<p><br></p>
+<section id="memulai-html" class="level3">
+<h3 class="anchored" data-anchor-id="memulai-html">1. Memulai html</h3>
+<div class="sourceCode" id="cb3"><pre class="sourceCode php code-with-copy"><code class="sourceCode php"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="op">&lt;!</span><span class="cn">DOCTYPE</span> html<span class="op">&gt;</span></span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="op">&lt;</span>html lang<span class="op">=</span><span class="st">"en"</span><span class="op">&gt;</span></span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a><span class="op">&lt;</span>head<span class="op">&gt;</span></span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a>    <span class="op">&lt;</span>meta charset<span class="op">=</span><span class="st">"UTF-8"</span><span class="op">&gt;</span></span>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a>    <span class="op">&lt;</span>meta name<span class="op">=</span><span class="st">"viewport"</span> content<span class="op">=</span><span class="st">"width=device-width, </span></span>
+<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a><span class="st">    initial-scale=1.0"</span><span class="op">&gt;</span></span>
+<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-8"><a href="#cb3-8" aria-hidden="true" tabindex="-1"></a>    <span class="op">&lt;!--</span> <span class="cn">B</span>ootstrap offline <span class="op">-</span>-&gt;</span>
+<span id="cb3-9"><a href="#cb3-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-10"><a href="#cb3-10" aria-hidden="true" tabindex="-1"></a>    <span class="op">&lt;</span><span class="fu">link</span> rel<span class="op">=</span><span class="st">"stylesheet"</span> href<span class="op">=</span><span class="st">"assets/css/bootstrap.css"</span><span class="op">&gt;</span> </span>
+<span id="cb3-11"><a href="#cb3-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-12"><a href="#cb3-12" aria-hidden="true" tabindex="-1"></a>    <span class="op">&lt;!--</span> <span class="cn">B</span>ootstrap <span class="cn">O</span>nline <span class="op">-</span>-&gt;</span>
+<span id="cb3-13"><a href="#cb3-13" aria-hidden="true" tabindex="-1"></a>    <span class="op">&lt;</span><span class="fu">link</span> href<span class="op">=</span><span class="st">"https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css"</span> </span>
+<span id="cb3-14"><a href="#cb3-14" aria-hidden="true" tabindex="-1"></a>    rel<span class="op">=</span><span class="st">"stylesheet"</span> </span>
+<span id="cb3-15"><a href="#cb3-15" aria-hidden="true" tabindex="-1"></a>    integrity<span class="op">=</span><span class="st">"sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC"</span></span>
+<span id="cb3-16"><a href="#cb3-16" aria-hidden="true" tabindex="-1"></a>    crossorigin<span class="op">=</span><span class="st">"anonymous"</span><span class="op">&gt;</span>   </span>
+<span id="cb3-17"><a href="#cb3-17" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb3-18"><a href="#cb3-18" aria-hidden="true" tabindex="-1"></a>    <span class="op">&lt;</span>title<span class="op">&gt;</span><span class="cn">T</span>o <span class="cf">Do</span> <span class="kw">List</span><span class="op">&lt;/</span>title<span class="op">&gt;</span>   <span class="op">&lt;!--</span><span class="cn">J</span>udul <span class="cn">H</span>alaman<span class="op">-</span>-&gt;</span>
+<span id="cb3-19"><a href="#cb3-19" aria-hidden="true" tabindex="-1"></a><span class="op">&lt;/</span>head<span class="op">&gt;</span></span>
+<span id="cb3-20"><a href="#cb3-20" aria-hidden="true" tabindex="-1"></a><span class="op">&lt;</span>body<span class="op">&gt;</span></span>
+<span id="cb3-21"><a href="#cb3-21" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb3-22"><a href="#cb3-22" aria-hidden="true" tabindex="-1"></a><span class="op">&lt;/</span>body<span class="op">&gt;</span></span>
+<span id="cb3-23"><a href="#cb3-23" aria-hidden="true" tabindex="-1"></a><span class="op">&lt;/</span>html<span class="op">&gt;</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Pada vscode ketika menuliskan html maka akan muncul pilihan template html yang akan digunakan, pada kode diatas menggunakan html5. Seperti yang telah dipelajari sebelumnya mengenai framework bootstrap, perlu memuat file bootstrap. Jika dalam menjalankan program selalu terhubung dengan internet dapat memuat css maupun js bootstrap dapat diakses pada halaman dokumentasi bootstrap bagian introduction. Namun jika dalam keadaan jarang terhubung internet maka dapat mengunduh terlebih dahulu file bootstrap lalu dapat meng-<em>export</em>-nya dan membuat folder assets pada lokasi folder projek untuk menyimpan file paket dari bootstrap. <br></p>
+<p>Pada body diisikan konten yang ingin ditampilkan, yaitu judul, form, tabel, dan button. Untuk menggunakan framework pada komponen tersebut dapat melihat pada halaman docs bootstrap untuk melihat dokumentasi dari penggunaan bootstrap lalu cari dokumentasi komponen yang ingin digunakan. Pilih dokumentasi yang sesuai dan modifikasi sesuai dengan kebutuhan yang ingin digunakan. <br></p>
+<div class="sourceCode" id="cb4"><pre class="sourceCode php code-with-copy"><code class="sourceCode php"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="op">&lt;</span>div <span class="kw">class</span><span class="op">=</span><span class="st">"container"</span><span class="op">&gt;</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Pada tampilan yang diinginkan adalah memusatkan dan mengelompokkan konten utama, maka digunakan container.</p>
+<p><br></p>
+</section>
+<section id="judul-heading" class="level3">
+<h3 class="anchored" data-anchor-id="judul-heading">2. Judul (heading)</h3>
+<div class="sourceCode" id="cb5"><pre class="sourceCode php code-with-copy"><code class="sourceCode php"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="op">&lt;</span>h3<span class="op">&gt;</span></span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>    <span class="cn">T</span>o <span class="cf">Do</span> <span class="kw">List</span></span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>    <span class="op">&lt;</span>small <span class="kw">class</span><span class="op">=</span><span class="st">"text-muted"</span><span class="op">&gt;</span></span>
+<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a>        <span class="cn">C</span>atat semua hal yang akan kamu kerjakan disini<span class="op">.</span></span>
+<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a>    <span class="op">&lt;/</span>small<span class="op">&gt;</span></span>
+<span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a><span class="op">&lt;/</span>h3<span class="op">&gt;</span></span>
+<span id="cb5-7"><a href="#cb5-7" aria-hidden="true" tabindex="-1"></a><span class="op">&lt;</span>hr<span class="op">&gt;</span>    </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p><br></p>
+<p>Menampilkan judul dapat menggunakan heading 1 hingga 6. Semakin besar angka heading maka akan semakin kecil ukuran dari teks yang akan ditampilkan. Pada judul menampilkan kalimat <strong>“To Do List”</strong> sebagai kalimat utama dan <strong>“Catat semua hal yang akan kamu kerjakan”</strong> sebagai slogan atau kalimat penjelas sehingga pada slogan tersebut dimasukkan kedalam tag small dengan class text-muted untuk mengecilkan huruf dan memberikan warna seakan redup karena teks tersebut memiliki tingkat kepentingan lebih rendah.</p>
+<p><br></p>
+</section>
+<section id="form" class="level3">
+<h3 class="anchored" data-anchor-id="form">3. Form</h3>
+<div class="sourceCode" id="cb6"><pre class="sourceCode php code-with-copy"><code class="sourceCode php"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="op">&lt;!--</span><span class="cn">F</span>orm <span class="cn">I</span>nput <span class="cn">D</span>ata<span class="op">-</span>-&gt;</span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a><span class="op">&lt;</span>form <span class="kw">class</span><span class="op">=</span><span class="st">"form row"</span> method<span class="op">=</span><span class="st">"POST"</span> action<span class="op">=</span><span class="st">""</span> name<span class="op">=</span><span class="st">"myForm"</span> onsubmit<span class="op">=</span><span class="st">"return(validate());"</span><span class="op">&gt;</span></span>
+<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a>    <span class="op">&lt;!--</span> <span class="cn">K</span>ode php untuk menghubungkan form dengan database <span class="op">-</span>-&gt;</span>
+<span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a>    <span class="op">&lt;</span><span class="ot">?</span>php</span>
+<span id="cb6-6"><a href="#cb6-6" aria-hidden="true" tabindex="-1"></a>    <span class="va">$isi</span> <span class="op">=</span> <span class="st">''</span><span class="ot">;</span></span>
+<span id="cb6-7"><a href="#cb6-7" aria-hidden="true" tabindex="-1"></a>    <span class="va">$tgl_awal</span> <span class="op">=</span> <span class="st">''</span><span class="ot">;</span></span>
+<span id="cb6-8"><a href="#cb6-8" aria-hidden="true" tabindex="-1"></a>    <span class="va">$tgl_akhir</span> <span class="op">=</span> <span class="st">''</span><span class="ot">;</span></span>
+<span id="cb6-9"><a href="#cb6-9" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> (<span class="kw">isset</span>(<span class="va">$_GET</span>[<span class="st">'id'</span>])) {</span>
+<span id="cb6-10"><a href="#cb6-10" aria-hidden="true" tabindex="-1"></a>        <span class="va">$ambil</span> <span class="op">=</span> <span class="fu">mysqli_query</span>(<span class="va">$mysqli</span><span class="ot">,</span> </span>
+<span id="cb6-11"><a href="#cb6-11" aria-hidden="true" tabindex="-1"></a>        <span class="st">"SELECT * FROM kegiatan </span></span>
+<span id="cb6-12"><a href="#cb6-12" aria-hidden="true" tabindex="-1"></a><span class="st">        WHERE id='"</span> <span class="op">.</span> <span class="va">$_GET</span>[<span class="st">'id'</span>] <span class="op">.</span> <span class="st">"'"</span>)<span class="ot">;</span></span>
+<span id="cb6-13"><a href="#cb6-13" aria-hidden="true" tabindex="-1"></a>        <span class="cf">while</span> (<span class="va">$row</span> <span class="op">=</span> <span class="fu">mysqli_fetch_array</span>(<span class="va">$ambil</span>)) {</span>
+<span id="cb6-14"><a href="#cb6-14" aria-hidden="true" tabindex="-1"></a>            <span class="va">$isi</span> <span class="op">=</span> <span class="va">$row</span>[<span class="st">'isi'</span>]<span class="ot">;</span></span>
+<span id="cb6-15"><a href="#cb6-15" aria-hidden="true" tabindex="-1"></a>            <span class="va">$tgl_awal</span> <span class="op">=</span> <span class="va">$row</span>[<span class="st">'tgl_awal'</span>]<span class="ot">;</span></span>
+<span id="cb6-16"><a href="#cb6-16" aria-hidden="true" tabindex="-1"></a>            <span class="va">$tgl_akhir</span> <span class="op">=</span> <span class="va">$row</span>[<span class="st">'tgl_akhir'</span>]<span class="ot">;</span></span>
+<span id="cb6-17"><a href="#cb6-17" aria-hidden="true" tabindex="-1"></a>        }</span>
+<span id="cb6-18"><a href="#cb6-18" aria-hidden="true" tabindex="-1"></a>    <span class="kw">?&gt;</span></span>
+<span id="cb6-19"><a href="#cb6-19" aria-hidden="true" tabindex="-1"></a>        <span class="op">&lt;</span>input type<span class="op">=</span><span class="st">"hidden"</span> name<span class="op">=</span><span class="st">"id"</span> value<span class="op">=</span><span class="st">"&lt;?php echo</span></span>
+<span id="cb6-20"><a href="#cb6-20" aria-hidden="true" tabindex="-1"></a><span class="st">        </span><span class="va">$_GET</span>[<span class="er">'</span><span class="st">id'] ?&gt;"</span><span class="op">&gt;</span></span>
+<span id="cb6-21"><a href="#cb6-21" aria-hidden="true" tabindex="-1"></a>    <span class="op">&lt;</span><span class="ot">?</span>php</span>
+<span id="cb6-22"><a href="#cb6-22" aria-hidden="true" tabindex="-1"></a>    }</span>
+<span id="cb6-23"><a href="#cb6-23" aria-hidden="true" tabindex="-1"></a>    <span class="kw">?&gt;</span></span>
+<span id="cb6-24"><a href="#cb6-24" aria-hidden="true" tabindex="-1"></a>    <span class="op">&lt;</span>div <span class="kw">class</span><span class="op">=</span><span class="st">"col"</span><span class="op">&gt;</span></span>
+<span id="cb6-25"><a href="#cb6-25" aria-hidden="true" tabindex="-1"></a>        <span class="op">&lt;</span>label <span class="cf">for</span><span class="op">=</span><span class="st">"inputIsi"</span> <span class="kw">class</span><span class="op">=</span><span class="st">"form-label fw-bold"</span><span class="op">&gt;</span></span>
+<span id="cb6-26"><a href="#cb6-26" aria-hidden="true" tabindex="-1"></a>            <span class="cn">K</span>egiatan</span>
+<span id="cb6-27"><a href="#cb6-27" aria-hidden="true" tabindex="-1"></a>        <span class="op">&lt;/</span>label<span class="op">&gt;</span></span>
+<span id="cb6-28"><a href="#cb6-28" aria-hidden="true" tabindex="-1"></a>        <span class="op">&lt;</span>input type<span class="op">=</span><span class="st">"text"</span> <span class="kw">class</span><span class="op">=</span><span class="st">"form-control"</span> name<span class="op">=</span><span class="st">"isi"</span> id<span class="op">=</span><span class="st">"inputIsi"</span> placeholder<span class="op">=</span><span class="st">"Kegiatan"</span> value<span class="op">=</span><span class="st">"&lt;?php echo </span><span class="va">$isi</span><span class="st"> ?&gt;"</span><span class="op">&gt;</span></span>
+<span id="cb6-29"><a href="#cb6-29" aria-hidden="true" tabindex="-1"></a>    <span class="op">&lt;/</span>div<span class="op">&gt;</span></span>
+<span id="cb6-30"><a href="#cb6-30" aria-hidden="true" tabindex="-1"></a>    <span class="op">&lt;</span>div <span class="kw">class</span><span class="op">=</span><span class="st">"col"</span><span class="op">&gt;</span></span>
+<span id="cb6-31"><a href="#cb6-31" aria-hidden="true" tabindex="-1"></a>        <span class="op">&lt;</span>label <span class="cf">for</span><span class="op">=</span><span class="st">"inputTanggalAwal"</span> <span class="kw">class</span><span class="op">=</span><span class="st">"form-label fw-bold"</span><span class="op">&gt;</span></span>
+<span id="cb6-32"><a href="#cb6-32" aria-hidden="true" tabindex="-1"></a>            <span class="cn">T</span>anggal <span class="cn">A</span>wal</span>
+<span id="cb6-33"><a href="#cb6-33" aria-hidden="true" tabindex="-1"></a>        <span class="op">&lt;/</span>label<span class="op">&gt;</span></span>
+<span id="cb6-34"><a href="#cb6-34" aria-hidden="true" tabindex="-1"></a>        <span class="op">&lt;</span>input type<span class="op">=</span><span class="st">"date"</span> <span class="kw">class</span><span class="op">=</span><span class="st">"form-control"</span> name<span class="op">=</span><span class="st">"tgl_awal"</span> id<span class="op">=</span><span class="st">"inputTanggalAwal"</span> placeholder<span class="op">=</span><span class="st">"Tanggal Awal"</span> value<span class="op">=</span><span class="st">"&lt;?php echo </span><span class="va">$tgl_awal</span><span class="st"> ?&gt;"</span><span class="op">&gt;</span></span>
+<span id="cb6-35"><a href="#cb6-35" aria-hidden="true" tabindex="-1"></a>    <span class="op">&lt;/</span>div<span class="op">&gt;</span></span>
+<span id="cb6-36"><a href="#cb6-36" aria-hidden="true" tabindex="-1"></a>    <span class="op">&lt;</span>div <span class="kw">class</span><span class="op">=</span><span class="st">"col mb-2"</span><span class="op">&gt;</span></span>
+<span id="cb6-37"><a href="#cb6-37" aria-hidden="true" tabindex="-1"></a>        <span class="op">&lt;</span>label <span class="cf">for</span><span class="op">=</span><span class="st">"inputTanggalAkhir"</span> <span class="kw">class</span><span class="op">=</span><span class="st">"form-label fw-bold"</span><span class="op">&gt;</span></span>
+<span id="cb6-38"><a href="#cb6-38" aria-hidden="true" tabindex="-1"></a>        <span class="cn">T</span>anggal <span class="cn">A</span>khir</span>
+<span id="cb6-39"><a href="#cb6-39" aria-hidden="true" tabindex="-1"></a>        <span class="op">&lt;/</span>label<span class="op">&gt;</span></span>
+<span id="cb6-40"><a href="#cb6-40" aria-hidden="true" tabindex="-1"></a>        <span class="op">&lt;</span>input type<span class="op">=</span><span class="st">"date"</span> <span class="kw">class</span><span class="op">=</span><span class="st">"form-control"</span> name<span class="op">=</span><span class="st">"tgl_akhir"</span> id<span class="op">=</span><span class="st">"inputTanggalAkhir"</span> placeholder<span class="op">=</span><span class="st">"Tanggal Akhir"</span> value<span class="op">=</span><span class="st">"&lt;?php echo </span><span class="va">$tgl_akhir</span><span class="st"> ?&gt;"</span><span class="op">&gt;</span></span>
+<span id="cb6-41"><a href="#cb6-41" aria-hidden="true" tabindex="-1"></a>    <span class="op">&lt;/</span>div<span class="op">&gt;</span></span>
+<span id="cb6-42"><a href="#cb6-42" aria-hidden="true" tabindex="-1"></a>    <span class="op">&lt;</span>div <span class="kw">class</span><span class="op">=</span><span class="st">"col"</span><span class="op">&gt;</span></span>
+<span id="cb6-43"><a href="#cb6-43" aria-hidden="true" tabindex="-1"></a>        <span class="op">&lt;</span>button type<span class="op">=</span><span class="st">"submit"</span> <span class="kw">class</span><span class="op">=</span><span class="st">"btn btn-primary rounded-pill px-3"</span> name<span class="op">=</span><span class="st">"simpan"</span><span class="op">&gt;</span><span class="cn">S</span>impan<span class="op">&lt;/</span>button<span class="op">&gt;</span></span>
+<span id="cb6-44"><a href="#cb6-44" aria-hidden="true" tabindex="-1"></a>    <span class="op">&lt;/</span>div<span class="op">&gt;</span></span>
+<span id="cb6-45"><a href="#cb6-45" aria-hidden="true" tabindex="-1"></a><span class="op">&lt;/</span>form<span class="op">&gt;</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p><br></p>
+<p>Terdapat tiga input pada form, yaitu kegiatan, tanggal awal, dan tanggal akhir. Namun pada database terdapat field id yang diatur untuk autoincrement sehingga akan terisi otomatis sesuai urutan data disimpan. pada bootstrap v5 untuk membuat form dalam satu baris dapat menggunakan grid, yaitu dengan class “row” dan “col”. Pada form akan menampilkan placeholder keterangan sesuai inputan form. <br></p>
+<p>Terdapat kode PHP untuk menghubungkan form dengan database, dengan cara mengambil data dari database lalu dimunculkan melalui value berdasarkan variabel yang sesuai, berdasarkan id dari data ketika dilakukan ubah data. Untuk mengambil data dari database digunakan perintah SQl: <br></p>
+<div class="sourceCode" id="cb7"><pre class="sourceCode php code-with-copy"><code class="sourceCode php"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="cn">SELECT</span> <span class="op">*</span> <span class="cn">FROM</span> kegiatan <span class="cn">WHERE</span> id<span class="op">=</span><span class="st">'" . $_GET['</span>id<span class="st">'] . "'</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Nilai id didapat dari get data id yang dikirimkan ketika klik tombol ubah. <br></p>
+<p>Selain form juga terdapat button yang bertipe submit dengan class dari btn, btn-primary untuk memberikan warna biru atau dapat memberi variasi lain yang sesuai dengan btn-(kode warna yang ada pada dokumentasi bootstrap). Dalam pemilihan warna pada tombol harus disesuaikan dengan user experience.</p>
+<p><br></p>
+</section>
+<section id="tabel" class="level3">
+<h3 class="anchored" data-anchor-id="tabel">4. Tabel</h3>
+<div class="sourceCode" id="cb8"><pre class="sourceCode php code-with-copy"><code class="sourceCode php"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="op">&lt;!--</span> <span class="cn">T</span>able<span class="op">-</span>-&gt;</span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a><span class="op">&lt;</span>table <span class="kw">class</span><span class="op">=</span><span class="st">"table table-hover"</span><span class="op">&gt;</span></span>
+<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a>    <span class="op">&lt;!--</span>thead atau baris judul<span class="op">-</span>-&gt;</span>
+<span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a>    <span class="op">&lt;</span>thead<span class="op">&gt;</span></span>
+<span id="cb8-5"><a href="#cb8-5" aria-hidden="true" tabindex="-1"></a>        <span class="op">&lt;</span>tr<span class="op">&gt;</span></span>
+<span id="cb8-6"><a href="#cb8-6" aria-hidden="true" tabindex="-1"></a>            <span class="op">&lt;</span>th scope<span class="op">=</span><span class="st">"col"</span><span class="op">&gt;</span><span class="co">#&lt;/th&gt;</span></span>
+<span id="cb8-7"><a href="#cb8-7" aria-hidden="true" tabindex="-1"></a>            <span class="op">&lt;</span>th scope<span class="op">=</span><span class="st">"col"</span><span class="op">&gt;</span><span class="cn">K</span>egiatan<span class="op">&lt;/</span>th<span class="op">&gt;</span></span>
+<span id="cb8-8"><a href="#cb8-8" aria-hidden="true" tabindex="-1"></a>            <span class="op">&lt;</span>th scope<span class="op">=</span><span class="st">"col"</span><span class="op">&gt;</span><span class="cn">A</span>wal<span class="op">&lt;/</span>th<span class="op">&gt;</span></span>
+<span id="cb8-9"><a href="#cb8-9" aria-hidden="true" tabindex="-1"></a>            <span class="op">&lt;</span>th scope<span class="op">=</span><span class="st">"col"</span><span class="op">&gt;</span><span class="cn">A</span>khir<span class="op">&lt;/</span>th<span class="op">&gt;</span></span>
+<span id="cb8-10"><a href="#cb8-10" aria-hidden="true" tabindex="-1"></a>            <span class="op">&lt;</span>th scope<span class="op">=</span><span class="st">"col"</span><span class="op">&gt;</span><span class="cn">S</span>tatus<span class="op">&lt;/</span>th<span class="op">&gt;</span></span>
+<span id="cb8-11"><a href="#cb8-11" aria-hidden="true" tabindex="-1"></a>            <span class="op">&lt;</span>th scope<span class="op">=</span><span class="st">"col"</span><span class="op">&gt;</span><span class="cn">A</span>ksi<span class="op">&lt;/</span>th<span class="op">&gt;</span></span>
+<span id="cb8-12"><a href="#cb8-12" aria-hidden="true" tabindex="-1"></a>        <span class="op">&lt;/</span>tr<span class="op">&gt;</span></span>
+<span id="cb8-13"><a href="#cb8-13" aria-hidden="true" tabindex="-1"></a>    <span class="op">&lt;/</span>thead<span class="op">&gt;</span></span>
+<span id="cb8-14"><a href="#cb8-14" aria-hidden="true" tabindex="-1"></a>    <span class="op">&lt;!--</span>tbody berisi isi tabel sesuai dengan judul atau head<span class="op">-</span>-&gt;</span>
+<span id="cb8-15"><a href="#cb8-15" aria-hidden="true" tabindex="-1"></a>    <span class="op">&lt;</span>tbody<span class="op">&gt;</span></span>
+<span id="cb8-16"><a href="#cb8-16" aria-hidden="true" tabindex="-1"></a>        <span class="op">&lt;!--</span> <span class="cn">K</span>ode <span class="cn">PHP</span> untuk menampilkan semua isi dari tabel urut</span>
+<span id="cb8-17"><a href="#cb8-17" aria-hidden="true" tabindex="-1"></a>        berdasarkan status dan tanggal awal<span class="op">-</span>-&gt;</span>
+<span id="cb8-18"><a href="#cb8-18" aria-hidden="true" tabindex="-1"></a>        <span class="op">&lt;</span><span class="ot">?</span>php</span>
+<span id="cb8-19"><a href="#cb8-19" aria-hidden="true" tabindex="-1"></a>        <span class="va">$result</span> <span class="op">=</span> <span class="fu">mysqli_query</span>(</span>
+<span id="cb8-20"><a href="#cb8-20" aria-hidden="true" tabindex="-1"></a>            <span class="va">$mysqli</span><span class="ot">,</span><span class="st">"SELECT * FROM kegiatan ORDER BY status,tgl_awal"</span></span>
+<span id="cb8-21"><a href="#cb8-21" aria-hidden="true" tabindex="-1"></a>            )<span class="ot">;</span></span>
+<span id="cb8-22"><a href="#cb8-22" aria-hidden="true" tabindex="-1"></a>        <span class="va">$no</span> <span class="op">=</span> <span class="dv">1</span><span class="ot">;</span></span>
+<span id="cb8-23"><a href="#cb8-23" aria-hidden="true" tabindex="-1"></a>        <span class="cf">while</span> (<span class="va">$data</span> <span class="op">=</span> <span class="fu">mysqli_fetch_array</span>(<span class="va">$result</span>)) {</span>
+<span id="cb8-24"><a href="#cb8-24" aria-hidden="true" tabindex="-1"></a>        <span class="kw">?&gt;</span></span>
+<span id="cb8-25"><a href="#cb8-25" aria-hidden="true" tabindex="-1"></a>            <span class="op">&lt;</span>tr<span class="op">&gt;</span></span>
+<span id="cb8-26"><a href="#cb8-26" aria-hidden="true" tabindex="-1"></a>                <span class="op">&lt;</span>th scope<span class="op">=</span><span class="st">"row"</span><span class="op">&gt;&lt;</span><span class="ot">?</span>php <span class="kw">echo</span> <span class="va">$no</span><span class="op">++</span> <span class="kw">?&gt;</span><span class="op">&lt;/</span>th<span class="op">&gt;</span></span>
+<span id="cb8-27"><a href="#cb8-27" aria-hidden="true" tabindex="-1"></a>                <span class="op">&lt;</span>td<span class="op">&gt;&lt;</span><span class="ot">?</span>php <span class="kw">echo</span> <span class="va">$data</span>[<span class="st">'isi'</span>] <span class="kw">?&gt;</span><span class="op">&lt;/</span>td<span class="op">&gt;</span></span>
+<span id="cb8-28"><a href="#cb8-28" aria-hidden="true" tabindex="-1"></a>                <span class="op">&lt;</span>td<span class="op">&gt;&lt;</span><span class="ot">?</span>php <span class="kw">echo</span> <span class="va">$data</span>[<span class="st">'tgl_awal'</span>] <span class="kw">?&gt;</span><span class="op">&lt;/</span>td<span class="op">&gt;</span></span>
+<span id="cb8-29"><a href="#cb8-29" aria-hidden="true" tabindex="-1"></a>                <span class="op">&lt;</span>td<span class="op">&gt;&lt;</span><span class="ot">?</span>php <span class="kw">echo</span> <span class="va">$data</span>[<span class="st">'tgl_akhir'</span>] <span class="kw">?&gt;</span><span class="op">&lt;/</span>td<span class="op">&gt;</span></span>
+<span id="cb8-30"><a href="#cb8-30" aria-hidden="true" tabindex="-1"></a>                <span class="op">&lt;</span>td<span class="op">&gt;</span></span>
+<span id="cb8-31"><a href="#cb8-31" aria-hidden="true" tabindex="-1"></a>                    <span class="op">&lt;</span><span class="ot">?</span>php</span>
+<span id="cb8-32"><a href="#cb8-32" aria-hidden="true" tabindex="-1"></a>                    <span class="cf">if</span> (<span class="va">$data</span>[<span class="st">'status'</span>] <span class="op">==</span> <span class="st">'1'</span>) {</span>
+<span id="cb8-33"><a href="#cb8-33" aria-hidden="true" tabindex="-1"></a>                    <span class="kw">?&gt;</span></span>
+<span id="cb8-34"><a href="#cb8-34" aria-hidden="true" tabindex="-1"></a>                        <span class="op">&lt;</span>a <span class="kw">class</span><span class="op">=</span><span class="st">"btn btn-success rounded-pill px-3"</span> type<span class="op">=</span><span class="st">"button"</span> </span>
+<span id="cb8-35"><a href="#cb8-35" aria-hidden="true" tabindex="-1"></a>                        href<span class="op">=</span><span class="st">"index.php?id=&lt;?php echo </span><span class="va">$data</span>[<span class="er">'</span><span class="st">id'] ?&gt;&amp;aksi=ubah_status&amp;status=0"</span><span class="op">&gt;</span></span>
+<span id="cb8-36"><a href="#cb8-36" aria-hidden="true" tabindex="-1"></a>                        <span class="cn">S</span>udah</span>
+<span id="cb8-37"><a href="#cb8-37" aria-hidden="true" tabindex="-1"></a>                        <span class="op">&lt;/</span>a<span class="op">&gt;</span></span>
+<span id="cb8-38"><a href="#cb8-38" aria-hidden="true" tabindex="-1"></a>                    <span class="op">&lt;</span><span class="ot">?</span>php</span>
+<span id="cb8-39"><a href="#cb8-39" aria-hidden="true" tabindex="-1"></a>                    } <span class="cf">else</span> {</span>
+<span id="cb8-40"><a href="#cb8-40" aria-hidden="true" tabindex="-1"></a>                    <span class="kw">?&gt;</span></span>
+<span id="cb8-41"><a href="#cb8-41" aria-hidden="true" tabindex="-1"></a>                        <span class="op">&lt;</span>a <span class="kw">class</span><span class="op">=</span><span class="st">"btn btn-warning rounded-pill px-3"</span> type<span class="op">=</span><span class="st">"button"</span> </span>
+<span id="cb8-42"><a href="#cb8-42" aria-hidden="true" tabindex="-1"></a>                        href<span class="op">=</span><span class="st">"index.php?id=&lt;?php echo </span><span class="va">$data</span>[<span class="er">'</span><span class="st">id'] ?&gt;&amp;aksi=ubah_status&amp;status=1"</span><span class="op">&gt;</span></span>
+<span id="cb8-43"><a href="#cb8-43" aria-hidden="true" tabindex="-1"></a>                        <span class="cn">B</span>elum<span class="op">&lt;/</span>a<span class="op">&gt;</span></span>
+<span id="cb8-44"><a href="#cb8-44" aria-hidden="true" tabindex="-1"></a>                    <span class="op">&lt;</span><span class="ot">?</span>php</span>
+<span id="cb8-45"><a href="#cb8-45" aria-hidden="true" tabindex="-1"></a>                    }</span>
+<span id="cb8-46"><a href="#cb8-46" aria-hidden="true" tabindex="-1"></a>                    <span class="kw">?&gt;</span></span>
+<span id="cb8-47"><a href="#cb8-47" aria-hidden="true" tabindex="-1"></a>                <span class="op">&lt;/</span>td<span class="op">&gt;</span></span>
+<span id="cb8-48"><a href="#cb8-48" aria-hidden="true" tabindex="-1"></a>                <span class="op">&lt;</span>td<span class="op">&gt;</span></span>
+<span id="cb8-49"><a href="#cb8-49" aria-hidden="true" tabindex="-1"></a>                    <span class="op">&lt;</span>a <span class="kw">class</span><span class="op">=</span><span class="st">"btn btn-info rounded-pill px-3"</span> </span>
+<span id="cb8-50"><a href="#cb8-50" aria-hidden="true" tabindex="-1"></a>                    href<span class="op">=</span><span class="st">"index.php?id=&lt;?php echo </span><span class="va">$data</span>[<span class="er">'</span><span class="st">id'] ?&gt;"</span><span class="op">&gt;</span><span class="cn">U</span>bah</span>
+<span id="cb8-51"><a href="#cb8-51" aria-hidden="true" tabindex="-1"></a>                    <span class="op">&lt;/</span>a<span class="op">&gt;</span></span>
+<span id="cb8-52"><a href="#cb8-52" aria-hidden="true" tabindex="-1"></a>                    <span class="op">&lt;</span>a <span class="kw">class</span><span class="op">=</span><span class="st">"btn btn-danger rounded-pill px-3"</span> </span>
+<span id="cb8-53"><a href="#cb8-53" aria-hidden="true" tabindex="-1"></a>                    href<span class="op">=</span><span class="st">"index.php?id=&lt;?php echo </span><span class="va">$data</span>[<span class="er">'</span><span class="st">id'] ?&gt;&amp;aksi=hapus"</span><span class="op">&gt;</span><span class="cn">H</span>apus</span>
+<span id="cb8-54"><a href="#cb8-54" aria-hidden="true" tabindex="-1"></a>                    <span class="op">&lt;/</span>a<span class="op">&gt;</span></span>
+<span id="cb8-55"><a href="#cb8-55" aria-hidden="true" tabindex="-1"></a>                <span class="op">&lt;/</span>td<span class="op">&gt;</span></span>
+<span id="cb8-56"><a href="#cb8-56" aria-hidden="true" tabindex="-1"></a>            <span class="op">&lt;/</span>tr<span class="op">&gt;</span></span>
+<span id="cb8-57"><a href="#cb8-57" aria-hidden="true" tabindex="-1"></a>        <span class="op">&lt;</span><span class="ot">?</span>php</span>
+<span id="cb8-58"><a href="#cb8-58" aria-hidden="true" tabindex="-1"></a>        }</span>
+<span id="cb8-59"><a href="#cb8-59" aria-hidden="true" tabindex="-1"></a>        <span class="kw">?&gt;</span></span>
+<span id="cb8-60"><a href="#cb8-60" aria-hidden="true" tabindex="-1"></a>    <span class="op">&lt;/</span>tbody<span class="op">&gt;</span></span>
+<span id="cb8-61"><a href="#cb8-61" aria-hidden="true" tabindex="-1"></a><span class="op">&lt;/</span>table<span class="op">&gt;</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p><br></p>
+<p>Pada Tabel akan menampilkan data-data dari database kegiatan yang diurutkan berdasarkan status dan tanggal awal melalui perintah SQL : <br></p>
+<div class="sourceCode" id="cb9"><pre class="sourceCode sql code-with-copy"><code class="sourceCode sql"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="kw">SELECT</span> <span class="op">*</span> <span class="kw">FROM</span> kegiatan <span class="kw">ORDER</span> <span class="kw">BY</span> status,tgl_awal</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p><br> Selain itu pada kode php juga mendeklarasikan dan memberi nilai awal $no = 1 untuk menampilkan nomor urut data dengan menggunakan looping while sebanyak data yang ada dalam database. Nomor yang ditampilkan bukanlah id dari database. <br></p>
+<p>Selain menampilkan data juga terdapat bagian status yang menggunakan kondisi ketika belum maka nilai awalnya adalah 0 namun ketika di klik maka akan melakukan fungsi ubah_status (yang akan kita buat nanti) menjadi 1 atau sudah begitupun sebaliknya jika data statusnya sudah. <br></p>
+<p>Ada juga tombol ubah dan hapus, dimana tombol ubah berfungsi untuk mengubah data pada baris yang dipilih dan hapus juga akan menghapus data pada baris yang dipilih. <br></p>
+<div class="sourceCode" id="cb10"><pre class="sourceCode php code-with-copy"><code class="sourceCode php"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a> <span class="op">&lt;</span><span class="ot">?</span>php</span>
+<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span> (<span class="kw">isset</span>(<span class="va">$_POST</span>[<span class="st">'simpan'</span>])) {</span>
+<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> (<span class="kw">isset</span>(<span class="va">$_POST</span>[<span class="st">'id'</span>])) {</span>
+<span id="cb10-4"><a href="#cb10-4" aria-hidden="true" tabindex="-1"></a>        <span class="va">$ubah</span> <span class="op">=</span> <span class="fu">mysqli_query</span>(<span class="va">$mysqli</span><span class="ot">,</span> <span class="st">"UPDATE kegiatan SET </span></span>
+<span id="cb10-5"><a href="#cb10-5" aria-hidden="true" tabindex="-1"></a><span class="st">                                        isi = '"</span> <span class="op">.</span> <span class="va">$_POST</span>[<span class="st">'isi'</span>] <span class="op">.</span> <span class="st">"',</span></span>
+<span id="cb10-6"><a href="#cb10-6" aria-hidden="true" tabindex="-1"></a><span class="st">                                        tgl_awal = '"</span> <span class="op">.</span> <span class="va">$_POST</span>[<span class="st">'tgl_awal'</span>] <span class="op">.</span> <span class="st">"',</span></span>
+<span id="cb10-7"><a href="#cb10-7" aria-hidden="true" tabindex="-1"></a><span class="st">                                        tgl_akhir = '"</span> <span class="op">.</span> <span class="va">$_POST</span>[<span class="st">'tgl_akhir'</span>] <span class="op">.</span> <span class="st">"'</span></span>
+<span id="cb10-8"><a href="#cb10-8" aria-hidden="true" tabindex="-1"></a><span class="st">                                        WHERE</span></span>
+<span id="cb10-9"><a href="#cb10-9" aria-hidden="true" tabindex="-1"></a><span class="st">                                        id = '"</span> <span class="op">.</span> <span class="va">$_POST</span>[<span class="st">'id'</span>] <span class="op">.</span> <span class="st">"'"</span>)<span class="ot">;</span></span>
+<span id="cb10-10"><a href="#cb10-10" aria-hidden="true" tabindex="-1"></a>    } <span class="cf">else</span> {</span>
+<span id="cb10-11"><a href="#cb10-11" aria-hidden="true" tabindex="-1"></a>        <span class="va">$tambah</span> <span class="op">=</span> <span class="fu">mysqli_query</span>(<span class="va">$mysqli</span><span class="ot">,</span> <span class="st">"INSERT INTO kegiatan(isi,tgl_awal,tgl_akhir,status) </span></span>
+<span id="cb10-12"><a href="#cb10-12" aria-hidden="true" tabindex="-1"></a><span class="st">                                        VALUES ( </span></span>
+<span id="cb10-13"><a href="#cb10-13" aria-hidden="true" tabindex="-1"></a><span class="st">                                            '"</span> <span class="op">.</span> <span class="va">$_POST</span>[<span class="st">'isi'</span>] <span class="op">.</span> <span class="st">"',</span></span>
+<span id="cb10-14"><a href="#cb10-14" aria-hidden="true" tabindex="-1"></a><span class="st">                                            '"</span> <span class="op">.</span> <span class="va">$_POST</span>[<span class="st">'tgl_awal'</span>] <span class="op">.</span> <span class="st">"',</span></span>
+<span id="cb10-15"><a href="#cb10-15" aria-hidden="true" tabindex="-1"></a><span class="st">                                            '"</span> <span class="op">.</span> <span class="va">$_POST</span>[<span class="st">'tgl_akhir'</span>] <span class="op">.</span> <span class="st">"',</span></span>
+<span id="cb10-16"><a href="#cb10-16" aria-hidden="true" tabindex="-1"></a><span class="st">                                            '0'</span></span>
+<span id="cb10-17"><a href="#cb10-17" aria-hidden="true" tabindex="-1"></a><span class="st">                                            )"</span>)<span class="ot">;</span></span>
+<span id="cb10-18"><a href="#cb10-18" aria-hidden="true" tabindex="-1"></a>    }</span>
+<span id="cb10-19"><a href="#cb10-19" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-20"><a href="#cb10-20" aria-hidden="true" tabindex="-1"></a>    <span class="kw">echo</span> <span class="st">"&lt;script&gt; </span></span>
+<span id="cb10-21"><a href="#cb10-21" aria-hidden="true" tabindex="-1"></a><span class="st">            document.location='index.php';</span></span>
+<span id="cb10-22"><a href="#cb10-22" aria-hidden="true" tabindex="-1"></a><span class="st">            &lt;/script&gt;"</span><span class="ot">;</span></span>
+<span id="cb10-23"><a href="#cb10-23" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb10-24"><a href="#cb10-24" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-25"><a href="#cb10-25" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span> (<span class="kw">isset</span>(<span class="va">$_GET</span>[<span class="st">'aksi'</span>])) {</span>
+<span id="cb10-26"><a href="#cb10-26" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> (<span class="va">$_GET</span>[<span class="st">'aksi'</span>] <span class="op">==</span> <span class="st">'hapus'</span>) {</span>
+<span id="cb10-27"><a href="#cb10-27" aria-hidden="true" tabindex="-1"></a>        <span class="va">$hapus</span> <span class="op">=</span> <span class="fu">mysqli_query</span>(<span class="va">$mysqli</span><span class="ot">,</span> <span class="st">"DELETE FROM kegiatan WHERE id = '"</span> <span class="op">.</span> <span class="va">$_GET</span>[<span class="st">'id'</span>] <span class="op">.</span> <span class="st">"'"</span>)<span class="ot">;</span></span>
+<span id="cb10-28"><a href="#cb10-28" aria-hidden="true" tabindex="-1"></a>    } <span class="cf">else</span> <span class="cf">if</span> (<span class="va">$_GET</span>[<span class="st">'aksi'</span>] <span class="op">==</span> <span class="st">'ubah_status'</span>) {</span>
+<span id="cb10-29"><a href="#cb10-29" aria-hidden="true" tabindex="-1"></a>        <span class="va">$ubah_status</span> <span class="op">=</span> <span class="fu">mysqli_query</span>(<span class="va">$mysqli</span><span class="ot">,</span> <span class="st">"UPDATE kegiatan SET </span></span>
+<span id="cb10-30"><a href="#cb10-30" aria-hidden="true" tabindex="-1"></a><span class="st">                                        status = '"</span> <span class="op">.</span> <span class="va">$_GET</span>[<span class="st">'status'</span>] <span class="op">.</span> <span class="st">"' </span></span>
+<span id="cb10-31"><a href="#cb10-31" aria-hidden="true" tabindex="-1"></a><span class="st">                                        WHERE</span></span>
+<span id="cb10-32"><a href="#cb10-32" aria-hidden="true" tabindex="-1"></a><span class="st">                                        id = '"</span> <span class="op">.</span> <span class="va">$_GET</span>[<span class="st">'id'</span>] <span class="op">.</span> <span class="st">"'"</span>)<span class="ot">;</span></span>
+<span id="cb10-33"><a href="#cb10-33" aria-hidden="true" tabindex="-1"></a>    }</span>
+<span id="cb10-34"><a href="#cb10-34" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-35"><a href="#cb10-35" aria-hidden="true" tabindex="-1"></a>    <span class="kw">echo</span> <span class="st">"&lt;script&gt; </span></span>
+<span id="cb10-36"><a href="#cb10-36" aria-hidden="true" tabindex="-1"></a><span class="st">            document.location='index.php';</span></span>
+<span id="cb10-37"><a href="#cb10-37" aria-hidden="true" tabindex="-1"></a><span class="st">            &lt;/script&gt;"</span><span class="ot">;</span></span>
+<span id="cb10-38"><a href="#cb10-38" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb10-39"><a href="#cb10-39" aria-hidden="true" tabindex="-1"></a><span class="kw">?&gt;</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Kode tersebut merupakan bagian dari skrip PHP yang digunakan untuk memproses data yang dikirim melalui formulir atau melalui parameter pada URL. Berikut adalah penjelasan baris per baris: <br></p>
+<p>Dengan menggunakan kode di atas, data yang dikirim melalui formulir akan diproses dan disimpan atau diubah dalam tabel “kegiatan” berdasarkan tindakan yang diambil. Jika terdapat permintaan melalui parameter pada URL, seperti menghapus data atau mengubah status, tindakan tersebut akan dieksekusi dan kemudian pengguna akan diarahkan kembali ke halaman “index.php”.</p>
+
+
+</section>
+</section>
+
+</main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+window.document.addEventListener("DOMContentLoaded", function (event) {
+  const toggleBodyColorMode = (bsSheetEl) => {
+    const mode = bsSheetEl.getAttribute("data-mode");
+    const bodyEl = window.document.querySelector("body");
+    if (mode === "dark") {
+      bodyEl.classList.add("quarto-dark");
+      bodyEl.classList.remove("quarto-light");
+    } else {
+      bodyEl.classList.add("quarto-light");
+      bodyEl.classList.remove("quarto-dark");
+    }
+  }
+  const toggleBodyColorPrimary = () => {
+    const bsSheetEl = window.document.querySelector("link#quarto-bootstrap");
+    if (bsSheetEl) {
+      toggleBodyColorMode(bsSheetEl);
+    }
+  }
+  toggleBodyColorPrimary();  
+  const disableStylesheet = (stylesheets) => {
+    for (let i=0; i < stylesheets.length; i++) {
+      const stylesheet = stylesheets[i];
+      stylesheet.rel = 'prefetch';
+    }
+  }
+  const enableStylesheet = (stylesheets) => {
+    for (let i=0; i < stylesheets.length; i++) {
+      const stylesheet = stylesheets[i];
+      stylesheet.rel = 'stylesheet';
+    }
+  }
+  const manageTransitions = (selector, allowTransitions) => {
+    const els = window.document.querySelectorAll(selector);
+    for (let i=0; i < els.length; i++) {
+      const el = els[i];
+      if (allowTransitions) {
+        el.classList.remove('notransition');
+      } else {
+        el.classList.add('notransition');
+      }
+    }
+  }
+  const toggleColorMode = (alternate) => {
+    // Switch the stylesheets
+    const alternateStylesheets = window.document.querySelectorAll('link.quarto-color-scheme.quarto-color-alternate');
+    manageTransitions('#quarto-margin-sidebar .nav-link', false);
+    if (alternate) {
+      enableStylesheet(alternateStylesheets);
+      for (const sheetNode of alternateStylesheets) {
+        if (sheetNode.id === "quarto-bootstrap") {
+          toggleBodyColorMode(sheetNode);
+        }
+      }
+    } else {
+      disableStylesheet(alternateStylesheets);
+      toggleBodyColorPrimary();
+    }
+    manageTransitions('#quarto-margin-sidebar .nav-link', true);
+    // Switch the toggles
+    const toggles = window.document.querySelectorAll('.quarto-color-scheme-toggle');
+    for (let i=0; i < toggles.length; i++) {
+      const toggle = toggles[i];
+      if (toggle) {
+        if (alternate) {
+          toggle.classList.add("alternate");     
+        } else {
+          toggle.classList.remove("alternate");
+        }
+      }
+    }
+    // Hack to workaround the fact that safari doesn't
+    // properly recolor the scrollbar when toggling (#1455)
+    if (navigator.userAgent.indexOf('Safari') > 0 && navigator.userAgent.indexOf('Chrome') == -1) {
+      manageTransitions("body", false);
+      window.scrollTo(0, 1);
+      setTimeout(() => {
+        window.scrollTo(0, 0);
+        manageTransitions("body", true);
+      }, 40);  
+    }
+  }
+  const isFileUrl = () => { 
+    return window.location.protocol === 'file:';
+  }
+  const hasAlternateSentinel = () => {  
+    let styleSentinel = getColorSchemeSentinel();
+    if (styleSentinel !== null) {
+      return styleSentinel === "alternate";
+    } else {
+      return false;
+    }
+  }
+  const setStyleSentinel = (alternate) => {
+    const value = alternate ? "alternate" : "default";
+    if (!isFileUrl()) {
+      window.localStorage.setItem("quarto-color-scheme", value);
+    } else {
+      localAlternateSentinel = value;
+    }
+  }
+  const getColorSchemeSentinel = () => {
+    if (!isFileUrl()) {
+      const storageValue = window.localStorage.getItem("quarto-color-scheme");
+      return storageValue != null ? storageValue : localAlternateSentinel;
+    } else {
+      return localAlternateSentinel;
+    }
+  }
+  let localAlternateSentinel = 'default';
+  // Dark / light mode switch
+  window.quartoToggleColorScheme = () => {
+    // Read the current dark / light value 
+    let toAlternate = !hasAlternateSentinel();
+    toggleColorMode(toAlternate);
+    setStyleSentinel(toAlternate);
+  };
+  // Ensure there is a toggle, if there isn't float one in the top right
+  if (window.document.querySelector('.quarto-color-scheme-toggle') === null) {
+    const a = window.document.createElement('a');
+    a.classList.add('top-right');
+    a.classList.add('quarto-color-scheme-toggle');
+    a.href = "";
+    a.onclick = function() { try { window.quartoToggleColorScheme(); } catch {} return false; };
+    const i = window.document.createElement("i");
+    i.classList.add('bi');
+    a.appendChild(i);
+    window.document.body.appendChild(a);
+  }
+  // Switch to dark mode if need be
+  if (hasAlternateSentinel()) {
+    toggleColorMode(true);
+  } else {
+    toggleColorMode(false);
+  }
+  const icon = "";
+  const anchorJS = new window.AnchorJS();
+  anchorJS.options = {
+    placement: 'right',
+    icon: icon
+  };
+  anchorJS.add('.anchored');
+  const isCodeAnnotation = (el) => {
+    for (const clz of el.classList) {
+      if (clz.startsWith('code-annotation-')) {                     
+        return true;
+      }
+    }
+    return false;
+  }
+  const clipboard = new window.ClipboardJS('.code-copy-button', {
+    text: function(trigger) {
+      const codeEl = trigger.previousElementSibling.cloneNode(true);
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+    }
+  });
+  clipboard.on('success', function(e) {
+    // button target
+    const button = e.trigger;
+    // don't keep focus
+    button.blur();
+    // flash "checked"
+    button.classList.add('code-copy-button-checked');
+    var currentTitle = button.getAttribute("title");
+    button.setAttribute("title", "Copied!");
+    let tooltip;
+    if (window.bootstrap) {
+      button.setAttribute("data-bs-toggle", "tooltip");
+      button.setAttribute("data-bs-placement", "left");
+      button.setAttribute("data-bs-title", "Copied!");
+      tooltip = new bootstrap.Tooltip(button, 
+        { trigger: "manual", 
+          customClass: "code-copy-button-tooltip",
+          offset: [0, -8]});
+      tooltip.show();    
+    }
+    setTimeout(function() {
+      if (tooltip) {
+        tooltip.hide();
+        button.removeAttribute("data-bs-title");
+        button.removeAttribute("data-bs-toggle");
+        button.removeAttribute("data-bs-placement");
+      }
+      button.setAttribute("title", currentTitle);
+      button.classList.remove('code-copy-button-checked');
+    }, 1000);
+    // clear code selection
+    e.clearSelection();
+  });
+  function tippyHover(el, contentFn) {
+    const config = {
+      allowHTML: true,
+      content: contentFn,
+      maxWidth: 500,
+      delay: 100,
+      arrow: false,
+      appendTo: function(el) {
+          return el.parentElement;
+      },
+      interactive: true,
+      interactiveBorder: 10,
+      theme: 'quarto',
+      placement: 'bottom-start'
+    };
+    window.tippy(el, config); 
+  }
+  const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+  for (var i=0; i<noterefs.length; i++) {
+    const ref = noterefs[i];
+    tippyHover(ref, function() {
+      // use id or data attribute instead here
+      let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+      try { href = new URL(href).hash; } catch {}
+      const id = href.replace(/^#\/?/, "");
+      const note = window.document.getElementById(id);
+      return note.innerHTML;
+    });
+  }
+      let selectedAnnoteEl;
+      const selectorForAnnotation = ( cell, annotation) => {
+        let cellAttr = 'data-code-cell="' + cell + '"';
+        let lineAttr = 'data-code-annotation="' +  annotation + '"';
+        const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+        return selector;
+      }
+      const selectCodeLines = (annoteEl) => {
+        const doc = window.document;
+        const targetCell = annoteEl.getAttribute("data-target-cell");
+        const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+        const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+        const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+        const lineIds = lines.map((line) => {
+          return targetCell + "-" + line;
+        })
+        let top = null;
+        let height = null;
+        let parent = null;
+        if (lineIds.length > 0) {
+            //compute the position of the single el (top and bottom and make a div)
+            const el = window.document.getElementById(lineIds[0]);
+            top = el.offsetTop;
+            height = el.offsetHeight;
+            parent = el.parentElement.parentElement;
+          if (lineIds.length > 1) {
+            const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+            const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+            height = bottom - top;
+          }
+          if (top !== null && height !== null && parent !== null) {
+            // cook up a div (if necessary) and position it 
+            let div = window.document.getElementById("code-annotation-line-highlight");
+            if (div === null) {
+              div = window.document.createElement("div");
+              div.setAttribute("id", "code-annotation-line-highlight");
+              div.style.position = 'absolute';
+              parent.appendChild(div);
+            }
+            div.style.top = top - 2 + "px";
+            div.style.height = height + 4 + "px";
+            let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+            if (gutterDiv === null) {
+              gutterDiv = window.document.createElement("div");
+              gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+              gutterDiv.style.position = 'absolute';
+              const codeCell = window.document.getElementById(targetCell);
+              const gutter = codeCell.querySelector('.code-annotation-gutter');
+              gutter.appendChild(gutterDiv);
+            }
+            gutterDiv.style.top = top - 2 + "px";
+            gutterDiv.style.height = height + 4 + "px";
+          }
+          selectedAnnoteEl = annoteEl;
+        }
+      };
+      const unselectCodeLines = () => {
+        const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+        elementsIds.forEach((elId) => {
+          const div = window.document.getElementById(elId);
+          if (div) {
+            div.remove();
+          }
+        });
+        selectedAnnoteEl = undefined;
+      };
+      // Attach click handler to the DT
+      const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+      for (const annoteDlNode of annoteDls) {
+        annoteDlNode.addEventListener('click', (event) => {
+          const clickedEl = event.target;
+          if (clickedEl !== selectedAnnoteEl) {
+            unselectCodeLines();
+            const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+            if (activeEl) {
+              activeEl.classList.remove('code-annotation-active');
+            }
+            selectCodeLines(clickedEl);
+            clickedEl.classList.add('code-annotation-active');
+          } else {
+            // Unselect the line
+            unselectCodeLines();
+            clickedEl.classList.remove('code-annotation-active');
+          }
+        });
+      }
+  const findCites = (el) => {
+    const parentEl = el.parentElement;
+    if (parentEl) {
+      const cites = parentEl.dataset.cites;
+      if (cites) {
+        return {
+          el,
+          cites: cites.split(' ')
+        };
+      } else {
+        return findCites(el.parentElement)
+      }
+    } else {
+      return undefined;
+    }
+  };
+  var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+  for (var i=0; i<bibliorefs.length; i++) {
+    const ref = bibliorefs[i];
+    const citeInfo = findCites(ref);
+    if (citeInfo) {
+      tippyHover(citeInfo.el, function() {
+        var popup = window.document.createElement('div');
+        citeInfo.cites.forEach(function(cite) {
+          var citeDiv = window.document.createElement('div');
+          citeDiv.classList.add('hanging-indent');
+          citeDiv.classList.add('csl-entry');
+          var biblioDiv = window.document.getElementById('ref-' + cite);
+          if (biblioDiv) {
+            citeDiv.innerHTML = biblioDiv.innerHTML;
+          }
+          popup.appendChild(citeDiv);
+        });
+        return popup.innerHTML;
+      });
+    }
+  }
+});
+</script>
+<nav class="page-navigation">
+  <div class="nav-page nav-page-previous">
+      <a href="./studi_kasus.html" class="pagination-link">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><b>Studi Kasus</b></span>
+      </a>          
+  </div>
+  <div class="nav-page nav-page-next">
+      <a href="./8_studi_kasus_poliklinik.html" class="pagination-link">
+        <span class="nav-page-text">Poliklinik</span> <i class="bi bi-arrow-right-short"></i>
+      </a>
+  </div>
+</nav>
+</div> <!-- /content -->
+
+
+
+</body></html>

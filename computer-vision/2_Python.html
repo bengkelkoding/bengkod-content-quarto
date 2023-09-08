@@ -1,0 +1,1063 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.3.353">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+
+<title>Computer Vision - 2 Python</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+/* CSS for syntax highlighting */
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+</style>
+
+
+<script src="site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="site_libs/quarto-nav/headroom.min.js"></script>
+<script src="site_libs/clipboard/clipboard.min.js"></script>
+<script src="site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="site_libs/quarto-search/fuse.min.js"></script>
+<script src="site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="./">
+<link href="./3_Dasar_dasar_Image_Processing.html" rel="next">
+<link href="./1_Pengenalan_Computer_Vision_dan_Python.html" rel="prev">
+<script src="site_libs/quarto-html/quarto.js"></script>
+<script src="site_libs/quarto-html/popper.min.js"></script>
+<script src="site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="site_libs/quarto-html/anchor.min.js"></script>
+<link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-text-highlighting-styles">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting-dark.css" rel="prefetch" class="quarto-color-scheme quarto-color-alternate" id="quarto-text-highlighting-styles">
+<script src="site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
+<link href="site_libs/bootstrap/bootstrap-dark.min.css" rel="prefetch" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
+<script id="quarto-search-options" type="application/json">{
+  "location": "sidebar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "start",
+  "type": "textbox",
+  "limit": 20,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit"
+  }
+}</script>
+
+
+</head>
+
+<body class="nav-sidebar floating">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+  <nav class="quarto-secondary-nav">
+    <div class="container-fluid d-flex">
+      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+        <i class="bi bi-layout-text-sidebar-reverse"></i>
+      </button>
+      <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./Konsep.html"><b> Konsep </b></a></li><li class="breadcrumb-item"><a href="./2_Python.html">2 Python</a></li></ol></nav>
+      <a class="flex-grow-1" role="button" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
+      </a>
+      <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
+        <i class="bi bi-search"></i>
+      </button>
+    </div>
+  </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article">
+<!-- sidebar -->
+  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal sidebar-navigation floating overflow-auto">
+    <div class="pt-lg-2 mt-2 text-left sidebar-header">
+    <div class="sidebar-title mb-0 py-0">
+      <a href="./">Computer Vision</a> 
+        <div class="sidebar-tools-main">
+  <a href="" class="quarto-color-scheme-toggle quarto-navigation-tool  px-1" onclick="window.quartoToggleColorScheme(); return false;" title="Toggle dark mode"><i class="bi"></i></a>
+</div>
+    </div>
+      </div>
+        <div class="mt-2 flex-shrink-0 align-items-center">
+        <div class="sidebar-search">
+        <div id="quarto-search" class="" title="Search"></div>
+        </div>
+        </div>
+    <div class="sidebar-menu-container"> 
+    <ul class="list-unstyled mt-1">
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><strong>Pengantar</strong></span></a>
+  </div>
+</li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a href="./Konsep.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><b> Konsep </b></span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./1_Pengenalan_Computer_Vision_dan_Python.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">1 Pengenalan Computer Vision dan Python</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./2_Python.html" class="sidebar-item-text sidebar-link active">
+ <span class="menu-text">2 Python</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./3_Dasar_dasar_Image_Processing.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">3 Dasar-dasar Image Processing</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./4_Feature_Extraction_and_Matching.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">4 Feature Extraction and Matching</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./5_Konsep_Dasar_Machine_Learning_dan_Deep_Learning.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">5 Konsep Dasar Machine Learning dan Deep Learning dalam Klasifikasi Objek</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./6_Evaluasi.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">6 Metode Evaluasi dalam Computer Vision</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a href="./daftar_studi_kasus.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><b> Studi Kasus </b></span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-2" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./Studi_Kasus_1.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Studi Kasus 1</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./Studi_Kasus_2.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Studi Kasus 2</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./Studi_Kasus_3.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Studi Kasus 3</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./Studi_Kasus_4.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Studi Kasus 4</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+    </ul>
+    </div>
+</nav>
+<div id="quarto-sidebar-glass" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass"></div>
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">Table of contents</h2>
+   
+  <ul>
+  <li><a href="#a.-dasar-dasar-python" id="toc-a.-dasar-dasar-python" class="nav-link active" data-scroll-target="#a.-dasar-dasar-python">A. Dasar-dasar Python</a>
+  <ul class="collapse">
+  <li><a href="#apa-itu-python" id="toc-apa-itu-python" class="nav-link" data-scroll-target="#apa-itu-python">Apa itu Python?</a></li>
+  <li><a href="#lingkungan-python" id="toc-lingkungan-python" class="nav-link" data-scroll-target="#lingkungan-python">Lingkungan Python</a></li>
+  <li><a href="#instalasi-python-dan-lingkungannya" id="toc-instalasi-python-dan-lingkungannya" class="nav-link" data-scroll-target="#instalasi-python-dan-lingkungannya">Instalasi Python dan Lingkungannya</a></li>
+  <li><a href="#menjalankan-program-python" id="toc-menjalankan-program-python" class="nav-link" data-scroll-target="#menjalankan-program-python">Menjalankan Program Python</a></li>
+  <li><a href="#pernyataan-dasar-python-dan-jenis-data" id="toc-pernyataan-dasar-python-dan-jenis-data" class="nav-link" data-scroll-target="#pernyataan-dasar-python-dan-jenis-data">Pernyataan Dasar Python dan Jenis Data</a></li>
+  </ul></li>
+  <li><a href="#b.-komputasi-menggunakan-module-python" id="toc-b.-komputasi-menggunakan-module-python" class="nav-link" data-scroll-target="#b.-komputasi-menggunakan-module-python">B. Komputasi Menggunakan Module Python</a>
+  <ul class="collapse">
+  <li><a href="#modul-python" id="toc-modul-python" class="nav-link" data-scroll-target="#modul-python">Modul Python</a></li>
+  <li><a href="#numpy" id="toc-numpy" class="nav-link" data-scroll-target="#numpy">NumPy</a></li>
+  <li><a href="#scipy" id="toc-scipy" class="nav-link" data-scroll-target="#scipy">SciPy</a></li>
+  <li><a href="#matplotlib" id="toc-matplotlib" class="nav-link" data-scroll-target="#matplotlib">Matplotlib</a></li>
+  <li><a href="#python-image-library-pil" id="toc-python-image-library-pil" class="nav-link" data-scroll-target="#python-image-library-pil">Python Image Library (PIL)</a></li>
+  <li><a href="#scikits" id="toc-scikits" class="nav-link" data-scroll-target="#scikits">Scikits</a></li>
+  <li><a href="#modul-python-opencv" id="toc-modul-python-opencv" class="nav-link" data-scroll-target="#modul-python-opencv">Modul Python OpenCV</a></li>
+  </ul></li>
+  </ul>
+</nav>
+    </div>
+<!-- main -->
+<main class="content" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<h1 class="title">2 Python</h1>
+</div>
+
+
+
+<div class="quarto-title-meta">
+
+    
+  
+    
+  </div>
+  
+
+</header>
+
+<section id="a.-dasar-dasar-python" class="level2">
+<h2 class="anchored" data-anchor-id="a.-dasar-dasar-python">A. Dasar-dasar Python</h2>
+<section id="apa-itu-python" class="level3">
+<h3 class="anchored" data-anchor-id="apa-itu-python">Apa itu Python?</h3>
+<p>Python adalah bahasa pemrograman tingkat tinggi yang populer. Bahasa ini dapat menangani berbagai tugas pemrograman seperti komputasi numerik, pengembangan web, pemrograman basis data, pemrograman jaringan, pemrosesan paralel, dan lainnya.<br>
+Python populer karena berbagai alasan, termasuk:</p>
+<ul>
+<li>Bahasa ini gratis.<br>
+</li>
+<li>Tersedia di semua sistem operasi populer seperti Windows, Mac, atau Linux.<br>
+</li>
+<li>Python adalah bahasa yang diinterpretasikan. Oleh karena itu, pemrogram dapat menguji bagian kode di baris perintah sebelum menggabungkannya ke dalam program mereka. Tidak ada kebutuhan untuk kompilasi atau penghubungan. Python memungkinkan pemrograman yang lebih cepat.<br>
+</li>
+<li>Python lebih sederhana secara sintaksis dibandingkan dengan C/C++/Fortran. Oleh karena itu, Python sangat mudah dibaca dan lebih mudah untuk debug.<br>
+</li>
+<li>Python datang dengan berbagai modul yang standar atau dapat diinstal dalam instalasi Python yang ada. Modul-modul ini dapat melakukan berbagai tugas seperti membaca dan menulis berbagai file, komputasi ilmiah, visualisasi data, dan lainnya.<br>
+</li>
+<li>Program yang ditulis dalam Python dapat dijalankan di berbagai sistem operasi atau platform dengan sedikit atau tanpa perubahan.<br>
+</li>
+<li>Python adalah bahasa yang dinamis dalam pengetikannya. Oleh karena itu, tipe data dari variabel tidak harus dinyatakan sebelum penggunaannya, membuatnya lebih mudah untuk orang dengan pengalaman coding yang kurang.<br>
+</li>
+<li>Python memiliki komunitas pengembang dan pengguna yang berdedikasi dan selalu diperbarui.<br>
+Meskipun Python memiliki banyak keunggulan yang membuatnya menjadi salah satu bahasa yang diinterpretasikan paling populer, Python memiliki beberapa kelemahan yang dibahas di bawah ini:<br>
+</li>
+<li>Karena fokus Python adalah pada kemampuan untuk pemrograman yang lebih cepat, kecepatan eksekusi menderita. Program Python mungkin 10 kali atau lebih lambat (misalnya) dibandingkan dengan program C yang setara, tetapi program Python akan berisi lebih sedikit baris kode dan dapat diprogram untuk menangani berbagai jenis data dengan mudah. Kelemahan ini dalam kode Python dapat diatasi dengan mengubah bagian kode yang intensif secara komputasi ke C/C++ atau dengan penggunaan struktur data dan modul yang tepat.<br>
+</li>
+<li>Indentasi kode tidak opsional. Ini membuat kode mudah dibaca. Namun, kode dengan loop dan konstruk lainnya akan diindentasi ke kanan, membuatnya sulit untuk membaca kode.</li>
+</ul>
+</section>
+<section id="lingkungan-python" class="level3">
+<h3 class="anchored" data-anchor-id="lingkungan-python">Lingkungan Python</h3>
+<p>Terdapat beberapa lingkungan Python yang dapat dipilih. Beberapa sistem operasi seperti Mac, Linux, Unix, dan lainnya memiliki interpreter bawaan. Interpreter tersebut mungkin mengandung semua modul tetapi tidak siap pakai untuk komputasi ilmiah. Distribusi khusus telah dibuat dan dijual kepada komunitas ilmiah, dibangun sebelumnya dengan berbagai modul ilmiah Python. Saat menggunakan distribusi ini, pengguna tidak perlu menginstal modul ilmiah secara individual. Jika modul tertentu yang diminati tidak tersedia dalam distribusi, modul tersebut dapat diinstal. Salah satu distribusi paling populer adalah Anaconda. Instruksi untuk menginstal distribusi Anaconda dapat ditemukan di <a href="https://www.anaconda.com/distribution/">www.anaconda.com</a></p>
+<section id="interpreter-python" class="level4">
+<h4 class="anchored" data-anchor-id="interpreter-python">Interpreter Python</h4>
+<p>Interpreter Python yang terintegrasi dalam sebagian besar sistem operasi dapat dimulai dengan hanya mengetik python di jendela terminal. Ketika interpreter dimulai, prompt perintah (&gt;&gt;&gt;) muncul. Perintah Python dapat dimasukkan di prompt untuk diproses. Misalnya, di Windows, ketika interpreter Python bawaan dimulai, output yang mirip dengan yang ditunjukkan di bawah ini muncul:</p>
+<div style="text-align:center">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="Asset/image6.png" class="img-fluid figure-img"></p>
+<figcaption class="figure-caption">Gambar 2.1. Terminal Python</figcaption>
+</figure>
+</div>
+</div>
+<div class="callout callout-style-default callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Tip
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Perhatikan bahwa dalam contoh di atas, interpreter Python adalah versi 3.10.5. Kemungkinan Anda mungkin memiliki versi yang berbeda.</p>
+</div>
+</div>
+</section>
+<section id="distribusi-python" class="level4">
+<h4 class="anchored" data-anchor-id="distribusi-python">Distribusi Python</h4>
+<p>Distribusi Python Anaconda menyediakan hampir 100 modul Python ilmiah paling populer seperti perhitungan ilmiah, aljabar linear, komputasi simbolik, pemrosesan gambar, pemrosesan sinyal, visualisasi, integrasi program C/C++ ke Python, dll. Ini didistribusikan dan dikelola oleh Continuum Analytics. Ini tersedia secara gratis untuk akademisi dan tersedia dengan harga untuk semua orang lainnya. Selain berbagai modul yang dibangun ke dalam Anaconda, pemrogram dapat menginstal modul lain menggunakan manajer paket conda [Ana20b], tanpa mempengaruhi distribusi utama. Untuk mengakses Python dari baris perintah, mulailah ‘Anaconda Prompt’ yang dapat dieksekusi.</p>
+<div style="text-align:center">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="Asset/image7.png" class="img-fluid figure-img"></p>
+<figcaption class="figure-caption">Gambar 2.2. Mencari Anaconda Prompt</figcaption>
+</figure>
+</div>
+</div>
+<p>dan kemudian ketik python seperti pada Gambar 2.3.</p>
+<div style="text-align:center">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="Asset/image8.png" class="img-fluid figure-img"></p>
+<figcaption class="figure-caption">Gambar 2.3. Terminal Anaconda</figcaption>
+</figure>
+</div>
+</div>
+</section>
+</section>
+<section id="instalasi-python-dan-lingkungannya" class="level3">
+<h3 class="anchored" data-anchor-id="instalasi-python-dan-lingkungannya">Instalasi Python dan Lingkungannya</h3>
+<p>Instalasi Python:</p>
+<ul>
+<li>Unduh dan instal Python. Anda dapat mengunduh versi terbaru dari Python di situs web resmi Python, yaitu <a href="https://www.python.org/">www.python.org</a>. Pilih versi yang sesuai dengan sistem operasi dan arsitektur komputer Anda (32-bit atau 64-bit).<br>
+</li>
+<li>Jalankan installer Python dan ikuti petunjuk yang ada. Pastikan untuk mencentang kotak yang mengatakan “Add Python to PATH” saat proses instalasi. Ini memudahkan Anda menjalankan Python dari command line.<br>
+</li>
+<li>Verifikasi instalasi Python dengan membuka terminal atau command prompt dan mengetik python –version. Anda seharusnya melihat versi Python yang baru saja Anda instal.</li>
+</ul>
+<p>Instalasi Anaconda:</p>
+<ul>
+<li>Unduh dan instal Anaconda / Miniconda. Anda dapat mengunduh versi terbaru dari Anaconda di situs web resmi Anaconda, yaitu <a href="https://www.anaconda.com/">www.anaconda.com</a> . atau Miniconda <a href="https://docs.conda.io/en/latest/miniconda.html">link Miniconda</a> Pilih versi yang sesuai dengan sistem operasi dan arsitektur komputer Anda (32-bit atau 64-bit).</li>
+<li>Jalankan installer dan ikuti petunjuk yang ada. Pastikan untuk mencentang kotak yang mengatakan “Add Anaconda to my PATH variable” saat proses instalasi. Ini memudahkan Anda menjalankan Anaconda dari command line.</li>
+<li>Verifikasi instalasi Anaconda dengan membuka terminal atau command prompt dan mengetik conda –version. Anda seharusnya melihat versi Anaconda / Miniconda yang baru saja Anda instal.</li>
+</ul>
+<div class="quarto-video ratio ratio-16x9"><iframe data-external="1" src="https://www.youtube.com/embed/k88q-4Bcr3Y" title="" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen=""></iframe></div>
+<p>Link repository yang terdapat pada video.<a href="https://github.com/yufaa/ComputerVision/blob/main/tensorflow-install-jul-2020.ipynb">Klik disini</a></p>
+</section>
+<section id="menjalankan-program-python" class="level3">
+<h3 class="anchored" data-anchor-id="menjalankan-program-python">Menjalankan Program Python</h3>
+<p>Menggunakan interpreter Python apa pun (bawaan atau dari distribusi), Anda dapat menjalankan program Anda menggunakan perintah di sistem operasi (OS) prompt perintah. Jika file firstprog.py adalah file Python yang perlu dieksekusi, kemudian ketik perintah berikut ini di OS prompt perintah.</p>
+<div class="sourceCode" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>python latihanPython.py</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Simbol &gt;&gt; adalah prompt terminal dan &gt;&gt;&gt; mewakili prompt Python. Pendekatan terbaik untuk menjalankan program Python di bawah sistem operasi apa pun adalah dengan menggunakan Lingkungan Pengembangan Terpadu seperti IDLE atau Spyder karena memberikan kemampuan untuk mengedit file dan juga menjalankannya di bawah antarmuka yang sama.<br>
+Buka CMD lalu pindah Directiory menggunakan command cd.</p>
+<div style="text-align:center">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="Asset/image9.png" class="img-fluid figure-img"></p>
+<figcaption class="figure-caption">Gambar 2.4. Terminal (Mengubah Directory)</figcaption>
+</figure>
+</div>
+</div>
+<p>Jalankan file dengan ekstensi .py seperti Gambar 2.5.</p>
+<div style="text-align:center">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="Asset/image10.png" class="img-fluid figure-img"></p>
+<figcaption class="figure-caption">Gambar 2.5. Terminal (Menjalankan Python)</figcaption>
+</figure>
+</div>
+</div>
+</section>
+<section id="pernyataan-dasar-python-dan-jenis-data" class="level3">
+<h3 class="anchored" data-anchor-id="pernyataan-dasar-python-dan-jenis-data">Pernyataan Dasar Python dan Jenis Data</h3>
+<p><strong>Indentasi</strong><br>
+Dalam Python, blok kode ditunjukkan dengan indentasi. Misalnya dalam kode di bawah ini, kita pertama-tama mencetak pesan, ‘Kami sedang menghitung kuadrat dari angka antara 0 dan 9’. Kemudian kita melakukan loop melalui nilai-nilai dalam rentang 0 hingga 9 dan menyimpannya dalam variabel ‘i’ dan juga mencetak kuadrat dari ‘i’. Akhirnya kita mencetak pesan, ’Kami menyelesaikan tugas di akhir.<br>
+Dalam bahasa lain, blok kode di bawah for-loop akan diidentifikasi dengan pasangan kurung kurawal {}. Namun, dalam Python kita tidak menggunakan kurung kurawal. Blok kode diidentifikasi dengan menggeser baris print(i*i) empat spasi ke kanan. Anda juga bisa memilih untuk menggunakan tab sebagai gantinya.</p>
+<div class="sourceCode" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">'Menghitung kuadrat dari angka antara 0 dan 9'</span>) </span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> i <span class="kw">in</span> <span class="bu">range</span>(<span class="dv">10</span>):</span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(i<span class="op">*</span>i)</span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">'Menyelesaikan tugas ...'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Ada kelemahan signifikan dalam indentasi, terutama bagi pemrogram Python baru. Sebuah kode yang berisi beberapa for-loop dan if-statements akan diindentasi lebih jauh ke kanan membuat kode tidak dapat dibaca. Masalah ini dapat diredakan dengan mengurangi jumlah for-loop dan if-statements. Ini tidak hanya membuat kode dapat dibaca tetapi juga mengurangi waktu komputasi. Ini dapat dicapai dengan pemrograman menggunakan struktur data seperti daftar, kamus, dan set secara tepat.</p>
+<p><strong>Komentar</strong><br>
+Komentar adalah bagian penting dari setiap bahasa pemrograman. Dalam Python, komentar baris tunggal ditandai dengan hash # di awal baris. Beberapa baris dapat dikomentari dengan menggunakan string tanda kutip tiga (tanda kutip tunggal tiga kali atau tanda kutip ganda tiga kali) di awal dan di akhir blok.</p>
+<div class="sourceCode" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Ini adalah komentar baris tunggal</span></span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="co">"""</span></span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a><span class="co">Ini adalah komentar multiline</span></span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a><span class="co">"""</span></span>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a><span class="co"># Komentar adalah cara yang baik untuk menjelaskan kode.</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p><strong>Variabel</strong><br>
+Python adalah bahasa dinamis dan oleh karena itu Anda tidak perlu menentukan jenis variabel seperti dalam C/C++. Variabel bisa dianggap sebagai wadah nilai. Nilai tersebut bisa berupa bilangan bulat, float, string, daftar, tuple, kamus, set, dll.</p>
+<div class="sourceCode" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>a <span class="op">=</span> <span class="dv">1</span></span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>a <span class="op">=</span> <span class="fl">10.0</span></span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>a <span class="op">=</span> <span class="st">'hello'</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Dalam contoh di atas nilai bilangan bulat 1, nilai float 10.0, dan nilai string hello untuk semua kasus disimpan dalam variabel yang sama. Namun, hanya nilai yang terakhir ditugaskan yang merupakan nilai saat ini untuk a.</p>
+<p><strong>Operator</strong><br>
+Python mendukung semua operator aritmatika umum seperti +, —, *, /. Juga mendukung operator perbandingan umum seperti &gt;, &lt;, ==, ! =, &gt;=, &lt;=, dll. Selain itu, melalui berbagai modul Python menyediakan banyak operator untuk melakukan operasi trigonometri, matematika, geometri, dll.</p>
+<p><strong>Loop</strong><br>
+Konstruksi looping yang paling umum dalam Python adalah pernyataan for-loop, yang memungkinkan iterasi melalui kumpulan objek. Berikut ini adalah contohnya:</p>
+<div class="sourceCode" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> i <span class="kw">in</span> <span class="bu">range</span>(<span class="dv">1</span>,<span class="dv">5</span>): </span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(i)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Dalam contoh di atas output dari for-loop adalah angka dari 1 hingga 5. Fungsi range memungkinkan kita untuk membuat nilai mulai dari 1 dan berakhir dengan 5. Konsep semacam ini mirip dengan for-loop yang biasanya ditemukan dalam C/C++ atau sebagian besar bahasa pemrograman.</p>
+<p>Kekuatan sebenarnya dari for-loop terletak pada kemampuannya untuk melakukan iterasi melalui objek Python lainnya seperti daftar, kamus, set, string, dll. Kami akan membahas objek Python ini secara lebih detail nanti.</p>
+<div class="sourceCode" id="cb6"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>a <span class="op">=</span> [<span class="st">'python'</span>, <span class="st">'scipy'</span>] </span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> i <span class="kw">in</span> a:</span>
+<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(i)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Dalam program di atas, for-loop melakukan iterasi melalui setiap elemen dari daftar dan mencetaknya.</p>
+<p>Dalam program berikutnya, isi dari kamus dicetak menggunakan for-loop. Kamus dengan dua kunci lang dan ver didefinisikan. Kemudian, menggunakan for-loop, berbagai kunci diiterasi dan nilai yang sesuai dicetak.</p>
+<div class="sourceCode" id="cb7"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>a <span class="op">=</span> {</span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a><span class="st">'lang'</span>:<span class="st">'python'</span>,</span>
+<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a><span class="st">'ver'</span>: <span class="st">'3.11.3'</span></span>
+<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> key <span class="kw">in</span> a:</span>
+<span id="cb7-6"><a href="#cb7-6" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(a[key])</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Diskusi tentang penggunaan for-loop untuk melakukan iterasi melalui berbagai baris dalam file teks, seperti file nilai yang dipisahkan koma, ditunda hingga bagian berikutnya.</p>
+<p><strong>Pernyataan if-else</strong><br>
+If-else adalah pernyataan kondisional yang populer dalam semua bahasa pemrograman termasuk Python. Pernyataan if-else tidak harus menggunakan operator kondisional seperti &lt;, &gt;, ==, dll. Contoh pernyataan if-elif-else ditunjukkan di bawah ini.</p>
+<div class="sourceCode" id="cb8"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span> a<span class="op">&lt;</span><span class="dv">10</span>:</span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="st">'a kurang dari 10'</span>)</span>
+<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a><span class="cf">elif</span> a<span class="op">&lt;</span><span class="dv">20</span>:</span>
+<span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="st">'a antara 10 dan 20'</span>) </span>
+<span id="cb8-5"><a href="#cb8-5" aria-hidden="true" tabindex="-1"></a><span class="cf">else</span>:</span>
+<span id="cb8-6"><a href="#cb8-6" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="st">'a lebih dari 20'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Misalnya, pernyataan if berikut ini legal dalam Python. Pernyataan if ini memeriksa kondisi bahwa daftar d tidak kosong.</p>
+<div class="sourceCode" id="cb9"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a>d <span class="op">=</span> [ ]</span>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span> d:</span>
+<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="st">'d tidak kosong'</span>)</span>
+<span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a><span class="cf">else</span>:</span>
+<span id="cb9-5"><a href="#cb9-5" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="st">'d kosong'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Dalam kode di atas, karena d kosong, klausa else benar dan kita memasuki blok else dan mencetak d kosong.</p>
+<section id="struktur-data" class="level4">
+<h4 class="anchored" data-anchor-id="struktur-data">Struktur Data</h4>
+<p>Kekuatan nyata Python terletak pada penggunaan liberal struktur datanya. Kritik umum terhadap Python adalah bahwa itu lambat dibandingkan dengan C/C++. Hal ini terutama benar jika for-loop digunakan dalam pemrograman Python. Ini dapat diredakan dengan penggunaan yang tepat dari struktur data seperti daftar, tuple, kamus dan set. Kami mendeskripsikan masing-masing struktur data ini dalam bagian ini.</p>
+<p><strong>Daftar (lists)</strong><br>
+Daftar mirip dengan array di C/C++. Tetapi, tidak seperti array di C/C++, daftar dalam Python dapat menampung objek dari jenis apa pun seperti int, float, string dan termasuk daftar lainnya. Daftar dapat diubah ukurannya, karena ukurannya dapat diubah dengan menambahkan atau menghapus elemen. Contoh berikut akan membantu menunjukkan kekuatan dan fleksibilitas daftar.</p>
+<div class="sourceCode" id="cb10"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a>a <span class="op">=</span> [<span class="st">'python'</span>,<span class="st">'scipy'</span>, <span class="fl">3.6</span>]</span>
+<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a>a.pop(<span class="op">-</span><span class="dv">1</span>)</span>
+<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(a)</span>
+<span id="cb10-4"><a href="#cb10-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Output: ['python','scipy']</span></span>
+<span id="cb10-5"><a href="#cb10-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-6"><a href="#cb10-6" aria-hidden="true" tabindex="-1"></a>a.append(<span class="st">'numpy'</span>)</span>
+<span id="cb10-7"><a href="#cb10-7" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(a)</span>
+<span id="cb10-8"><a href="#cb10-8" aria-hidden="true" tabindex="-1"></a><span class="co"># Output: ['python','scipy' , 'numpy']</span></span>
+<span id="cb10-9"><a href="#cb10-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-10"><a href="#cb10-10" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(a[<span class="dv">0</span>])</span>
+<span id="cb10-11"><a href="#cb10-11" aria-hidden="true" tabindex="-1"></a><span class="co"># Output: python</span></span>
+<span id="cb10-12"><a href="#cb10-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-13"><a href="#cb10-13" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(a[<span class="op">-</span><span class="dv">1</span>])</span>
+<span id="cb10-14"><a href="#cb10-14" aria-hidden="true" tabindex="-1"></a><span class="co"># Output: numpy</span></span>
+<span id="cb10-15"><a href="#cb10-15" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-16"><a href="#cb10-16" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(a[<span class="dv">0</span>:<span class="dv">2</span>])</span>
+<span id="cb10-17"><a href="#cb10-17" aria-hidden="true" tabindex="-1"></a><span class="co"># Output: ['python','scipy']</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Di baris pertama, daftar baru dibuat. Daftar ini berisi dua string dan satu angka float. Di baris kedua, kita menggunakan fungsi pop untuk menghapus elemen terakhir (indeks = —1). Elemen yang di-pop dicetak ke terminal. Setelah pop, daftar hanya berisi dua elemen daripada tiga asli. Kami menggunakan append, dan memasukkan elemen baru, “numpy” ke akhir daftar. Akhirnya, dalam dua perintah berikutnya kita mencetak nilai daftar di indeks 0 dan posisi terakhir yang ditunjukkan dengan menggunakan “—1” sebagai indeks. Dalam perintah terakhir, kami memperkenalkan slicing dan mendapatkan daftar baru yang hanya berisi dua nilai pertama dari daftar. Hal ini menunjukkan bahwa kita dapat mengoperasikan daftar menggunakan metode seperti pop, insert, atau remove dan juga menggunakan operator seperti slicing.</p>
+<p>Daftar dapat berisi daftar lain. Berikut adalah contohnya. Kami akan mempertimbangkan kasus daftar yang berisi empat angka dan diatur untuk terlihat seperti matriks.</p>
+<div class="sourceCode" id="cb11"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a>a <span class="op">=</span> [[<span class="dv">1</span>,<span class="dv">2</span>] , [<span class="dv">3</span>,<span class="dv">4</span>]]</span>
+<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(a[<span class="dv">0</span>])</span>
+<span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a><span class="co"># Output: [1,2]</span></span>
+<span id="cb11-4"><a href="#cb11-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-5"><a href="#cb11-5" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(a[<span class="dv">1</span>])</span>
+<span id="cb11-6"><a href="#cb11-6" aria-hidden="true" tabindex="-1"></a><span class="co"># Output: [3,4]</span></span>
+<span id="cb11-7"><a href="#cb11-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-8"><a href="#cb11-8" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(a[<span class="dv">0</span>][<span class="dv">0</span>])</span>
+<span id="cb11-9"><a href="#cb11-9" aria-hidden="true" tabindex="-1"></a><span class="co"># Output: 1</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Di baris 1, kami mendefinisikan daftar dari daftar. Nilai [1,2] ada dalam daftar pertama dan nilai [3,4] ada dalam daftar kedua. Kedua daftar dikombinasikan untuk membentuk daftar 2D. Di baris kedua, kami mencetak nilai elemen pertama dari daftar. Perhatikan bahwa ini mencetak baris pertama atau daftar pertama dan bukan hanya sel pertama. Di baris keempat, kami mencetak nilai baris kedua atau daftar kedua. Untuk mendapatkan nilai elemen pertama dalam daftar pertama, kita perlu mengindeks daftar seperti yang diberikan pada baris 6. Seperti yang Anda lihat, pengindeksan berbagai elemen dari daftar seolah-olah memanggil lokasi elemen dalam daftar.</p>
+<p>Meskipun elemen daftar dapat dioperasikan secara individual, kekuatan Python terletak pada kemampuannya untuk mengoperasikan seluruh daftar sekaligus menggunakan metode daftar dan pemahaman daftar.</p>
+<p><strong>Fungsi/Metode Daftar</strong><br>
+Mari kita pertimbangkan daftar yang kami buat di bagian sebelumnya. Kami dapat mengurutkan daftar menggunakan metode sort seperti yang ditunjukkan di baris 2. Metode sort tidak mengembalikan daftar; sebaliknya, itu memodifikasi daftar saat ini. Oleh karena itu daftar yang ada akan berisi elemen dalam urutan yang diurutkan. Anda dapat melihat bahwa dalam kode berikut.</p>
+<div class="sourceCode" id="cb12"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a>a <span class="op">=</span> [<span class="st">'python'</span>, <span class="st">'numpy'</span>, <span class="st">'scipy'</span>]</span>
+<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a>a.sort()</span>
+<span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(a)</span>
+<span id="cb12-4"><a href="#cb12-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Output: ['numpy', 'python', 'scipy']</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Dalam kode di atas, metode sort adalah cara mengurutkan daftar. Karena metode ini adalah metode inplace, daftar yang ada diubah, dan tidak ada nilai yang dikembalikan. Jadi, setelah perintah sort, a diubah menjadi daftar urutan.</p>
+<p><strong>Pemahaman daftar(List Comprehention)</strong><br>
+Pemahaman daftar adalah fitur Python yang sangat kuat dan merupakan cara yang efisien untuk mengoperasikan daftar. Anda dapat membuat daftar baru dari daftar yang ada dengan pemahaman daftar. Sebagai contoh, mari kita ambil daftar dan kita ingin menghasilkan daftar baru yang mengandung semua angka dari daftar asli yang lebih besar dari 5. Dalam bahasa pemrograman lainnya kita akan menggunakan for-loop dan memeriksa setiap elemen satu per satu untuk melihat apakah itu lebih besar dari 5. Namun, dalam Python kita bisa menggunakan pemahaman daftar dan mendapatkan daftar baru dalam satu baris kode.</p>
+<div class="sourceCode" id="cb13"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a>a <span class="op">=</span> [<span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">3</span>, <span class="dv">4</span>, <span class="dv">5</span>, <span class="dv">6</span>, <span class="dv">7</span>, <span class="dv">8</span>, <span class="dv">9</span>]</span>
+<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a>b <span class="op">=</span> [i <span class="cf">for</span> i <span class="kw">in</span> a <span class="cf">if</span> i <span class="op">&gt;</span> <span class="dv">5</span>]</span>
+<span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(b)</span>
+<span id="cb13-4"><a href="#cb13-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Output: [6, 7, 8, 9]</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Dalam kode di atas, variabel b merupakan daftar baru yang dibuat dari daftar a. Nilai i dalam daftar a ditambahkan ke b hanya jika i lebih besar dari 5. Jadi, Python adalah bahasa yang sangat kuat dan memiliki banyak fitur yang memungkinkan pengguna untuk menulis kode yang ringkas dan efisien. Python memudahkan pembacaan dan pemahaman kode dengan perintah sederhana dan jelas yang menggunakan sintaks alami. Struktur data Python, seperti daftar, memungkinkan manipulasi data yang efisien dan fleksibel.</p>
+<p><strong>Tuples</strong><br>
+Tuples sangat mirip dengan list kecuali bahwa mereka tidak dapat diubah, yaitu, panjang dan isi tuple tidak dapat diubah saat runtime. Secara sintaksis, list menggunakan [ ] sedangkan tuples menggunakan ( ). Sama seperti list, tuple mungkin berisi jenis data apa pun termasuk tuple lain. Berikut adalah beberapa contoh:</p>
+<div class="sourceCode" id="cb14"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a>a <span class="op">=</span> (<span class="dv">1</span>,<span class="dv">2</span>,<span class="dv">3</span>,<span class="dv">4</span>)</span>
+<span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(a)</span>
+<span id="cb14-3"><a href="#cb14-3" aria-hidden="true" tabindex="-1"></a><span class="co"># Output: (1,2,3,4)</span></span>
+<span id="cb14-4"><a href="#cb14-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-5"><a href="#cb14-5" aria-hidden="true" tabindex="-1"></a>b <span class="op">=</span> (<span class="dv">3</span>,)</span>
+<span id="cb14-6"><a href="#cb14-6" aria-hidden="true" tabindex="-1"></a>c <span class="op">=</span> ((<span class="dv">1</span>,<span class="dv">2</span>),(<span class="dv">3</span>,<span class="dv">4</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p><strong>Sets</strong><br>
+Set adalah kumpulan objek unik yang tidak berurutan. Untuk membuat set, kita perlu menggunakan fungsi set atau operator {}. Berikut beberapa contohnya:</p>
+<div class="sourceCode" id="cb15"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a>s1 <span class="op">=</span> <span class="bu">set</span>([<span class="dv">1</span>,<span class="dv">2</span>,<span class="dv">3</span>,<span class="dv">4</span>])</span>
+<span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a>s2 <span class="op">=</span> <span class="bu">set</span>((<span class="dv">1</span>,<span class="dv">1</span>,<span class="dv">3</span>,<span class="dv">4</span>))</span>
+<span id="cb15-3"><a href="#cb15-3" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(s2)</span>
+<span id="cb15-4"><a href="#cb15-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Output: {1,3,4}</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p><strong>Dictionaries</strong><br>
+Dictionaries menyimpan pasangan kunci-nilai. Sebuah kamus dibuat dengan mengapit pasangan kunci-nilai di dalam { }.</p>
+<div class="sourceCode" id="cb16"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a>a <span class="op">=</span> {</span>
+<span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a><span class="st">'lang'</span> : <span class="st">'python'</span>, </span>
+<span id="cb16-3"><a href="#cb16-3" aria-hidden="true" tabindex="-1"></a><span class="st">'ver'</span>: <span class="st">'3.11.3'</span></span>
+<span id="cb16-4"><a href="#cb16-4" aria-hidden="true" tabindex="-1"></a>}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</section>
+<section id="penanganan-file" class="level4">
+<h4 class="anchored" data-anchor-id="penanganan-file">Penanganan File</h4>
+<p>Python menyediakan kemampuan untuk membaca dan menulis file. Ia juga memiliki fungsi, metode, dan modul untuk membaca format khusus seperti file nilai yang dipisahkan dengan koma (csv), format Microsoft Excel (xls), dll. Kami akan melihat setiap metode dalam bagian ini.</p>
+<p><strong>Membaca file CSV</strong><br>
+Berikut adalah kode yang membaca file csv sebagai file teks.</p>
+<div class="sourceCode" id="cb17"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a>fo <span class="op">=</span> <span class="bu">open</span>(<span class="st">'myfile.csv'</span>)</span>
+<span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> i <span class="kw">in</span> fo.readlines():</span>
+<span id="cb17-3"><a href="#cb17-3" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(i)</span>
+<span id="cb17-4"><a href="#cb17-4" aria-hidden="true" tabindex="-1"></a>fo.close()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Sebagai alternatif dari membaca file csv sebagai file teks, kita dapat menggunakan modul csv.</p>
+<div class="sourceCode" id="cb18"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> csv</span>
+<span id="cb18-2"><a href="#cb18-2" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> i <span class="kw">in</span> csv.reader(<span class="bu">open</span>(<span class="st">'myfile.csv'</span>)):</span>
+<span id="cb18-3"><a href="#cb18-3" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(i)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p><strong>Membaca file Excel</strong> File Microsoft Excel dapat dibaca dan ditulis menggunakan modul openpyxl.</p>
+<div class="sourceCode" id="cb19"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> openpyxl <span class="im">import</span> load_workbook </span>
+<span id="cb19-2"><a href="#cb19-2" aria-hidden="true" tabindex="-1"></a>wb <span class="op">=</span> load_workbook(<span class="st">'myfile.xlsx'</span>) </span>
+<span id="cb19-3"><a href="#cb19-3" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> sheet <span class="kw">in</span> wb:</span>
+<span id="cb19-4"><a href="#cb19-4" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> row <span class="kw">in</span> sheet.values:</span>
+<span id="cb19-5"><a href="#cb19-5" aria-hidden="true" tabindex="-1"></a>        <span class="cf">for</span> col <span class="kw">in</span> row:</span>
+<span id="cb19-6"><a href="#cb19-6" aria-hidden="true" tabindex="-1"></a>            <span class="bu">print</span>(col, end<span class="op">=</span><span class="st">' | '</span>) </span>
+<span id="cb19-7"><a href="#cb19-7" aria-hidden="true" tabindex="-1"></a>        <span class="bu">print</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</section>
+<section id="fungsi-yang-ditentukan-pengguna" class="level4">
+<h4 class="anchored" data-anchor-id="fungsi-yang-ditentukan-pengguna">Fungsi yang Ditentukan Pengguna</h4>
+<p>Fungsi adalah bagian kode yang dapat digunakan kembali yang mungkin mengambil input dan mungkin atau tidak mengembalikan output. Berikut adalah contoh:</p>
+<div class="sourceCode" id="cb20"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> math</span>
+<span id="cb20-2"><a href="#cb20-2" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> circleproperties(r):</span>
+<span id="cb20-3"><a href="#cb20-3" aria-hidden="true" tabindex="-1"></a>    area <span class="op">=</span> math.pi<span class="op">*</span>r<span class="op">*</span>r</span>
+<span id="cb20-4"><a href="#cb20-4" aria-hidden="true" tabindex="-1"></a>    circumference <span class="op">=</span> <span class="dv">2</span><span class="op">*</span>math.pi<span class="op">*</span>r</span>
+<span id="cb20-5"><a href="#cb20-5" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> area, circumference</span>
+<span id="cb20-6"><a href="#cb20-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb20-7"><a href="#cb20-7" aria-hidden="true" tabindex="-1"></a>a, c <span class="op">=</span> circleproperties(<span class="dv">5</span>) <span class="co"># Radius of the circle is 5 </span></span>
+<span id="cb20-8"><a href="#cb20-8" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">'Area and Circumference of the circle are'</span>, a, c)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Fungsi circleproperties menerima satu argumen input, radius (r). Pernyataan return pada akhir definisi fungsi mengembalikan nilai yang dihitung (dalam hal ini, area dan keliling) ke fungsi pemanggil. Untuk memanggil fungsi, gunakan nama fungsi dan berikan nilai radius sebagai argumen yang dibungkus dalam tanda kurung. Akhirnya, area dan keliling lingkaran ditampilkan menggunakan panggilan fungsi print.</p>
+</section>
+</section>
+</section>
+<section id="b.-komputasi-menggunakan-module-python" class="level2">
+<h2 class="anchored" data-anchor-id="b.-komputasi-menggunakan-module-python">B. Komputasi Menggunakan Module Python</h2>
+<p>Diketahui bahwa Python dilengkapi dengan berbagai modul bawaan. Modul-modul ini melakukan berbagai operasi khusus, mulai dari komputasi, manajemen database, hingga fungsi server web. Mengingat fokus buku ini adalah pembuatan aplikasi ilmiah, pembahasan dibatasi pada modul Python yang memungkinkan komputasi seperti scipy, numpy, matplotlib, Python Imaging Library (PIL), dan paket scikit. Relevansi masing-masing modul ini dijelaskan dan ditunjukkan penggunaannya dengan contoh. Pembahasan juga mencakup pembuatan modul Python baru.</p>
+<section id="modul-python" class="level3">
+<h3 class="anchored" data-anchor-id="modul-python">Modul Python</h3>
+<p>Ada sejumlah modul Python ilmiah yang telah dibuat dan tersedia dalam distribusi Python. Beberapa modul paling populer yang relevan adalah:</p>
+<ul>
+<li>Numpy: Sebuah perpustakaan yang kuat untuk manipulasi array dan matriks.<br>
+</li>
+<li>Scipy: Menyediakan fungsi untuk melakukan operasi matematika tingkat tinggi seperti filtering, analisis statistik, pemrosesan gambar, dll.<br>
+</li>
+<li>Matplotlib: Menyediakan fungsi untuk plotting dan bentuk visualisasi lainnya.<br>
+</li>
+<li>Python Imaging Library: Menyediakan fungsi untuk pembacaan gambar dasar, penulisan dan pemrosesan.<br>
+</li>
+<li>Scikits: Sebuah paket tambahan untuk scipy. Modul dalam scikit dimaksudkan untuk ditambahkan ke scipy setelah pengembangan.</li>
+</ul>
+<p><strong>Membuat Modul</strong><br>
+Modul adalah file Python yang berisi beberapa fungsi atau kelas dan komponen opsional lainnya. Semua fungsi dan kelas ini berbagi namespace yang sama, yaitu, nama file modul. Sebagai contoh, program berikut adalah modul Python yang valid.</p>
+<div class="sourceCode" id="cb21"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a><span class="co"># nama file: examplemodules.py</span></span>
+<span id="cb21-2"><a href="#cb21-2" aria-hidden="true" tabindex="-1"></a>version <span class="op">=</span> <span class="st">'1.0'</span></span>
+<span id="cb21-3"><a href="#cb21-3" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> printpi():</span>
+<span id="cb21-4"><a href="#cb21-4" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="st">'Nilai pi adalah 3.1415'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Sebuah fungsi bernama ‘printpi’ dan variabel yang disebut ‘version’ dibuat dalam modul ini. Fungsi ini melakukan operasi sederhana untuk mencetak nilai pi.</p>
+<p><strong>Memuat Modul</strong><br>
+Untuk memuat modul ini, gunakan perintah berikut di baris perintah Python atau dalam program Python. Kata “examplemodules” adalah nama file modul.</p>
+<div class="sourceCode" id="cb22"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> examplemodules</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Setelah modul dimuat, fungsi dapat dijalankan menggunakan perintah di bawah. Perintah pertama mencetak nilai pi bersama dengan label, sementara perintah kedua mencetak nomor versi.</p>
+<div class="sourceCode" id="cb23"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a>examplemodules.printpi()</span>
+<span id="cb23-2"><a href="#cb23-2" aria-hidden="true" tabindex="-1"></a><span class="co"># Nilai pi adalah 3.1415</span></span>
+<span id="cb23-3"><a href="#cb23-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb23-4"><a href="#cb23-4" aria-hidden="true" tabindex="-1"></a>examplemodules.version</span>
+<span id="cb23-5"><a href="#cb23-5" aria-hidden="true" tabindex="-1"></a><span class="co"># 1.0</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Modul contoh yang ditunjukkan di atas hanya memiliki satu fungsi. Sebuah modul mungkin berisi beberapa fungsi atau kelas. Dalam contoh pertama, modul datetime dimuat. Namun dalam contoh ini, hanya tertarik untuk mendapatkan tanggal saat ini menggunakan date.today().</p>
+<div class="sourceCode" id="cb24"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> datetime</span>
+<span id="cb24-2"><a href="#cb24-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(datetime.date.today()) <span class="co"># 2023-07-31</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Dalam contoh kedua, hanya fungsi yang diperlukan (date) dalam modul datetime yang dimuat. Untuk modul besar, disarankan untuk mengimpor hanya fungsi yang diperlukan agar kode lebih mudah dibaca.</p>
+<div class="sourceCode" id="cb25"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb25-1"><a href="#cb25-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> datetime <span class="im">import</span> date</span>
+<span id="cb25-2"><a href="#cb25-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span> (date.today()) <span class="co"># 2023-07-31</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Dalam contoh ketiga, mengimpor semua fungsi dalam modul yang diberikan menggunakan *. Setelah diimpor, nama file (dalam hal ini “date”) yang berisi fungsi (dalam hal ini “today()”) perlu ditentukan. Metode impor ini biasanya tidak disarankan, karena dapat menghasilkan tabrakan namespace. Misalnya, menjadi ambigu jika fungsi date ada di modul datetime atau dari pernyataan impor lainnya.</p>
+<div class="sourceCode" id="cb26"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb26-1"><a href="#cb26-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> datetime <span class="im">import</span> <span class="op">*</span> </span>
+<span id="cb26-2"><a href="#cb26-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(date.today()) <span class="co"># 2023-07-31</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Dalam contoh keempat, mengimpor modul (dalam hal ini numpy) dan menggantinya dengan sesuatu yang lebih pendek seperti np. Ini dikenal sebagai aliasing. Ini akan mengurangi jumlah karakter yang perlu diketik dan akibatnya baris kode yang perlu dipertahankan.</p>
+<div class="sourceCode" id="cb27"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb27-1"><a href="#cb27-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np »<span class="op">&gt;</span> np.ones( [<span class="dv">3</span>,<span class="dv">3</span>] )</span>
+<span id="cb27-2"><a href="#cb27-2" aria-hidden="true" tabindex="-1"></a>array([[ <span class="fl">1.</span>, <span class="fl">1.</span> , <span class="fl">1.</span>],</span>
+<span id="cb27-3"><a href="#cb27-3" aria-hidden="true" tabindex="-1"></a>           [ <span class="fl">1.</span>, <span class="fl">1.</span> , <span class="fl">1.</span>],</span>
+<span id="cb27-4"><a href="#cb27-4" aria-hidden="true" tabindex="-1"></a>           [ <span class="fl">1.</span>, <span class="fl">1.</span> , <span class="fl">1.</span>]])  </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</section>
+<section id="numpy" class="level3">
+<h3 class="anchored" data-anchor-id="numpy">NumPy</h3>
+<p>Modul numpy menambahkan kemampuan untuk memanipulasi array dan matriks menggunakan kumpulan fungsi matematika. Numpy berasal dari modul yang sudah tidak digunakan lagi, yaitu Numeric dan Numarray. Numeric adalah upaya pertama untuk menyediakan kemampuan memanipulasi array, tetapi sangat lambat dalam melakukan komputasi pada array yang besar. Numarray, di sisi lain, terlalu lambat dalam mengolah array yang kecil. Kode dasar kedua modul ini digabungkan untuk membuat numpy. Numpy memiliki fungsi dan rutinitas untuk melakukan aljabar linear, pengambilan sampel acak, polinomial, fungsi keuangan, operasi himpunan, dan lain-lain. Karena buku ini berfokus pada pemrosesan gambar dan karena gambar merupakan array, kita akan menggunakan kemampuan manipulasi matriks numpy.</p>
+<p><strong>Array atau Matriks Numpy?</strong></p>
+<p>Numpy memanipulasi matriks matematika dan vektor, sehingga menghitung lebih cepat daripada penggunaan loop tradisional yang memanipulasi skalar. Dalam numpy, terdapat dua jenis kelas matriks matematika: array dan matriks. Kedua kelas tersebut dirancang untuk tujuan serupa, tetapi array lebih umum dan memiliki dimensi n, sedangkan matriks memfasilitasi perhitungan aljabar linear yang lebih cepat. Beberapa perbedaan antara array dan matriks dijelaskan di bawah ini:</p>
+<ul>
+<li>Objek matriks memiliki rank 2, sedangkan array memiliki rank &gt; 2.<br>
+</li>
+<li>Objek matriks dapat dikalikan menggunakan operator *, sedangkan operator yang sama pada array melakukan perkalian elemen-demi-elemen. Fungsi dot() harus digunakan untuk melakukan perkalian pada array.<br>
+</li>
+<li>Array adalah tipe data default di numpy.<br>
+Array lebih sering digunakan dalam numpy dan modul-modul lain yang menggunakan numpy untuk komputasi mereka. Matriks dan array dapat saling dipertukarkan, tetapi disarankan untuk menggunakan array.</li>
+</ul>
+<p>Instalasi NumPy</p>
+<div class="sourceCode" id="cb28"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb28-1"><a href="#cb28-1" aria-hidden="true" tabindex="-1"></a><span class="op">!</span> pip install numpy</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Menggunakan Library Numpy</p>
+<div class="sourceCode" id="cb29"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb29-1"><a href="#cb29-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</section>
+<section id="scipy" class="level3">
+<h3 class="anchored" data-anchor-id="scipy">SciPy</h3>
+<p>Scipy adalah sebuah perpustakaan fungsi, program, dan alat matematika untuk pemrograman ilmiah dalam bahasa Python. Scipy menggunakan numpy untuk komputasi internalnya. Scipy adalah perpustakaan yang luas yang memungkinkan pemrograman berbagai aplikasi matematika seperti integrasi, optimisasi, transformasi Fourier, pemrosesan sinyal, statistik, pemrosesan gambar multidimensi, dan lain-lain. Travis Oliphant, Eric Jones, dan Pearu Peterson menggabungkan modul-modul mereka untuk membentuk scipy pada tahun 2001. Sejak saat itu, banyak sukarelawan di seluruh dunia telah berpartisipasi dalam pemeliharaan scipy.<br>
+Scipy memuat modul dapat memakan banyak sumber daya CPU dan memori. Hal ini terutama berlaku untuk paket-paket besar seperti scipy yang mengandung banyak submodul. Dalam kasus seperti itu, muat hanya submodul yang spesifik.<br>
+Installasi SciPy</p>
+<div class="sourceCode" id="cb30"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb30-1"><a href="#cb30-1" aria-hidden="true" tabindex="-1"></a><span class="op">!</span> pip install scipy</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Menggunakan Library Scipy</p>
+<div class="sourceCode" id="cb31"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb31-1"><a href="#cb31-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> scipy <span class="im">import</span> ndimage</span>
+<span id="cb31-2"><a href="#cb31-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> scipy.ndimage <span class="im">as</span> im</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Pada perintah pertama, hanya submodul ndimage yang dimuat. Pada perintah kedua, modul ndimage dimuat sebagai im.</p>
+</section>
+<section id="matplotlib" class="level3">
+<h3 class="anchored" data-anchor-id="matplotlib">Matplotlib</h3>
+<p>Matplotlib adalah perpustakaan plot 2D/3D untuk Python. Ia dirancang untuk menggunakan tipe data numpy. Matplotlib dapat digunakan untuk menghasilkan plot di dalam program Python. Contoh yang menunjukkan fitur-fitur matplotlib ditunjukkan dalam Gambar 2.6.</p>
+<div style="text-align:center">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="Asset/image11.png" class="img-fluid figure-img"></p>
+<figcaption class="figure-caption">Gambar 2.6. Ilustrasi Matplotlib</figcaption>
+</figure>
+</div>
+</div>
+<p>Instalasi Matplotlib</p>
+<div class="sourceCode" id="cb32"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb32-1"><a href="#cb32-1" aria-hidden="true" tabindex="-1"></a><span class="op">!</span> pip install matplotlib</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Menggunakan Library Matplotlib</p>
+<div class="sourceCode" id="cb33"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb33-1"><a href="#cb33-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> matplotlib</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</section>
+<section id="python-image-library-pil" class="level3">
+<h3 class="anchored" data-anchor-id="python-image-library-pil">Python Image Library (PIL)</h3>
+<p>Python Imaging Library (PIL) adalah modul untuk membaca, menulis, dan memproses file gambar. Modul ini mendukung sebagian besar format gambar umum seperti JPEG, PNG, TIFF, dll. <strong>Namun, sejak versi Python 3.0, PIL tidak lagi dikembangkan dan digantikan oleh library yang disebut Pillow.</strong><br>
+Installasi Pillow</p>
+<div class="sourceCode" id="cb34"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb34-1"><a href="#cb34-1" aria-hidden="true" tabindex="-1"></a><span class="op">!</span> pip install Pillow</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Menggunakan Library Pillow</p>
+<div class="sourceCode" id="cb35"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb35-1"><a href="#cb35-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> PIL <span class="im">import</span> image</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</section>
+<section id="scikits" class="level3">
+<h3 class="anchored" data-anchor-id="scikits">Scikits</h3>
+<p>Scikits adalah singkatan dari scipy toolkits. Ini adalah paket tambahan yang dapat digunakan bersama dengan alat-alat scipy. Sebuah algoritma diprogram dalam scikits jika:</p>
+<ul>
+<li>Algoritma tersebut masih dalam pengembangan dan belum siap untuk digunakan secara luas dalam scipy.<br>
+</li>
+<li>Paket tersebut memiliki lisensi yang tidak kompatibel dengan scipy.<br>
+</li>
+<li>Scipy adalah paket ilmiah umum dalam bahasa Python. Oleh karena itu, dirancang agar dapat diterapkan dalam berbagai bidang. Jika sebuah paket dianggap khusus untuk bidang tertentu, maka paket tersebut tetap menjadi bagian dari scikits.<br>
+Scikits terdiri dari modul-modul dari berbagai bidang seperti ilmu lingkungan, analisis statistik, pemrosesan gambar, rekayasa mikrowave, pemrosesan audio, masalah nilai batas, penyesuaian kurva, komputasi kuantum, dll.</li>
+</ul>
+<p>Dalam buku ini, kita akan fokus hanya pada rutinitas pemrosesan gambar dalam scikits yang disebut scikit-image. Rutinitas scikit-image ini berisi algoritma-algoritma untuk input/output, morfologi, deteksi dan analisis objek, dll.</p>
+<p>Installasi Skimage</p>
+<div class="sourceCode" id="cb36"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb36-1"><a href="#cb36-1" aria-hidden="true" tabindex="-1"></a><span class="op">!</span> pip install scikit<span class="op">-</span>image</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Penggunaan Library Skimage</p>
+<div class="sourceCode" id="cb37"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb37-1"><a href="#cb37-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> skimage <span class="im">import</span> filters</span>
+<span id="cb37-2"><a href="#cb37-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> skimage.filters <span class="im">as</span> fi</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Pada perintah pertama, hanya submodul filters yang dimuat. Pada perintah kedua, modul filters dimuat sebagai fi.</p>
+</section>
+<section id="modul-python-opencv" class="level3">
+<h3 class="anchored" data-anchor-id="modul-python-opencv">Modul Python OpenCV</h3>
+<p>Open Source Computer Vision Library (OpenCV) [Ope20a] adalah perpustakaan perangkat lunak untuk pemrosesan gambar, penglihatan komputer, dan pembelajaran mesin. Ini memiliki lebih dari 2000 algoritma untuk memproses data gambar. OpenCV memiliki basis pengguna yang besar dan digunakan secara luas di lembaga akademik, organisasi komersial, dan lembaga pemerintah. Perpustakaan ini menyediakan ikatan (binding) untuk bahasa pemrograman umum seperti C, C++, Python, dll.</p>
+<p>Installasi Opencv</p>
+<div class="sourceCode" id="cb38"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb38-1"><a href="#cb38-1" aria-hidden="true" tabindex="-1"></a><span class="op">!</span> pip install opencv<span class="op">-</span>python</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Menggunakan Library OpenCV</p>
+<div class="sourceCode" id="cb39"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb39-1"><a href="#cb39-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> cv2</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+
+
+</section>
+</section>
+
+</main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+window.document.addEventListener("DOMContentLoaded", function (event) {
+  const toggleBodyColorMode = (bsSheetEl) => {
+    const mode = bsSheetEl.getAttribute("data-mode");
+    const bodyEl = window.document.querySelector("body");
+    if (mode === "dark") {
+      bodyEl.classList.add("quarto-dark");
+      bodyEl.classList.remove("quarto-light");
+    } else {
+      bodyEl.classList.add("quarto-light");
+      bodyEl.classList.remove("quarto-dark");
+    }
+  }
+  const toggleBodyColorPrimary = () => {
+    const bsSheetEl = window.document.querySelector("link#quarto-bootstrap");
+    if (bsSheetEl) {
+      toggleBodyColorMode(bsSheetEl);
+    }
+  }
+  toggleBodyColorPrimary();  
+  const disableStylesheet = (stylesheets) => {
+    for (let i=0; i < stylesheets.length; i++) {
+      const stylesheet = stylesheets[i];
+      stylesheet.rel = 'prefetch';
+    }
+  }
+  const enableStylesheet = (stylesheets) => {
+    for (let i=0; i < stylesheets.length; i++) {
+      const stylesheet = stylesheets[i];
+      stylesheet.rel = 'stylesheet';
+    }
+  }
+  const manageTransitions = (selector, allowTransitions) => {
+    const els = window.document.querySelectorAll(selector);
+    for (let i=0; i < els.length; i++) {
+      const el = els[i];
+      if (allowTransitions) {
+        el.classList.remove('notransition');
+      } else {
+        el.classList.add('notransition');
+      }
+    }
+  }
+  const toggleColorMode = (alternate) => {
+    // Switch the stylesheets
+    const alternateStylesheets = window.document.querySelectorAll('link.quarto-color-scheme.quarto-color-alternate');
+    manageTransitions('#quarto-margin-sidebar .nav-link', false);
+    if (alternate) {
+      enableStylesheet(alternateStylesheets);
+      for (const sheetNode of alternateStylesheets) {
+        if (sheetNode.id === "quarto-bootstrap") {
+          toggleBodyColorMode(sheetNode);
+        }
+      }
+    } else {
+      disableStylesheet(alternateStylesheets);
+      toggleBodyColorPrimary();
+    }
+    manageTransitions('#quarto-margin-sidebar .nav-link', true);
+    // Switch the toggles
+    const toggles = window.document.querySelectorAll('.quarto-color-scheme-toggle');
+    for (let i=0; i < toggles.length; i++) {
+      const toggle = toggles[i];
+      if (toggle) {
+        if (alternate) {
+          toggle.classList.add("alternate");     
+        } else {
+          toggle.classList.remove("alternate");
+        }
+      }
+    }
+    // Hack to workaround the fact that safari doesn't
+    // properly recolor the scrollbar when toggling (#1455)
+    if (navigator.userAgent.indexOf('Safari') > 0 && navigator.userAgent.indexOf('Chrome') == -1) {
+      manageTransitions("body", false);
+      window.scrollTo(0, 1);
+      setTimeout(() => {
+        window.scrollTo(0, 0);
+        manageTransitions("body", true);
+      }, 40);  
+    }
+  }
+  const isFileUrl = () => { 
+    return window.location.protocol === 'file:';
+  }
+  const hasAlternateSentinel = () => {  
+    let styleSentinel = getColorSchemeSentinel();
+    if (styleSentinel !== null) {
+      return styleSentinel === "alternate";
+    } else {
+      return false;
+    }
+  }
+  const setStyleSentinel = (alternate) => {
+    const value = alternate ? "alternate" : "default";
+    if (!isFileUrl()) {
+      window.localStorage.setItem("quarto-color-scheme", value);
+    } else {
+      localAlternateSentinel = value;
+    }
+  }
+  const getColorSchemeSentinel = () => {
+    if (!isFileUrl()) {
+      const storageValue = window.localStorage.getItem("quarto-color-scheme");
+      return storageValue != null ? storageValue : localAlternateSentinel;
+    } else {
+      return localAlternateSentinel;
+    }
+  }
+  let localAlternateSentinel = 'default';
+  // Dark / light mode switch
+  window.quartoToggleColorScheme = () => {
+    // Read the current dark / light value 
+    let toAlternate = !hasAlternateSentinel();
+    toggleColorMode(toAlternate);
+    setStyleSentinel(toAlternate);
+  };
+  // Ensure there is a toggle, if there isn't float one in the top right
+  if (window.document.querySelector('.quarto-color-scheme-toggle') === null) {
+    const a = window.document.createElement('a');
+    a.classList.add('top-right');
+    a.classList.add('quarto-color-scheme-toggle');
+    a.href = "";
+    a.onclick = function() { try { window.quartoToggleColorScheme(); } catch {} return false; };
+    const i = window.document.createElement("i");
+    i.classList.add('bi');
+    a.appendChild(i);
+    window.document.body.appendChild(a);
+  }
+  // Switch to dark mode if need be
+  if (hasAlternateSentinel()) {
+    toggleColorMode(true);
+  } else {
+    toggleColorMode(false);
+  }
+  const icon = "";
+  const anchorJS = new window.AnchorJS();
+  anchorJS.options = {
+    placement: 'right',
+    icon: icon
+  };
+  anchorJS.add('.anchored');
+  const isCodeAnnotation = (el) => {
+    for (const clz of el.classList) {
+      if (clz.startsWith('code-annotation-')) {                     
+        return true;
+      }
+    }
+    return false;
+  }
+  const clipboard = new window.ClipboardJS('.code-copy-button', {
+    text: function(trigger) {
+      const codeEl = trigger.previousElementSibling.cloneNode(true);
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+    }
+  });
+  clipboard.on('success', function(e) {
+    // button target
+    const button = e.trigger;
+    // don't keep focus
+    button.blur();
+    // flash "checked"
+    button.classList.add('code-copy-button-checked');
+    var currentTitle = button.getAttribute("title");
+    button.setAttribute("title", "Copied!");
+    let tooltip;
+    if (window.bootstrap) {
+      button.setAttribute("data-bs-toggle", "tooltip");
+      button.setAttribute("data-bs-placement", "left");
+      button.setAttribute("data-bs-title", "Copied!");
+      tooltip = new bootstrap.Tooltip(button, 
+        { trigger: "manual", 
+          customClass: "code-copy-button-tooltip",
+          offset: [0, -8]});
+      tooltip.show();    
+    }
+    setTimeout(function() {
+      if (tooltip) {
+        tooltip.hide();
+        button.removeAttribute("data-bs-title");
+        button.removeAttribute("data-bs-toggle");
+        button.removeAttribute("data-bs-placement");
+      }
+      button.setAttribute("title", currentTitle);
+      button.classList.remove('code-copy-button-checked');
+    }, 1000);
+    // clear code selection
+    e.clearSelection();
+  });
+  function tippyHover(el, contentFn) {
+    const config = {
+      allowHTML: true,
+      content: contentFn,
+      maxWidth: 500,
+      delay: 100,
+      arrow: false,
+      appendTo: function(el) {
+          return el.parentElement;
+      },
+      interactive: true,
+      interactiveBorder: 10,
+      theme: 'quarto',
+      placement: 'bottom-start'
+    };
+    window.tippy(el, config); 
+  }
+  const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+  for (var i=0; i<noterefs.length; i++) {
+    const ref = noterefs[i];
+    tippyHover(ref, function() {
+      // use id or data attribute instead here
+      let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+      try { href = new URL(href).hash; } catch {}
+      const id = href.replace(/^#\/?/, "");
+      const note = window.document.getElementById(id);
+      return note.innerHTML;
+    });
+  }
+      let selectedAnnoteEl;
+      const selectorForAnnotation = ( cell, annotation) => {
+        let cellAttr = 'data-code-cell="' + cell + '"';
+        let lineAttr = 'data-code-annotation="' +  annotation + '"';
+        const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+        return selector;
+      }
+      const selectCodeLines = (annoteEl) => {
+        const doc = window.document;
+        const targetCell = annoteEl.getAttribute("data-target-cell");
+        const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+        const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+        const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+        const lineIds = lines.map((line) => {
+          return targetCell + "-" + line;
+        })
+        let top = null;
+        let height = null;
+        let parent = null;
+        if (lineIds.length > 0) {
+            //compute the position of the single el (top and bottom and make a div)
+            const el = window.document.getElementById(lineIds[0]);
+            top = el.offsetTop;
+            height = el.offsetHeight;
+            parent = el.parentElement.parentElement;
+          if (lineIds.length > 1) {
+            const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+            const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+            height = bottom - top;
+          }
+          if (top !== null && height !== null && parent !== null) {
+            // cook up a div (if necessary) and position it 
+            let div = window.document.getElementById("code-annotation-line-highlight");
+            if (div === null) {
+              div = window.document.createElement("div");
+              div.setAttribute("id", "code-annotation-line-highlight");
+              div.style.position = 'absolute';
+              parent.appendChild(div);
+            }
+            div.style.top = top - 2 + "px";
+            div.style.height = height + 4 + "px";
+            let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+            if (gutterDiv === null) {
+              gutterDiv = window.document.createElement("div");
+              gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+              gutterDiv.style.position = 'absolute';
+              const codeCell = window.document.getElementById(targetCell);
+              const gutter = codeCell.querySelector('.code-annotation-gutter');
+              gutter.appendChild(gutterDiv);
+            }
+            gutterDiv.style.top = top - 2 + "px";
+            gutterDiv.style.height = height + 4 + "px";
+          }
+          selectedAnnoteEl = annoteEl;
+        }
+      };
+      const unselectCodeLines = () => {
+        const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+        elementsIds.forEach((elId) => {
+          const div = window.document.getElementById(elId);
+          if (div) {
+            div.remove();
+          }
+        });
+        selectedAnnoteEl = undefined;
+      };
+      // Attach click handler to the DT
+      const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+      for (const annoteDlNode of annoteDls) {
+        annoteDlNode.addEventListener('click', (event) => {
+          const clickedEl = event.target;
+          if (clickedEl !== selectedAnnoteEl) {
+            unselectCodeLines();
+            const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+            if (activeEl) {
+              activeEl.classList.remove('code-annotation-active');
+            }
+            selectCodeLines(clickedEl);
+            clickedEl.classList.add('code-annotation-active');
+          } else {
+            // Unselect the line
+            unselectCodeLines();
+            clickedEl.classList.remove('code-annotation-active');
+          }
+        });
+      }
+  const findCites = (el) => {
+    const parentEl = el.parentElement;
+    if (parentEl) {
+      const cites = parentEl.dataset.cites;
+      if (cites) {
+        return {
+          el,
+          cites: cites.split(' ')
+        };
+      } else {
+        return findCites(el.parentElement)
+      }
+    } else {
+      return undefined;
+    }
+  };
+  var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+  for (var i=0; i<bibliorefs.length; i++) {
+    const ref = bibliorefs[i];
+    const citeInfo = findCites(ref);
+    if (citeInfo) {
+      tippyHover(citeInfo.el, function() {
+        var popup = window.document.createElement('div');
+        citeInfo.cites.forEach(function(cite) {
+          var citeDiv = window.document.createElement('div');
+          citeDiv.classList.add('hanging-indent');
+          citeDiv.classList.add('csl-entry');
+          var biblioDiv = window.document.getElementById('ref-' + cite);
+          if (biblioDiv) {
+            citeDiv.innerHTML = biblioDiv.innerHTML;
+          }
+          popup.appendChild(citeDiv);
+        });
+        return popup.innerHTML;
+      });
+    }
+  }
+});
+</script>
+<nav class="page-navigation">
+  <div class="nav-page nav-page-previous">
+      <a href="./1_Pengenalan_Computer_Vision_dan_Python.html" class="pagination-link">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text">1 Pengenalan Computer Vision dan Python</span>
+      </a>          
+  </div>
+  <div class="nav-page nav-page-next">
+      <a href="./3_Dasar_dasar_Image_Processing.html" class="pagination-link">
+        <span class="nav-page-text">3 Dasar-dasar Image Processing</span> <i class="bi bi-arrow-right-short"></i>
+      </a>
+  </div>
+</nav>
+</div> <!-- /content -->
+
+
+
+</body></html>

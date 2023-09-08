@@ -1,0 +1,859 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.3.353">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+
+<title>Game Programming - 8. Koordinat 2D vs 3D dan sistem arah tangan</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+</style>
+
+
+<script src="site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="site_libs/quarto-nav/headroom.min.js"></script>
+<script src="site_libs/clipboard/clipboard.min.js"></script>
+<script src="site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="site_libs/quarto-search/fuse.min.js"></script>
+<script src="site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="./">
+<link href="./game-prak-11.html" rel="next">
+<link href="./game-prak-9.html" rel="prev">
+<script src="site_libs/quarto-html/quarto.js"></script>
+<script src="site_libs/quarto-html/popper.min.js"></script>
+<script src="site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="site_libs/quarto-html/anchor.min.js"></script>
+<link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-text-highlighting-styles">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting-dark.css" rel="prefetch" class="quarto-color-scheme quarto-color-alternate" id="quarto-text-highlighting-styles">
+<script src="site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
+<link href="site_libs/bootstrap/bootstrap-dark.min.css" rel="prefetch" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
+<script id="quarto-search-options" type="application/json">{
+  "location": "sidebar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "start",
+  "type": "textbox",
+  "limit": 20,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit"
+  }
+}</script>
+
+
+</head>
+
+<body class="nav-sidebar floating">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+  <nav class="quarto-secondary-nav">
+    <div class="container-fluid d-flex">
+      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+        <i class="bi bi-layout-text-sidebar-reverse"></i>
+      </button>
+      <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./konsep.html"><b>Konsep</b></a></li><li class="breadcrumb-item"><a href="./game-prak-10.html">8. Koordinat 2D vs 3D dan sistem arah tangan</a></li></ol></nav>
+      <a class="flex-grow-1" role="button" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
+      </a>
+      <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
+        <i class="bi bi-search"></i>
+      </button>
+    </div>
+  </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article">
+<!-- sidebar -->
+  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal sidebar-navigation floating overflow-auto">
+    <div class="pt-lg-2 mt-2 text-left sidebar-header">
+    <div class="sidebar-title mb-0 py-0">
+      <a href="./">Game Programming</a> 
+        <div class="sidebar-tools-main">
+  <a href="" class="quarto-color-scheme-toggle quarto-navigation-tool  px-1" onclick="window.quartoToggleColorScheme(); return false;" title="Toggle dark mode"><i class="bi"></i></a>
+</div>
+    </div>
+      </div>
+        <div class="mt-2 flex-shrink-0 align-items-center">
+        <div class="sidebar-search">
+        <div id="quarto-search" class="" title="Search"></div>
+        </div>
+        </div>
+    <div class="sidebar-menu-container"> 
+    <ul class="list-unstyled mt-1">
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><b>Pengantar</b></span></a>
+  </div>
+</li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a href="./konsep.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><b>Konsep</b></span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./game-prak-1.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">1. Download dan Install Unity</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./game-prak-2.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">2. Menghubungkan object dengan variabel</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./game-prak-3.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">3. Animation sprite 2D</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./game-prak-4.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">4. Persiapan Asset Game</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./game-prak-5.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">5. Android Deployment</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./game-prak-7.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">6. Standard Asset 2D dan Instant Development</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./game-prak-9.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">7. Save &amp; Load dengan Playerpref</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./game-prak-10.html" class="sidebar-item-text sidebar-link active">
+ <span class="menu-text">8. Koordinat 2D vs 3D dan sistem arah tangan</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./game-prak-11.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">9. Translasi Objek 3D</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a href="./studi-kasus.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><b>Studi Kasus</b></span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-2" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./game-prak-12.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Game AI</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./game-prak-14.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Game Augmented Reality</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a href="./contoh-produk.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><b>Contoh Produk</b></span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-3" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./produk/the-forest-warior.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">The Forest Warior</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./produk/chandramawa-brand-new-color.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Chandramawa: Brand New Color</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./produk/bengkel-gizi.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Bengkel Gizi</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./produk/last-beat.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Last Beat</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./produk/what-a-nightmare.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">What a Nightmare</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+    </ul>
+    </div>
+</nav>
+<div id="quarto-sidebar-glass" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass"></div>
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">Table of contents</h2>
+   
+  <ul>
+  <li><a href="#pendahuluan" id="toc-pendahuluan" class="nav-link active" data-scroll-target="#pendahuluan">Pendahuluan</a></li>
+  <li><a href="#koordinat-2d-vs-3d-dan-sistem-arah-tangan" id="toc-koordinat-2d-vs-3d-dan-sistem-arah-tangan" class="nav-link" data-scroll-target="#koordinat-2d-vs-3d-dan-sistem-arah-tangan">Koordinat 2D vs 3D dan sistem arah tangan</a></li>
+  <li><a href="#camera" id="toc-camera" class="nav-link" data-scroll-target="#camera">Camera</a></li>
+  <li><a href="#lighting" id="toc-lighting" class="nav-link" data-scroll-target="#lighting">Lighting</a></li>
+  <li><a href="#bermain-dengan-objek-primitif" id="toc-bermain-dengan-objek-primitif" class="nav-link" data-scroll-target="#bermain-dengan-objek-primitif">Bermain dengan Objek Primitif</a></li>
+  <li><a href="#pengenalan-material-shader-texture" id="toc-pengenalan-material-shader-texture" class="nav-link" data-scroll-target="#pengenalan-material-shader-texture">Pengenalan Material, Shader, &amp; Texture</a></li>
+  <li><a href="#standard-asset-untuk-objek-3d" id="toc-standard-asset-untuk-objek-3d" class="nav-link" data-scroll-target="#standard-asset-untuk-objek-3d">Standard Asset untuk Objek 3D</a></li>
+  <li><a href="#skybox" id="toc-skybox" class="nav-link" data-scroll-target="#skybox">Skybox</a></li>
+  <li><a href="#terrain" id="toc-terrain" class="nav-link" data-scroll-target="#terrain">Terrain</a></li>
+  <li><a href="#latihan-opsional" id="toc-latihan-opsional" class="nav-link" data-scroll-target="#latihan-opsional">Latihan (Opsional)</a></li>
+  <li><a href="#referensi" id="toc-referensi" class="nav-link" data-scroll-target="#referensi">REFERENSI</a></li>
+  <li><a href="#mekanisme-pengumpulan-praktikum-mingguan" id="toc-mekanisme-pengumpulan-praktikum-mingguan" class="nav-link" data-scroll-target="#mekanisme-pengumpulan-praktikum-mingguan">Mekanisme Pengumpulan Praktikum Mingguan</a></li>
+  </ul>
+</nav>
+    </div>
+<!-- main -->
+<main class="content" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<h1 class="title">8. Koordinat 2D vs 3D dan sistem arah tangan</h1>
+</div>
+
+
+
+<div class="quarto-title-meta">
+
+    
+  
+    
+  </div>
+  
+
+</header>
+
+<section id="pendahuluan" class="level2">
+<h2 class="anchored" data-anchor-id="pendahuluan">Pendahuluan</h2>
+<p>Selamat kamu sudah bisa menyelesaikan game 2D. Sekarang kita akan mulai belajar bagaimana membuat Game 3D. Pada praktikum kali ini, kita tidak lagi membuat project 2D, melaikan 3D. <strong>Mari kita mulai dengan membuat project baru 3D dengan nama “Coba3D”.</strong></p>
+</section>
+<section id="koordinat-2d-vs-3d-dan-sistem-arah-tangan" class="level2">
+<h2 class="anchored" data-anchor-id="koordinat-2d-vs-3d-dan-sistem-arah-tangan">Koordinat 2D vs 3D dan sistem arah tangan</h2>
+<p>Sistem koordinat sebetulnya sudah disinggung sejak pertemuan ke-3 yaitu tentang transasi dan rotasi. Namun demikian, kita akan coba membahas dari sesuatu yang dasar mengenai koordinat 2D dan 3D. Pada koordinat kartesian 2D, letak suatu titik biasanya didefinisikan dengan posisi sepanjang sumbu x dan sumbu y. Berikut adalah gambar yang menjelaskan posisi suatu titik pada x=6 dan y =5.</p>
+<p><img src="assets/10/image001.png" class="img-fluid"></p>
+<p>Berbeda dengan sumbu pada koordinat kartesian 3D. Terdapat satu garis lurus yang dapat dibayangkan seperti masuk dan keluar diantara sumbu x dan y. Gambar berikut mendefinisikan suatu posisi titik di ruang 3D.</p>
+<p><img src="assets/10/image002.png" class="img-fluid"></p>
+<p>Titik tersebut berada ada posisi x=6, y=7, dan z = 5. Semua objek yang berada pada bidang 3D pasti memiliki transformasi posisi sumbu xyz. Selain pemahaman bidang 2D dan 3D, kita juga harus mengetahui tentang arah vektor yang berkaitan dengan sumbu 3D yang digunakan. Arah ini ditentukan oleh sistem kaidah tangan kanan dan kaidah tangan kiri. Dengan sistem tersebut kita dapat memahami arah positif atau negative masing-masing sumbu. Berikut adalah gambaran arah dengan sistem kaidah tangan kanan dan kiri.</p>
+<p><img src="assets/10/image003.png" class="img-fluid"></p>
+<p>Unity menggunakan sistem kaidah tangan kiri. Beberapa game engine yang lain menggunakan kaidah tangan kanan, sebagai contoh OpenGL. Dengan demikian sekarang kita tahu bahwa arah positif dan negatif dari sumbu x,y, dan z Unity mengikuti arah dari ibu jari, telunjuk, dan jari tengah dengan sistem kaidah tangan kiri.</p>
+<p>Sebagai tambahan, pada Unity terdapat dua jenis koordinat system yaitu koordinat yang relatif terhadap ruang dunia (world space) dan koordinat yang relative terhadap ruang objek (object space). Jenis koordinat itu dikenal dengan istilah koordinat lokal dan koordinaat global atau digambarkan dengan gambar berikut:</p>
+<p><img src="assets/10/image004.png" class="img-fluid"></p>
+</section>
+<section id="camera" class="level2">
+<h2 class="anchored" data-anchor-id="camera">Camera</h2>
+<p>Scene game pada unity akan bergantung dari mana suatu objek Camera ditempatkan. Seperti yang telah disinggung di pertemuan sebelumnya, pada dasarnya bentuk 2D pada Unity merupakan bentuk “flat” dari ruang 3D. Berikut adalah gambaran dua jenis proyeksi Camera pada unity yaitu ortografis dan perspektif yang mirip. (kiri prespektif, kanan ortografis)</p>
+<p><img src="assets/10/image005.png" class="img-fluid"></p>
+<p>Lalu apa bedanya? Mata manusia di dunia nyata dapat melihat beberapa objek yang nampak besar atau kecil tergantung dari sudut pandang penempatan objek tersebut, apakah didepan atau belakang. Hal ini dikenal sebagai efek perspektif. Sama halnya pada Computer Graphics atau pada unity, Scene pada game 3D membutuhkan suatu sudut pandang yang realistic seperti bagaimana mata manusia berfungsi untuk melihat suatu objek.</p>
+<p>Namun demikian, terkadang mata manusia juga dapat melihat beberapa objek sama rata dan tidak memperhitungkan jarak antar objek. Ortografis didapatkan dengan syarat arah penglihatan orang yang melihat suatu objek dianggap tegak lurus terhadap bidang objek yang dilihatnya. Hal ini memungkinkan pengembang game di Unity untuk dapat membuat game 2D yaitu dengan proyeksi kamera ortografis.</p>
+<p>Pada Camera unity, terdapat fitur bernama Occlusion Culling. Occlusion Culling memungkinkan untuk menonaktifkan objek-objek yang tidak dapat dilihat oleh Camera karena terlalu jauh atau terhambat pandangannya oleh objek lain. Berikut adalah scene yang tidak menerapkan occlusion culling:</p>
+<p><img src="assets/10/image006.png" class="img-fluid"></p>
+<p>Berikut adalah scene yang menerapkan occlusion culling:</p>
+<p><img src="assets/10/image007.png" class="img-fluid"></p>
+<p>Untuk dapat menerapkan Occlusion Culling dapat dipelajari di: <a href="https://docs.unity3d.com/Manual/OcclusionCulling.html" class="external" target="_blank">https://docs.unity3d.com/Manual/OcclusionCulling.html</a> . Pada praktikum kali ini tidak akan dijelaskan secara mendetail tentang penggunaan occlusion culling ini.</p>
+</section>
+<section id="lighting" class="level2">
+<h2 class="anchored" data-anchor-id="lighting">Lighting</h2>
+<p>Untuk membuat efek bayangan pada objek-objek 3D, diperlukan suatu cahaya yang memiliki intensitas, arah, dan warna. Unity mendukung efek cahaya yaitu dengan komponen Light. Ada beberapa tipe dari cahaya yang ada pada Unity yaitu: point. Spot, directional, area,emissive, dan ambient.</p>
+<p>Point light memungkinkan untuk membuat cahaya dari titik pusat (lingkaran) sampai cahaya itu melingkupi keseluruhan lingkaran tadi. Spot hanya memberikan cahaya pada bagian tertentu saja seperti saat menggunakan senter atau lampu kendaraan bermotor. Directional light seperti pada cahaya matahari. Area light seperti penerangan yang hanya menerangi dengan lingkup persegi. Emisive seperti membuat efek cahaya yang menyala dalam gelap. Ambient light untuk memperlihatkan gambaran suhu dari suatu objek atau untuk membuat efek kartun. Berikut gambaran suatu objek dengan komponen light menerangi objek berbentuk bola:</p>
+<p><img src="assets/10/image008.png" class="img-fluid"></p>
+</section>
+<section id="bermain-dengan-objek-primitif" class="level2">
+<h2 class="anchored" data-anchor-id="bermain-dengan-objek-primitif">Bermain dengan Objek Primitif</h2>
+<p>Ketika membuat project untuk pertama kalinya, secara default terdapat dua game object yaitu Main Camera dan Directional Light. Lihat pada Inspector Main Camera, pastikan bahwa Projection yang digunakan adalah perspective. Kemudian di Inspector Directional Light, pastikan bahwa type adalah Directional. Unity menyediakan objek 3D primitif yang dapat secara langsung dibuat seperti gambar berikut:</p>
+<p><img src="assets/10/image009.png" class="img-fluid"></p>
+<p>Klik kanan pada hierarchy window-&gt;3D Object-&gt; Maka akan ada banyak pilihan objek 3D primitive yang disediakan unity. Pilih salah satu objek primitive tersebut, maka objek akan secara otomatis tertambah di scene.</p>
+<p><strong>PRAKTIKUM:</strong></p>
+<ol type="1">
+<li><p>Pastikan sudah membuat project <strong>“Coba3D”</strong> dan Simpan scene dengan nama “Main”.</p></li>
+<li><p>Buat beberapa game objek dari game objek primitive seperti cube, sphere, Capsule, Quad, dan Plane .</p></li>
+<li><p>Susun semua kelima objek tersebut didalam scene.</p></li>
+<li><p>Gunakan transform tool untuk memposisikan objek sesuai keinginan.</p></li>
+<li><p>Gunakan gizmos (klik pada salah satu warna) untuk memudahkan melihat objek yang ada pada scene. <br> <img src="assets/10/image010.png" class="img-fluid"></p></li>
+<li><p>Klik kanan dan tahan, kemudian geser kekanan kekiri pada scene untuk mengganti sudut pandang.</p></li>
+<li><p>Klik tengah pada mouse scroll, kemudian geser kekanan dan kekiri pada scene untuk menyesuaikan posisi objek terhadap scene.</p></li>
+<li><p>Klik kiri dan tahan, kemudian geser kekanan kekiri pada scene untuk menseleksi beberapa objek secara langsung.</p></li>
+<li><p>Biasakan menggunakan kendali pada langkah 6, 7, dan 8 pada scene untuk memudahkan dalam pengembangan game 3D dengan unity.</p></li>
+<li><p>Jalankan unity dan amati yang terjadi.</p></li>
+</ol>
+<p><strong>KUMPULKAN:</strong></p>
+<p>Screenshoot game tab. Simpan dengan nama sc_910_01.jpg File <code>&lt;NIM&gt;</code>.txt dengan rincian isi: - <code>&lt;NIM&gt;</code> - <code>&lt;JAWABAN&gt;</code></p>
+<p>Pertanyaan: Komponen apa saja yang ada pada setiap objek primitive 3D. <br> Contoh jawaban: <br> A11200904997.txt <br> A11200904997 <br> Cube -&gt; Component = Transform, bla, bla <br> Sphere -&gt; Component = Transform, bla, bla <br></p>
+</section>
+<section id="pengenalan-material-shader-texture" class="level2">
+<h2 class="anchored" data-anchor-id="pengenalan-material-shader-texture">Pengenalan Material, Shader, &amp; Texture</h2>
+<p>Pada objek 3D, material, shader, dan texture sangat berhubungan erat satu sama lain. Material adalah bagaimana permukaan suatu objek diperlakukan, disini termasuk tekstur yang akan digunakan, pembatasan objek, dan lain-lain. Pemilihan konfigurasi material tersebut diatur pada shader yang diterapkan. Shader merupkan kode kecil yang berisikan suatu algoritma dan perhitungan matematis untuk menghitung warna,efek, dan konfigurasi material yang terkait.</p>
+<p>Tekstur merupakan gambar bitmap yang dapat dijadikan sebagai masukan shader dimana material nanti akan ditempatkan pada permukaan objek 3D. Sebagai contoh terdapat objek bola, dengan menambahkan material dengan shader standard dan texture gambar permukaan bumi maka objek bola tadi dapat menjadi objek bumi secara utuh.</p>
+<p><strong>PRAKTIKUM:</strong></p>
+<ol type="1">
+<li><p>Pada project <strong>“Coba3D”</strong>, scene Main, hapus semua objek kecuali Main Camera dan Directional Light.</p></li>
+<li><p>Buat objek Cube dan rename dengan nama “Kotak”.</p></li>
+<li><p>Buat folder Materials pada Project Window.</p></li>
+<li><p>Pada folder Materials tambahkan material dengan cara, klik kanan-&gt;Create-&gt;Material, ubah namanya menjadi matKotak. <br> <img src="assets/10/image011.png" class="img-fluid"></p></li>
+<li><p>Klik matKotak pada project window dan lihat pada Inspector.</p></li>
+<li><p>Perhatikan bahwa Shader yang digunakan adalah Standard Shader, Rendering Mode adalah Opaque dan warna dasar (Albedo) adalah putih. <br> <img src="assets/10/image012.png" class="img-fluid"></p></li>
+<li><p>Disini kita tidak akan merubah kode shader yang ada, tetapi hanya menggunaka saja.</p></li>
+<li><p>Klik pada gambar kotak putih disebelah Albedo. Dan rubah warnanya menjadi merah. Rubah material supaya lebih mengkilat dengan memberikan nilai 0.5 pada Metalic. <br> <img src="assets/10/image013.png" class="img-fluid"></p></li>
+<li><p>Tarik material matKotak dari Project Window kedalam objek Kotak pada Hierarchy window atau scene view.</p></li>
+<li><p>Jalankan Unity dan lihat di game tab! (perhatikan jika Kotak tidak terlihat letakkan pada posisi x,y,z = 0)</p></li>
+<li><p>Buat objek sphere dan rename dengan nama “Bumi”. Posisikan pada x = -1.44, y dan z = 0.</p></li>
+<li><p>Masukkan gambar earthtex.jpg kedalam folder Materials pada project window.</p></li>
+<li><p>Buat material baru dengan nama matBumi.</p></li>
+<li><p>Tarik earthtex kedalam kotak disebelah kiri Albedo dari Inspector matBumi. <br> <img src="assets/10/image014.png" class="img-fluid"></p></li>
+<li><p>Tarik material matBumi dari Project Window kedalam objek Bumi pada Hierarchy window atau scene view.</p></li>
+<li><p>Jalankan Unity dan lihat di game tab!</p></li>
+</ol>
+<p><strong>KUMPULKAN:</strong></p>
+<p>Screenshoot game tab. Simpan dengan nama sc_910_02.jpg</p>
+<p><br></p>
+</section>
+<section id="standard-asset-untuk-objek-3d" class="level2">
+<h2 class="anchored" data-anchor-id="standard-asset-untuk-objek-3d">Standard Asset untuk Objek 3D</h2>
+<p>Sama halnya dengan Standard Asset 2D, dengan mekanisme yang sama kita dapat menambahkan standard asset 3D. Standard asset 3D adalah standard asset selain “2D” yaitu “Cameras”, “Characters”, “Effect”,”Environtment”, dll.</p>
+<p><strong>PRAKTIKUM:</strong></p>
+<ol type="1">
+<li><p>Import standard asset “Characters” project Coba3D.</p></li>
+<li><p>Pastikan select All dan Import.</p></li>
+<li><p>Buat scene baru dengan nama “EthanInAct”.</p></li>
+<li><p>Tambahkan object Quad , rename dengan nama “Pijakan” dan letakkan dengan posisi seperti berikut: <br> <img src="assets/10/image015.png" class="img-fluid"></p></li>
+<li><p>Masuk pada Project Window, Assets-&gt;Standard Asset-&gt;Characters-&gt;ThirdPersonCharacter-&gt;Prefabs</p></li>
+<li><p>Tarik objek prefabs ThirdPersonController kedalam objek Pijakan PADA Hierarchy window! <br> <img src="assets/10/image016.png" class="img-fluid"></p></li>
+<li><p>Perhatikan bahwa pada Inspector ThirdPersonController posisi dan rotasi x,y,z = 0. Hal ini disebabkan oleh koordinat acuan saat menambahkan objek ThirdPersonController yang digunakan adalah koordinat local dari objek Pijakan. Teknik ini seringkali disebut dengan parenting object.</p></li>
+<li><p>Keluarkan objek ThirdPersonController dari Pijakan dengan cara Tarik objek keluar dari Pijakan di Hierarchy window. <br> <img src="assets/10/image017.png" class="img-fluid"></p></li>
+<li><p>Sekarang lihat pada Inspector ThirdPersonController, posisi dan rotasi akan berubah meyesuaikan koordinat global. Jangan ganti posisi x,y,z, ganti rotasi x dari bernilai 90 menjadi 0. Kemudian rubah scale x,y,z dari 1 menjadi 0.2.</p></li>
+<li><p>Jalankan Unity dan lihat game tab. Jalankan objek ThirdPersonController dengan menekan W,A,S,D dan Spasi pada Keyboard.</p></li>
+</ol>
+<p><strong>KUMPULKAN:</strong></p>
+<p>Screenshoot game tab. Simpan dengan nama sc_910_03.jpg</p>
+<p><br></p>
+</section>
+<section id="skybox" class="level2">
+<h2 class="anchored" data-anchor-id="skybox">Skybox</h2>
+<p>Skybox merupakan batasan lingkungan world scene pada game. Pada dasarnya merupakan kubus persegi dimana nanti beberapa game objek akan berada didalamnya. Namun demikian bentuk dari kubusnya tidak akan terlihat seperti kubus melainkan suatu landscape lingkungan yang luas (dengan langit). Pada praktikum ini, akan dicoba untuk membuat skybox dengan 6 sisi kubus atau 6-sided cube atau cubemaping dimana setiap sisi merupakan gambar tekstur yang saling berkesinambungan secara geometri.</p>
+<p><strong>PRAKTIKUM:</strong></p>
+<ol type="1">
+<li><p>Buat scene baru dengan nama World.</p></li>
+<li><p>Pastikan sudah memiliki gambar texture 6 sisi kubus. Gambar skybox dapat di unduh di <a href="https://93i.de/downloads/skybox/skyboxset1.zip" class="external" target="_blank">https://93i.de/downloads/skybox/skyboxset1.zip</a>. Paste folder skybox ke project window.</p></li>
+<li><p>Buat material baru dengan nama “matSkybox”.</p></li>
+<li><p>Pada Inspector matSkybox cari shader Skybox/6 Sided.</p></li>
+<li><p>Isikan gambar “back”,”from”,”left”,”right”,”up”, dan “down” (yang ada didalam folder skybox di project window) pada Inspector matSkybox. (Kunci/lock Inspector matSkybox supaya tidak berpindah-pindah) <br> <img src="assets/10/image018.png" class="img-fluid"></p></li>
+<li><p>Masukkan atau Tarik matSkybox dari project window ke scene view. Atau buka window-&gt;lighthing-&gt;Settings, pada tab Scene, isikan Skybox Material dengan matSkybox. <br> <img src="assets/10/image019.png" class="img-fluid"></p></li>
+<li><p>Jalankan unity dan lihat apa yang terjadi.</p></li>
+</ol>
+<p><strong>KUMPULKAN:</strong></p>
+<p>Screenshoot game tab. Simpan dengan nama sc_910_04.jpg</p>
+<p><br></p>
+</section>
+<section id="terrain" class="level2">
+<h2 class="anchored" data-anchor-id="terrain">Terrain</h2>
+<p>Pada game 3D, baik itu first person camera ataupun third person camera terkadang memiliki lingkungan world yang berisi berbagai macam objek. Objek-objek tersebut seperti: gunung, pepohonan, sungai, dan lain-lain. Jika terdapat berbagai macam object pada scene game 3D, hal itu mengakibatkan turunnya performa game. Penurunan performa itu ditandai dengan turunya FPS game atau game terasa lambat ketika dimainkan (lag). Disamping itu, banyaknya objek memungkinkan banyaknya vertek objek yang di render ketika game berlangsung. Sehingga memory yang dibutuhkan juga sangat besar. Meskipun demikian, kita dapat menggunakan Occlusion Culling untuk menangani masalah optimalisasi terrain ini. Sekarang kita akan mencoba membuat terrain dengan unity.</p>
+<p><strong>PRAKTIKUM:</strong></p>
+<ol type="1">
+<li><p>Tetap pada scene “World”.</p></li>
+<li><p>Tambahkan terrain dengan cara GameObject-&gt;3D Object-&gt;Terrain.</p></li>
+<li><p>Double klik pada objek Terrain di hierarchy window. <br> <img src="assets/10/image020.png" class="img-fluid"></p></li>
+<li><p>Perhatikan bahwa di Inspector Terrain terdapat 3 komponen yaitu Transform untuk transformasi, Terrain untuk mengembangkan lingkungan pada terrain yang berisi tools, dan Terrain Collider untuk collider terrain.</p></li>
+<li><p>Perhatikan pada komponen Terrain dimana memuat 7 alat/tools untuk mengembangkan lingkungan terrain seperti yang diinginkan. <br> <img src="assets/10/image021.png" class="img-fluid"> <br> Berikut adalah nama-nama dari tools tersebut (kanan ke kiri): Terrain Settings, Paint Details, Place Trees, Paint Texture, Smooth Height, Paint Height, Raise/Lower Terrain.</p></li>
+<li><p>Pilih dan klik Terrain Settings, scroll ke bawah dan cari di Label Resolution. Isikan Terrain Width dan Height = 100.</p></li>
+<li><p>Atur height=75. Height terdiri dari ujung titik terendah dari terrain (seperti dibawah sungai) sampai ujung tertitinggi (puncak gunung). Sebagai contoh, kamu ingin membuat gunung di dalam terrain dengan tinggi 150 meter. Kemudian kamu juga menambahkan sungai dengan kedalaman 50 meter. Jadi ukuran height dari terrain yang kamu miliki adalah 150+50 meter yaitu 200 meter. (Sementara jangan rubah bagian dibawah Resolution, karena dapat berimbas langsung seperti hilangnya beberapa objek di terrain yang sudah dibuat)</p></li>
+<li><p>Pilih dan klik Paint Height, terdapat detail kalimat cara penggunaan Paint Height.</p></li>
+<li><p>Rubah Height = 20 dan klik tombol “Flatten”. Dengan demikian terrain akan mengangkat sebanyak sampai dengan 20 unit objek pada viewport, tetapi posisi Y tidak akan terpengaruh. <br> <img src="assets/10/image022.png" class="img-fluid"></p></li>
+<li><p>Diatas scene view terdapat symbol light, matikan lighting tersebut. <br> <img src="assets/10/image023.png" class="img-fluid"></p></li>
+<li><p>Pilih dan klik Raise/Lower Terrain Tool.</p></li>
+<li><p>Putar scene sampai Terrain terlihat seperti kotak putih pada scene.</p></li>
+<li><p>Gambar Terrain dengan Brushes. Atur Brush Size untuk ukuran perbukitan yang lebih lebar. Atur ketingian perbukitan atau gunung dengan Opacity. Berikut adalah Terrain yang sudah di gambar: <br> <img src="assets/10/image024.png" class="img-fluid"></p></li>
+<li><p>Kita akan dapat melihat LOD (Level Of Detail) dari terrain yang kita buat.</p></li>
+<li><p>Untuk melihat berapa banyak mesh yang kita buat, Dibawah Tulisan Scene di Scene tab, terdapat mode scene dengan tulisan Shaded. Kemudian klik pada Shaded dan pilih Wireframe. Kemudian lihat Terrain dengan lebih detail dengan cara Zoom In pada salah satu sisi terrain menggunakan scroll mouse. <br> <img src="assets/10/image025.png" class="img-fluid"></p></li>
+<li><p>Pilih dan Klik Terrain Setting, Pada Base Terrain, rubah Pixel Error dengan nilai 10. <br> <img src="assets/10/image026.png" class="img-fluid"></p></li>
+<li><p>Kembalikan mode scene menjadi Shaded.</p></li>
+<li><p>Pilih dan Klik Paint Height Tool, gunakan property Height untuk mengatur ketinggian Gunung atau bukit. Coba gunakan lagi brush untuk menggambar.</p></li>
+<li><p>Jika gambar terrain dirasa sudah cukup, tambahkan standard asset “Environment”.</p></li>
+<li><p>Klik All kemudian klik import.</p></li>
+<li><p>Masuk pada Project Window -&gt; Assets-&gt;Standard Assets-&gt; Environment-&gt;TerrainAssets. Masuk pada folder SurfaceTextures. <br> <img src="assets/10/image027.png" class="img-fluid"></p></li>
+<li><p>Perhatikan pada nama-nama texture, hal ini berkaitan dengan “Albedo”,”Specular”, dan “Normal”.</p></li>
+<li><p>Pilih dan Klik Paint Texture Tool pada Inspector Terrain, dibawah area texture preview, pilih Edit Textures-&gt;Add Texture. <br> <img src="assets/10/image028.png" class="img-fluid"></p></li>
+<li><p>Ketika Add Terain Texture box muncul, isikan Albedo (RGB) Smoothness (A) dengan gambar tekture GrassHillAlbedo. Karena tidak ada gambar Normal untuk GrassHill maka biarkan tetap kosong.kemudian klik tombol Add. <br> <img src="assets/10/image029.png" class="img-fluid"></p></li>
+<li><p>Tambahkan texture kedua, Pilih dan Klik Paint Texture Tool pada Inspector Terrain, dibawah area texture preview, pilih Edit Textures-&gt;Add Texture.</p></li>
+<li><p>Isikan Albedo (RGB) Smoothness (A) dengan gambar tekture GrassRockyAlbedo, gunakan Brush dan gambar diatas pegunungan atau bukit-bukit yang tinggi.</p></li>
+<li><p>Tambahkan texture ketiga, Pilih dan Klik Paint Texture Tool pada Inspector Terrain, dibawah area texture preview, pilih Edit Textures-&gt;Add Texture.</p></li>
+<li><p>Isikan Albedo (RGB) Smoothness (A) dengan gambar tekture MudRockyAlbedoSpecular dan Normal dengan gambar texture MudRockyNormal, gunakan Brush dan gambar dibagian bawah gundukan rumput.</p></li>
+<li><p>Berikut adalah ketiga texture yang terdaftar. <br> <img src="assets/10/image030.png" class="img-fluid"></p></li>
+<li><p>Sekarang tambahkan pepohononan, gunakan standard asset, Masuk pada Project Window -&gt; Assets-&gt;Standard Assets-&gt; Environment-&gt;SpeedTree-&gt; Broadleaf folder.</p></li>
+<li><p>Pilih objek prefab Broadleaf_Desktop dan masukkan pada scene view. Kecilkan scale x,y,z jika pohon terlalu besar dengan nilai 0.2. <br> <img src="assets/10/image031.png" class="img-fluid"></p></li>
+<li><p>Matikan Animate Cross-fading (jangan di centang) <br> <img src="assets/10/image032.png" class="img-fluid"></p></li>
+<li><p>Buat folder Prefabs dibawah Assets pada Project Window.</p></li>
+<li><p>Tarik dari Broadleaf_Desktop dari hierarchy window kedalam folder Prefabs.</p></li>
+<li><p>Rename Broadleaf_Desktop di folder prefabs dengan nama “Pohon”.</p></li>
+<li><p>Hapus objek Broadleaf_Desktop dari scene view atau hierarchy window.</p></li>
+<li><p>Sangat tidak efisien jika kita menambahkan pohon satu persatu pada scene view, maka dari itu kita gunakan Place Trees Tool pada Inspector Terrain.</p></li>
+<li><p>Pilih dan Klik Place trees Tool pada Inspector Terrain, dibawah area texture preview, pilih tombol Edit Trees.. -&gt; Add Tree.</p></li>
+<li><p>Masukan Tree Prefab dengan prefab Pohon. <br> <img src="assets/10/image033.png" class="img-fluid"></p></li>
+<li><p>Kemudian Klik tombol Add.</p></li>
+<li><p>Akan muncul tombol “Mass Place Trees” pada Inspector Terrain. Klik pada tombol tersebut.</p></li>
+<li><p>Saatnya membuat sesuatu yang “menyenangkan”, Isikan Number Of Tree sesuka hati (sebagai contoh: 1000 pohon). Kemudian klik tombol Place. <br> <img src="assets/10/image034.png" class="img-fluid"></p></li>
+<li><p>Rubah posisi terrain dengan position x,y, dan z = -10 (bisa jadi tampak jelek, sesuaikan sesuai selera).</p></li>
+<li><p>Jalankan Unity dan lihat apa yang terjadi pada game tab.</p></li>
+</ol>
+<p><strong>KUMPULKAN:</strong></p>
+<p>Screenshoot game tab. Simpan dengan nama sc_910_05.jpg</p>
+</section>
+<section id="latihan-opsional" class="level2">
+<h2 class="anchored" data-anchor-id="latihan-opsional">Latihan (Opsional)</h2>
+<p>Jika sudah selesai praktikum, silahkan kembangkan game yang ada pada praktikum kali ini dengan pengetahuan yang sebelumnya sudah dipelajari dan kreativitas kamu. Coba tambahkan character ethan didalam terrain dan juga tambahkan kolam air atau sungai didalam terrain. Cari tutorial di Internet mengenai penambahan air.</p>
+<p><strong>KUMPULKAN:</strong></p>
+<p>Screenshoot game tab. Simpan dengan nama sc_910_06.jpg</p>
+</section>
+<section id="referensi" class="level2">
+<h2 class="anchored" data-anchor-id="referensi">REFERENSI</h2>
+<ul>
+<li>Hocking, J. (2015). Unity in action. Manning Publications,.</li>
+<li>De Byl, P. (2017). Holistic Mobile Game Development with Unity Second Eds. CRC Press.</li>
+<li>Blackman, S., &amp; Tuliper, A. (2016). Learn Unity for Windows 10 Game Development. Apress.</li>
+<li><a href="https://docs.unity3d.com/Manual/CamerasOverview.html" class="external" target="_blank">https://docs.unity3d.com/Manual/CamerasOverview.html</a></li>
+<li><a href="https://docs.unity3d.com/Manual/LightingInUnity.html" class="external" target="_blank">https://docs.unity3d.com/Manual/LightingInUnity.html</a></li>
+<li><a href="https://docs.unity3d.com/Manual/Lighting.html" class="external" target="_blank">https://docs.unity3d.com/Manual/Lighting.html</a></li>
+<li><a href="https://docs.unity3d.com/Manual/Shaders.html" class="external" target="_blank">https://docs.unity3d.com/Manual/Shaders.html</a></li>
+<li><a href="https://docs.unity3d.com/Manual/OcclusionCulling.html" class="external" target="_blank">https://docs.unity3d.com/Manual/OcclusionCulling.html</a></li>
+<li><a href="http://answers.unity3d.com/questions/310044/clickable-map.html" class="external" target="_blank">http://answers.unity3d.com/questions/310044/clickable-map.html</a></li>
+<li><a href="https://docs.unity3d.com/Manual/HOWTO-InstallStandardAssets.html" class="external" target="_blank">https://docs.unity3d.com/Manual/HOWTO-InstallStandardAssets.html</a></li>
+<li><a href="https://docs.unity3d.com/Manual/HOWTO-UseSkybox.html" class="external" target="_blank">https://docs.unity3d.com/Manual/HOWTO-UseSkybox.htm</a></li>
+<li><a href="https://docs.unity3d.com/Manual/class-Skybox.html" class="external" target="_blank">https://docs.unity3d.com/Manual/class-Skybox.htm</a></li>
+<li><a href="https://docs.unity3d.com/Manual/script-Terrain.html" class="external" target="_blank">https://docs.unity3d.com/Manual/script-Terrain.htm</a></li>
+<li><a href="https://docs.unity3d.com/Manual/terrain-UsingTerrains.html" class="external" target="_blank">https://docs.unity3d.com/Manual/terrain-UsingTerrains.htm</a></li>
+</ul>
+</section>
+<section id="mekanisme-pengumpulan-praktikum-mingguan" class="level2">
+<h2 class="anchored" data-anchor-id="mekanisme-pengumpulan-praktikum-mingguan">Mekanisme Pengumpulan Praktikum Mingguan</h2>
+<p><strong>Untuk setiap mahasiswa:</strong> Buat 1 folder beri nama NIM lengkap. Masukkan file screenshot sc_910_01.jpg, sc_910_02.jpg, sc_910_03.jpg, sc_910_04, sc_910_05 dan sc_910_06.jpg serta file &lt;NIM.txt&gt;. Kemudian rar atau zip folder NIM kamu tadi dan kirimkan ke ketua kelas.</p>
+<p>Contoh: A11200904997.rar</p>
+<p><strong>Untuk Ketua Kelas:</strong> Siapkan folder dengan nama Kode Kelas “_910” yang berisi kumpulan praktikum setiap mahasiswa. Lalu buat rar atau zip dan kirimkan ke email dosen.</p>
+<p>Contoh: A114401_910.rar</p>
+
+
+</section>
+
+</main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+window.document.addEventListener("DOMContentLoaded", function (event) {
+  const toggleBodyColorMode = (bsSheetEl) => {
+    const mode = bsSheetEl.getAttribute("data-mode");
+    const bodyEl = window.document.querySelector("body");
+    if (mode === "dark") {
+      bodyEl.classList.add("quarto-dark");
+      bodyEl.classList.remove("quarto-light");
+    } else {
+      bodyEl.classList.add("quarto-light");
+      bodyEl.classList.remove("quarto-dark");
+    }
+  }
+  const toggleBodyColorPrimary = () => {
+    const bsSheetEl = window.document.querySelector("link#quarto-bootstrap");
+    if (bsSheetEl) {
+      toggleBodyColorMode(bsSheetEl);
+    }
+  }
+  toggleBodyColorPrimary();  
+  const disableStylesheet = (stylesheets) => {
+    for (let i=0; i < stylesheets.length; i++) {
+      const stylesheet = stylesheets[i];
+      stylesheet.rel = 'prefetch';
+    }
+  }
+  const enableStylesheet = (stylesheets) => {
+    for (let i=0; i < stylesheets.length; i++) {
+      const stylesheet = stylesheets[i];
+      stylesheet.rel = 'stylesheet';
+    }
+  }
+  const manageTransitions = (selector, allowTransitions) => {
+    const els = window.document.querySelectorAll(selector);
+    for (let i=0; i < els.length; i++) {
+      const el = els[i];
+      if (allowTransitions) {
+        el.classList.remove('notransition');
+      } else {
+        el.classList.add('notransition');
+      }
+    }
+  }
+  const toggleColorMode = (alternate) => {
+    // Switch the stylesheets
+    const alternateStylesheets = window.document.querySelectorAll('link.quarto-color-scheme.quarto-color-alternate');
+    manageTransitions('#quarto-margin-sidebar .nav-link', false);
+    if (alternate) {
+      enableStylesheet(alternateStylesheets);
+      for (const sheetNode of alternateStylesheets) {
+        if (sheetNode.id === "quarto-bootstrap") {
+          toggleBodyColorMode(sheetNode);
+        }
+      }
+    } else {
+      disableStylesheet(alternateStylesheets);
+      toggleBodyColorPrimary();
+    }
+    manageTransitions('#quarto-margin-sidebar .nav-link', true);
+    // Switch the toggles
+    const toggles = window.document.querySelectorAll('.quarto-color-scheme-toggle');
+    for (let i=0; i < toggles.length; i++) {
+      const toggle = toggles[i];
+      if (toggle) {
+        if (alternate) {
+          toggle.classList.add("alternate");     
+        } else {
+          toggle.classList.remove("alternate");
+        }
+      }
+    }
+    // Hack to workaround the fact that safari doesn't
+    // properly recolor the scrollbar when toggling (#1455)
+    if (navigator.userAgent.indexOf('Safari') > 0 && navigator.userAgent.indexOf('Chrome') == -1) {
+      manageTransitions("body", false);
+      window.scrollTo(0, 1);
+      setTimeout(() => {
+        window.scrollTo(0, 0);
+        manageTransitions("body", true);
+      }, 40);  
+    }
+  }
+  const isFileUrl = () => { 
+    return window.location.protocol === 'file:';
+  }
+  const hasAlternateSentinel = () => {  
+    let styleSentinel = getColorSchemeSentinel();
+    if (styleSentinel !== null) {
+      return styleSentinel === "alternate";
+    } else {
+      return false;
+    }
+  }
+  const setStyleSentinel = (alternate) => {
+    const value = alternate ? "alternate" : "default";
+    if (!isFileUrl()) {
+      window.localStorage.setItem("quarto-color-scheme", value);
+    } else {
+      localAlternateSentinel = value;
+    }
+  }
+  const getColorSchemeSentinel = () => {
+    if (!isFileUrl()) {
+      const storageValue = window.localStorage.getItem("quarto-color-scheme");
+      return storageValue != null ? storageValue : localAlternateSentinel;
+    } else {
+      return localAlternateSentinel;
+    }
+  }
+  let localAlternateSentinel = 'default';
+  // Dark / light mode switch
+  window.quartoToggleColorScheme = () => {
+    // Read the current dark / light value 
+    let toAlternate = !hasAlternateSentinel();
+    toggleColorMode(toAlternate);
+    setStyleSentinel(toAlternate);
+  };
+  // Ensure there is a toggle, if there isn't float one in the top right
+  if (window.document.querySelector('.quarto-color-scheme-toggle') === null) {
+    const a = window.document.createElement('a');
+    a.classList.add('top-right');
+    a.classList.add('quarto-color-scheme-toggle');
+    a.href = "";
+    a.onclick = function() { try { window.quartoToggleColorScheme(); } catch {} return false; };
+    const i = window.document.createElement("i");
+    i.classList.add('bi');
+    a.appendChild(i);
+    window.document.body.appendChild(a);
+  }
+  // Switch to dark mode if need be
+  if (hasAlternateSentinel()) {
+    toggleColorMode(true);
+  } else {
+    toggleColorMode(false);
+  }
+  const icon = "";
+  const anchorJS = new window.AnchorJS();
+  anchorJS.options = {
+    placement: 'right',
+    icon: icon
+  };
+  anchorJS.add('.anchored');
+  const isCodeAnnotation = (el) => {
+    for (const clz of el.classList) {
+      if (clz.startsWith('code-annotation-')) {                     
+        return true;
+      }
+    }
+    return false;
+  }
+  const clipboard = new window.ClipboardJS('.code-copy-button', {
+    text: function(trigger) {
+      const codeEl = trigger.previousElementSibling.cloneNode(true);
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+    }
+  });
+  clipboard.on('success', function(e) {
+    // button target
+    const button = e.trigger;
+    // don't keep focus
+    button.blur();
+    // flash "checked"
+    button.classList.add('code-copy-button-checked');
+    var currentTitle = button.getAttribute("title");
+    button.setAttribute("title", "Copied!");
+    let tooltip;
+    if (window.bootstrap) {
+      button.setAttribute("data-bs-toggle", "tooltip");
+      button.setAttribute("data-bs-placement", "left");
+      button.setAttribute("data-bs-title", "Copied!");
+      tooltip = new bootstrap.Tooltip(button, 
+        { trigger: "manual", 
+          customClass: "code-copy-button-tooltip",
+          offset: [0, -8]});
+      tooltip.show();    
+    }
+    setTimeout(function() {
+      if (tooltip) {
+        tooltip.hide();
+        button.removeAttribute("data-bs-title");
+        button.removeAttribute("data-bs-toggle");
+        button.removeAttribute("data-bs-placement");
+      }
+      button.setAttribute("title", currentTitle);
+      button.classList.remove('code-copy-button-checked');
+    }, 1000);
+    // clear code selection
+    e.clearSelection();
+  });
+  function tippyHover(el, contentFn) {
+    const config = {
+      allowHTML: true,
+      content: contentFn,
+      maxWidth: 500,
+      delay: 100,
+      arrow: false,
+      appendTo: function(el) {
+          return el.parentElement;
+      },
+      interactive: true,
+      interactiveBorder: 10,
+      theme: 'quarto',
+      placement: 'bottom-start'
+    };
+    window.tippy(el, config); 
+  }
+  const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+  for (var i=0; i<noterefs.length; i++) {
+    const ref = noterefs[i];
+    tippyHover(ref, function() {
+      // use id or data attribute instead here
+      let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+      try { href = new URL(href).hash; } catch {}
+      const id = href.replace(/^#\/?/, "");
+      const note = window.document.getElementById(id);
+      return note.innerHTML;
+    });
+  }
+      let selectedAnnoteEl;
+      const selectorForAnnotation = ( cell, annotation) => {
+        let cellAttr = 'data-code-cell="' + cell + '"';
+        let lineAttr = 'data-code-annotation="' +  annotation + '"';
+        const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+        return selector;
+      }
+      const selectCodeLines = (annoteEl) => {
+        const doc = window.document;
+        const targetCell = annoteEl.getAttribute("data-target-cell");
+        const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+        const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+        const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+        const lineIds = lines.map((line) => {
+          return targetCell + "-" + line;
+        })
+        let top = null;
+        let height = null;
+        let parent = null;
+        if (lineIds.length > 0) {
+            //compute the position of the single el (top and bottom and make a div)
+            const el = window.document.getElementById(lineIds[0]);
+            top = el.offsetTop;
+            height = el.offsetHeight;
+            parent = el.parentElement.parentElement;
+          if (lineIds.length > 1) {
+            const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+            const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+            height = bottom - top;
+          }
+          if (top !== null && height !== null && parent !== null) {
+            // cook up a div (if necessary) and position it 
+            let div = window.document.getElementById("code-annotation-line-highlight");
+            if (div === null) {
+              div = window.document.createElement("div");
+              div.setAttribute("id", "code-annotation-line-highlight");
+              div.style.position = 'absolute';
+              parent.appendChild(div);
+            }
+            div.style.top = top - 2 + "px";
+            div.style.height = height + 4 + "px";
+            let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+            if (gutterDiv === null) {
+              gutterDiv = window.document.createElement("div");
+              gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+              gutterDiv.style.position = 'absolute';
+              const codeCell = window.document.getElementById(targetCell);
+              const gutter = codeCell.querySelector('.code-annotation-gutter');
+              gutter.appendChild(gutterDiv);
+            }
+            gutterDiv.style.top = top - 2 + "px";
+            gutterDiv.style.height = height + 4 + "px";
+          }
+          selectedAnnoteEl = annoteEl;
+        }
+      };
+      const unselectCodeLines = () => {
+        const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+        elementsIds.forEach((elId) => {
+          const div = window.document.getElementById(elId);
+          if (div) {
+            div.remove();
+          }
+        });
+        selectedAnnoteEl = undefined;
+      };
+      // Attach click handler to the DT
+      const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+      for (const annoteDlNode of annoteDls) {
+        annoteDlNode.addEventListener('click', (event) => {
+          const clickedEl = event.target;
+          if (clickedEl !== selectedAnnoteEl) {
+            unselectCodeLines();
+            const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+            if (activeEl) {
+              activeEl.classList.remove('code-annotation-active');
+            }
+            selectCodeLines(clickedEl);
+            clickedEl.classList.add('code-annotation-active');
+          } else {
+            // Unselect the line
+            unselectCodeLines();
+            clickedEl.classList.remove('code-annotation-active');
+          }
+        });
+      }
+  const findCites = (el) => {
+    const parentEl = el.parentElement;
+    if (parentEl) {
+      const cites = parentEl.dataset.cites;
+      if (cites) {
+        return {
+          el,
+          cites: cites.split(' ')
+        };
+      } else {
+        return findCites(el.parentElement)
+      }
+    } else {
+      return undefined;
+    }
+  };
+  var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+  for (var i=0; i<bibliorefs.length; i++) {
+    const ref = bibliorefs[i];
+    const citeInfo = findCites(ref);
+    if (citeInfo) {
+      tippyHover(citeInfo.el, function() {
+        var popup = window.document.createElement('div');
+        citeInfo.cites.forEach(function(cite) {
+          var citeDiv = window.document.createElement('div');
+          citeDiv.classList.add('hanging-indent');
+          citeDiv.classList.add('csl-entry');
+          var biblioDiv = window.document.getElementById('ref-' + cite);
+          if (biblioDiv) {
+            citeDiv.innerHTML = biblioDiv.innerHTML;
+          }
+          popup.appendChild(citeDiv);
+        });
+        return popup.innerHTML;
+      });
+    }
+  }
+});
+</script>
+<nav class="page-navigation">
+  <div class="nav-page nav-page-previous">
+      <a href="./game-prak-9.html" class="pagination-link">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text">7. Save &amp; Load dengan Playerpref</span>
+      </a>          
+  </div>
+  <div class="nav-page nav-page-next">
+      <a href="./game-prak-11.html" class="pagination-link">
+        <span class="nav-page-text">9. Translasi Objek 3D</span> <i class="bi bi-arrow-right-short"></i>
+      </a>
+  </div>
+</nav>
+</div> <!-- /content -->
+
+
+
+</body></html>

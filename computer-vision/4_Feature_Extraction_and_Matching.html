@@ -1,0 +1,886 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.3.353">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+
+<title>Computer Vision - 4 Feature Extraction and Matching</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+/* CSS for syntax highlighting */
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+</style>
+
+
+<script src="site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="site_libs/quarto-nav/headroom.min.js"></script>
+<script src="site_libs/clipboard/clipboard.min.js"></script>
+<script src="site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="site_libs/quarto-search/fuse.min.js"></script>
+<script src="site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="./">
+<link href="./5_Konsep_Dasar_Machine_Learning_dan_Deep_Learning.html" rel="next">
+<link href="./3_Dasar_dasar_Image_Processing.html" rel="prev">
+<script src="site_libs/quarto-html/quarto.js"></script>
+<script src="site_libs/quarto-html/popper.min.js"></script>
+<script src="site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="site_libs/quarto-html/anchor.min.js"></script>
+<link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-text-highlighting-styles">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting-dark.css" rel="prefetch" class="quarto-color-scheme quarto-color-alternate" id="quarto-text-highlighting-styles">
+<script src="site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
+<link href="site_libs/bootstrap/bootstrap-dark.min.css" rel="prefetch" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
+<script id="quarto-search-options" type="application/json">{
+  "location": "sidebar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "start",
+  "type": "textbox",
+  "limit": 20,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit"
+  }
+}</script>
+
+
+</head>
+
+<body class="nav-sidebar floating">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+  <nav class="quarto-secondary-nav">
+    <div class="container-fluid d-flex">
+      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+        <i class="bi bi-layout-text-sidebar-reverse"></i>
+      </button>
+      <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./Konsep.html"><b> Konsep </b></a></li><li class="breadcrumb-item"><a href="./4_Feature_Extraction_and_Matching.html">4 Feature Extraction and Matching</a></li></ol></nav>
+      <a class="flex-grow-1" role="button" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
+      </a>
+      <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
+        <i class="bi bi-search"></i>
+      </button>
+    </div>
+  </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article">
+<!-- sidebar -->
+  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal sidebar-navigation floating overflow-auto">
+    <div class="pt-lg-2 mt-2 text-left sidebar-header">
+    <div class="sidebar-title mb-0 py-0">
+      <a href="./">Computer Vision</a> 
+        <div class="sidebar-tools-main">
+  <a href="" class="quarto-color-scheme-toggle quarto-navigation-tool  px-1" onclick="window.quartoToggleColorScheme(); return false;" title="Toggle dark mode"><i class="bi"></i></a>
+</div>
+    </div>
+      </div>
+        <div class="mt-2 flex-shrink-0 align-items-center">
+        <div class="sidebar-search">
+        <div id="quarto-search" class="" title="Search"></div>
+        </div>
+        </div>
+    <div class="sidebar-menu-container"> 
+    <ul class="list-unstyled mt-1">
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><strong>Pengantar</strong></span></a>
+  </div>
+</li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a href="./Konsep.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><b> Konsep </b></span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./1_Pengenalan_Computer_Vision_dan_Python.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">1 Pengenalan Computer Vision dan Python</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./2_Python.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">2 Python</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./3_Dasar_dasar_Image_Processing.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">3 Dasar-dasar Image Processing</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./4_Feature_Extraction_and_Matching.html" class="sidebar-item-text sidebar-link active">
+ <span class="menu-text">4 Feature Extraction and Matching</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./5_Konsep_Dasar_Machine_Learning_dan_Deep_Learning.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">5 Konsep Dasar Machine Learning dan Deep Learning dalam Klasifikasi Objek</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./6_Evaluasi.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">6 Metode Evaluasi dalam Computer Vision</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a href="./daftar_studi_kasus.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><b> Studi Kasus </b></span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-2" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./Studi_Kasus_1.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Studi Kasus 1</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./Studi_Kasus_2.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Studi Kasus 2</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./Studi_Kasus_3.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Studi Kasus 3</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./Studi_Kasus_4.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Studi Kasus 4</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+    </ul>
+    </div>
+</nav>
+<div id="quarto-sidebar-glass" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass"></div>
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">Table of contents</h2>
+   
+  <ul>
+  <li><a href="#a.-pengenalan-feature-extraction-and-matching" id="toc-a.-pengenalan-feature-extraction-and-matching" class="nav-link active" data-scroll-target="#a.-pengenalan-feature-extraction-and-matching">A. Pengenalan Feature Extraction and Matching</a>
+  <ul class="collapse">
+  <li><a href="#feature-descriptor" id="toc-feature-descriptor" class="nav-link" data-scroll-target="#feature-descriptor">Feature Descriptor</a></li>
+  <li><a href="#feature-matching" id="toc-feature-matching" class="nav-link" data-scroll-target="#feature-matching">Feature Matching</a></li>
+  <li><a href="#template-matching" id="toc-template-matching" class="nav-link" data-scroll-target="#template-matching">Template Matching</a></li>
+  </ul></li>
+  <li><a href="#b.-hog-dan-sift" id="toc-b.-hog-dan-sift" class="nav-link" data-scroll-target="#b.-hog-dan-sift">B. HOG dan SIFT</a>
+  <ul class="collapse">
+  <li><a href="#histogram-of-oriented-gradient-hog" id="toc-histogram-of-oriented-gradient-hog" class="nav-link" data-scroll-target="#histogram-of-oriented-gradient-hog">Histogram of Oriented Gradient (HOG)</a></li>
+  <li><a href="#scale-invariant-feature-transform-sift" id="toc-scale-invariant-feature-transform-sift" class="nav-link" data-scroll-target="#scale-invariant-feature-transform-sift">Scale Invariant Feature Transform (SIFT)</a></li>
+  </ul></li>
+  <li><a href="#c.-bow-dan-bovw" id="toc-c.-bow-dan-bovw" class="nav-link" data-scroll-target="#c.-bow-dan-bovw">C. BoW dan BoVW</a></li>
+  </ul>
+</nav>
+    </div>
+<!-- main -->
+<main class="content" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<h1 class="title">4 Feature Extraction and Matching</h1>
+</div>
+
+
+
+<div class="quarto-title-meta">
+
+    
+  
+    
+  </div>
+  
+
+</header>
+
+<section id="a.-pengenalan-feature-extraction-and-matching" class="level2">
+<h2 class="anchored" data-anchor-id="a.-pengenalan-feature-extraction-and-matching">A. Pengenalan Feature Extraction and Matching</h2>
+<p>Ekstraksi dan Pencocokan Fitur adalah tugas penting dalam visi komputer, seperti struktur dari gerak, pengambilan gambar, dan deteksi objek.<br>
+Fitur adalah bagian dari informasi yang relevan untuk menyelesaikan tugas komputasi yang terkait dengan aplikasi tertentu. Fitur mungkin struktur tertentu dalam gambar seperti titik, tepi atau objek. Fitur mungkin juga merupakan hasil dari operasi lingkungan umum atau deteksi fitur yang diterapkan pada gambar. Fitur dapat diklasifikasikan menjadi dua kategori utama:</p>
+<ul>
+<li>Fitur yang ada di lokasi tertentu dari gambar, seperti puncak gunung, sudut bangunan, pintu masuk, atau petak salju yang berbentuk menarik. Jenis fitur yang dilokalkan ini sering disebut fitur titik kunci (atau bahkan sudut) dan sering digambarkan dengan tampilan tambalan piksel yang mengelilingi lokasi titik.<br>
+</li>
+<li>Fitur yang dapat dicocokkan berdasarkan orientasi dan kenampakan lokalnya (profil tepi) disebut tepi dan juga dapat menjadi indikator yang baik untuk batasan objek dan kejadian oklusi dalam urutan citra.</li>
+</ul>
+<p>Komponen utama Deteksi dan Pencocokan Fitur:<br>
+<strong>Deteksi :</strong> Identifikasi Feature Point.<br>
+<strong>Deskripsi:</strong> Penampilan lokal di sekitar setiap titik fitur dijelaskan dalam beberapa cara yang (idealnya) tidak berubah di bawah perubahan iluminasi, translasi, skala, dan rotasi dalam bidang. Kami biasanya berakhir dengan vektor deskriptor untuk setiap titik fitur.<br>
+<strong>Pencocokan:</strong> Deskriptor dibandingkan di seluruh gambar, untuk mengidentifikasi fitur serupa. Untuk dua gambar kita mungkin mendapatkan satu set pasangan ( Xi, Yi ) ↔︎ ( Xi’, Yi’ ), di mana ( Xi, Yi ) adalah fitur dalam satu gambar dan ( Xi’, Yi’ ) fitur pencocokannya di gambar lainnya gambar.</p>
+<section id="feature-descriptor" class="level3">
+<h3 class="anchored" data-anchor-id="feature-descriptor">Feature Descriptor</h3>
+<p>Deskriptor fitur adalah algoritme yang mengambil gambar dan menampilkan deskriptor fitur/vektor fitur. Deskriptor fitur menyandikan informasi menarik ke dalam rangkaian angka dan bertindak sebagai semacam “sidik jari” numerik yang dapat digunakan untuk membedakan satu fitur dari fitur lainnya.</p>
+<div style="text-align:center">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="Asset/image12.png" class="img-fluid figure-img"></p>
+<figcaption class="figure-caption">Gambar 4.1. Macam-macam Feature Descriptor</figcaption>
+</figure>
+</div>
+</div>
+<p>Idealnya, informasi ini akan menjadi invarian di bawah transformasi citra, sehingga kita dapat menemukan kembali fitur tersebut bahkan jika citra diubah dalam beberapa cara. Setelah mendeteksi feature point, kami melanjutkan untuk menghitung deskriptor untuk masing-masingnya. Deskriptor dapat dikategorikan menjadi dua kelas:</p>
+<ul>
+<li>Deskriptor Lokal: Ini adalah representasi kompak dari lingkungan lokal suatu titik. Deskriptor lokal mencoba untuk menyerupai bentuk dan penampilan hanya di lingkungan lokal sekitar titik dan dengan demikian sangat cocok untuk merepresentasikannya dalam hal pencocokan.<br>
+</li>
+<li>Deskriptor Global : Deskriptor global menjelaskan keseluruhan gambar. Mereka umumnya tidak terlalu kuat karena perubahan sebagian gambar dapat menyebabkannya gagal karena akan memengaruhi deskriptor yang dihasilkan.<br>
+Macam - macam Algoritma Descriptor :<br>
+</li>
+<li>SIFT(Scale Invariant Feature Transform)<br>
+</li>
+<li>SURF(Speed Up Robust Feature)<br>
+</li>
+<li>ORB(Oriented FAST and Rotate BRIEF)<br>
+</li>
+<li>BRISK(Binary Robust Invariant Scalable Keypoints)<br>
+</li>
+<li>BRIEF(Binary Robust Independent Elementary Feature)</li>
+</ul>
+</section>
+<section id="feature-matching" class="level3">
+<h3 class="anchored" data-anchor-id="feature-matching">Feature Matching</h3>
+<p>Pencocokan fitur atau umumnya pencocokan gambar, bagian dari banyak aplikasi visi komputer seperti pendaftaran gambar, kalibrasi kamera dan pengenalan objek, adalah tugas membangun korespondensi antara dua gambar dari pemandangan/objek yang sama. Pendekatan umum untuk pencocokan citra terdiri dari pendeteksian sekumpulan poin kepentingan yang masing-masing terkait dengan deskriptor citra dari data citra. Setelah fitur dan deskriptornya diekstraksi dari dua atau lebih gambar, langkah selanjutnya adalah membuat beberapa pencocokan fitur awal antara gambar-gambar ini.</p>
+<div style="text-align:center">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="Asset/image13.png" class="img-fluid figure-img"></p>
+<figcaption class="figure-caption">Gambar 4.2. Pencocokan gambar</figcaption>
+</figure>
+</div>
+</div>
+<p>Secara umum, kinerja metode pencocokan berdasarkan interest point atau feature point bergantung pada properti dari feature point yang mendasarinya dan pilihan deskriptor gambar terkait. Dengan demikian, detektor dan deskriptor yang sesuai untuk konten gambar harus digunakan dalam aplikasi. Misalnya, jika gambar mengandung sel bakteri, detektor blob harus digunakan daripada detektor sudut. Tapi, jika gambar tersebut adalah pemandangan kota dari udara, detektor sudut cocok untuk menemukan struktur buatan manusia. Selain itu, pemilihan detektor dan deskriptor yang mengatasi degradasi citra sangatlah penting.<br>
+Macam - macam Algoritma Pencocokan:</p>
+<ul>
+<li>Brute-Force Matcher<br>
+</li>
+<li>FLANN(Fast Library for Aproximate Nearest Neighbors) Matcher</li>
+</ul>
+</section>
+<section id="template-matching" class="level3">
+<h3 class="anchored" data-anchor-id="template-matching">Template Matching</h3>
+</section>
+</section>
+<section id="b.-hog-dan-sift" class="level2">
+<h2 class="anchored" data-anchor-id="b.-hog-dan-sift">B. HOG dan SIFT</h2>
+<section id="histogram-of-oriented-gradient-hog" class="level3">
+<h3 class="anchored" data-anchor-id="histogram-of-oriented-gradient-hog">Histogram of Oriented Gradient (HOG)</h3>
+<p>Histogram of Oriented Gradients (HOG) adalah deskriptor fitur citra yang dapat digunakan untuk deteksi objek [52]. Untuk mengekstrak fitur ini, frekuensi orientasi gradien dalam bagian-bagian lokal citra dihitung. Penampilan dan bentuk objek lokal dalam sebuah citra dapat dijelaskan melalui distribusi gradien intensitas atau arah tepi. Langkah-langkah berikut perlu diimplementasikan untuk mengekstrak fitur HOG:</p>
+<ul>
+<li>Perhitungan gradien: Langkah pertama adalah menghitung gradien horizontal dan vertikal yang terpusat (Gx dan Gy) tanpa melakukan smoothing pada citra. Untuk tujuan ini, dapat digunakan operator Sobel atau operator deteksi tepi lainnya untuk mendapatkan gradien. Untuk citra berwarna, saluran warna yang memberikan magnitudo gradien tertinggi untuk setiap piksel dapat dipilih. Kemudian, magnitudo gradien dan orientasi gradien dihitung sebagai berikut:<br>
+
+<div style="text-align:center">
+<p><img src="Asset/image14.png" class="img-fluid"></p>
+</div></li>
+<li>Orientasi pengalamatan: Langkah kedua adalah pembuatan histogram sel. Untuk ini, orientasi gradien diquantisasi ke dalam bin. Setiap bin akan mendapatkan voting berdasarkan magnitudo gradien. Voting juga dapat diberi bobot dengan filter Gaussian untuk mengurangi bobot piksel-piksel di dekat tepi blok.</li>
+</ul>
+<div style="text-align:center">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="Asset/image15.png" class="img-fluid figure-img"></p>
+<figcaption class="figure-caption">Gambar 4.3. Histogram of oriented gradients: (a) cell histogram and (b) orientation binning</figcaption>
+</figure>
+</div>
+</div>
+<p>Mari kita ambil contoh ekstraksi deskriptor HOG. Untuk ini, kita menggunakan citra berukuran 64 x 128. Pertama, citra dibagi menjadi blok 16 x 16 dengan tumpang tindih 50%. Jadi, totalnya akan ada 7 x 15 = 105 blok. Setiap blok harus terdiri dari 2 x 2 sel dengan ukuran 8x8 piksel. Sekarang, orientasi gradien diquantisasi menjadi 9 bin. Di sini, voting adalah magnitudo gradien. Sekarang, voting diinterpolasi secara bilinear antara pusat bin yang berdekatan. Misalnya, misalkan orientasi adalah 75°. Kemudian, jarak antara pusat bin bin 70 dan bin 90 adalah 5° dan 15°, masing-masing. Oleh karena itu, rasio kepemilikan adalah 15/20 atau 3/4 dan 5/20 atau 1/4. Hal ini ditunjukkan secara diagramatik pada Gambar 4.3. (a) dan (b). Histogram dari gradien yang diarahkan ditunjukkan pada Gambar 4.3(a).</p>
+<ul>
+<li>Penggabungan blok deskriptor: Histogram sel kemudian digabungkan untuk membentuk vektor fitur seperti yang ditunjukkan pada Gambar 3.26. Pada contoh kita, histogram yang diperoleh dari blok yang tumpang tindih 2 x 2 sel digabungkan menjadi vektor fitur 1-D dengan dimensi 105 x 2 x 2 x 9 = 3780.<br>
+</li>
+<li>Normalisasi blok: Setiap blok dapat dinormalisasi dengan faktor normalisasi yang berbeda, seperti L2-norm, Zq-norm, Li-squared root norm, dll. Normalisasi blok membuat deskriptor invariant terhadap variasi pencahayaan dan fotometri.<br>
+</li>
+<li>Deskriptor final: Deskriptor HOG akhir dapat digunakan untuk pengenalan objek. Deskriptor ini merupakan fitur untuk algoritma pembelajaran mesin, seperti Support Vector Machine (SVM).<br>
+
+<div style="text-align:center">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="Asset/image16.png" class="img-fluid figure-img"></p>
+<figcaption class="figure-caption">Gambar 4.4. Hasil HOG</figcaption>
+</figure>
+</div>
+</div></li>
+</ul>
+</section>
+<section id="scale-invariant-feature-transform-sift" class="level3">
+<h3 class="anchored" data-anchor-id="scale-invariant-feature-transform-sift">Scale Invariant Feature Transform (SIFT)</h3>
+<p>Transformasi fitur skala invarian (SIFT) adalah algoritma deteksi fitur untuk mendeteksi dan menggambarkan fitur lokal pada gambar untuk pengenalan objek. Detektor sudut Harris invarian terhadap translasi dan rotasi, tetapi tidak terhadap skala. Namun, algoritma SIFT dapat mendeteksi dan menggambarkan fitur lokal pada gambar. Fitur-fitur ini invarian terhadap translasi, penskalaan, dan rotasi gambar, serta sebagian invarian terhadap perubahan pencahayaan [55]. Fitur-fitur gambar yang diekstraksi dari gambar latihan harus tetap terdeteksi bahkan dengan perubahan skala gambar, noise, dan pencahayaan. Konsep skala memainkan peran penting dalam analisis gambar. Dalam analisis gambar, kita perlu mengekstraksi fitur gambar yang sesuai dengan menganalisis struktur gambar yang berbeda. Struktur-struktur ini mungkin ada pada skala yang berbeda. Jadi, jumlah informasi yang disampaikan oleh struktur gambar tertentu tergantung pada skala. SIFT mempertimbangkan masalah ini, yaitu fitur-fitur yang invariant terhadap perubahan skala. Langkah-langkah utama dari algoritma SIFT adalah sebagai berikut:</p>
+<ul>
+<li>Estimasi ekstremum skala-ruang: Ini sesuai dengan ekstremum DoG dan memastikan ekstraksi wilayah invarian skala. Tentukan lokasi perkiraan dan skala titik fitur yang menonjol (juga disebut “keypoints”).<br>
+</li>
+<li>Lokalisasi dan penyaringan titik fitur: Perbaiki lokasi dan skala mereka, yaitu pilih titik fitur yang asli dan buang yang buruk.<br>
+</li>
+<li>Pemberian orientasi: Tentukan orientasi untuk setiap titik fitur, yaitu kurangi efek rotasi.<br>
+</li>
+<li>Membuat deskriptor: Menggunakan histogram deskriptor orientasi untuk setiap titik kunci.</li>
+</ul>
+<p>Deskriptor ini dibuat dengan menghitung histogram orientasi untuk setiap titik kunci. Deskriptor ini menangkap informasi gradien lokal di sekitar titik kunci dan memberikan representasi yang khas dari wilayah lokal. Langkah-langkah dalam membuat deskriptor adalah sebagai berikut:</p>
+<ul>
+<li>Bagi wilayah di sekitar titik kunci menjadi sub-wilayah atau bin yang lebih kecil.</li>
+<li>Untuk setiap sub-wilayah, hitung magnitudo dan orientasi gradien piksel.</li>
+<li>Tetapkan setiap piksel ke salah satu bin berdasarkan orientasi gradiennya.</li>
+<li>Untuk setiap bin, akumulasikan magnitudo gradien dari piksel yang ditugaskan.</li>
+<li>Buat histogram orientasi dengan mempertimbangkan magnitudo gradien yang terakumulasi sebagai bobot untuk setiap bin.</li>
+<li>Normalisasi histogram untuk membuatnya invarian terhadap perubahan pencahayaan.</li>
+<li>Deskriptor akhir terbentuk dengan menggabungkan histogram orientasi yang telah dinormalisasi.</li>
+</ul>
+<p>Setelah deskriptor dihitung untuk semua titik kunci, mereka dapat digunakan untuk berbagai aplikasi seperti pengenalan objek, penyatuan gambar, dan pencarian gambar. Pemadanan titik kunci di gambar-gambar yang berbeda berdasarkan deskriptornya memungkinkan pencocokan fitur yang kuat melintasi perubahan skala, rotasi, dan pencahayaan.</p>
+Untuk mengimplementasikan algoritma SIFT dalam Python, dapat menggunakan pustaka OpenCV. OpenCV menyediakan fungsi-fungsi untuk deteksi titik kunci, perhitungan deskriptor, dan pencocokan fitur. Dapat merujuk pada dokumentasi dan tutorial OpenCV untuk informasi detail tentang cara menggunakan algoritma SIFT dalam Python.C. Feature Matching.<br>
+
+<div style="text-align:center">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="Asset/image17.png" class="img-fluid figure-img"></p>
+<figcaption class="figure-caption">Gambar 4.5. Implementasi Langkah algoritma SIFT</figcaption>
+</figure>
+</div>
+</div>
+<p>Gambar 4.5. menunjukkan semua langkah implementasi dari algoritma SIFT. Langkah-langkah ini sekarang akan dijelaskan secara detail di bawah ini.</p>
+<ul>
+<li><strong>Deteksi fitur skala-invarian:</strong> Langkah pertama adalah mendeteksi titik-titik unik (kunci) yang dapat dipilih kembali secara berulang dengan perubahan lokasi/skala. Untuk tujuan ini, seperti yang ditunjukkan di Gambar 4.6., digunakan representasi skala dengan menghitung piramida Laplacian yang dinormalisasi skala menggunakan difference of Gaussian (DoG) multiskala. Secara khusus, DoG dari citra D(x, y, σ) diberikan oleh:<br>
+D(x, y, σ) = L(x, y, kiσ) — L(x, y, kjσ)<br>
+Di mana, L(x, y, kσ) adalah hasil konvolusi dari citra asli f(x, y) dengan blur Gaussian G(x, y, kσ) pada skala kσ, dengan kata lain,<br>
+L(x, y, kiσ) = G(x, y, kσ) * I(x, y)</li>
+</ul>
+<div style="text-align:center">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="Asset/image18.png" class="img-fluid figure-img"></p>
+<figcaption class="figure-caption">Gambar 4.6. Formasi Laplacian Pyramid</figcaption>
+</figure>
+</div>
+</div>
+<ul>
+<li><strong>Deteksi puncak dalam skala-ruang:</strong> Pada tahap ini, titik-titik ekstrem lokal dideteksi dengan mempertimbangkan baik ruang maupun skala. Tujuannya adalah untuk mengidentifikasi lokasi dan skala yang dapat diberikan secara berulang dalam pandangan yang berbeda dari adegan atau objek yang sama. Pada kasus diskrit, hal ini ditentukan dengan membandingkan dengan 26 tetangga terdekat seperti yang ditunjukkan di Gambar 4.7.</li>
+</ul>
+<div style="text-align:center">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="Asset/image19.png" class="img-fluid figure-img"></p>
+<figcaption class="figure-caption">Gambar 4.7. Scale-space peak detection</figcaption>
+</figure>
+</div>
+</div>
+<ul>
+<li><strong>Lokalisasi titik kunci dan penolakan outlier:</strong> Selanjutnya, skala yang memberikan ekstremum dalam perbedaan Gaussian ditetapkan sebagai skala untuk titik kunci. Namun, deteksi ekstremum dalam skala-ruang menghasilkan banyak calon titik kunci. Namun demikian, beberapa titik kunci tidak stabil. Oleh karena itu, langkah berikutnya dari algoritma ini adalah menolak beberapa titik kunci yang memiliki kontras rendah atau yang terlokalisasi buruk di sepanjang tepi. Titik kunci dengan kontras rendah sensitif terhadap noise.<br>
+<strong>Penghilangan titik kunci kontras rendah:</strong> Titik kunci dengan kontras rendah dan terlokalisasi buruk dihilangkan dengan menggunakan interpolasi subpiksel/subskala menggunakan ekspansi Taylor, yang diberikan oleh:</li>
+</ul>
+<p><img src="Asset/image111.png" class="img-fluid"></p>
+<p>Di mana, D dan turunannya dihitung di titik kunci calon dan x = (x, y, ) adalah offset dari titik ini. Lokasi puncak x diperkirakan dengan mempertimbangkan turunan fungsi ini terhadap x dan mengatur nilainya menjadi nol. Jika offset x lebih besar dari ambang batas yang telah ditentukan dalam dimensi manapun, maka hal ini menunjukkan bahwa puncak berada lebih dekat dengan titik kunci calon lainnya. Dalam hal ini, titik kunci calon harus diubah dan interpolasi dilakukan di sekitar titik tersebut. Jika tidak, offset ditambahkan ke titik kunci calon tersebut. Hal ini dilakukan untuk mendapatkan perkiraan yang diinterpolasi untuk lokasi puncak.<br>
+<strong>Penghilangan respons tepi:</strong> Titik-titik tepi sesuai dengan kontras tinggi dalam satu arah dan rendah dalam arah lainnya. Fungsi DoG memiliki respons kuat di sepanjang tepi gambar. Titik kunci yang memiliki lokasi yang sangat tidak terdefinisi tetapi memiliki respons tepi tinggi dihilangkan. Langkah ini meningkatkan stabilitas. Puncak yang tidak terdefinisi dengan baik dalam fungsi DoG menunjukkan kelengkungan tinggi di sepanjang tepi dan nilai rendah dalam arah tegak lurus. Kelengkungan utama dapat dihitung dengan mengevaluasi matriks Hessian. Perlu dicatat bahwa untuk puncak yang tidak terdefinisi dengan baik dalam fungsi DoG, kelengkungan utama di sepanjang tepi jauh lebih besar daripada kelengkungan utama sepanjangnya. Untuk menemukan kelengkungan utama, kita perlu mencari solusi untuk eigenvalue dari matriks Hessian orde kedua H sebagai berikut:<br>
+<img src="Asset/image112.png" class="img-fluid"><br>
+Dalam persamaan di atas, rasio R hanya bergantung pada rasio eigenvalue r = A1/A2, dan R minimum ketika eigenvalue sama satu sama lain. Jika perbedaan absolut antara dua eigenvalue lebih tinggi, maka perbedaan absolut antara dua kelengkungan utama D juga akan lebih tinggi. Ini sesuai dengan nilai tinggi dari R. Oleh karena itu, eliminasi titik kunci dilakukan jika:<br>
+<img src="Asset/image113.png" class="img-fluid"></p>
+<ul>
+<li><p><strong>Penugasan orientasi:</strong> Pada langkah ini, setiap titik kunci diberikan satu atau lebih orientasi. Orientasi ditentukan berdasarkan arah gradien citra lokal. Deskriptor titik kunci dapat direpresentasikan relatif terhadap orientasi ini. Itulah sebabnya, mereka invariant terhadap rotasi citra. Untuk ini, magnitudo dan orientasi pada citra yang telah dihaluskan dengan Gaussian (pada skala yang sesuai dengan titik kunci) dihitung. Pertama, citra yang telah dihaluskan dengan Gaussian L(x,y,a) pada skala titik kunci a diambil agar semua perhitungan terkait dilakukan dalam cara yang invariant terhadap skala. Untuk sampel citra L(x,y) pada skala σ, magnitudo gradien m(x,y) dan orientasi θ(x,y) dihitung menggunakan perbedaan piksel sebagai berikut:<br>
+<img src="Asset/image114.png" class="img-fluid"><br>
+Perhitungan magnitudo dan arah untuk gradien harus dilakukan untuk setiap piksel tetangga di sekitar titik kunci dalam citra L yang telah dihaluskan dengan Gaussian. Selanjutnya, histogram orientasi dibentuk dari orientasi gradien titik sampel dalam sebuah wilayah di sekitar titik kunci. Histogram orientasi memiliki 36 bin yang mencakup rentang 360 derajat orientasi. Setiap sampel yang ditambahkan ke histogram diberi bobot berdasarkan magnitudo gradiennya dan oleh jendela lingkaran berbobot Gaussian. Puncak-puncak dalam histogram ini sesuai dengan orientasi dominan dari patch citra. Pada skala dan lokasi yang sama, dapat ada beberapa titik kunci dengan orientasi yang berbeda. Jika terdapat penugasan beberapa orientasi, titik kunci tambahan harus dibuat. Titik kunci tambahan tersebut harus memiliki lokasi dan skala yang sama dengan titik kunci asli untuk setiap orientasi tambahan. Jadi, setiap titik kunci memiliki parameter (x, y, 2, θ).</p></li>
+<li><p><strong>Deskriptor titik kunci:</strong> Pada langkah-langkah sebelumnya, lokasi titik kunci pada skala tertentu telah ditemukan. Setelah itu, orientasi ditetapkan untuk titik kunci tersebut. Penugasan orientasi menjamin invariansi terhadap lokasi citra, skala, dan rotasi. Langkah selanjutnya adalah menghitung vektor deskriptor untuk masing-masing titik kunci. Tujuannya adalah membuat deskriptor menjadi sangat khas. Selain itu, deskriptor juga seharusnya sebagian invariant terhadap pencahayaan, sudut pandang 3D, dll. Langkah ini harus dilakukan pada citra yang paling mendekati skala titik kunci. Sebelum menghitung deskriptor, penting untuk memutar wilayah dengan nilai orientasi negatif (minus θ) yang terkait dengan titik kunci.<br>
+Pertama, sejumlah histogram orientasi dibuat pada subwilayah (lingkungan) piksel 4x4, dan 8 bin dialokasikan untuk setiap subwilayah tersebut. Histogram ini berasal dari magnitudo dan nilai orientasi dari sampel dalam wilayah 16x16 di sekitar titik kunci. Jadi, setiap histogram berisi sampel dari subwilayah 4x4 dari wilayah lingkungan asli. Selanjutnya, magnitudo diberi bobot dengan fungsi Gaussian. Deskriptor kemudian menjadi vektor yang berisi semua nilai dari histogram-histogram ini. Karena terdapat 4x4 = 16 histogram, masing-masing dengan 8 bin, vektor tersebut akan memiliki 128 elemen. Jadi, dimensi deskriptor atau vektor fitur akan menjadi 128. Vektor ini kemudian dinormalisasi menjadi panjang satuan untuk mengurangi efek variasi pencahayaan. Gambar 4.8. dan 4.9. menunjukkan gradien gambar dan deskriptor titik kunci yang sesuai.</p></li>
+</ul>
+<div style="text-align:center">
+<div class="quarto-layout-panel">
+<div class="quarto-layout-row quarto-layout-valign-top">
+<div class="quarto-layout-cell" style="flex-basis: 50.0%;justify-content: center;">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="Asset/image115.png" class="img-fluid figure-img"></p>
+<figcaption class="figure-caption">Gambar 4.8. Cameraman Image</figcaption>
+</figure>
+</div>
+</div>
+<div class="quarto-layout-cell" style="flex-basis: 50.0%;justify-content: center;">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="Asset/image116.png" class="img-fluid figure-img"></p>
+<figcaption class="figure-caption">Gambar 4.9. Cameraman Image dengan HOG</figcaption>
+</figure>
+</div>
+</div>
+</div>
+</div>
+</div>
+<p>Untuk aplikasi seperti pencarian gambar berbasis konten, fitur SIFT dapat dihitung untuk sekumpulan gambar dalam basis data, dan deskriptor-fiturnya disimpan dalam basis data tersebut. Begitu juga untuk sebuah gambar query, fitur SIFT dapat dihitung. Untuk pencocokan, deskriptor terdekat dalam basis data yang sesuai dengan deskriptor gambar query dapat ditemukan dengan menggunakan metrik jarak yang sesuai, dan gambar query tersebut dapat diambil kembali dari basis data.<br>
+Proses pencarian dapat dilakukan dengan membandingkan deskriptor-fitur gambar query dengan deskriptor-fitur gambar dalam basis data menggunakan metrik jarak seperti jarak Euclidean atau jarak cosine. Metrik jarak digunakan untuk mengukur sejauh mana kedua deskriptor-fitur tersebut mirip satu sama lain. Jika terdapat kemiripan yang signifikan antara deskriptor-fitur gambar query dengan deskriptor-fitur gambar dalam basis data, gambar-gambar tersebut dapat dianggap sebagai pencocokan potensial.<br>
+Setelah pencocokan dilakukan, gambar-gambar dalam basis data dapat diurutkan berdasarkan tingkat kemiripan dengan gambar query. Gambar-gambar yang memiliki deskriptor-fitur yang paling mirip dengan gambar query akan muncul sebagai hasil teratas dalam hasil pencarian. Dengan demikian, gambar-gambar dalam basis data yang memiliki fitur yang mirip dengan gambar query dapat ditemukan dan dipulihkan dengan menggunakan fitur-fitur SIFT. Penggunaan fitur-fitur SIFT dalam aplikasi pencarian gambar berbasis konten memungkinkan pencarian yang lebih akurat dan efisien dengan mengabaikan perubahan skala, rotasi, dan pencahayaan dalam gambar.</p>
+</section>
+</section>
+<section id="c.-bow-dan-bovw" class="level2">
+<h2 class="anchored" data-anchor-id="c.-bow-dan-bovw">C. BoW dan BoVW</h2>
+<p>Bag of Word (BOW) pada awalnya tidak digunakan untuk visi komputer namun digunakan dalam bidang Text-Processin. Terkadang dalam konteks visi komputer Bag of Word disebut juga Bag of Visual Word. Namun Kita tetap akan menggunakan istilah BOW karena ini adalah istilah yang digunakan pada OpenCV.</p>
+<p>BoW adalah teknik yang digunakan untuk memberikan bobot atau hitungan untuk setiap kata dalam rangkaian dokumen; kita kemudian merepresentasikan dokumen-dokumen ini dengan vektor-vektor dari jumlah ini. Mari kita lihat pada sebuah contoh, sebagai berikut:<br>
+<strong>Dokumen 1:</strong> Saya suka Python dan Saya suka Java <strong>Dokumen 2:</strong> Saya suka Python dan C# <strong>Dokumen 3:</strong> Saya tidak suka pemrograman</p>
+<p>Dari ketiga dokumen diatas dapat dibuat kamus atau kosakata, dengan nilai nilai sebagai berikut:</p>
+<div class="sourceCode" id="cb1"><pre class="sourceCode default code-with-copy"><code class="sourceCode default"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>{  </span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>    Saya : 4   </span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>    suka : 4  </span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>    Python : 2  </span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a>    dan : 2  </span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a>    Java : 1  </span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a>    C# : 1  </span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a>    tidak : 1  </span>
+<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a>    pemrograman : 1  </span>
+<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a>} </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Kita memiliki 8 entri atau fitur yang nantinya akan direpresentasikan untuk dokumen 1,2, dan 3. Setiap vektor berisi nilai yang mewakili jumlah semua kata dalam kamus secara berurutan, untuk dokumen tertentu. Representasi vektor dari tiga kalimat sebelumnya adalah sebagai berikut:</p>
+<div style="text-align:center">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="Asset/image117.png" class="img-fluid figure-img"></p>
+<figcaption class="figure-caption">Tabel 4.1 Representasi BoW</figcaption>
+</figure>
+</div>
+</div>
+<p>Vektor-vektor ini dapat di konseptualisasikan sebagai representasi histogram dari sebuah dokumen atau sebagai vektor deskriptor yang dapat digunakan untuk pengklasifikasian.</p>
+<p>Konsep BOVW(Bag of Visual Word) diadaptasi dari BOW(Bag of Word) serta Information Retrieval yang ada pada NLP(Natural language Processing). BOW(Bag of Wors) bekerja dengan memakai frekuensi tiap kata-kata supaya mengetahui keywoard dari dokumen dengan menghitung berapa jumlah setiap katta yang muncul di dokumen (Davida, 2018).<br>
+Yang membedakan BOVW dengan BOW yaitu pada BOW yang digunakan adalah kata-kata, sedangkan BOVW menggunakan fitur-fitur gambar atau bisa dikatakan pola unik pada gambar yang berperan sebagai “kata-kata” yang ada di BOW. Setelah menghitung frekuensi, maka dari perhitungan frekuensi tersebut setiap fitur-fitur gambar dibuat histogram. Fitur itu sendiri tersusun dari deskriptor dan keypoints (Davida, 2018).<br>
+Sesuai dengan namanya, keypoints merupakan titik-titik yang menunjukan bagian-bagian gambar yang “menonjol”. Sedangkan deskriptor adalah gambaran dari keypoint. Dengan begitu, walaupun gambar dikecilkan, diperluas, diputar, letak titik-titik keypoint-nya akan tetap sama. Histogram frekuensi yang terbentuk dapat digunakan untuk memprediksi kategori citra serta menemukan citra lainnya yang mirip atau serupa (Davida, 2018).</p>
+<div style="text-align:center">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="Asset/image118.png" class="img-fluid figure-img"></p>
+<figcaption class="figure-caption">Gambar 4.10. Ilustrasi BoVW</figcaption>
+</figure>
+</div>
+</div>
+
+
+</section>
+
+</main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+window.document.addEventListener("DOMContentLoaded", function (event) {
+  const toggleBodyColorMode = (bsSheetEl) => {
+    const mode = bsSheetEl.getAttribute("data-mode");
+    const bodyEl = window.document.querySelector("body");
+    if (mode === "dark") {
+      bodyEl.classList.add("quarto-dark");
+      bodyEl.classList.remove("quarto-light");
+    } else {
+      bodyEl.classList.add("quarto-light");
+      bodyEl.classList.remove("quarto-dark");
+    }
+  }
+  const toggleBodyColorPrimary = () => {
+    const bsSheetEl = window.document.querySelector("link#quarto-bootstrap");
+    if (bsSheetEl) {
+      toggleBodyColorMode(bsSheetEl);
+    }
+  }
+  toggleBodyColorPrimary();  
+  const disableStylesheet = (stylesheets) => {
+    for (let i=0; i < stylesheets.length; i++) {
+      const stylesheet = stylesheets[i];
+      stylesheet.rel = 'prefetch';
+    }
+  }
+  const enableStylesheet = (stylesheets) => {
+    for (let i=0; i < stylesheets.length; i++) {
+      const stylesheet = stylesheets[i];
+      stylesheet.rel = 'stylesheet';
+    }
+  }
+  const manageTransitions = (selector, allowTransitions) => {
+    const els = window.document.querySelectorAll(selector);
+    for (let i=0; i < els.length; i++) {
+      const el = els[i];
+      if (allowTransitions) {
+        el.classList.remove('notransition');
+      } else {
+        el.classList.add('notransition');
+      }
+    }
+  }
+  const toggleColorMode = (alternate) => {
+    // Switch the stylesheets
+    const alternateStylesheets = window.document.querySelectorAll('link.quarto-color-scheme.quarto-color-alternate');
+    manageTransitions('#quarto-margin-sidebar .nav-link', false);
+    if (alternate) {
+      enableStylesheet(alternateStylesheets);
+      for (const sheetNode of alternateStylesheets) {
+        if (sheetNode.id === "quarto-bootstrap") {
+          toggleBodyColorMode(sheetNode);
+        }
+      }
+    } else {
+      disableStylesheet(alternateStylesheets);
+      toggleBodyColorPrimary();
+    }
+    manageTransitions('#quarto-margin-sidebar .nav-link', true);
+    // Switch the toggles
+    const toggles = window.document.querySelectorAll('.quarto-color-scheme-toggle');
+    for (let i=0; i < toggles.length; i++) {
+      const toggle = toggles[i];
+      if (toggle) {
+        if (alternate) {
+          toggle.classList.add("alternate");     
+        } else {
+          toggle.classList.remove("alternate");
+        }
+      }
+    }
+    // Hack to workaround the fact that safari doesn't
+    // properly recolor the scrollbar when toggling (#1455)
+    if (navigator.userAgent.indexOf('Safari') > 0 && navigator.userAgent.indexOf('Chrome') == -1) {
+      manageTransitions("body", false);
+      window.scrollTo(0, 1);
+      setTimeout(() => {
+        window.scrollTo(0, 0);
+        manageTransitions("body", true);
+      }, 40);  
+    }
+  }
+  const isFileUrl = () => { 
+    return window.location.protocol === 'file:';
+  }
+  const hasAlternateSentinel = () => {  
+    let styleSentinel = getColorSchemeSentinel();
+    if (styleSentinel !== null) {
+      return styleSentinel === "alternate";
+    } else {
+      return false;
+    }
+  }
+  const setStyleSentinel = (alternate) => {
+    const value = alternate ? "alternate" : "default";
+    if (!isFileUrl()) {
+      window.localStorage.setItem("quarto-color-scheme", value);
+    } else {
+      localAlternateSentinel = value;
+    }
+  }
+  const getColorSchemeSentinel = () => {
+    if (!isFileUrl()) {
+      const storageValue = window.localStorage.getItem("quarto-color-scheme");
+      return storageValue != null ? storageValue : localAlternateSentinel;
+    } else {
+      return localAlternateSentinel;
+    }
+  }
+  let localAlternateSentinel = 'default';
+  // Dark / light mode switch
+  window.quartoToggleColorScheme = () => {
+    // Read the current dark / light value 
+    let toAlternate = !hasAlternateSentinel();
+    toggleColorMode(toAlternate);
+    setStyleSentinel(toAlternate);
+  };
+  // Ensure there is a toggle, if there isn't float one in the top right
+  if (window.document.querySelector('.quarto-color-scheme-toggle') === null) {
+    const a = window.document.createElement('a');
+    a.classList.add('top-right');
+    a.classList.add('quarto-color-scheme-toggle');
+    a.href = "";
+    a.onclick = function() { try { window.quartoToggleColorScheme(); } catch {} return false; };
+    const i = window.document.createElement("i");
+    i.classList.add('bi');
+    a.appendChild(i);
+    window.document.body.appendChild(a);
+  }
+  // Switch to dark mode if need be
+  if (hasAlternateSentinel()) {
+    toggleColorMode(true);
+  } else {
+    toggleColorMode(false);
+  }
+  const icon = "";
+  const anchorJS = new window.AnchorJS();
+  anchorJS.options = {
+    placement: 'right',
+    icon: icon
+  };
+  anchorJS.add('.anchored');
+  const isCodeAnnotation = (el) => {
+    for (const clz of el.classList) {
+      if (clz.startsWith('code-annotation-')) {                     
+        return true;
+      }
+    }
+    return false;
+  }
+  const clipboard = new window.ClipboardJS('.code-copy-button', {
+    text: function(trigger) {
+      const codeEl = trigger.previousElementSibling.cloneNode(true);
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+    }
+  });
+  clipboard.on('success', function(e) {
+    // button target
+    const button = e.trigger;
+    // don't keep focus
+    button.blur();
+    // flash "checked"
+    button.classList.add('code-copy-button-checked');
+    var currentTitle = button.getAttribute("title");
+    button.setAttribute("title", "Copied!");
+    let tooltip;
+    if (window.bootstrap) {
+      button.setAttribute("data-bs-toggle", "tooltip");
+      button.setAttribute("data-bs-placement", "left");
+      button.setAttribute("data-bs-title", "Copied!");
+      tooltip = new bootstrap.Tooltip(button, 
+        { trigger: "manual", 
+          customClass: "code-copy-button-tooltip",
+          offset: [0, -8]});
+      tooltip.show();    
+    }
+    setTimeout(function() {
+      if (tooltip) {
+        tooltip.hide();
+        button.removeAttribute("data-bs-title");
+        button.removeAttribute("data-bs-toggle");
+        button.removeAttribute("data-bs-placement");
+      }
+      button.setAttribute("title", currentTitle);
+      button.classList.remove('code-copy-button-checked');
+    }, 1000);
+    // clear code selection
+    e.clearSelection();
+  });
+  function tippyHover(el, contentFn) {
+    const config = {
+      allowHTML: true,
+      content: contentFn,
+      maxWidth: 500,
+      delay: 100,
+      arrow: false,
+      appendTo: function(el) {
+          return el.parentElement;
+      },
+      interactive: true,
+      interactiveBorder: 10,
+      theme: 'quarto',
+      placement: 'bottom-start'
+    };
+    window.tippy(el, config); 
+  }
+  const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+  for (var i=0; i<noterefs.length; i++) {
+    const ref = noterefs[i];
+    tippyHover(ref, function() {
+      // use id or data attribute instead here
+      let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+      try { href = new URL(href).hash; } catch {}
+      const id = href.replace(/^#\/?/, "");
+      const note = window.document.getElementById(id);
+      return note.innerHTML;
+    });
+  }
+      let selectedAnnoteEl;
+      const selectorForAnnotation = ( cell, annotation) => {
+        let cellAttr = 'data-code-cell="' + cell + '"';
+        let lineAttr = 'data-code-annotation="' +  annotation + '"';
+        const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+        return selector;
+      }
+      const selectCodeLines = (annoteEl) => {
+        const doc = window.document;
+        const targetCell = annoteEl.getAttribute("data-target-cell");
+        const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+        const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+        const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+        const lineIds = lines.map((line) => {
+          return targetCell + "-" + line;
+        })
+        let top = null;
+        let height = null;
+        let parent = null;
+        if (lineIds.length > 0) {
+            //compute the position of the single el (top and bottom and make a div)
+            const el = window.document.getElementById(lineIds[0]);
+            top = el.offsetTop;
+            height = el.offsetHeight;
+            parent = el.parentElement.parentElement;
+          if (lineIds.length > 1) {
+            const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+            const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+            height = bottom - top;
+          }
+          if (top !== null && height !== null && parent !== null) {
+            // cook up a div (if necessary) and position it 
+            let div = window.document.getElementById("code-annotation-line-highlight");
+            if (div === null) {
+              div = window.document.createElement("div");
+              div.setAttribute("id", "code-annotation-line-highlight");
+              div.style.position = 'absolute';
+              parent.appendChild(div);
+            }
+            div.style.top = top - 2 + "px";
+            div.style.height = height + 4 + "px";
+            let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+            if (gutterDiv === null) {
+              gutterDiv = window.document.createElement("div");
+              gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+              gutterDiv.style.position = 'absolute';
+              const codeCell = window.document.getElementById(targetCell);
+              const gutter = codeCell.querySelector('.code-annotation-gutter');
+              gutter.appendChild(gutterDiv);
+            }
+            gutterDiv.style.top = top - 2 + "px";
+            gutterDiv.style.height = height + 4 + "px";
+          }
+          selectedAnnoteEl = annoteEl;
+        }
+      };
+      const unselectCodeLines = () => {
+        const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+        elementsIds.forEach((elId) => {
+          const div = window.document.getElementById(elId);
+          if (div) {
+            div.remove();
+          }
+        });
+        selectedAnnoteEl = undefined;
+      };
+      // Attach click handler to the DT
+      const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+      for (const annoteDlNode of annoteDls) {
+        annoteDlNode.addEventListener('click', (event) => {
+          const clickedEl = event.target;
+          if (clickedEl !== selectedAnnoteEl) {
+            unselectCodeLines();
+            const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+            if (activeEl) {
+              activeEl.classList.remove('code-annotation-active');
+            }
+            selectCodeLines(clickedEl);
+            clickedEl.classList.add('code-annotation-active');
+          } else {
+            // Unselect the line
+            unselectCodeLines();
+            clickedEl.classList.remove('code-annotation-active');
+          }
+        });
+      }
+  const findCites = (el) => {
+    const parentEl = el.parentElement;
+    if (parentEl) {
+      const cites = parentEl.dataset.cites;
+      if (cites) {
+        return {
+          el,
+          cites: cites.split(' ')
+        };
+      } else {
+        return findCites(el.parentElement)
+      }
+    } else {
+      return undefined;
+    }
+  };
+  var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+  for (var i=0; i<bibliorefs.length; i++) {
+    const ref = bibliorefs[i];
+    const citeInfo = findCites(ref);
+    if (citeInfo) {
+      tippyHover(citeInfo.el, function() {
+        var popup = window.document.createElement('div');
+        citeInfo.cites.forEach(function(cite) {
+          var citeDiv = window.document.createElement('div');
+          citeDiv.classList.add('hanging-indent');
+          citeDiv.classList.add('csl-entry');
+          var biblioDiv = window.document.getElementById('ref-' + cite);
+          if (biblioDiv) {
+            citeDiv.innerHTML = biblioDiv.innerHTML;
+          }
+          popup.appendChild(citeDiv);
+        });
+        return popup.innerHTML;
+      });
+    }
+  }
+});
+</script>
+<nav class="page-navigation">
+  <div class="nav-page nav-page-previous">
+      <a href="./3_Dasar_dasar_Image_Processing.html" class="pagination-link">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text">3 Dasar-dasar Image Processing</span>
+      </a>          
+  </div>
+  <div class="nav-page nav-page-next">
+      <a href="./5_Konsep_Dasar_Machine_Learning_dan_Deep_Learning.html" class="pagination-link">
+        <span class="nav-page-text">5 Konsep Dasar Machine Learning dan Deep Learning dalam Klasifikasi Objek</span> <i class="bi bi-arrow-right-short"></i>
+      </a>
+  </div>
+</nav>
+</div> <!-- /content -->
+
+
+
+</body></html>
