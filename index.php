@@ -6,25 +6,25 @@ include_once('header.php')
 <main role="main">
     <?php
     if (isset($_GET['page'])) {
-      if ($_GET['page']=="web-developer"){
+      if ($_GET['page']=="a56764040f7c92578bb2c011f845aae9"){
       ?>
-        <iframe id="myIframe" src="web-developer/" style="position: absolute;width: 100%;height: calc(100% - 3.5rem);border: none; overflow:auto;"></iframe>
+        <iframe id="myIframe" src="a56764040f7c92578bb2c011f845aae9/" style="position: absolute;width: 100%;height: calc(100% - 3.5rem);border: none; overflow:auto;"></iframe>
       <?php
-      }elseif ($_GET['page']=="mobile-developer"){
+      }elseif ($_GET['page']=="1d63721b0fb4c25cbae5c02375064885"){
       ?>
-        <iframe id="myIframe" src="mobile-developer/" style="position: absolute;width: 100%;height: calc(100% - 3.5rem);border: none; overflow:auto;"></iframe>
+        <iframe id="myIframe" src="1d63721b0fb4c25cbae5c02375064885/" style="position: absolute;width: 100%;height: calc(100% - 3.5rem);border: none; overflow:auto;"></iframe>
       <?php
-      }elseif ($_GET['page']=="data-science"){
+      }elseif ($_GET['page']=="05523a261ba32a27ed36e885a86f9fed"){
       ?>  
-        <iframe id="myIframe" src="data-science/" style="position: absolute;width: 100%;height: calc(100% - 3.5rem);border: none; overflow:auto;"></iframe>
+        <iframe id="myIframe" src="05523a261ba32a27ed36e885a86f9fed/" style="position: absolute;width: 100%;height: calc(100% - 3.5rem);border: none; overflow:auto;"></iframe>
       <?php
-      }elseif ($_GET['page']=="computer-vision"){
+      }elseif ($_GET['page']=="a82f3db817c535a4bae230a7ce1aebdd"){
       ?>
-        <iframe id="myIframe" src="computer-vision/" style="position: absolute;width: 100%;height: calc(100% - 3.5rem);border: none; overflow:auto;"></iframe>
+        <iframe id="myIframe" src="a82f3db817c535a4bae230a7ce1aebdd/" style="position: absolute;width: 100%;height: calc(100% - 3.5rem);border: none; overflow:auto;"></iframe>
       <?php
-      }elseif ($_GET['page']=="game-developer"){
+      }elseif ($_GET['page']=="60ffabea50867a5af1ab63905905c95a"){
       ?>
-        <iframe id="myIframe" src="game-developer/" style="position: absolute;width: 100%;height: calc(100% - 3.5rem);border: none; overflow:auto;"></iframe>
+        <iframe id="myIframe" src="60ffabea50867a5af1ab63905905c95a/" style="position: absolute;width: 100%;height: calc(100% - 3.5rem);border: none; overflow:auto;"></iframe>
       <?php
       }else{
       ?>
