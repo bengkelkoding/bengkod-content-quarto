@@ -1,8 +1,3 @@
-<?php
-session_start();
-$_SESSION['haloo'] = 'dunia';
-?>
-
 <!doctype html>
 <html lang="en">
   <head>
@@ -17,20 +12,13 @@ $_SESSION['haloo'] = 'dunia';
 
   </head>
   <body>
-
-    <?php 
-    var_dump($_SESSION['haloo']);
-    if ($_SESSION['haloo'] == 'dunia') {
-        echo '<meta http-equiv="refresh" content="5;url=https://example.com">';
-    }
-    ?>
     <nav class="navbar navbar-expand-lg" data-bs-theme="dark" style="background-color: #0e4584;" >
     <div class="container">
-        <a class="navbar-brand" href="http://bengkelkoding.dinus.ac.id">Bengkel Koding</a>
-        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <a class="navbar-brand" href="http://bengkelkoding.arifsaputra.id">Bengkel Koding</a>
+        <!-- <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
-        </button>
-        <div class="collapse navbar-collapse justify-content-end" id="navbarSupportedContent">
+        </button> -->
+        <!-- <div class="collapse navbar-collapse justify-content-end" id="navbarSupportedContent">
             <ul class="navbar-nav ml-auto ms-5 mb-2 mb-lg-0">
                 <li class="nav-item">
                     <a class="nav-link" href="http://localhost/bengkod-kampus">Beranda</a>
@@ -52,7 +40,7 @@ $_SESSION['haloo'] = 'dunia';
                 </li>
             </ul>
             <button class="btn">Login</button>
-        </div>
+        </div> -->
     </div>
     </nav>
 
