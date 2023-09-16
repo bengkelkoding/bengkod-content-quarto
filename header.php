@@ -12,9 +12,10 @@
 
   </head>
   <body>
-    <nav class="navbar navbar-expand-lg" data-bs-theme="dark" style="background-color: #0e4584;" >
+    <nav class="navbar navbar-expand-lg" data-bs-theme="dark" style="background-color: #0e4584; height: 10%" >
     <div class="container">
         <a class="navbar-brand" href="http://bengkelkoding.arifsaputra.id">Bengkel Koding</a>
+        <a class="navbar-brand" href="http://bengkelkoding.arifsaputra.id/mahasiswa">Kembali</a>
         <!-- <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
         </button> -->
