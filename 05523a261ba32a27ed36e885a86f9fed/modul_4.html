@@ -2,12 +2,12 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.3.353">
+<meta name="generator" content="quarto-1.3.450">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>Associate Data Science - 4&nbsp; Validasi Data</title>
+<title>Associate Data Science - 4&nbsp; Validasi dan Visualisasi Data</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -93,7 +93,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     "search-more-matches-text": "more matches in this document",
     "search-clear-button-title": "Clear",
     "search-detached-cancel-button-title": "Cancel",
-    "search-submit-button-title": "Submit"
+    "search-submit-button-title": "Submit",
+    "search-label": "Search"
   }
 }</script>
 
@@ -109,10 +110,10 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-      <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./konsep.html"><b>Konsep</b></a></li><li class="breadcrumb-item"><a href="./modul_4.html"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Validasi Data</span></a></li></ol></nav>
+      <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./konsep.html"><b>Konsep</b></a></li><li class="breadcrumb-item"><a href="./modul_4.html"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Validasi dan Visualisasi Data</span></a></li></ol></nav>
       <a class="flex-grow-1" role="button" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
       </a>
-      <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
+      <button type="button" class="btn quarto-search-button" aria-label="" onclick="window.quartoOpenSearch();">
         <i class="bi bi-search"></i>
       </button>
     </div>
@@ -161,19 +162,19 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./modul_2.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Data Understanding</span></span></a>
+ <span class="menu-text"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Telaah Data</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./modul_3.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Telaah Data</span></span></a>
+ <span class="menu-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Libraries for Data Preprocessing</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./modul_4.html" class="sidebar-item-text sidebar-link active">
- <span class="menu-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Validasi Data</span></span></a>
+ <span class="menu-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Validasi dan Visualisasi Data</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
@@ -262,13 +263,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   <li><a href="#validasi-dengan-pandas" id="toc-validasi-dengan-pandas" class="nav-link" data-scroll-target="#validasi-dengan-pandas"><span class="header-section-number">4.7</span> Validasi Dengan Pandas</a></li>
   <li><a href="#visualisasi-data" id="toc-visualisasi-data" class="nav-link" data-scroll-target="#visualisasi-data"><span class="header-section-number">4.8</span> Visualisasi Data</a>
   <ul class="collapse">
-  <li><a href="#jenis-visualisasi-data" id="toc-jenis-visualisasi-data" class="nav-link" data-scroll-target="#jenis-visualisasi-data"><span class="header-section-number">4.8.1</span> Jenis Visualisasi Data</a></li>
-  <li><a href="#library-visualisasi-data" id="toc-library-visualisasi-data" class="nav-link" data-scroll-target="#library-visualisasi-data"><span class="header-section-number">4.8.2</span> Library Visualisasi Data</a></li>
-  <li><a href="#korelasi-causation" id="toc-korelasi-causation" class="nav-link" data-scroll-target="#korelasi-causation"><span class="header-section-number">4.8.3</span> Korelasi &amp; Causation</a></li>
-  <li><a href="#analisis-korelasi-heatmap" id="toc-analisis-korelasi-heatmap" class="nav-link" data-scroll-target="#analisis-korelasi-heatmap"><span class="header-section-number">4.8.4</span> Analisis Korelasi (Heatmap)</a></li>
-  <li><a href="#histogram" id="toc-histogram" class="nav-link" data-scroll-target="#histogram"><span class="header-section-number">4.8.5</span> Histogram</a></li>
-  <li><a href="#bar-chart" id="toc-bar-chart" class="nav-link" data-scroll-target="#bar-chart"><span class="header-section-number">4.8.6</span> Bar Chart</a></li>
-  <li><a href="#pie-chart" id="toc-pie-chart" class="nav-link" data-scroll-target="#pie-chart"><span class="header-section-number">4.8.7</span> Pie Chart</a></li>
+  <li><a href="#library-visualisasi-data" id="toc-library-visualisasi-data" class="nav-link" data-scroll-target="#library-visualisasi-data"><span class="header-section-number">4.8.1</span> Library Visualisasi Data</a></li>
+  <li><a href="#jenis-visualisasi-data" id="toc-jenis-visualisasi-data" class="nav-link" data-scroll-target="#jenis-visualisasi-data"><span class="header-section-number">4.8.2</span> Jenis Visualisasi Data</a></li>
   </ul></li>
   </ul>
 </nav>
@@ -278,7 +274,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Validasi Data</span></h1>
+<h1 class="title"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Validasi dan Visualisasi Data</span></h1>
 </div>
 
 
@@ -347,14 +343,38 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </section>
 <section id="validasi-dengan-pandas" class="level2" data-number="4.7">
 <h2 data-number="4.7" class="anchored" data-anchor-id="validasi-dengan-pandas"><span class="header-section-number">4.7</span> Validasi Dengan Pandas</h2>
-<p>Method <code>info()</code> dapat digunakan untuk melihat informasi data frame, seperti jumlah baris, kolom, nilai non-NULL, tipe data, dan total penggunaan memori. Method ini sangat berguna dalam melakukan validasi tahap awal pada data.</p>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
-<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>df <span class="op">=</span> pd.read_csv(<span class="st">'spreadsheet.csv'</span>)</span>
+<div class="sourceCode" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> sklearn.datasets <span class="im">import</span> load_iris</span>
 <span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Penggunaan info</span></span>
-<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a>df.info()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Load dataset Iris</span></span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a>iris <span class="op">=</span> load_iris()</span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a>X <span class="op">=</span> iris.data</span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a>y <span class="op">=</span> iris.target</span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a><span class="co"># Buat DataFrame</span></span>
+<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a>df <span class="op">=</span> pd.DataFrame(data<span class="op">=</span>X, columns<span class="op">=</span>[<span class="ss">f'feature_</span><span class="sc">{</span>i<span class="sc">}</span><span class="ss">'</span> <span class="cf">for</span> i <span class="kw">in</span> <span class="bu">range</span>(X.shape[<span class="dv">1</span>])])</span>
+<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a>df[<span class="st">'target'</span>] <span class="op">=</span> y</span>
+<span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-13"><a href="#cb1-13" aria-hidden="true" tabindex="-1"></a><span class="co"># rename dataframe column</span></span>
+<span id="cb1-14"><a href="#cb1-14" aria-hidden="true" tabindex="-1"></a>df <span class="op">=</span> df.rename(columns<span class="op">=</span>{<span class="st">'feature_0'</span>:<span class="st">'Sepal Length'</span>,<span class="st">'feature_1'</span>:<span class="st">'Sepal Width'</span>,<span class="st">'feature_2'</span>:<span class="st">'Petal Length'</span>,<span class="st">'feature_3'</span>:<span class="st">'Petal Width'</span>})</span>
+<span id="cb1-15"><a href="#cb1-15" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-16"><a href="#cb1-16" aria-hidden="true" tabindex="-1"></a><span class="co"># untuk menampilkan 5 data teratas</span></span>
+<span id="cb1-17"><a href="#cb1-17" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(df.head())</span>
+<span id="cb1-18"><a href="#cb1-18" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-19"><a href="#cb1-19" aria-hidden="true" tabindex="-1"></a><span class="co"># untuk menampilkan informasi dataset</span></span>
+<span id="cb1-20"><a href="#cb1-20" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(df.info())</span>
+<span id="cb1-21"><a href="#cb1-21" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-22"><a href="#cb1-22" aria-hidden="true" tabindex="-1"></a><span class="co"># untuk menampilkan statistik deskriptif dataset</span></span>
+<span id="cb1-23"><a href="#cb1-23" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(df.describe())</span>
+<span id="cb1-24"><a href="#cb1-24" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-25"><a href="#cb1-25" aria-hidden="true" tabindex="-1"></a><span class="co"># untuk menampilkan jumlah data null pada dataset</span></span>
+<span id="cb1-26"><a href="#cb1-26" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(df.isnull().<span class="bu">sum</span>())</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<ul>
+<li><p>Method <code>head()</code> dapat digunakan untuk melihat tampilan 5 data teratas dalam dataset.</p></li>
+<li><p>Method <code>info()</code> dapat digunakan untuk melihat informasi data frame, seperti jumlah baris, kolom, nilai non-NULL, tipe data, dan total penggunaan memori. Method ini sangat berguna dalam melakukan validasi tahap awal pada data.</p></li>
+<li><p>Method <code>describe()</code> digunakan untuk menampilkan statistik deskriptif dari dataset seperti max , min , count , std dan lain lain.</p></li>
+<li><p>Method <code>isnull().sum()</code> berfungsi untuk menghitung jumlah data kosong dalam sebuah dataset.</p></li>
+</ul>
 </section>
 <section id="visualisasi-data" class="level2" data-number="4.8">
 <h2 data-number="4.8" class="anchored" data-anchor-id="visualisasi-data"><span class="header-section-number">4.8</span> Visualisasi Data</h2>
@@ -363,38 +383,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <li>Memvisualisasikan sebaran data, mendeteksi pola, dan mengidentifikasi anomali.</li>
 <li>Visualisasi yang baik dapat menceritakan sebuah cerita tentang data Anda dengan cara yang tidak dapat dilakukan oleh sebuah kalimat.</li>
 </ul>
-<section id="jenis-visualisasi-data" class="level3" data-number="4.8.1">
-<h3 data-number="4.8.1" class="anchored" data-anchor-id="jenis-visualisasi-data"><span class="header-section-number">4.8.1</span> Jenis Visualisasi Data</h3>
-<ul>
-<li>Perbandingan (Comparison)
-<ul>
-<li>Bar Chart</li>
-<li>Line Chart</li>
-<li>Combo Chart</li>
-</ul></li>
-<li>Komposisi (Composition)
-<ul>
-<li>Pie Chart</li>
-<li>Stacked Bar Chart</li>
-<li>Treemap</li>
-<li>Waterfall Chart</li>
-</ul></li>
-<li>Distribusi (Distribution)
-<ul>
-<li>Histogram</li>
-<li>Box Plot</li>
-<li>Violin Plot</li>
-</ul></li>
-<li>Hubungan (Relationship)
-<ul>
-<li>Scatter Plot</li>
-<li>Bubble Chart</li>
-<li>Heatmap</li>
-</ul></li>
-</ul>
-</section>
-<section id="library-visualisasi-data" class="level3" data-number="4.8.2">
-<h3 data-number="4.8.2" class="anchored" data-anchor-id="library-visualisasi-data"><span class="header-section-number">4.8.2</span> Library Visualisasi Data</h3>
+<section id="library-visualisasi-data" class="level3" data-number="4.8.1">
+<h3 data-number="4.8.1" class="anchored" data-anchor-id="library-visualisasi-data"><span class="header-section-number">4.8.1</span> Library Visualisasi Data</h3>
 <p>Terdapat <strong>dua</strong> library populer untuk visualisasi data di Python, yaitu:</p>
 <ul>
 <li><strong>Matplotlib</strong>: library yang paling populer untuk visualisasi data di Python. Umumnya diberi alias <code>plt</code>.</li>
@@ -409,83 +399,284 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </ul>
 <div class="quarto-figure quarto-figure-left">
 <figure class="figure">
-<p><a href="https://seaborn.pydata.org/index.html"><img src="images/logo-wide-lightbg.svg" class="img-fluid figure-img" width="300"></a></p>
+<p><a href="https://seaborn.pydata.org/index.html"><img src="images/logo-wide-lightbg.png" class="img-fluid figure-img" width="300"></a></p>
 </figure>
 </div>
 </section>
-<section id="korelasi-causation" class="level3" data-number="4.8.3">
-<h3 data-number="4.8.3" class="anchored" data-anchor-id="korelasi-causation"><span class="header-section-number">4.8.3</span> Korelasi &amp; Causation</h3>
+<section id="jenis-visualisasi-data" class="level3" data-number="4.8.2">
+<h3 data-number="4.8.2" class="anchored" data-anchor-id="jenis-visualisasi-data"><span class="header-section-number">4.8.2</span> Jenis Visualisasi Data</h3>
 <ul>
-<li>Korelasi merupakan suatu pengukuran sejauh mana nilai saling ketergantungan antar variabel.</li>
-<li>Causation merupakan hubungan antara sebab dan akibat antara dua variabel</li>
-<li>Penting untuk mengetahui perbedaan antara keduanya dan bahwa korelasi tidak mendeskripsikan sebab-akibat.</li>
-<li>Menentukan korelasi jauh lebih sederhana, menentukan sebab memerlukan analisis lebih lanjut</li>
-</ul>
-</section>
-<section id="analisis-korelasi-heatmap" class="level3" data-number="4.8.4">
-<h3 data-number="4.8.4" class="anchored" data-anchor-id="analisis-korelasi-heatmap"><span class="header-section-number">4.8.4</span> Analisis Korelasi (Heatmap)</h3>
+<li>Perbandingan (Comparison)
 <ul>
-<li>Korelasi Pearson
+<li><p>Bar Chart</p>
 <ul>
-<li>Mengukur hubungan linier antara dua variabel</li>
+<li><strong>Deskripsi:</strong> Bar chart menunjukkan data dalam bentuk batang vertikal atau horizontal, di mana panjang batang mewakili nilai data.</li>
+<li><strong>Penggunaan:</strong> Cocok untuk membandingkan nilai antara kategori atau menunjukkan perubahan nilai dari waktu ke waktu.</li>
 </ul></li>
-<li>Korelasi Spearman
+<li><p>Line Chart</p>
 <ul>
-<li>Mengukur hubungan monotonik antara dua variabel</li>
+<li><strong>Deskripsi:</strong> Line chart menunjukkan data sebagai garis yang menghubungkan titik data. Digunakan untuk menyoroti tren atau perubahan sepanjang waktu.</li>
+<li><strong>Penggunaan:</strong> Ideal untuk melihat perubahan nilai seiring waktu atau mengidentifikasi pola tren.</li>
+</ul></li>
+<li><p>Combo Chart</p>
+<ul>
+<li><strong>Deskripsi:</strong> Combo chart menggabungkan dua jenis chart atau lebih dalam satu tampilan, seperti bar chart dan line chart.</li>
+<li><strong>Penggunaan:</strong> Berguna untuk menyajikan data yang memiliki skala atau satuan yang berbeda dalam satu tampilan. Misalnya, pendapatan (bar) dan persentase pertumbuhan (line).</li>
+</ul></li>
+<li><p><strong>Hands On Coding</strong> <br></p>
+<div class="sourceCode" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>    <span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>    <span class="im">import</span> pandas <span class="im">as</span> pd</span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a>    <span class="im">from</span> sklearn.datasets <span class="im">import</span> load_iris</span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Load dataset Iris</span></span>
+<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a>    iris <span class="op">=</span> load_iris()</span>
+<span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a>    X <span class="op">=</span> iris.data</span>
+<span id="cb2-9"><a href="#cb2-9" aria-hidden="true" tabindex="-1"></a>    y <span class="op">=</span> iris.target</span>
+<span id="cb2-10"><a href="#cb2-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-11"><a href="#cb2-11" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Buat DataFrame</span></span>
+<span id="cb2-12"><a href="#cb2-12" aria-hidden="true" tabindex="-1"></a>    df <span class="op">=</span> pd.DataFrame(data<span class="op">=</span>X, columns<span class="op">=</span>[<span class="ss">f'feature_</span><span class="sc">{</span>i<span class="sc">}</span><span class="ss">'</span> <span class="cf">for</span> i <span class="kw">in</span> <span class="bu">range</span>(X.shape[<span class="dv">1</span>])])</span>
+<span id="cb2-13"><a href="#cb2-13" aria-hidden="true" tabindex="-1"></a>    df[<span class="st">'target'</span>] <span class="op">=</span> y</span>
+<span id="cb2-14"><a href="#cb2-14" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-15"><a href="#cb2-15" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Rename DataFrame Column </span></span>
+<span id="cb2-16"><a href="#cb2-16" aria-hidden="true" tabindex="-1"></a>    df <span class="op">=</span> df.rename(columns<span class="op">=</span>{<span class="st">'feature_0'</span>:<span class="st">'Sepal Length'</span>,<span class="st">'feature_1'</span>:<span class="st">'Sepal Width'</span>,<span class="st">'feature_2'</span>:<span class="st">'Petal Length'</span>,<span class="st">'feature_3'</span>:<span class="st">'Petal Width'</span>})</span>
+<span id="cb2-17"><a href="#cb2-17" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-18"><a href="#cb2-18" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Bar Chart untuk nilai rata-rata setiap fitur berdasarkan target</span></span>
+<span id="cb2-19"><a href="#cb2-19" aria-hidden="true" tabindex="-1"></a>    mean_values <span class="op">=</span> df.groupby(<span class="st">'target'</span>).mean()</span>
+<span id="cb2-20"><a href="#cb2-20" aria-hidden="true" tabindex="-1"></a>    bar_chart <span class="op">=</span> mean_values.plot(kind<span class="op">=</span><span class="st">'bar'</span>, figsize<span class="op">=</span>(<span class="dv">10</span>, <span class="dv">6</span>), colormap<span class="op">=</span><span class="st">'viridis'</span>)</span>
+<span id="cb2-21"><a href="#cb2-21" aria-hidden="true" tabindex="-1"></a>    bar_chart.set_ylabel(<span class="st">'Rata-rata Nilai Fitur'</span>)</span>
+<span id="cb2-22"><a href="#cb2-22" aria-hidden="true" tabindex="-1"></a>    bar_chart.set_xlabel(<span class="st">'Kategori Target'</span>)</span>
+<span id="cb2-23"><a href="#cb2-23" aria-hidden="true" tabindex="-1"></a>    bar_chart.set_title(<span class="st">'Bar Chart: Rata-rata Nilai Fitur berdasarkan Target'</span>)</span>
+<span id="cb2-24"><a href="#cb2-24" aria-hidden="true" tabindex="-1"></a>    plt.show()</span>
+<span id="cb2-25"><a href="#cb2-25" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-26"><a href="#cb2-26" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Line Chart untuk nilai rata-rata setiap fitur</span></span>
+<span id="cb2-27"><a href="#cb2-27" aria-hidden="true" tabindex="-1"></a>    line_chart <span class="op">=</span> mean_values.T.plot(kind<span class="op">=</span><span class="st">'line'</span>, marker<span class="op">=</span><span class="st">'o'</span>, figsize<span class="op">=</span>(<span class="dv">10</span>, <span class="dv">6</span>), colormap<span class="op">=</span><span class="st">'viridis'</span>)</span>
+<span id="cb2-28"><a href="#cb2-28" aria-hidden="true" tabindex="-1"></a>    line_chart.set_ylabel(<span class="st">'Rata-rata Nilai Fitur'</span>)</span>
+<span id="cb2-29"><a href="#cb2-29" aria-hidden="true" tabindex="-1"></a>    line_chart.set_xlabel(<span class="st">'Fitur'</span>)</span>
+<span id="cb2-30"><a href="#cb2-30" aria-hidden="true" tabindex="-1"></a>    line_chart.set_title(<span class="st">'Line Chart: Rata-rata Nilai Fitur'</span>)</span>
+<span id="cb2-31"><a href="#cb2-31" aria-hidden="true" tabindex="-1"></a>    plt.show()</span>
+<span id="cb2-32"><a href="#cb2-32" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-33"><a href="#cb2-33" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Combo Chart: Kombinasi Bar dan Line Chart</span></span>
+<span id="cb2-34"><a href="#cb2-34" aria-hidden="true" tabindex="-1"></a>    fig, ax1 <span class="op">=</span> plt.subplots(figsize<span class="op">=</span>(<span class="dv">8</span>, <span class="dv">6</span>))</span>
+<span id="cb2-35"><a href="#cb2-35" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-36"><a href="#cb2-36" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Bar Chart pada sumbu kiri</span></span>
+<span id="cb2-37"><a href="#cb2-37" aria-hidden="true" tabindex="-1"></a>    color <span class="op">=</span> <span class="st">'tab:blue'</span></span>
+<span id="cb2-38"><a href="#cb2-38" aria-hidden="true" tabindex="-1"></a>    ax1.set_xlabel(<span class="st">'Kategori Target'</span>)</span>
+<span id="cb2-39"><a href="#cb2-39" aria-hidden="true" tabindex="-1"></a>    ax1.set_ylabel(<span class="st">'Rata-rata Nilai Fitur'</span>, color<span class="op">=</span>color)</span>
+<span id="cb2-40"><a href="#cb2-40" aria-hidden="true" tabindex="-1"></a>    bar_chart_combo <span class="op">=</span> mean_values.plot(kind<span class="op">=</span><span class="st">'bar'</span>, ax<span class="op">=</span>ax1, colormap<span class="op">=</span><span class="st">'viridis'</span>)</span>
+<span id="cb2-41"><a href="#cb2-41" aria-hidden="true" tabindex="-1"></a>    ax1.tick_params(axis<span class="op">=</span><span class="st">'y'</span>, labelcolor<span class="op">=</span>color)</span>
+<span id="cb2-42"><a href="#cb2-42" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-43"><a href="#cb2-43" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Line Chart pada sumbu kanan</span></span>
+<span id="cb2-44"><a href="#cb2-44" aria-hidden="true" tabindex="-1"></a>    ax2 <span class="op">=</span> ax1.twinx()</span>
+<span id="cb2-45"><a href="#cb2-45" aria-hidden="true" tabindex="-1"></a>    color <span class="op">=</span> <span class="st">'tab:red'</span></span>
+<span id="cb2-46"><a href="#cb2-46" aria-hidden="true" tabindex="-1"></a>    ax2.set_ylabel(<span class="st">'Rata-rata Nilai Fitur'</span>, color<span class="op">=</span>color)</span>
+<span id="cb2-47"><a href="#cb2-47" aria-hidden="true" tabindex="-1"></a>    line_chart_combo <span class="op">=</span> mean_values.T.plot(kind<span class="op">=</span><span class="st">'line'</span>, marker<span class="op">=</span><span class="st">'o'</span>, ax<span class="op">=</span>ax2, color<span class="op">=</span>color)</span>
+<span id="cb2-48"><a href="#cb2-48" aria-hidden="true" tabindex="-1"></a>    ax2.tick_params(axis<span class="op">=</span><span class="st">'y'</span>, labelcolor<span class="op">=</span>color)</span>
+<span id="cb2-49"><a href="#cb2-49" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-50"><a href="#cb2-50" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Judul dan tampilan grafik</span></span>
+<span id="cb2-51"><a href="#cb2-51" aria-hidden="true" tabindex="-1"></a>    fig.suptitle(<span class="st">'Combo Chart: Kombinasi Bar dan Line Chart'</span>, fontsize<span class="op">=</span><span class="dv">16</span>)</span>
+<span id="cb2-52"><a href="#cb2-52" aria-hidden="true" tabindex="-1"></a>    plt.show()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p><img src="images/bar_chart2.png" class="img-fluid" data-fig-align="left" width="400"> <img src="images/line_chart2.png" class="img-fluid" data-fig-align="left" width="400"> <img src="images/combo_chart2.png" class="img-fluid" data-fig-align="left" width="400"></p></li>
+</ul></li>
+<li>Komposisi (Composition)
+<ul>
+<li><p>Pie Chart</p>
+<ul>
+<li><strong>Deskripsi:</strong> Pie chart menggambarkan data dalam bentuk lingkaran yang terbagi menjadi sejumlah “potongan” (slices) yang mewakili proporsi relatif dari keseluruhan.</li>
+<li><strong>Penggunaan:</strong> Cocok untuk menunjukkan perbandingan proporsi atau persentase dari satu keseluruhan. Contohnya, pangsa pasar dari beberapa produk.</li>
+</ul></li>
+<li><p>Stacked Bar Chart</p>
+<ul>
+<li><strong>Deskripsi:</strong> Stacked bar chart menunjukkan data dalam bentuk batang vertikal atau horizontal yang bertumpuk, dengan setiap tumpukan mewakili kategori atau sub-kategori.</li>
+<li><strong>Penggunaan:</strong> Berguna untuk menunjukkan kontribusi masing-masing bagian terhadap keseluruhan. Contohnya, penjualan bulanan per produk yang dibagi berdasarkan wilayah.</li>
+</ul></li>
+<li><p>Treemap</p>
+<ul>
+<li><strong>Deskripsi:</strong> Treemap menggambarkan data hierarkis dalam bentuk kotak-kotak yang berukuran berdasarkan nilai atau ukuran masing-masing kategori.</li>
+<li><strong>Penggunaan:</strong> Ideal untuk menunjukkan struktur hierarki dan membandingkan proporsi relatif di dalamnya. Misalnya, pengeluaran anggaran departemen dalam sebuah perusahaan.</li>
+</ul></li>
+<li><p>Waterfall Chart</p>
+<ul>
+<li><strong>Deskripsi:</strong> Waterfall chart digunakan untuk mengilustrasikan perubahan kumulatif dari suatu nilai, dengan batang yang naik atau turun mewakili kontribusi positif atau negatif.</li>
+<li><strong>Penggunaan:</strong> Berguna untuk melihat kontribusi sepanjang suatu proses atau mengidentifikasi faktor-faktor yang mempengaruhi perubahan nilai. Contohnya, perubahan laba bersih dari satu periode ke periode berikutnya.</li>
+</ul></li>
+<li><p><strong>Hands On Coding</strong> <br></p>
+<div class="sourceCode" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>    pip install squarify</span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>    <span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a>    <span class="im">import</span> squarify</span>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a>    <span class="im">import</span> pandas <span class="im">as</span> pd</span>
+<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a>    <span class="im">from</span> sklearn.datasets <span class="im">import</span> load_iris</span>
+<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-8"><a href="#cb3-8" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Load dataset Iris</span></span>
+<span id="cb3-9"><a href="#cb3-9" aria-hidden="true" tabindex="-1"></a>    iris <span class="op">=</span> load_iris()</span>
+<span id="cb3-10"><a href="#cb3-10" aria-hidden="true" tabindex="-1"></a>    X <span class="op">=</span> iris.data</span>
+<span id="cb3-11"><a href="#cb3-11" aria-hidden="true" tabindex="-1"></a>    y <span class="op">=</span> iris.target</span>
+<span id="cb3-12"><a href="#cb3-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-13"><a href="#cb3-13" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Buat DataFrame</span></span>
+<span id="cb3-14"><a href="#cb3-14" aria-hidden="true" tabindex="-1"></a>    df <span class="op">=</span> pd.DataFrame(data<span class="op">=</span>X, columns<span class="op">=</span>[<span class="ss">f'feature_</span><span class="sc">{</span>i<span class="sc">}</span><span class="ss">'</span> <span class="cf">for</span> i <span class="kw">in</span> <span class="bu">range</span>(X.shape[<span class="dv">1</span>])])</span>
+<span id="cb3-15"><a href="#cb3-15" aria-hidden="true" tabindex="-1"></a>    df[<span class="st">'target'</span>] <span class="op">=</span> y</span>
+<span id="cb3-16"><a href="#cb3-16" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-17"><a href="#cb3-17" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Rename columns</span></span>
+<span id="cb3-18"><a href="#cb3-18" aria-hidden="true" tabindex="-1"></a>    df <span class="op">=</span> df.rename(columns<span class="op">=</span>{<span class="st">'feature_0'</span>:<span class="st">'Sepal Length'</span>,<span class="st">'feature_1'</span>:<span class="st">'Sepal Width'</span>,<span class="st">'feature_2'</span>:<span class="st">'Petal Length'</span>,<span class="st">'feature_3'</span>:<span class="st">'Petal Width'</span>})</span>
+<span id="cb3-19"><a href="#cb3-19" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-20"><a href="#cb3-20" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Pie Chart untuk proporsi kategori target</span></span>
+<span id="cb3-21"><a href="#cb3-21" aria-hidden="true" tabindex="-1"></a>    target_counts <span class="op">=</span> df[<span class="st">'target'</span>].value_counts()</span>
+<span id="cb3-22"><a href="#cb3-22" aria-hidden="true" tabindex="-1"></a>    labels <span class="op">=</span> [<span class="ss">f'Kategori </span><span class="sc">{</span>i<span class="sc">}</span><span class="ss">'</span> <span class="cf">for</span> i <span class="kw">in</span> target_counts.index]</span>
+<span id="cb3-23"><a href="#cb3-23" aria-hidden="true" tabindex="-1"></a>    colors <span class="op">=</span> [<span class="st">'gold'</span>, <span class="st">'lightcoral'</span>, <span class="st">'lightskyblue'</span>]</span>
+<span id="cb3-24"><a href="#cb3-24" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-25"><a href="#cb3-25" aria-hidden="true" tabindex="-1"></a>    plt.figure(figsize<span class="op">=</span>(<span class="dv">5</span>, <span class="dv">5</span>))</span>
+<span id="cb3-26"><a href="#cb3-26" aria-hidden="true" tabindex="-1"></a>    plt.pie(target_counts, labels<span class="op">=</span>labels, colors<span class="op">=</span>colors, autopct<span class="op">=</span><span class="st">'</span><span class="sc">%1.1f%%</span><span class="st">'</span>, startangle<span class="op">=</span><span class="dv">140</span>)</span>
+<span id="cb3-27"><a href="#cb3-27" aria-hidden="true" tabindex="-1"></a>    plt.title(<span class="st">'Pie Chart: Proporsi Kategori Target'</span>)</span>
+<span id="cb3-28"><a href="#cb3-28" aria-hidden="true" tabindex="-1"></a>    plt.show()</span>
+<span id="cb3-29"><a href="#cb3-29" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-30"><a href="#cb3-30" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Stacked Bar Chart untuk distribusi nilai fitur berdasarkan kategori target</span></span>
+<span id="cb3-31"><a href="#cb3-31" aria-hidden="true" tabindex="-1"></a>    stacked_bar_chart <span class="op">=</span> df.groupby(<span class="st">'target'</span>).mean().T.plot(kind<span class="op">=</span><span class="st">'bar'</span>, stacked<span class="op">=</span><span class="va">True</span>, figsize<span class="op">=</span>(<span class="dv">10</span>, <span class="dv">6</span>), colormap<span class="op">=</span><span class="st">'viridis'</span>)</span>
+<span id="cb3-32"><a href="#cb3-32" aria-hidden="true" tabindex="-1"></a>    stacked_bar_chart.set_ylabel(<span class="st">'Nilai Fitur'</span>)</span>
+<span id="cb3-33"><a href="#cb3-33" aria-hidden="true" tabindex="-1"></a>    stacked_bar_chart.set_xlabel(<span class="st">'Fitur'</span>)</span>
+<span id="cb3-34"><a href="#cb3-34" aria-hidden="true" tabindex="-1"></a>    stacked_bar_chart.set_title(<span class="st">'Stacked Bar Chart: Distribusi Nilai Fitur berdasarkan Kategori Target'</span>)</span>
+<span id="cb3-35"><a href="#cb3-35" aria-hidden="true" tabindex="-1"></a>    plt.show()</span>
+<span id="cb3-36"><a href="#cb3-36" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-37"><a href="#cb3-37" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Treemap untuk proporsi kategori target</span></span>
+<span id="cb3-38"><a href="#cb3-38" aria-hidden="true" tabindex="-1"></a>    plt.figure(figsize<span class="op">=</span>(<span class="dv">10</span>, <span class="dv">6</span>))</span>
+<span id="cb3-39"><a href="#cb3-39" aria-hidden="true" tabindex="-1"></a>    squarify.plot(sizes<span class="op">=</span>target_counts, label<span class="op">=</span>labels, color<span class="op">=</span>colors, alpha<span class="op">=</span><span class="fl">0.7</span>)</span>
+<span id="cb3-40"><a href="#cb3-40" aria-hidden="true" tabindex="-1"></a>    plt.title(<span class="st">'Treemap: Proporsi Kategori Target'</span>)</span>
+<span id="cb3-41"><a href="#cb3-41" aria-hidden="true" tabindex="-1"></a>    plt.axis(<span class="st">'off'</span>)</span>
+<span id="cb3-42"><a href="#cb3-42" aria-hidden="true" tabindex="-1"></a>    plt.show()</span>
+<span id="cb3-43"><a href="#cb3-43" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-44"><a href="#cb3-44" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Waterfall Chart untuk melihat kontribusi setiap fitur terhadap total</span></span>
+<span id="cb3-45"><a href="#cb3-45" aria-hidden="true" tabindex="-1"></a>    waterfall_data <span class="op">=</span> df.drop(<span class="st">'target'</span>, axis<span class="op">=</span><span class="dv">1</span>).<span class="bu">sum</span>()</span>
+<span id="cb3-46"><a href="#cb3-46" aria-hidden="true" tabindex="-1"></a>    waterfall_chart <span class="op">=</span> waterfall_data.plot(kind<span class="op">=</span><span class="st">'bar'</span>, figsize<span class="op">=</span>(<span class="dv">10</span>, <span class="dv">6</span>), colormap<span class="op">=</span><span class="st">'viridis'</span>)</span>
+<span id="cb3-47"><a href="#cb3-47" aria-hidden="true" tabindex="-1"></a>    waterfall_chart.set_ylabel(<span class="st">'Nilai Fitur'</span>)</span>
+<span id="cb3-48"><a href="#cb3-48" aria-hidden="true" tabindex="-1"></a>    waterfall_chart.set_xlabel(<span class="st">'Fitur'</span>)</span>
+<span id="cb3-49"><a href="#cb3-49" aria-hidden="true" tabindex="-1"></a>    waterfall_chart.set_title(<span class="st">'Waterfall Chart: Kontribusi Fitur terhadap Total'</span>)</span>
+<span id="cb3-50"><a href="#cb3-50" aria-hidden="true" tabindex="-1"></a>    plt.show()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p><img src="images/pie_chart2.png" class="img-fluid" data-fig-align="left" width="400"> <img src="images/stackedBar_chart2.png" class="img-fluid" data-fig-align="left" width="400"> <img src="images/Treemap_chart2.png" class="img-fluid" data-fig-align="left" width="400"> <img src="images/waterfall_chart2.png" class="img-fluid" data-fig-align="left" width="400"></p></li>
+</ul></li>
+<li>Distribusi (Distribution)
+<ul>
+<li><p>Histogram</p>
+<ul>
+<li><strong>Deskripsi:</strong> Histogram adalah grafik batang yang menunjukkan distribusi frekuensi dari suatu data numerik. Batang-batang tersebut mewakili rentang nilai dan tingginya sesuai dengan frekuensinya.</li>
+<li><strong>Penggunaan:</strong> Cocok untuk menunjukkan distribusi dan pola data. Biasanya digunakan untuk melihat apakah data memiliki kecenderungan tertentu, seperti distribusi normal atau skewness.</li>
+</ul></li>
+<li><p>Box Plot</p>
+<ul>
+<li><strong>Deskripsi:</strong> Box plot menggambarkan statistik ringkasan seperti kuartil, median, dan rentang dalam bentuk diagram. Garis di dalam kotak mewakili median, dan batas kotak menunjukkan kuartil pertama (Q1) dan kuartil ketiga (Q3).</li>
+<li><strong>Penggunaan:</strong> Berguna untuk melihat distribusi dan variabilitas data. Box plot membantu mengidentifikasi pencilan (outliers) dan memberikan gambaran ringkas tentang statistik deskriptif.</li>
+</ul></li>
+<li><p>Violin Plot</p>
+<ul>
+<li><strong>Deskripsi:</strong> Violin plot adalah kombinasi antara box plot dan kernel density plot. Ini menunjukkan distribusi data dengan cara yang mirip dengan histogram, tetapi dalam bentuk lebih halus.</li>
+<li><strong>Penggunaan:</strong> Ideal untuk melihat distribusi dan kepadatan data. Violin plot dapat memberikan informasi lebih rinci tentang bentuk distribusi, serta menunjukkan kepadatan pada berbagai nilai.</li>
+</ul></li>
+<li><p><strong>Hands On Coding</strong> <br></p>
+<div class="sourceCode" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>    <span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>    <span class="im">import</span> seaborn <span class="im">as</span> sns</span>
+<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a>    <span class="im">import</span> pandas <span class="im">as</span> pd</span>
+<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a>    <span class="im">from</span> sklearn.datasets <span class="im">import</span> load_iris</span>
+<span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-7"><a href="#cb4-7" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Load dataset Iris</span></span>
+<span id="cb4-8"><a href="#cb4-8" aria-hidden="true" tabindex="-1"></a>    iris <span class="op">=</span> load_iris()</span>
+<span id="cb4-9"><a href="#cb4-9" aria-hidden="true" tabindex="-1"></a>    X <span class="op">=</span> iris.data</span>
+<span id="cb4-10"><a href="#cb4-10" aria-hidden="true" tabindex="-1"></a>    y <span class="op">=</span> iris.target</span>
+<span id="cb4-11"><a href="#cb4-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-12"><a href="#cb4-12" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Buat DataFrame</span></span>
+<span id="cb4-13"><a href="#cb4-13" aria-hidden="true" tabindex="-1"></a>    df <span class="op">=</span> pd.DataFrame(data<span class="op">=</span>X, columns<span class="op">=</span>[<span class="ss">f'feature_</span><span class="sc">{</span>i<span class="sc">}</span><span class="ss">'</span> <span class="cf">for</span> i <span class="kw">in</span> <span class="bu">range</span>(X.shape[<span class="dv">1</span>])])</span>
+<span id="cb4-14"><a href="#cb4-14" aria-hidden="true" tabindex="-1"></a>    df[<span class="st">'target'</span>] <span class="op">=</span> y</span>
+<span id="cb4-15"><a href="#cb4-15" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-16"><a href="#cb4-16" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Rename columns</span></span>
+<span id="cb4-17"><a href="#cb4-17" aria-hidden="true" tabindex="-1"></a>    df <span class="op">=</span> df.rename(columns<span class="op">=</span>{<span class="st">'feature_0'</span>:<span class="st">'Sepal Length'</span>,<span class="st">'feature_1'</span>:<span class="st">'Sepal Width'</span>,<span class="st">'feature_2'</span>:<span class="st">'Petal Length'</span>,<span class="st">'feature_3'</span>:<span class="st">'Petal Width'</span>})</span>
+<span id="cb4-18"><a href="#cb4-18" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-19"><a href="#cb4-19" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Histogram untuk distribusi nilai fitur</span></span>
+<span id="cb4-20"><a href="#cb4-20" aria-hidden="true" tabindex="-1"></a>    plt.figure(figsize<span class="op">=</span>(<span class="dv">12</span>, <span class="dv">6</span>))</span>
+<span id="cb4-21"><a href="#cb4-21" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> i, feature <span class="kw">in</span> <span class="bu">enumerate</span>(df.columns[:<span class="op">-</span><span class="dv">1</span>]):</span>
+<span id="cb4-22"><a href="#cb4-22" aria-hidden="true" tabindex="-1"></a>        plt.subplot(<span class="dv">2</span>, <span class="dv">2</span>, i <span class="op">+</span> <span class="dv">1</span>)</span>
+<span id="cb4-23"><a href="#cb4-23" aria-hidden="true" tabindex="-1"></a>        sns.histplot(df[feature], kde<span class="op">=</span><span class="va">True</span>, color<span class="op">=</span><span class="st">'skyblue'</span>)</span>
+<span id="cb4-24"><a href="#cb4-24" aria-hidden="true" tabindex="-1"></a>        plt.title(<span class="ss">f'Histogram: </span><span class="sc">{</span>feature<span class="sc">}</span><span class="ss">'</span>)</span>
+<span id="cb4-25"><a href="#cb4-25" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-26"><a href="#cb4-26" aria-hidden="true" tabindex="-1"></a>    plt.tight_layout()</span>
+<span id="cb4-27"><a href="#cb4-27" aria-hidden="true" tabindex="-1"></a>    plt.show()</span>
+<span id="cb4-28"><a href="#cb4-28" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-29"><a href="#cb4-29" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Box Plot untuk melihat distribusi dan outlier</span></span>
+<span id="cb4-30"><a href="#cb4-30" aria-hidden="true" tabindex="-1"></a>    plt.figure(figsize<span class="op">=</span>(<span class="dv">12</span>, <span class="dv">6</span>))</span>
+<span id="cb4-31"><a href="#cb4-31" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> i, feature <span class="kw">in</span> <span class="bu">enumerate</span>(df.columns[:<span class="op">-</span><span class="dv">1</span>]):</span>
+<span id="cb4-32"><a href="#cb4-32" aria-hidden="true" tabindex="-1"></a>        plt.subplot(<span class="dv">2</span>, <span class="dv">2</span>, i <span class="op">+</span> <span class="dv">1</span>)</span>
+<span id="cb4-33"><a href="#cb4-33" aria-hidden="true" tabindex="-1"></a>        sns.boxplot(x<span class="op">=</span><span class="st">'target'</span>, y<span class="op">=</span>feature, data<span class="op">=</span>df, palette<span class="op">=</span><span class="st">'viridis'</span>)</span>
+<span id="cb4-34"><a href="#cb4-34" aria-hidden="true" tabindex="-1"></a>        plt.title(<span class="ss">f'Box Plot: </span><span class="sc">{</span>feature<span class="sc">}</span><span class="ss">'</span>)</span>
+<span id="cb4-35"><a href="#cb4-35" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-36"><a href="#cb4-36" aria-hidden="true" tabindex="-1"></a>    plt.tight_layout()</span>
+<span id="cb4-37"><a href="#cb4-37" aria-hidden="true" tabindex="-1"></a>    plt.show()</span>
+<span id="cb4-38"><a href="#cb4-38" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-39"><a href="#cb4-39" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Violin Plot untuk kombinasi histogram dan kernel density estimate (KDE)</span></span>
+<span id="cb4-40"><a href="#cb4-40" aria-hidden="true" tabindex="-1"></a>    plt.figure(figsize<span class="op">=</span>(<span class="dv">12</span>, <span class="dv">6</span>))</span>
+<span id="cb4-41"><a href="#cb4-41" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> i, feature <span class="kw">in</span> <span class="bu">enumerate</span>(df.columns[:<span class="op">-</span><span class="dv">1</span>]):</span>
+<span id="cb4-42"><a href="#cb4-42" aria-hidden="true" tabindex="-1"></a>        plt.subplot(<span class="dv">2</span>, <span class="dv">2</span>, i <span class="op">+</span> <span class="dv">1</span>)</span>
+<span id="cb4-43"><a href="#cb4-43" aria-hidden="true" tabindex="-1"></a>        sns.violinplot(x<span class="op">=</span><span class="st">'target'</span>, y<span class="op">=</span>feature, data<span class="op">=</span>df, palette<span class="op">=</span><span class="st">'viridis'</span>, inner<span class="op">=</span><span class="st">'quartile'</span>)</span>
+<span id="cb4-44"><a href="#cb4-44" aria-hidden="true" tabindex="-1"></a>        plt.title(<span class="ss">f'Violin Plot: </span><span class="sc">{</span>feature<span class="sc">}</span><span class="ss">'</span>)</span>
+<span id="cb4-45"><a href="#cb4-45" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-46"><a href="#cb4-46" aria-hidden="true" tabindex="-1"></a>    plt.tight_layout()</span>
+<span id="cb4-47"><a href="#cb4-47" aria-hidden="true" tabindex="-1"></a>    plt.show()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p><img src="images/histogram_chart2.png" class="img-fluid" data-fig-align="left" width="400"> <img src="images/box_chart2.png" class="img-fluid" data-fig-align="left" width="400"> <img src="images/violin_chart2.png" class="img-fluid" data-fig-align="left" width="400"></p></li>
+</ul></li>
+<li>Hubungan (Relationship)
+<ul>
+<li><p>Scatter Plot</p>
+<ul>
+<li><strong>Deskripsi:</strong> Scatter plot menunjukkan hubungan antara dua variabel numerik dengan menempatkan titik-titik pada bidang kartesian. Setiap titik mewakili satu pengamatan atau data point.</li>
+<li><strong>Penggunaan:</strong> Cocok untuk menemukan pola atau hubungan antara dua variabel. Misalnya, hubungan antara waktu studi dan nilai ujian.</li>
+</ul></li>
+<li><p>Bubble Chart</p>
+<ul>
+<li><strong>Deskripsi:</strong> Sama seperti scatter plot, tetapi dengan tambahan dimensi ketiga yang direpresentasikan oleh ukuran gelembung (bubble). Ukuran gelembung mencerminkan nilai dari variabel ketiga.</li>
+<li><strong>Penggunaan:</strong> Berguna untuk menunjukkan hubungan tiga variabel sekaligus. Contohnya, scatter plot yang menunjukkan hubungan antara waktu studi dan nilai ujian, dengan ukuran gelembung mencerminkan jumlah jam belajar.</li>
+</ul></li>
+<li><p>Heatmap</p>
+<ul>
+<li><strong>Deskripsi:</strong> Heatmap adalah representasi visual dari data dalam bentuk matriks di mana warna mewakili nilai masing-masing sel. Digunakan terutama untuk menunjukkan pola dalam data besar.</li>
+<li><strong>Penggunaan:</strong> Cocok untuk menemukan pola atau relasi dalam data matriks. Misalnya, heatmap dapat digunakan untuk menunjukkan korelasi antara berbagai variabel atau untuk visualisasi data spasial.</li>
+</ul></li>
+<li><p><strong>Hands On Coding</strong> <br></p>
+<div class="sourceCode" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>    <span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>    <span class="im">import</span> seaborn <span class="im">as</span> sns</span>
+<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a>    <span class="im">import</span> pandas <span class="im">as</span> pd</span>
+<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a>    <span class="im">from</span> sklearn.datasets <span class="im">import</span> load_iris</span>
+<span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-7"><a href="#cb5-7" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Load dataset Iris</span></span>
+<span id="cb5-8"><a href="#cb5-8" aria-hidden="true" tabindex="-1"></a>    iris <span class="op">=</span> load_iris()</span>
+<span id="cb5-9"><a href="#cb5-9" aria-hidden="true" tabindex="-1"></a>    X <span class="op">=</span> iris.data</span>
+<span id="cb5-10"><a href="#cb5-10" aria-hidden="true" tabindex="-1"></a>    y <span class="op">=</span> iris.target</span>
+<span id="cb5-11"><a href="#cb5-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-12"><a href="#cb5-12" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Buat DataFrame</span></span>
+<span id="cb5-13"><a href="#cb5-13" aria-hidden="true" tabindex="-1"></a>    df <span class="op">=</span> pd.DataFrame(data<span class="op">=</span>X, columns<span class="op">=</span>[<span class="ss">f'feature_</span><span class="sc">{</span>i<span class="sc">}</span><span class="ss">'</span> <span class="cf">for</span> i <span class="kw">in</span> <span class="bu">range</span>(X.shape[<span class="dv">1</span>])])</span>
+<span id="cb5-14"><a href="#cb5-14" aria-hidden="true" tabindex="-1"></a>    df[<span class="st">'target'</span>] <span class="op">=</span> y</span>
+<span id="cb5-15"><a href="#cb5-15" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-16"><a href="#cb5-16" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Rename columns</span></span>
+<span id="cb5-17"><a href="#cb5-17" aria-hidden="true" tabindex="-1"></a>    df <span class="op">=</span> df.rename(columns<span class="op">=</span>{<span class="st">'feature_0'</span>:<span class="st">'Sepal Length'</span>,<span class="st">'feature_1'</span>:<span class="st">'Sepal Width'</span>,<span class="st">'feature_2'</span>:<span class="st">'Petal Length'</span>,<span class="st">'feature_3'</span>:<span class="st">'Petal Width'</span>})</span>
+<span id="cb5-18"><a href="#cb5-18" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-19"><a href="#cb5-19" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Scatter Plot untuk melihat hubungan antara dua fitur</span></span>
+<span id="cb5-20"><a href="#cb5-20" aria-hidden="true" tabindex="-1"></a>    plt.figure(figsize<span class="op">=</span>(<span class="dv">12</span>, <span class="dv">6</span>))</span>
+<span id="cb5-21"><a href="#cb5-21" aria-hidden="true" tabindex="-1"></a>    sns.scatterplot(x<span class="op">=</span><span class="st">'Sepal Length'</span>, y<span class="op">=</span><span class="st">'Sepal Width'</span>, hue<span class="op">=</span><span class="st">'target'</span>, data<span class="op">=</span>df, palette<span class="op">=</span><span class="st">'viridis'</span>, s<span class="op">=</span><span class="dv">80</span>)</span>
+<span id="cb5-22"><a href="#cb5-22" aria-hidden="true" tabindex="-1"></a>    plt.title(<span class="st">'Scatter Plot: Hubungan antara Sepal Length dan Sepal Width'</span>)</span>
+<span id="cb5-23"><a href="#cb5-23" aria-hidden="true" tabindex="-1"></a>    plt.show()</span>
+<span id="cb5-24"><a href="#cb5-24" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-25"><a href="#cb5-25" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Bubble Chart untuk menambah dimensi ketiga (ukuran marker) pada scatter plot</span></span>
+<span id="cb5-26"><a href="#cb5-26" aria-hidden="true" tabindex="-1"></a>    plt.figure(figsize<span class="op">=</span>(<span class="dv">12</span>, <span class="dv">6</span>))</span>
+<span id="cb5-27"><a href="#cb5-27" aria-hidden="true" tabindex="-1"></a>    sns.scatterplot(x<span class="op">=</span><span class="st">'Sepal Length'</span>, y<span class="op">=</span><span class="st">'Sepal Width'</span>, hue<span class="op">=</span><span class="st">'target'</span>, size<span class="op">=</span><span class="st">'Petal Length'</span>, sizes<span class="op">=</span>(<span class="dv">20</span>, <span class="dv">200</span>), data<span class="op">=</span>df, palette<span class="op">=</span><span class="st">'viridis'</span>)</span>
+<span id="cb5-28"><a href="#cb5-28" aria-hidden="true" tabindex="-1"></a>    plt.title(<span class="st">'Bubble Chart: Hubungan antara Sepal Length, Sepal Width, dan Petal Length'</span>)</span>
+<span id="cb5-29"><a href="#cb5-29" aria-hidden="true" tabindex="-1"></a>    plt.show()</span>
+<span id="cb5-30"><a href="#cb5-30" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-31"><a href="#cb5-31" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Heatmap untuk melihat korelasi antara seluruh fitur</span></span>
+<span id="cb5-32"><a href="#cb5-32" aria-hidden="true" tabindex="-1"></a>    correlation_matrix <span class="op">=</span> df.drop(<span class="st">'target'</span>, axis<span class="op">=</span><span class="dv">1</span>).corr()</span>
+<span id="cb5-33"><a href="#cb5-33" aria-hidden="true" tabindex="-1"></a>    plt.figure(figsize<span class="op">=</span>(<span class="dv">6</span>, <span class="dv">4</span>))</span>
+<span id="cb5-34"><a href="#cb5-34" aria-hidden="true" tabindex="-1"></a>    sns.heatmap(correlation_matrix, annot<span class="op">=</span><span class="va">True</span>, cmap<span class="op">=</span><span class="st">'viridis'</span>, linewidths<span class="op">=</span><span class="fl">.5</span>)</span>
+<span id="cb5-35"><a href="#cb5-35" aria-hidden="true" tabindex="-1"></a>    plt.title(<span class="st">'Heatmap: Korelasi antara Seluruh Fitur'</span>)</span>
+<span id="cb5-36"><a href="#cb5-36" aria-hidden="true" tabindex="-1"></a>    plt.show()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p><img src="images/scattter_chart2.png" class="img-fluid" data-fig-align="left" width="400"> <img src="images/bubble_chart2.png" class="img-fluid" data-fig-align="left" width="400"> <img src="images/heatmap_chart2.png" class="img-fluid" data-fig-align="left" width="400"></p></li>
 </ul></li>
 </ul>
-<p>Visualisasi korelasi dapat dilakukan dengan menggunakan <strong>heatmap</strong>.</p>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> seaborn <span class="im">as</span> sns</span>
-<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span>
-<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a>plt.figure(figsize<span class="op">=</span>(<span class="dv">10</span>, <span class="dv">7</span>))</span>
-<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a>sns.heatmap(df.corr(<span class="st">'pearson'</span>), annot<span class="op">=</span><span class="va">True</span>, cmap<span class="op">=</span><span class="st">'YlGnBu'</span>, linewidths<span class="op">=</span><span class="fl">0.2</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
-<div class="quarto-figure quarto-figure-left">
-<figure class="figure">
-<p><img src="images/heatmap_korelasi.png" class="img-fluid figure-img" width="400"></p>
-</figure>
-</div>
-</section>
-<section id="histogram" class="level3" data-number="4.8.5">
-<h3 data-number="4.8.5" class="anchored" data-anchor-id="histogram"><span class="header-section-number">4.8.5</span> Histogram</h3>
-<p>Histogram dapat membantu dalam melihat persebaran data.</p>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>sns.histplot(data <span class="op">=</span> df, x<span class="op">=</span> <span class="st">'fc'</span> ,color<span class="op">=</span><span class="st">'orange'</span>, kde<span class="op">=</span><span class="va">False</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
-<div class="quarto-figure quarto-figure-left">
-<figure class="figure">
-<p><img src="images/histogram.png" class="img-fluid figure-img" width="400"></p>
-</figure>
-</div>
-</section>
-<section id="bar-chart" class="level3" data-number="4.8.6">
-<h3 data-number="4.8.6" class="anchored" data-anchor-id="bar-chart"><span class="header-section-number">4.8.6</span> Bar Chart</h3>
-<p>Bar chart digunakan untuk membandingkan data-data yang berbentuk kategorikal.</p>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>sns.barplot(x<span class="op">=</span><span class="st">'price_range'</span>,y<span class="op">=</span><span class="st">'battery_power'</span>,data <span class="op">=</span> df, order<span class="op">=</span>[<span class="dv">3</span>,<span class="dv">2</span>,<span class="dv">1</span>,<span class="dv">0</span>], hue<span class="op">=</span><span class="st">'dual_sim'</span>, hue_order<span class="op">=</span>[<span class="dv">1</span>,<span class="dv">0</span>], errcolor<span class="op">=</span><span class="st">'teal'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
-<div class="quarto-figure quarto-figure-left">
-<figure class="figure">
-<p><img src="images/bar_chart.png" class="img-fluid figure-img" width="400"></p>
-</figure>
-</div>
-</section>
-<section id="pie-chart" class="level3" data-number="4.8.7">
-<h3 data-number="4.8.7" class="anchored" data-anchor-id="pie-chart"><span class="header-section-number">4.8.7</span> Pie Chart</h3>
-<p>Pie chart membantu memvisualisasikan komposisi elemen-elemen dalam sebuah data.</p>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>ax <span class="op">=</span> plt.gca()</span>
-<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>plt.pie(x<span class="op">=</span>x, explode<span class="op">=</span>[<span class="dv">0</span>, <span class="dv">0</span>, <span class="dv">0</span>, <span class="dv">0</span>, <span class="fl">0.15</span>, <span class="dv">0</span>], labels<span class="op">=</span>x)</span>
-<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>plt.legend(x, loc<span class="op">=</span><span class="st">'upper right'</span>)</span>
-<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
-<div class="quarto-figure quarto-figure-left">
-<figure class="figure">
-<p><img src="images/pie_chart.png" class="img-fluid figure-img" width="400"></p>
-</figure>
-</div>
 
 
 </section>
@@ -843,7 +1034,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 <nav class="page-navigation">
   <div class="nav-page nav-page-previous">
       <a href="./modul_3.html" class="pagination-link">
-        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Telaah Data</span></span>
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Libraries for Data Preprocessing</span></span>
       </a>          
   </div>
   <div class="nav-page nav-page-next">

@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.3.353">
+<meta name="generator" content="quarto-1.3.450">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
@@ -93,7 +93,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     "search-more-matches-text": "more matches in this document",
     "search-clear-button-title": "Clear",
     "search-detached-cancel-button-title": "Cancel",
-    "search-submit-button-title": "Submit"
+    "search-submit-button-title": "Submit",
+    "search-label": "Search"
   }
 }</script>
 
@@ -112,7 +113,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
       <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./konsep.html"><b>Konsep</b></a></li><li class="breadcrumb-item"><a href="./modul_5.html"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Menentukan Objek atau Memilih Data</span></a></li></ol></nav>
       <a class="flex-grow-1" role="button" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
       </a>
-      <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
+      <button type="button" class="btn quarto-search-button" aria-label="" onclick="window.quartoOpenSearch();">
         <i class="bi bi-search"></i>
       </button>
     </div>
@@ -161,19 +162,19 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./modul_2.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Data Understanding</span></span></a>
+ <span class="menu-text"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Telaah Data</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./modul_3.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Telaah Data</span></span></a>
+ <span class="menu-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Libraries for Data Preprocessing</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./modul_4.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Validasi Data</span></span></a>
+ <span class="menu-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Validasi dan Visualisasi Data</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
@@ -258,7 +259,19 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   <li><a href="#menentukan-tipe-dan-model-data-yang-dimiliki" id="toc-menentukan-tipe-dan-model-data-yang-dimiliki" class="nav-link" data-scroll-target="#menentukan-tipe-dan-model-data-yang-dimiliki"><span class="header-section-number">5.3</span> Menentukan Tipe dan Model Data yang dimiliki</a></li>
   <li><a href="#mengambil-data" id="toc-mengambil-data" class="nav-link" data-scroll-target="#mengambil-data"><span class="header-section-number">5.4</span> Mengambil Data</a></li>
   <li><a href="#menelaah-data-dalam-machine-learning" id="toc-menelaah-data-dalam-machine-learning" class="nav-link" data-scroll-target="#menelaah-data-dalam-machine-learning"><span class="header-section-number">5.5</span> Menelaah Data dalam Machine Learning</a></li>
-  <li><a href="#contoh-source-code" id="toc-contoh-source-code" class="nav-link" data-scroll-target="#contoh-source-code"><span class="header-section-number">5.6</span> Contoh Source Code</a></li>
+  <li><a href="#sampling-data" id="toc-sampling-data" class="nav-link" data-scroll-target="#sampling-data"><span class="header-section-number">5.6</span> Sampling Data</a>
+  <ul class="collapse">
+  <li><a href="#tujuan-sampling-data" id="toc-tujuan-sampling-data" class="nav-link" data-scroll-target="#tujuan-sampling-data"><span class="header-section-number">5.6.1</span> Tujuan Sampling Data</a></li>
+  <li><a href="#keuntungan-sampling-data" id="toc-keuntungan-sampling-data" class="nav-link" data-scroll-target="#keuntungan-sampling-data"><span class="header-section-number">5.6.2</span> Keuntungan Sampling Data</a></li>
+  <li><a href="#metode-sampling" id="toc-metode-sampling" class="nav-link" data-scroll-target="#metode-sampling"><span class="header-section-number">5.6.3</span> Metode Sampling</a></li>
+  </ul></li>
+  <li><a href="#seleksi-fitur" id="toc-seleksi-fitur" class="nav-link" data-scroll-target="#seleksi-fitur"><span class="header-section-number">5.7</span> Seleksi Fitur</a>
+  <ul class="collapse">
+  <li><a href="#tujuan-seleksi-fitur" id="toc-tujuan-seleksi-fitur" class="nav-link" data-scroll-target="#tujuan-seleksi-fitur"><span class="header-section-number">5.7.1</span> Tujuan Seleksi Fitur</a></li>
+  <li><a href="#metode-seleksi-fitur" id="toc-metode-seleksi-fitur" class="nav-link" data-scroll-target="#metode-seleksi-fitur"><span class="header-section-number">5.7.2</span> Metode Seleksi Fitur</a></li>
+  <li><a href="#teknik-seleksi-fitur" id="toc-teknik-seleksi-fitur" class="nav-link" data-scroll-target="#teknik-seleksi-fitur"><span class="header-section-number">5.7.3</span> Teknik Seleksi Fitur</a></li>
+  </ul></li>
+  <li><a href="#train-test-split" id="toc-train-test-split" class="nav-link" data-scroll-target="#train-test-split"><span class="header-section-number">5.8</span> Train Test Split</a></li>
   </ul>
 </nav>
     </div>
@@ -317,53 +330,174 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <li>Identifikasi missing value, outlier, dan data yang tidak konsisten untuk diatasi sebelum analisis atau pemodelan.</li>
 </ul>
 </section>
-<section id="contoh-source-code" class="level2" data-number="5.6">
-<h2 data-number="5.6" class="anchored" data-anchor-id="contoh-source-code"><span class="header-section-number">5.6</span> Contoh Source Code</h2>
-<p>Berikut adalah contoh sederhana menggunakan Python untuk mengambil data dari file CSV, menelaah susunan data, menentukan tipe data, dan melakukan eksplorasi data menggunakan pandas dan matplotlib.</p>
-<p>Silahkan Unduh dataset berikut <a href="https://archive.ics.uci.edu/static/public/53/iris.zip">Iris_Dataset.</a> Pastikan dataset disimpan dalam file CSV dengan nama “iris_dataset.csv” dalam folder yang sama dengan script Python.</p>
-<div class="sourceCode" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
-<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span>
-<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Mengambil data dari file CSV</span></span>
-<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a>data_path <span class="op">=</span> <span class="st">'iris_dataset.csv'</span></span>
-<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a>df <span class="op">=</span> pd.read_csv(data_path)</span>
-<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a><span class="co"># Menelaah susunan data</span></span>
-<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"Dimensi data:"</span>, df.shape)</span>
-<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"Info data:"</span>)</span>
-<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(df.info())</span>
-<span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"Sepuluh data pertama:"</span>)</span>
-<span id="cb1-13"><a href="#cb1-13" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(df.head(<span class="dv">10</span>))</span>
+<section id="sampling-data" class="level2" data-number="5.6">
+<h2 data-number="5.6" class="anchored" data-anchor-id="sampling-data"><span class="header-section-number">5.6</span> Sampling Data</h2>
+<p>Sampling adalah teknik utama yang digunakan untuk reduksi data. Sampling data adalah proses pengambilan sebagian kecil dari suatu populasi untuk mewakili seluruh populasi dengan tujuan mengambil kesimpulan atau membuat estimasi. Sampling sering digunakan untuk investigasi awal data dan analisis data akhir.</p>
+<section id="tujuan-sampling-data" class="level3" data-number="5.6.1">
+<h3 data-number="5.6.1" class="anchored" data-anchor-id="tujuan-sampling-data"><span class="header-section-number">5.6.1</span> Tujuan Sampling Data</h3>
+<ul>
+<li>Mendapatkan data yang relevan dengan penelitian.</li>
+<li>Dapat memberikan estimasi yang akurat jika dilakukan dengan benar.</li>
+<li>Dijadikan acuan untuk mengambil kesimpulan, saran, dan keputusan setelah penelitian dilakukan.</li>
+</ul>
+</section>
+<section id="keuntungan-sampling-data" class="level3" data-number="5.6.2">
+<h3 data-number="5.6.2" class="anchored" data-anchor-id="keuntungan-sampling-data"><span class="header-section-number">5.6.2</span> Keuntungan Sampling Data</h3>
+<ul>
+<li>Dapat menghemat waktu, biaya, dan sumber daya dengan tidak mengumpulkan data dari seluruh populasi.</li>
+<li>Hasil pemeriksaan sampel sangat obyektif dan dapat dipertahankan (objective and defensible).</li>
+<li>Memungkinkan untuk memperkirakan besarnya kesalahan sampling (sampling error).</li>
+<li>Sesuai digunakan saat mengambil kesimpulan tentang data dalam jumlah yang banyak.</li>
+<li>Dapat menentukan banyaknya elemen sampel (sample size) sebelum pemeriksaan dilakukan.</li>
+</ul>
+</section>
+<section id="metode-sampling" class="level3" data-number="5.6.3">
+<h3 data-number="5.6.3" class="anchored" data-anchor-id="metode-sampling"><span class="header-section-number">5.6.3</span> Metode Sampling</h3>
+<ol type="1">
+<li>Random Sampling</li>
+</ol>
+<ul>
+<li><p>Setiap anggota populasi memiliki kesempatan yang sama untuk dipilih.</p></li>
+<li><p>Keuntungan : menghasilkan sampel yang representatif jika dilakukan dengan benar, meminimalisir bias, dan bisa mengetahui standar error dari penelitian.</p></li>
+<li><p>Kekurangan : sampel yang diambil kemungkinan tidak mewakili populasi yang ditentukan.</p></li>
+<li><p><strong>Hands On Coding</strong></p>
+<div class="sourceCode" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>    <span class="im">import</span> pandas <span class="im">as</span> pd</span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>    <span class="im">from</span> sklearn.datasets <span class="im">import</span> load_iris</span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>    <span class="im">from</span> sklearn.model_selection <span class="im">import</span> train_test_split</span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Load dataset Iris</span></span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a>    iris <span class="op">=</span> load_iris()</span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a>    X <span class="op">=</span> iris.data</span>
+<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a>    y <span class="op">=</span> iris.target</span>
+<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Buat DataFrame</span></span>
+<span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a>    df <span class="op">=</span> pd.DataFrame(data<span class="op">=</span>X, columns<span class="op">=</span>[<span class="ss">f'feature_</span><span class="sc">{</span>i<span class="sc">}</span><span class="ss">'</span> <span class="cf">for</span> i <span class="kw">in</span> <span class="bu">range</span>(X.shape[<span class="dv">1</span>])])</span>
+<span id="cb1-13"><a href="#cb1-13" aria-hidden="true" tabindex="-1"></a>    df[<span class="st">'target'</span>] <span class="op">=</span> y</span>
 <span id="cb1-14"><a href="#cb1-14" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-15"><a href="#cb1-15" aria-hidden="true" tabindex="-1"></a><span class="co"># Menentukan tipe data dan model data yang dimiliki</span></span>
-<span id="cb1-16"><a href="#cb1-16" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"Tipe data untuk setiap atribut:"</span>)</span>
-<span id="cb1-17"><a href="#cb1-17" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(df.dtypes)</span>
+<span id="cb1-15"><a href="#cb1-15" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Tampilan DataFrame asli</span></span>
+<span id="cb1-16"><a href="#cb1-16" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="st">"DataFrame Asli:"</span>)</span>
+<span id="cb1-17"><a href="#cb1-17" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(df.head(<span class="dv">10</span>))</span>
 <span id="cb1-18"><a href="#cb1-18" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-19"><a href="#cb1-19" aria-hidden="true" tabindex="-1"></a><span class="co"># Preprocessing data (jika diperlukan)</span></span>
-<span id="cb1-20"><a href="#cb1-20" aria-hidden="true" tabindex="-1"></a><span class="co"># Tidak ada preprocessing yang diperlukan dalam contoh ini</span></span>
-<span id="cb1-21"><a href="#cb1-21" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-22"><a href="#cb1-22" aria-hidden="true" tabindex="-1"></a><span class="co"># Mengambil statistik deskriptif untuk data numerik</span></span>
-<span id="cb1-23"><a href="#cb1-23" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"Statistik deskriptif:"</span>)</span>
-<span id="cb1-24"><a href="#cb1-24" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(df.describe())</span>
-<span id="cb1-25"><a href="#cb1-25" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-26"><a href="#cb1-26" aria-hidden="true" tabindex="-1"></a><span class="co"># Eksplorasi data dengan visualisasi</span></span>
-<span id="cb1-27"><a href="#cb1-27" aria-hidden="true" tabindex="-1"></a>plt.figure(figsize<span class="op">=</span>(<span class="dv">10</span>, <span class="dv">6</span>))</span>
-<span id="cb1-28"><a href="#cb1-28" aria-hidden="true" tabindex="-1"></a>plt.scatter(df[<span class="st">'sepal_length'</span>], df[<span class="st">'sepal_width'</span>])</span>
-<span id="cb1-29"><a href="#cb1-29" aria-hidden="true" tabindex="-1"></a>plt.xlabel(<span class="st">'Sepal Length (cm)'</span>)</span>
-<span id="cb1-30"><a href="#cb1-30" aria-hidden="true" tabindex="-1"></a>plt.ylabel(<span class="st">'Sepal Width (cm)'</span>)</span>
-<span id="cb1-31"><a href="#cb1-31" aria-hidden="true" tabindex="-1"></a>plt.title(<span class="st">'Scatter Plot: Sepal Length vs. Sepal Width'</span>)</span>
-<span id="cb1-32"><a href="#cb1-32" aria-hidden="true" tabindex="-1"></a>plt.show()</span>
-<span id="cb1-33"><a href="#cb1-33" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-34"><a href="#cb1-34" aria-hidden="true" tabindex="-1"></a>plt.figure(figsize<span class="op">=</span>(<span class="dv">8</span>, <span class="dv">6</span>))</span>
-<span id="cb1-35"><a href="#cb1-35" aria-hidden="true" tabindex="-1"></a>df[<span class="st">'species'</span>].value_counts().plot(kind<span class="op">=</span><span class="st">'bar'</span>)</span>
-<span id="cb1-36"><a href="#cb1-36" aria-hidden="true" tabindex="-1"></a>plt.xlabel(<span class="st">'Species'</span>)</span>
-<span id="cb1-37"><a href="#cb1-37" aria-hidden="true" tabindex="-1"></a>plt.ylabel(<span class="st">'Count'</span>)</span>
-<span id="cb1-38"><a href="#cb1-38" aria-hidden="true" tabindex="-1"></a>plt.title(<span class="st">'Bar Plot: Species Distribution'</span>)</span>
-<span id="cb1-39"><a href="#cb1-39" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<p>Pastikan bahwa dataset “Iris” (iris_dataset.csv) berisi kolom dengan nama “sepal_length”, “sepal_width”, “petal_length”, “petal_width”, dan “species”. Jika dataset tersebut memiliki atribut lain atau format yang berbeda, Anda perlu menyesuaikan kode di atas sesuai dengan dataset yang digunakan.</p>
-<p>Contoh di atas akan membaca dataset Iris, menampilkan informasi dasar tentang dataset, menampilkan sepuluh baris pertama dari data, menentukan tipe data untuk setiap atribut, menampilkan statistik deskriptif untuk data numerik, dan melakukan eksplorasi data dengan visualisasi menggunakan scatter plot untuk melihat hubungan antara panjang dan lebar kelopak bunga serta bar plot untuk melihat distribusi spesies bunga.</p>
-<p>Harap dicatat bahwa contoh di atas hanya merupakan contoh sederhana, dan dalam penerapan sebenarnya, langkah-langkah analisis dan eksplorasi data bisa lebih canggih dan lengkap sesuai dengan kompleksitas dan karakteristik data.</p>
-<p>Pemahaman mendalam tentang sumber data, susunan data, tipe data, dan karakteristik data adalah langkah kritis sebelum membangun model machine learning yang efektif.</p>
+<span id="cb1-19"><a href="#cb1-19" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Random Sampling</span></span>
+<span id="cb1-20"><a href="#cb1-20" aria-hidden="true" tabindex="-1"></a>    sampled_df <span class="op">=</span> df.sample(n<span class="op">=</span><span class="dv">50</span>, random_state<span class="op">=</span><span class="dv">1</span>)  <span class="co"># Ambil 50 sampel secara acak</span></span>
+<span id="cb1-21"><a href="#cb1-21" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="st">"</span><span class="ch">\n</span><span class="st">DataFrame Setelah Random Sampling:"</span>)</span>
+<span id="cb1-22"><a href="#cb1-22" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(sampled_df.head(<span class="dv">10</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div></li>
+</ul>
+<ol start="2" type="1">
+<li>Stratified Sampling</li>
+</ol>
+<ul>
+<li><p>Teknik pengambilan sampel jenis ini dilakukan dengan membagi populasi ke dalam tingkatan atau strata tertentu yakni tinggi, sedang, dan rendah. Kemudian diambil sampel tiap tingkatan tersebut.</p></li>
+<li><p>Memastikan setiap kelompok diwakili dalam sampel.</p></li>
+<li><p><strong>Hands On Coding</strong></p>
+<div class="sourceCode" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>    <span class="im">import</span> pandas <span class="im">as</span> pd</span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>    <span class="im">from</span> sklearn.datasets <span class="im">import</span> load_iris</span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a>    <span class="im">from</span> sklearn.model_selection <span class="im">import</span> train_test_split</span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Load dataset Iris</span></span>
+<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a>    iris <span class="op">=</span> load_iris()</span>
+<span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a>    X <span class="op">=</span> iris.data</span>
+<span id="cb2-9"><a href="#cb2-9" aria-hidden="true" tabindex="-1"></a>    y <span class="op">=</span> iris.target</span>
+<span id="cb2-10"><a href="#cb2-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-11"><a href="#cb2-11" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Buat DataFrame</span></span>
+<span id="cb2-12"><a href="#cb2-12" aria-hidden="true" tabindex="-1"></a>    df <span class="op">=</span> pd.DataFrame(data<span class="op">=</span>X, columns<span class="op">=</span>[<span class="ss">f'feature_</span><span class="sc">{</span>i<span class="sc">}</span><span class="ss">'</span> <span class="cf">for</span> i <span class="kw">in</span> <span class="bu">range</span>(X.shape[<span class="dv">1</span>])])</span>
+<span id="cb2-13"><a href="#cb2-13" aria-hidden="true" tabindex="-1"></a>    df[<span class="st">'target'</span>] <span class="op">=</span> y</span>
+<span id="cb2-14"><a href="#cb2-14" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-15"><a href="#cb2-15" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Tampilan DataFrame asli</span></span>
+<span id="cb2-16"><a href="#cb2-16" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="st">"DataFrame Asli:"</span>)</span>
+<span id="cb2-17"><a href="#cb2-17" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(df.head(<span class="dv">10</span>))</span>
+<span id="cb2-18"><a href="#cb2-18" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-19"><a href="#cb2-19" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Stratified Sampling berdasarkan variabel 'target' </span></span>
+<span id="cb2-20"><a href="#cb2-20" aria-hidden="true" tabindex="-1"></a>    stratified_sample <span class="op">=</span> df.groupby(<span class="st">'target'</span>, group_keys<span class="op">=</span><span class="va">False</span>).<span class="bu">apply</span>(<span class="kw">lambda</span> x: x.sample(<span class="dv">2</span>, random_state<span class="op">=</span><span class="dv">1</span>))</span>
+<span id="cb2-21"><a href="#cb2-21" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="st">"</span><span class="ch">\n</span><span class="st">DataFrame Setelah Stratified Sampling:"</span>)</span>
+<span id="cb2-22"><a href="#cb2-22" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(stratified_sample)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div></li>
+</ul>
+</section>
+</section>
+<section id="seleksi-fitur" class="level2" data-number="5.7">
+<h2 data-number="5.7" class="anchored" data-anchor-id="seleksi-fitur"><span class="header-section-number">5.7</span> Seleksi Fitur</h2>
+<p>Seleksi fitur adalah proses memilih subset fitur dari sekumpulan fitur yang ada dalam data, dengan tujuan meningkatkan kinerja model dan mengurangi kompleksitas.</p>
+<section id="tujuan-seleksi-fitur" class="level3" data-number="5.7.1">
+<h3 data-number="5.7.1" class="anchored" data-anchor-id="tujuan-seleksi-fitur"><span class="header-section-number">5.7.1</span> Tujuan Seleksi Fitur</h3>
+<ul>
+<li><strong>Meningkatkan Kinerja Model :</strong>
+<ul>
+<li>Memilih fitur yang paling informatif untuk meningkatkan akurasi dan generalisasi model.</li>
+</ul></li>
+<li><strong>Mengurangi Overfitting :</strong>
+<ul>
+<li>Menghindari penggunaan fitur yang redundant atau tidak relevan untuk mengurangi risiko overfitting.</li>
+</ul></li>
+<li><strong>Efisiensi Komputasi :</strong>
+<ul>
+<li>Mengurangi dimensi data untuk meningkatkan efisiensi komputasi, terutama pada dataset yang besar.</li>
+</ul></li>
+</ul>
+</section>
+<section id="metode-seleksi-fitur" class="level3" data-number="5.7.2">
+<h3 data-number="5.7.2" class="anchored" data-anchor-id="metode-seleksi-fitur"><span class="header-section-number">5.7.2</span> Metode Seleksi Fitur</h3>
+<ol type="1">
+<li>Filter Methods Metode ini menggunakan metrik statistik untuk menilai korelasi antara fitur dan target. Contoh: Pengujian ANOVA, Korelasi Pearson.</li>
+<li>Wrapper Methods Dengan mengevaluasi kinerja model dengan subset fitur tertentu. Contoh: Recursive Feature Elimination (RFE), Forward Selection.</li>
+<li>Embedded Methods Menyeleksi fitur terintegrasi dengan proses pembuatan model. Contoh: Regresi Lasso, Pemilihan Fitur berbasis Pohon (Tree-based Feature Selection).</li>
+</ol>
+</section>
+<section id="teknik-seleksi-fitur" class="level3" data-number="5.7.3">
+<h3 data-number="5.7.3" class="anchored" data-anchor-id="teknik-seleksi-fitur"><span class="header-section-number">5.7.3</span> Teknik Seleksi Fitur</h3>
+<ol type="1">
+<li>Analisis Korelasi, memahami hubungan antara fitur dan target untuk mengidentifikasi fitur yang paling relevan.</li>
+<li>Keterkaitan dengan Bisnis/Tujuan, menyesuaikan seleksi fitur dengan tujuan bisnis atau analisis spesifik.</li>
+<li>Validasi Silang (Cross-Validation), mengevaluasi kinerja seleksi fitur melalui teknik validasi silang untuk memastikan generalisasi yang baik.</li>
+</ol>
+<ul>
+<li><p><strong>Hands On Coding</strong></p>
+<div class="sourceCode" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>    <span class="im">import</span> pandas <span class="im">as</span> pd</span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>    <span class="im">from</span> sklearn.datasets <span class="im">import</span> load_iris</span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a>    <span class="im">from</span> sklearn.feature_selection <span class="im">import</span> SelectKBest</span>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a>    <span class="im">from</span> sklearn.feature_selection <span class="im">import</span> f_classif</span>
+<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Load dataset contoh</span></span>
+<span id="cb3-8"><a href="#cb3-8" aria-hidden="true" tabindex="-1"></a>    iris <span class="op">=</span> load_iris()</span>
+<span id="cb3-9"><a href="#cb3-9" aria-hidden="true" tabindex="-1"></a>    X <span class="op">=</span> iris.data</span>
+<span id="cb3-10"><a href="#cb3-10" aria-hidden="true" tabindex="-1"></a>    y <span class="op">=</span> iris.target</span>
+<span id="cb3-11"><a href="#cb3-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-12"><a href="#cb3-12" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Buat DataFrame</span></span>
+<span id="cb3-13"><a href="#cb3-13" aria-hidden="true" tabindex="-1"></a>    df <span class="op">=</span> pd.DataFrame(data<span class="op">=</span>X, columns<span class="op">=</span>[<span class="ss">f'feature_</span><span class="sc">{</span>i<span class="sc">}</span><span class="ss">'</span> <span class="cf">for</span> i <span class="kw">in</span> <span class="bu">range</span>(X.shape[<span class="dv">1</span>])])</span>
+<span id="cb3-14"><a href="#cb3-14" aria-hidden="true" tabindex="-1"></a>    df[<span class="st">'target'</span>] <span class="op">=</span> y</span>
+<span id="cb3-15"><a href="#cb3-15" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-16"><a href="#cb3-16" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Tampilan DataFrame asli</span></span>
+<span id="cb3-17"><a href="#cb3-17" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="st">"DataFrame Asli:"</span>)</span>
+<span id="cb3-18"><a href="#cb3-18" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(df.head(<span class="dv">10</span>))</span>
+<span id="cb3-19"><a href="#cb3-19" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-20"><a href="#cb3-20" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Seleksi Fitur dengan ANOVA (f_classif)</span></span>
+<span id="cb3-21"><a href="#cb3-21" aria-hidden="true" tabindex="-1"></a>    k_best <span class="op">=</span> SelectKBest(score_func<span class="op">=</span>f_classif, k<span class="op">=</span><span class="dv">2</span>)  <span class="co"># Pilih 2 fitur terbaik</span></span>
+<span id="cb3-22"><a href="#cb3-22" aria-hidden="true" tabindex="-1"></a>    X_selected <span class="op">=</span> k_best.fit_transform(X, y)</span>
+<span id="cb3-23"><a href="#cb3-23" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-24"><a href="#cb3-24" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Tampilan DataFrame setelah seleksi fitur</span></span>
+<span id="cb3-25"><a href="#cb3-25" aria-hidden="true" tabindex="-1"></a>    selected_df <span class="op">=</span> pd.DataFrame(data<span class="op">=</span>X_selected, columns<span class="op">=</span>[<span class="st">'selected_feature_1'</span>, <span class="st">'selected_feature_2'</span>])</span>
+<span id="cb3-26"><a href="#cb3-26" aria-hidden="true" tabindex="-1"></a>    selected_df[<span class="st">'target'</span>] <span class="op">=</span> y</span>
+<span id="cb3-27"><a href="#cb3-27" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="st">"</span><span class="ch">\n</span><span class="st">DataFrame Setelah Seleksi Fitur:"</span>)</span>
+<span id="cb3-28"><a href="#cb3-28" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(selected_df.head(<span class="dv">10</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div></li>
+</ul>
+</section>
+</section>
+<section id="train-test-split" class="level2" data-number="5.8">
+<h2 data-number="5.8" class="anchored" data-anchor-id="train-test-split"><span class="header-section-number">5.8</span> Train Test Split</h2>
+<ul>
+<li><p>Membagi data menjadi subset pelatihan dan pengujian.</p></li>
+<li><p>Umumnya digunakan untuk mengevaluasi kinerja model.</p></li>
+<li><p><strong>Hands On Coding</strong></p>
+<div class="sourceCode" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>        <span class="co"># Train-Test Split (80% train, 20% test)</span></span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>        train_df, test_df <span class="op">=</span> train_test_split(df, test_size<span class="op">=</span><span class="fl">0.2</span>, random_state<span class="op">=</span><span class="dv">1</span>)</span>
+<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a>        <span class="bu">print</span>(<span class="st">"</span><span class="ch">\n</span><span class="st">DataFrame Train Setelah Train-Test Split:"</span>)</span>
+<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a>        <span class="bu">print</span>(train_df.head(<span class="dv">10</span>))</span>
+<span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a>        <span class="bu">print</span>(<span class="st">"</span><span class="ch">\n</span><span class="st">DataFrame Test Setelah Train-Test Split:"</span>)</span>
+<span id="cb4-7"><a href="#cb4-7" aria-hidden="true" tabindex="-1"></a>        <span class="bu">print</span>(test_df.head(<span class="dv">10</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div></li>
+</ul>
 
 
 </section>
@@ -720,7 +854,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 <nav class="page-navigation">
   <div class="nav-page nav-page-previous">
       <a href="./modul_4.html" class="pagination-link">
-        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Validasi Data</span></span>
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Validasi dan Visualisasi Data</span></span>
       </a>          
   </div>
   <div class="nav-page nav-page-next">

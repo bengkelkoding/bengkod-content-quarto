@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.3.353">
+<meta name="generator" content="quarto-1.3.450">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
@@ -93,10 +93,32 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     "search-more-matches-text": "more matches in this document",
     "search-clear-button-title": "Clear",
     "search-detached-cancel-button-title": "Cancel",
-    "search-submit-button-title": "Submit"
+    "search-submit-button-title": "Submit",
+    "search-label": "Search"
   }
 }</script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.6/require.min.js" integrity="sha512-c3Nl8+7g4LMSTdrm621y7kf9v3SDPnhxLNhcjFJbKECVnmZHTdo+IRO05sNLTH/D3vA6u1X32ehoLC7WFVdheg==" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js" integrity="sha512-bLT0Qm9VnAYZDflyKcBaQ2gg0hSYNQrJ8RilYldYQ1FxQYoCLtUjuuRuZo+fjqhx/qtq/1itJ0C2ejDxltZVFg==" crossorigin="anonymous"></script>
+<script type="application/javascript">define('jquery', [],function() {return window.jQuery;})</script>
+<script type="text/javascript">
+window.PlotlyConfig = {MathJaxConfig: 'local'};
+if (window.MathJax && window.MathJax.Hub && window.MathJax.Hub.Config) {window.MathJax.Hub.Config({SVG: {font: "STIX-Web"}});}
+if (typeof require !== 'undefined') {
+require.undef("plotly");
+requirejs.config({
+    paths: {
+        'plotly': ['https://cdn.plot.ly/plotly-2.26.0.min']
+    }
+});
+require(['plotly'], function(Plotly) {
+    window._Plotly = Plotly;
+});
+}
+</script>
 
+
+  <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
 
 </head>
 
@@ -112,7 +134,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
       <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./konsep.html"><b>Konsep</b></a></li><li class="breadcrumb-item"><a href="./modul_6.html"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Cleaning Data</span></a></li></ol></nav>
       <a class="flex-grow-1" role="button" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
       </a>
-      <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
+      <button type="button" class="btn quarto-search-button" aria-label="" onclick="window.quartoOpenSearch();">
         <i class="bi bi-search"></i>
       </button>
     </div>
@@ -161,19 +183,19 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./modul_2.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Data Understanding</span></span></a>
+ <span class="menu-text"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Telaah Data</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./modul_3.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Telaah Data</span></span></a>
+ <span class="menu-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Libraries for Data Preprocessing</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./modul_4.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Validasi Data</span></span></a>
+ <span class="menu-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Validasi dan Visualisasi Data</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
@@ -256,25 +278,25 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   <li><a href="#data-cleaning" id="toc-data-cleaning" class="nav-link active" data-scroll-target="#data-cleaning"><span class="header-section-number">6.1</span> Data Cleaning</a></li>
   <li><a href="#cara-mengatasi-missing-value" id="toc-cara-mengatasi-missing-value" class="nav-link" data-scroll-target="#cara-mengatasi-missing-value"><span class="header-section-number">6.2</span> Cara Mengatasi Missing Value</a>
   <ul class="collapse">
-  <li><a href="#menghapus-baris-atau-kolom-yang-memiliki-missing-value" id="toc-menghapus-baris-atau-kolom-yang-memiliki-missing-value" class="nav-link" data-scroll-target="#menghapus-baris-atau-kolom-yang-memiliki-missing-value">- Menghapus baris atau kolom yang memiliki missing value</a></li>
-  <li><a href="#mengisi-nilai-kosong-dengan-nilai-rata-rata-atau-median" id="toc-mengisi-nilai-kosong-dengan-nilai-rata-rata-atau-median" class="nav-link" data-scroll-target="#mengisi-nilai-kosong-dengan-nilai-rata-rata-atau-median">- Mengisi nilai kosong dengan nilai rata-rata atau median</a></li>
-  <li><a href="#mengisi-nilai-kosong-dengan-nilai-yang-sering-muncul" id="toc-mengisi-nilai-kosong-dengan-nilai-yang-sering-muncul" class="nav-link" data-scroll-target="#mengisi-nilai-kosong-dengan-nilai-yang-sering-muncul">- Mengisi nilai kosong dengan nilai yang sering muncul</a></li>
+  <li><a href="#menghapus-baris-atau-kolom-yang-memiliki-missing-value" id="toc-menghapus-baris-atau-kolom-yang-memiliki-missing-value" class="nav-link" data-scroll-target="#menghapus-baris-atau-kolom-yang-memiliki-missing-value"><span class="header-section-number">6.2.1</span> Menghapus baris atau kolom yang memiliki missing value</a></li>
+  <li><a href="#mengisi-nilai-kosong-dengan-nilai-rata-rata-atau-median" id="toc-mengisi-nilai-kosong-dengan-nilai-rata-rata-atau-median" class="nav-link" data-scroll-target="#mengisi-nilai-kosong-dengan-nilai-rata-rata-atau-median"><span class="header-section-number">6.2.2</span> Mengisi nilai kosong dengan nilai rata-rata atau median</a></li>
+  <li><a href="#mengisi-nilai-kosong-dengan-nilai-yang-sering-muncul" id="toc-mengisi-nilai-kosong-dengan-nilai-yang-sering-muncul" class="nav-link" data-scroll-target="#mengisi-nilai-kosong-dengan-nilai-yang-sering-muncul"><span class="header-section-number">6.2.3</span> Mengisi nilai kosong dengan nilai yang sering muncul</a></li>
   </ul></li>
-  <li><a href="#menangani-outlier" id="toc-menangani-outlier" class="nav-link" data-scroll-target="#menangani-outlier"><span class="header-section-number">6.3</span> Menangani Outlier</a>
+  <li><a href="#outlier" id="toc-outlier" class="nav-link" data-scroll-target="#outlier"><span class="header-section-number">6.3</span> Outlier</a>
   <ul class="collapse">
-  <li><a href="#menghapus-outlier" id="toc-menghapus-outlier" class="nav-link" data-scroll-target="#menghapus-outlier">- Menghapus Outlier</a></li>
-  <li><a href="#menggantikan-nilai-outlier-dengan-nilai-lain-seperti-nilai-rata-rata-atau-median." id="toc-menggantikan-nilai-outlier-dengan-nilai-lain-seperti-nilai-rata-rata-atau-median." class="nav-link" data-scroll-target="#menggantikan-nilai-outlier-dengan-nilai-lain-seperti-nilai-rata-rata-atau-median.">- Menggantikan nilai outlier dengan nilai lain seperti nilai rata-rata atau median.</a></li>
-  <li><a href="#mengisi-nilai-kosong-dengan-nilai-yang-sering-muncul-1" id="toc-mengisi-nilai-kosong-dengan-nilai-yang-sering-muncul-1" class="nav-link" data-scroll-target="#mengisi-nilai-kosong-dengan-nilai-yang-sering-muncul-1">- Mengisi nilai kosong dengan nilai yang sering muncul</a></li>
+  <li><a href="#deteksi-outlier" id="toc-deteksi-outlier" class="nav-link" data-scroll-target="#deteksi-outlier"><span class="header-section-number">6.3.1</span> Deteksi Outlier</a></li>
+  <li><a href="#kategori-outlier" id="toc-kategori-outlier" class="nav-link" data-scroll-target="#kategori-outlier"><span class="header-section-number">6.3.2</span> Kategori Outlier</a></li>
+  <li><a href="#mengatasi-outlier" id="toc-mengatasi-outlier" class="nav-link" data-scroll-target="#mengatasi-outlier"><span class="header-section-number">6.3.3</span> Mengatasi Outlier</a></li>
   </ul></li>
-  <li><a href="#menangani-format-yang-tidak-konsisten" id="toc-menangani-format-yang-tidak-konsisten" class="nav-link" data-scroll-target="#menangani-format-yang-tidak-konsisten"><span class="header-section-number">6.4</span> - Menangani Format yang Tidak Konsisten</a>
+  <li><a href="#menangani-format-yang-tidak-konsisten" id="toc-menangani-format-yang-tidak-konsisten" class="nav-link" data-scroll-target="#menangani-format-yang-tidak-konsisten"><span class="header-section-number">6.4</span> Menangani Format yang Tidak Konsisten</a>
   <ul class="collapse">
-  <li><a href="#mengubah-format-data-menjadi-format-yang-konsisten-seperti-mengubah-format-tanggal-menjadi-format-yang-sama" id="toc-mengubah-format-data-menjadi-format-yang-konsisten-seperti-mengubah-format-tanggal-menjadi-format-yang-sama" class="nav-link" data-scroll-target="#mengubah-format-data-menjadi-format-yang-konsisten-seperti-mengubah-format-tanggal-menjadi-format-yang-sama">- Mengubah format data menjadi format yang konsisten seperti mengubah format tanggal menjadi format yang sama</a></li>
-  <li><a href="#memperbaiki-data-yang-salah-ketik-atau-typo" id="toc-memperbaiki-data-yang-salah-ketik-atau-typo" class="nav-link" data-scroll-target="#memperbaiki-data-yang-salah-ketik-atau-typo">- Memperbaiki data yang salah ketik atau typo</a></li>
+  <li><a href="#mengubah-format-data-menjadi-format-yang-konsisten-seperti-mengubah-format-tanggal-menjadi-format-yang-sama" id="toc-mengubah-format-data-menjadi-format-yang-konsisten-seperti-mengubah-format-tanggal-menjadi-format-yang-sama" class="nav-link" data-scroll-target="#mengubah-format-data-menjadi-format-yang-konsisten-seperti-mengubah-format-tanggal-menjadi-format-yang-sama"><span class="header-section-number">6.4.1</span> Mengubah format data menjadi format yang konsisten seperti mengubah format tanggal menjadi format yang sama</a></li>
+  <li><a href="#memperbaiki-data-yang-salah-ketik-atau-typo" id="toc-memperbaiki-data-yang-salah-ketik-atau-typo" class="nav-link" data-scroll-target="#memperbaiki-data-yang-salah-ketik-atau-typo"><span class="header-section-number">6.4.2</span> - Memperbaiki data yang salah ketik atau typo</a></li>
   </ul></li>
   <li><a href="#menangani-malformed-record" id="toc-menangani-malformed-record" class="nav-link" data-scroll-target="#menangani-malformed-record"><span class="header-section-number">6.5</span> Menangani Malformed Record</a>
   <ul class="collapse">
-  <li><a href="#menghapus-record-yang-tidak-sesuai-dengan-format-atau-struktur-yang-diharapkan" id="toc-menghapus-record-yang-tidak-sesuai-dengan-format-atau-struktur-yang-diharapkan" class="nav-link" data-scroll-target="#menghapus-record-yang-tidak-sesuai-dengan-format-atau-struktur-yang-diharapkan">- Menghapus record yang tidak sesuai dengan format atau struktur yang diharapkan</a></li>
-  <li><a href="#mengubah-record-yang-tidak-sesuai-dengan-format-atau-struktur-yang-diharapkan" id="toc-mengubah-record-yang-tidak-sesuai-dengan-format-atau-struktur-yang-diharapkan" class="nav-link" data-scroll-target="#mengubah-record-yang-tidak-sesuai-dengan-format-atau-struktur-yang-diharapkan">- Mengubah record yang tidak sesuai dengan format atau struktur yang diharapkan</a></li>
+  <li><a href="#menghapus-record-yang-tidak-sesuai-dengan-format-atau-struktur-yang-diharapkan" id="toc-menghapus-record-yang-tidak-sesuai-dengan-format-atau-struktur-yang-diharapkan" class="nav-link" data-scroll-target="#menghapus-record-yang-tidak-sesuai-dengan-format-atau-struktur-yang-diharapkan"><span class="header-section-number">6.5.1</span> - Menghapus record yang tidak sesuai dengan format atau struktur yang diharapkan</a></li>
+  <li><a href="#mengubah-record-yang-tidak-sesuai-dengan-format-atau-struktur-yang-diharapkan" id="toc-mengubah-record-yang-tidak-sesuai-dengan-format-atau-struktur-yang-diharapkan" class="nav-link" data-scroll-target="#mengubah-record-yang-tidak-sesuai-dengan-format-atau-struktur-yang-diharapkan"><span class="header-section-number">6.5.2</span> - Mengubah record yang tidak sesuai dengan format atau struktur yang diharapkan</a></li>
   </ul></li>
   <li><a href="#kesimpulan" id="toc-kesimpulan" class="nav-link" data-scroll-target="#kesimpulan"><span class="header-section-number">6.6</span> Kesimpulan</a></li>
   </ul>
@@ -317,10 +339,10 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </ul></li>
 </ul>
 <p>Pilih strategi yang paling sesuai tergantung pada tipe data dan tujuan analisis</p>
-<section id="menghapus-baris-atau-kolom-yang-memiliki-missing-value" class="level3 unnumbered">
-<h3 class="unnumbered anchored" data-anchor-id="menghapus-baris-atau-kolom-yang-memiliki-missing-value">- Menghapus baris atau kolom yang memiliki missing value</h3>
-<section id="tanpa-menggunakan-dataset" class="level4 unnumbered">
-<h4 class="unnumbered anchored" data-anchor-id="tanpa-menggunakan-dataset">- Tanpa Menggunakan Dataset</h4>
+<section id="menghapus-baris-atau-kolom-yang-memiliki-missing-value" class="level3" data-number="6.2.1">
+<h3 data-number="6.2.1" class="anchored" data-anchor-id="menghapus-baris-atau-kolom-yang-memiliki-missing-value"><span class="header-section-number">6.2.1</span> Menghapus baris atau kolom yang memiliki missing value</h3>
+<section id="tanpa-menggunakan-dataset" class="level4" data-number="6.2.1.1">
+<h4 data-number="6.2.1.1" class="anchored" data-anchor-id="tanpa-menggunakan-dataset"><span class="header-section-number">6.2.1.1</span> Tanpa Menggunakan Dataset</h4>
 <div class="sourceCode" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="co"># Contoh dataset dengan nilai yang hilang</span></span>
@@ -345,9 +367,9 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb1-22"><a href="#cb1-22" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"</span><span class="ch">\n</span><span class="st">Dataset setelah menghapus kolom yang memiliki nilai yang hilang:"</span>)</span>
 <span id="cb1-23"><a href="#cb1-23" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(df_cleaned_cols)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </section>
-<section id="menggunakan-dataset" class="level4 unnumbered">
-<h4 class="unnumbered anchored" data-anchor-id="menggunakan-dataset">- Menggunakan Dataset</h4>
-<p>untuk mengunduh dataset agar dapat digunakan pada source code <a href="https://www.kaggle.com/c/titanic/data">disini</a></p>
+<section id="menggunakan-dataset" class="level4" data-number="6.2.1.2">
+<h4 data-number="6.2.1.2" class="anchored" data-anchor-id="menggunakan-dataset"><span class="header-section-number">6.2.1.2</span> Menggunakan Dataset</h4>
+<p>untuk mengunduh dataset agar dapat digunakan pada source code <a href="https://drive.google.com/drive/folders/163OwNb2xffdtm2uGMGwVP6MH5azm3uLI">disini</a></p>
 <div class="sourceCode" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
 <span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a><span class="co"># Load dataset Titanic dari file CSV</span></span>
@@ -368,8 +390,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb2-18"><a href="#cb2-18" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(titanic_cleaned_cols)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </section>
 </section>
-<section id="mengisi-nilai-kosong-dengan-nilai-rata-rata-atau-median" class="level3 unnumbered">
-<h3 class="unnumbered anchored" data-anchor-id="mengisi-nilai-kosong-dengan-nilai-rata-rata-atau-median">- Mengisi nilai kosong dengan nilai rata-rata atau median</h3>
+<section id="mengisi-nilai-kosong-dengan-nilai-rata-rata-atau-median" class="level3" data-number="6.2.2">
+<h3 data-number="6.2.2" class="anchored" data-anchor-id="mengisi-nilai-kosong-dengan-nilai-rata-rata-atau-median"><span class="header-section-number">6.2.2</span> Mengisi nilai kosong dengan nilai rata-rata atau median</h3>
 <div class="sourceCode" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
 <span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a><span class="co"># Load dataset Titanic dari file CSV</span></span>
@@ -391,8 +413,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb3-19"><a href="#cb3-19" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"</span><span class="ch">\n</span><span class="st">Informasi tentang dataset Titanic setelah pengisian nilai kosong:"</span>)</span>
 <span id="cb3-20"><a href="#cb3-20" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(titanic_df.info())</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </section>
-<section id="mengisi-nilai-kosong-dengan-nilai-yang-sering-muncul" class="level3 unnumbered">
-<h3 class="unnumbered anchored" data-anchor-id="mengisi-nilai-kosong-dengan-nilai-yang-sering-muncul">- Mengisi nilai kosong dengan nilai yang sering muncul</h3>
+<section id="mengisi-nilai-kosong-dengan-nilai-yang-sering-muncul" class="level3" data-number="6.2.3">
+<h3 data-number="6.2.3" class="anchored" data-anchor-id="mengisi-nilai-kosong-dengan-nilai-yang-sering-muncul"><span class="header-section-number">6.2.3</span> Mengisi nilai kosong dengan nilai yang sering muncul</h3>
 <div class="sourceCode" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
 <span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a><span class="co"># Load dataset Titanic dari file CSV</span></span>
@@ -411,9 +433,10 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb4-16"><a href="#cb4-16" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(titanic_df.info())</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </section>
 </section>
-<section id="menangani-outlier" class="level2" data-number="6.3">
-<h2 data-number="6.3" class="anchored" data-anchor-id="menangani-outlier"><span class="header-section-number">6.3</span> Menangani Outlier</h2>
+<section id="outlier" class="level2" data-number="6.3">
+<h2 data-number="6.3" class="anchored" data-anchor-id="outlier"><span class="header-section-number">6.3</span> Outlier</h2>
 <p>Outlier merupakan data yang jauh dari nilai rata-rata atau nilai normal. Outlier dapat mempengaruhi hasil analisis dan machine learning.</p>
+<p>Outlier dapat terjadi karena berbagai alasan, seperti kesalahan pengukuran, kesalahan entri data, variasi alami, atau peristiwa langka. Outlier dapat memiliki dampak signifikan pada analisis statistik, model pembelajaran mesin, dan interpretasi data, yang dapat mengarah pada hasil yang bias atau kesimpulan yang tidak akurat.</p>
 <ul>
 <li>Strategi untuk mengatasi Outlier :
 <ul>
@@ -423,8 +446,38 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </ul></li>
 </ul>
 <p>Pilih strategi yang paling sesuai tergantung pada tipe data dan tujuan analisis.</p>
-<section id="menghapus-outlier" class="level3 unnumbered">
-<h3 class="unnumbered anchored" data-anchor-id="menghapus-outlier">- Menghapus Outlier</h3>
+<section id="deteksi-outlier" class="level3" data-number="6.3.1">
+<h3 data-number="6.3.1" class="anchored" data-anchor-id="deteksi-outlier"><span class="header-section-number">6.3.1</span> Deteksi Outlier</h3>
+<p>Outlier dapat dideteksi menggunakan beberapa metode, antara lain</p>
+<section id="visualisasi" class="level4" data-number="6.3.1.1">
+<h4 data-number="6.3.1.1" class="anchored" data-anchor-id="visualisasi"><span class="header-section-number">6.3.1.1</span> Visualisasi</h4>
+<p>Adalah sebuah teknik untuk memvisualisasikan sebuah data menjadi suatu bentuk yang dapat dilihat secara menyeluruh sehingga kita dapat menganalisa bentuk data, ukuran data, data point dan mendeteksi outlier.</p>
+<p>Beberapa bentuk visualisasi yang sering digunakan untuk mendeteksi outlier yaitu</p>
+<ul>
+<li>Histogram<br>
+</li>
+<li>Scatter plot<br>
+</li>
+<li>Box plot</li>
+</ul>
+</section>
+</section>
+<section id="kategori-outlier" class="level3" data-number="6.3.2">
+<h3 data-number="6.3.2" class="anchored" data-anchor-id="kategori-outlier"><span class="header-section-number">6.3.2</span> Kategori Outlier</h3>
+<p>Variate dan univariate adalah dua jenis data dalam statistik. Outlier adalah observasi atau nilai yang secara signifikan berbeda dari pola atau pola umum data yang lain.</p>
+<section id="variate-data" class="level4" data-number="6.3.2.1">
+<h4 data-number="6.3.2.1" class="anchored" data-anchor-id="variate-data"><span class="header-section-number">6.3.2.1</span> Variate Data</h4>
+<p>Variate data merujuk pada set data yang terdiri dari beberapa variabel atau fitur. Contoh umum variate data adalah dataset yang terdiri dari beberapa kolom, di mana setiap kolom mewakili variabel yang berbeda. Misalnya, jika kita memiliki dataset tentang mahasiswa yang mencakup variabel seperti tinggi, berat badan, dan usia, maka kita memiliki variate data. Outlier dalam variate data merujuk pada observasi atau nilai yang di luar kisaran yang diharapkan dalam setidaknya satu variabel.</p>
+</section>
+<section id="univariate-data" class="level4" data-number="6.3.2.2">
+<h4 data-number="6.3.2.2" class="anchored" data-anchor-id="univariate-data"><span class="header-section-number">6.3.2.2</span> Univariate Data</h4>
+<p>Univariate data merujuk pada set data yang hanya memiliki satu variabel atau fitur. Contoh umum univariate data adalah dataset yang hanya terdiri dari satu kolom, seperti data tinggi badan seseorang. Outlier dalam univariate data merujuk pada observasi atau nilai yang sangat ekstrem atau jauh dari rentang nilai yang diharapkan.</p>
+</section>
+</section>
+<section id="mengatasi-outlier" class="level3" data-number="6.3.3">
+<h3 data-number="6.3.3" class="anchored" data-anchor-id="mengatasi-outlier"><span class="header-section-number">6.3.3</span> Mengatasi Outlier</h3>
+<section id="menghapus-outlier" class="level4" data-number="6.3.3.1">
+<h4 data-number="6.3.3.1" class="anchored" data-anchor-id="menghapus-outlier"><span class="header-section-number">6.3.3.1</span> Menghapus Outlier</h4>
 <div class="sourceCode" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
 <span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> sklearn.datasets <span class="im">import</span> load_iris</span>
 <span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> scipy <span class="im">import</span> stats</span>
@@ -450,8 +503,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb5-23"><a href="#cb5-23" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(iris_cleaned.describe())</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p>Pada contoh di atas, digunakan metode z-score untuk mendeteksi outlier dalam dataset Iris. Outlier adalah data yang memiliki z-score lebih besar dari z_threshold yang telah ditentukan (z_threshold=3). Fungsi remove_outliers_zscore digunakan untuk menghapus baris yang mengandung outlier berdasarkan z-score, yaitu baris yang memiliki setidaknya satu fitur (kolom) dengan z-score melebihi z_threshold. Penting untuk berhati-hati karena penghapusan outlier dapat mempengaruhi hasil analisis atau model machine learning. Selain z-score, ada banyak teknik deteksi outlier lainnya seperti IQR dan pendekatan berbasis model machine learning atau domain knowledge.</p>
 </section>
-<section id="menggantikan-nilai-outlier-dengan-nilai-lain-seperti-nilai-rata-rata-atau-median." class="level3 unnumbered">
-<h3 class="unnumbered anchored" data-anchor-id="menggantikan-nilai-outlier-dengan-nilai-lain-seperti-nilai-rata-rata-atau-median.">- Menggantikan nilai outlier dengan nilai lain seperti nilai rata-rata atau median.</h3>
+<section id="menggantikan-nilai-outlier-dengan-nilai-lain-seperti-nilai-rata-rata-atau-median." class="level4" data-number="6.3.3.2">
+<h4 data-number="6.3.3.2" class="anchored" data-anchor-id="menggantikan-nilai-outlier-dengan-nilai-lain-seperti-nilai-rata-rata-atau-median."><span class="header-section-number">6.3.3.2</span> Menggantikan nilai outlier dengan nilai lain seperti nilai rata-rata atau median.</h4>
 <div class="sourceCode" id="cb6"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
 <span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a><span class="co"># membaca dataset publik</span></span>
@@ -476,8 +529,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <p>Kemudian, kita menggantikan nilai outlier dengan nilai rata-rata atau median. Untuk menggantikan dengan nilai rata-rata, kita menggunakan fungsi apply() pada kolom yang menghasilkan nilai rata-rata jika nilai kurang dari batas bawah atau lebih dari batas atas, sedangkan untuk menggantikan dengan nilai median, kita juga menggunakan fungsi apply() pada kolom yang menghasilkan nilai median jika nilai kurang dari batas bawah atau lebih dari batas atas.</p>
 <p>Terakhir, kita menampilkan dataset yang telah diubah dengan fungsi print().</p>
 </section>
-<section id="mengisi-nilai-kosong-dengan-nilai-yang-sering-muncul-1" class="level3 unnumbered">
-<h3 class="unnumbered anchored" data-anchor-id="mengisi-nilai-kosong-dengan-nilai-yang-sering-muncul-1">- Mengisi nilai kosong dengan nilai yang sering muncul</h3>
+<section id="mengisi-nilai-kosong-dengan-nilai-yang-sering-muncul-1" class="level4" data-number="6.3.3.3">
+<h4 data-number="6.3.3.3" class="anchored" data-anchor-id="mengisi-nilai-kosong-dengan-nilai-yang-sering-muncul-1"><span class="header-section-number">6.3.3.3</span> Mengisi nilai kosong dengan nilai yang sering muncul</h4>
 <div class="sourceCode" id="cb7"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
 <span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a><span class="co"># Load dataset Titanic dari file CSV</span></span>
@@ -497,9 +550,1020 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <p>Pada contoh di atas, menggunakan metode mode() dari pandas untuk menghitung nilai yang sering muncul (mode) pada kolom ‘Embarked’, lalu mengisi nilai kosong pada kolom tersebut dengan nilai mode yang dihitung. Penggunaan parameter inplace=True memastikan perubahan dilakukan langsung pada DataFrame asli. Setelah mengisi nilai kosong, hasilnya dapat diperiksa untuk memastikan tidak ada lagi nilai yang hilang pada kolom ‘Embarked’.</p>
 <p>Perlu diingat, pengisian nilai kosong dengan nilai yang sering muncul merupakan salah satu teknik imputasi yang umum. Teknik lainnya termasuk pengisian dengan nilai rata-rata, nilai median, atau menggunakan model machine learning untuk memprediksi nilai yang hilang berdasarkan data lainnya. Pilihan teknik imputasi tergantung pada karakteristik dataset dan tujuan analisis atau model machine learning yang ingin diimplementasikan.</p>
 </section>
+<section id="discretizationbinning" class="level4" data-number="6.3.3.4">
+<h4 data-number="6.3.3.4" class="anchored" data-anchor-id="discretizationbinning"><span class="header-section-number">6.3.3.4</span> Discretization/Binning</h4>
+<p>Discretization atau binning adalah proses mengubah data kontinu menjadi data diskrit dengan cara membagi rentang nilai kontinu menjadi beberapa interval atau kelompok yang disebut “bin” atau “bucket”. Tujuan utama dari discretization adalah mengurangi kompleksitas data kontinu dengan mengelompokkan nilainya ke dalam kategori atau range tertentu.</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="./10.binning.png" class="img-fluid figure-img"></p>
+<figcaption class="figure-caption">Gambar10. Grafik Proses Binning Dataset</figcaption>
+</figure>
+</div>
+<section id="kelebihan" class="level5 unnumbered">
+<h5 class="unnumbered anchored" data-anchor-id="kelebihan"><strong>Kelebihan</strong></h5>
+<ul>
+<li>Dapat diterapkan pada data kategorik dan numerik.<br>
+</li>
+<li>Model lebih robust dan mencegah overfitting.</li>
+</ul>
+</section>
+<section id="kekurangan" class="level5 unnumbered">
+<h5 class="unnumbered anchored" data-anchor-id="kekurangan"><strong>Kekurangan</strong></h5>
+<ul>
+<li>Meningkatnya biaya kinerja perhitungan.<br>
+</li>
+<li>Mengorbankan informasi.<br>
+</li>
+<li>Untuk kolom data numerik, dapat menyebabkan redudansi untuk beberapa algoritma.<br>
+</li>
+<li>Untuk kolom data kategorik, label dengan frekuensi rendah berdampak negatif pada robustness model statistik.</li>
+</ul>
+</section>
+</section>
+<section id="trimming" class="level4" data-number="6.3.3.5">
+<h4 data-number="6.3.3.5" class="anchored" data-anchor-id="trimming"><span class="header-section-number">6.3.3.5</span> Trimming</h4>
+<p>Trimming adalah proses penghapusan data yang dianggap sebagai outlier. Trimming biasanya dilakukan berdasarkan presentase data yang akan di trim, contohnya 5%.<br>
+<img src="./11.trimming.png" class="img-fluid" alt="Gambar11. Grafik Proses Trimming Dataset"></p>
+<section id="kelebihan-1" class="level5 unnumbered">
+<h5 class="unnumbered anchored" data-anchor-id="kelebihan-1"><strong>Kelebihan</strong></h5>
+<ul>
+<li>Cepat dan mudah<br>
+</li>
+<li>Dapat memperbaiki rata-rata data</li>
+</ul>
+</section>
+<section id="kekurangan-1" class="level5 unnumbered">
+<h5 class="unnumbered anchored" data-anchor-id="kekurangan-1"><strong>Kekurangan</strong></h5>
+<ul>
+<li>Hilangnya data yang dapat mengandung informasi<br>
+</li>
+<li>Dapat menyebabkan bias terhadap variansi data</li>
+</ul>
+</section>
+</section>
+<section id="winsorizing" class="level4" data-number="6.3.3.6">
+<h4 data-number="6.3.3.6" class="anchored" data-anchor-id="winsorizing"><span class="header-section-number">6.3.3.6</span> Winsorizing</h4>
+<p>Winsorizing adalah proses penggantian data outlier dengan nilai-nilai yang berada dalam distribusi yang ditentukan.</p>
+<section id="kelebihan-2" class="level5 unnumbered">
+<h5 class="unnumbered anchored" data-anchor-id="kelebihan-2"><strong>Kelebihan</strong></h5>
+<ul>
+<li>Mempertahankan informasi<br>
+</li>
+<li>Mengurangi efek dari outlier<br>
+</li>
+<li>Mudah diimplementasikan</li>
+</ul>
+</section>
+<section id="kekurangan-2" class="level5 unnumbered">
+<h5 class="unnumbered anchored" data-anchor-id="kekurangan-2"><strong>Kekurangan</strong></h5>
+<ul>
+<li>Dapat menghasilkan bias<br>
+</li>
+<li>Pemilihan presentil dapat mempengaruhi hasil analisis data</li>
+</ul>
+</section>
+</section>
+<section id="imputing" class="level4" data-number="6.3.3.7">
+<h4 data-number="6.3.3.7" class="anchored" data-anchor-id="imputing"><span class="header-section-number">6.3.3.7</span> Imputing</h4>
+<p>Imputing adalah proses penggantian data outlier dengan nilai-nilai yang diprediksi atau diestimasi berdasarkan karakteristik data. Teknik imputasi sudah di bahas secara detail di bab sebelumnya</p>
+<section id="kelebihan-3" class="level5 unnumbered">
+<h5 class="unnumbered anchored" data-anchor-id="kelebihan-3"><strong>Kelebihan</strong></h5>
+<ul>
+<li>Mempertahankan informasi dan ukuran sampel<br>
+</li>
+<li>Meningkatkan akurasi analisis</li>
+</ul>
+</section>
+<section id="kekurangan-3" class="level5 unnumbered">
+<h5 class="unnumbered anchored" data-anchor-id="kekurangan-3"><strong>Kekurangan</strong></h5>
+<ul>
+<li>Pemilihan metode dan implementasi bisa cukup sulit<br>
+</li>
+<li>Berpotensi merusak distribusi data</li>
+</ul>
+</section>
+</section>
+<section id="normalization" class="level4" data-number="6.3.3.8">
+<h4 data-number="6.3.3.8" class="anchored" data-anchor-id="normalization"><span class="header-section-number">6.3.3.8</span> Normalization</h4>
+<p>Adalah metode untuk mengubah skala nilai dalam dataset sehingga nilainya berkisar antara 0 dan 1. Untuk melakukan normalisasi data, kita membagi data berdasarkan nilai minimum dan maksimum dari data. Proses normalisasi baik digunakan untuk dataset yang mempunyai distribusi data non-normal atau tidak beraturan.</p>
+<p>Rumus dari normalisasi adalah:<br>
+<span class="math display">\[
+normalized_x = \dfrac{x - min(x)}{max(x)-min(x)}
+\]</span></p>
+<section id="kelebihan-4" class="level5 unnumbered">
+<h5 class="unnumbered anchored" data-anchor-id="kelebihan-4"><strong>Kelebihan</strong></h5>
+<ul>
+<li>Mempertahankan informasi dan ukuran sampel<br>
+</li>
+<li>Meningkatkan akurasi analisis<br>
+</li>
+<li>Mudah diimplementasikan</li>
+</ul>
+</section>
+<section id="kekurangan-4" class="level5 unnumbered">
+<h5 class="unnumbered anchored" data-anchor-id="kekurangan-4"><strong>Kekurangan</strong></h5>
+<ul>
+<li>Metode harus sesuai dengan karakteristik data<br>
+</li>
+<li>Tidak menghilangkan outlier secara langsung, hanya mengurangi efek dari outlier</li>
+</ul>
+</section>
+</section>
+<section id="standarization-z-score" class="level4" data-number="6.3.3.9">
+<h4 data-number="6.3.3.9" class="anchored" data-anchor-id="standarization-z-score"><span class="header-section-number">6.3.3.9</span> Standarization / Z-Score</h4>
+<p>Standarisasi data adalah suatu proses dalam analisis data yang mengubah variabel-variabel menjadi memiliki rata-rata nol dan standar deviasi satu. Dalam standarisasi data, setiap nilai data dikurangi dengan rata-rata dari seluruh data, kemudian hasilnya dibagi dengan standar deviasi data. Dengan melakukan hal ini, nilai-nilai data akan berada pada skala yang relatif terhadap variabilitas data. Proses standarisasi menggunakan rumus sebagai berikut:</p>
+<p><span class="math display">\[
+standardized_x = \dfrac{x - mean(x)}{standard deviation(x)}
+\]</span></p>
+<section id="kelebihan-5" class="level5 unnumbered">
+<h5 class="unnumbered anchored" data-anchor-id="kelebihan-5"><strong>Kelebihan</strong></h5>
+<ul>
+<li>Mean dan standar deviasi tidak berubah<br>
+</li>
+<li>Tidak sensitif terhadap outlier</li>
+</ul>
+</section>
+<section id="kekurangan-5" class="level5 unnumbered">
+<h5 class="unnumbered anchored" data-anchor-id="kekurangan-5"><strong>Kekurangan</strong></h5>
+<ul>
+<li>Tidak dapat menentukan batasan data<br>
+</li>
+<li>Hasil dapat berupa angka negatif</li>
+</ul>
+</section>
+</section>
+<section id="hands-on-coding" class="level4" data-number="6.3.3.10">
+<h4 data-number="6.3.3.10" class="anchored" data-anchor-id="hands-on-coding"><span class="header-section-number">6.3.3.10</span> Hands On Coding</h4>
+<section id="binning" class="level5" data-number="6.3.3.10.1">
+<h5 data-number="6.3.3.10.1" class="anchored" data-anchor-id="binning"><span class="header-section-number">6.3.3.10.1</span> Binning</h5>
+<p>Link Dataset : <a href="https://drive.google.com/file/d/10pmV7uhH9uWq3ZNbInCowcNBhjFQokh3/view?usp=drive_link">Here</a></p>
+<div class="cell" data-execution_count="1">
+<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Bining</span></span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>    <span class="im">import</span> pandas <span class="im">as</span> pd</span>
+<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a>    <span class="im">import</span> plotly.express <span class="im">as</span> px</span>
+<span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a>    <span class="im">import</span> numpy <span class="im">as</span> np</span>
+<span id="cb8-5"><a href="#cb8-5" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Load Data</span></span>
+<span id="cb8-6"><a href="#cb8-6" aria-hidden="true" tabindex="-1"></a>    df <span class="op">=</span> pd.read_csv(<span class="st">'data_sampled_100.csv'</span>)</span>
+<span id="cb8-7"><a href="#cb8-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-8"><a href="#cb8-8" aria-hidden="true" tabindex="-1"></a>    <span class="co"># binning data menjadi 5 kategori</span></span>
+<span id="cb8-9"><a href="#cb8-9" aria-hidden="true" tabindex="-1"></a>    df[<span class="st">'loudness'</span>] <span class="op">=</span> pd.cut(df[<span class="st">'loudness'</span>], bins<span class="op">=</span><span class="dv">3</span>, labels<span class="op">=</span>[</span>
+<span id="cb8-10"><a href="#cb8-10" aria-hidden="true" tabindex="-1"></a>                            <span class="st">'sunyi'</span>, <span class="st">'standar'</span>, <span class="st">'bising'</span>])</span>
+<span id="cb8-11"><a href="#cb8-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-12"><a href="#cb8-12" aria-hidden="true" tabindex="-1"></a>    <span class="co"># urutkan data berdasarkan fitur loudness</span></span>
+<span id="cb8-13"><a href="#cb8-13" aria-hidden="true" tabindex="-1"></a>    df_sorted <span class="op">=</span> df.sort_values(by<span class="op">=</span><span class="st">'loudness'</span>)</span>
+<span id="cb8-14"><a href="#cb8-14" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-15"><a href="#cb8-15" aria-hidden="true" tabindex="-1"></a>    <span class="co"># visualisasikan data menggunakan histogram</span></span>
+<span id="cb8-16"><a href="#cb8-16" aria-hidden="true" tabindex="-1"></a>    fig <span class="op">=</span> px.histogram(df_sorted, x<span class="op">=</span><span class="st">'loudness'</span>)</span>
+<span id="cb8-17"><a href="#cb8-17" aria-hidden="true" tabindex="-1"></a>    fig.show()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display">
+
+<div>                            <div id="1114f2f5-c1fc-4dd2-9b37-665f376ef120" class="plotly-graph-div" style="height:525px; width:100%;"></div>            <script type="text/javascript">                require(["plotly"], function(Plotly) {                    window.PLOTLYENV=window.PLOTLYENV || {};                                    if (document.getElementById("1114f2f5-c1fc-4dd2-9b37-665f376ef120")) {                    Plotly.newPlot(                        "1114f2f5-c1fc-4dd2-9b37-665f376ef120",                        [{"alignmentgroup":"True","bingroup":"x","hovertemplate":"loudness=%{x}\u003cbr\u003ecount=%{y}\u003cextra\u003e\u003c\u002fextra\u003e","legendgroup":"","marker":{"color":"#636efa","pattern":{"shape":""}},"name":"","offsetgroup":"","orientation":"v","showlegend":false,"x":["sunyi","sunyi","sunyi","sunyi","sunyi","standar","standar","standar","standar","standar","standar","standar","standar","standar","standar","standar","standar","standar","standar","standar","standar","standar","standar","standar","standar","standar","standar","standar","standar","standar","standar","standar","standar","standar","standar","standar","standar","standar","standar","standar","standar","standar","standar","standar","bising","bising","bising","bising","bising","bising","bising","bising","bising","bising","bising","bising","bising","bising","bising","bising","bising","bising","bising","bising","bising","bising","bising","bising","bising","bising","bising","bising","bising","bising","bising","bising","bising","bising","bising","bising","bising","bising","bising","bising","bising","bising","bising","bising","bising","bising","bising","bising","bising","bising","bising","bising","bising","bising","bising","bising"],"xaxis":"x","yaxis":"y","type":"histogram"}],                        {"template":{"data":{"histogram2dcontour":[{"type":"histogram2dcontour","colorbar":{"outlinewidth":0,"ticks":""},"colorscale":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]]}],"choropleth":[{"type":"choropleth","colorbar":{"outlinewidth":0,"ticks":""}}],"histogram2d":[{"type":"histogram2d","colorbar":{"outlinewidth":0,"ticks":""},"colorscale":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]]}],"heatmap":[{"type":"heatmap","colorbar":{"outlinewidth":0,"ticks":""},"colorscale":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]]}],"heatmapgl":[{"type":"heatmapgl","colorbar":{"outlinewidth":0,"ticks":""},"colorscale":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]]}],"contourcarpet":[{"type":"contourcarpet","colorbar":{"outlinewidth":0,"ticks":""}}],"contour":[{"type":"contour","colorbar":{"outlinewidth":0,"ticks":""},"colorscale":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]]}],"surface":[{"type":"surface","colorbar":{"outlinewidth":0,"ticks":""},"colorscale":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]]}],"mesh3d":[{"type":"mesh3d","colorbar":{"outlinewidth":0,"ticks":""}}],"scatter":[{"fillpattern":{"fillmode":"overlay","size":10,"solidity":0.2},"type":"scatter"}],"parcoords":[{"type":"parcoords","line":{"colorbar":{"outlinewidth":0,"ticks":""}}}],"scatterpolargl":[{"type":"scatterpolargl","marker":{"colorbar":{"outlinewidth":0,"ticks":""}}}],"bar":[{"error_x":{"color":"#2a3f5f"},"error_y":{"color":"#2a3f5f"},"marker":{"line":{"color":"#E5ECF6","width":0.5},"pattern":{"fillmode":"overlay","size":10,"solidity":0.2}},"type":"bar"}],"scattergeo":[{"type":"scattergeo","marker":{"colorbar":{"outlinewidth":0,"ticks":""}}}],"scatterpolar":[{"type":"scatterpolar","marker":{"colorbar":{"outlinewidth":0,"ticks":""}}}],"histogram":[{"marker":{"pattern":{"fillmode":"overlay","size":10,"solidity":0.2}},"type":"histogram"}],"scattergl":[{"type":"scattergl","marker":{"colorbar":{"outlinewidth":0,"ticks":""}}}],"scatter3d":[{"type":"scatter3d","line":{"colorbar":{"outlinewidth":0,"ticks":""}},"marker":{"colorbar":{"outlinewidth":0,"ticks":""}}}],"scattermapbox":[{"type":"scattermapbox","marker":{"colorbar":{"outlinewidth":0,"ticks":""}}}],"scatterternary":[{"type":"scatterternary","marker":{"colorbar":{"outlinewidth":0,"ticks":""}}}],"scattercarpet":[{"type":"scattercarpet","marker":{"colorbar":{"outlinewidth":0,"ticks":""}}}],"carpet":[{"aaxis":{"endlinecolor":"#2a3f5f","gridcolor":"white","linecolor":"white","minorgridcolor":"white","startlinecolor":"#2a3f5f"},"baxis":{"endlinecolor":"#2a3f5f","gridcolor":"white","linecolor":"white","minorgridcolor":"white","startlinecolor":"#2a3f5f"},"type":"carpet"}],"table":[{"cells":{"fill":{"color":"#EBF0F8"},"line":{"color":"white"}},"header":{"fill":{"color":"#C8D4E3"},"line":{"color":"white"}},"type":"table"}],"barpolar":[{"marker":{"line":{"color":"#E5ECF6","width":0.5},"pattern":{"fillmode":"overlay","size":10,"solidity":0.2}},"type":"barpolar"}],"pie":[{"automargin":true,"type":"pie"}]},"layout":{"autotypenumbers":"strict","colorway":["#636efa","#EF553B","#00cc96","#ab63fa","#FFA15A","#19d3f3","#FF6692","#B6E880","#FF97FF","#FECB52"],"font":{"color":"#2a3f5f"},"hovermode":"closest","hoverlabel":{"align":"left"},"paper_bgcolor":"white","plot_bgcolor":"#E5ECF6","polar":{"bgcolor":"#E5ECF6","angularaxis":{"gridcolor":"white","linecolor":"white","ticks":""},"radialaxis":{"gridcolor":"white","linecolor":"white","ticks":""}},"ternary":{"bgcolor":"#E5ECF6","aaxis":{"gridcolor":"white","linecolor":"white","ticks":""},"baxis":{"gridcolor":"white","linecolor":"white","ticks":""},"caxis":{"gridcolor":"white","linecolor":"white","ticks":""}},"coloraxis":{"colorbar":{"outlinewidth":0,"ticks":""}},"colorscale":{"sequential":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]],"sequentialminus":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]],"diverging":[[0,"#8e0152"],[0.1,"#c51b7d"],[0.2,"#de77ae"],[0.3,"#f1b6da"],[0.4,"#fde0ef"],[0.5,"#f7f7f7"],[0.6,"#e6f5d0"],[0.7,"#b8e186"],[0.8,"#7fbc41"],[0.9,"#4d9221"],[1,"#276419"]]},"xaxis":{"gridcolor":"white","linecolor":"white","ticks":"","title":{"standoff":15},"zerolinecolor":"white","automargin":true,"zerolinewidth":2},"yaxis":{"gridcolor":"white","linecolor":"white","ticks":"","title":{"standoff":15},"zerolinecolor":"white","automargin":true,"zerolinewidth":2},"scene":{"xaxis":{"backgroundcolor":"#E5ECF6","gridcolor":"white","linecolor":"white","showbackground":true,"ticks":"","zerolinecolor":"white","gridwidth":2},"yaxis":{"backgroundcolor":"#E5ECF6","gridcolor":"white","linecolor":"white","showbackground":true,"ticks":"","zerolinecolor":"white","gridwidth":2},"zaxis":{"backgroundcolor":"#E5ECF6","gridcolor":"white","linecolor":"white","showbackground":true,"ticks":"","zerolinecolor":"white","gridwidth":2}},"shapedefaults":{"line":{"color":"#2a3f5f"}},"annotationdefaults":{"arrowcolor":"#2a3f5f","arrowhead":0,"arrowwidth":1},"geo":{"bgcolor":"white","landcolor":"#E5ECF6","subunitcolor":"white","showland":true,"showlakes":true,"lakecolor":"white"},"title":{"x":0.05},"mapbox":{"style":"light"}}},"xaxis":{"anchor":"y","domain":[0.0,1.0],"title":{"text":"loudness"}},"yaxis":{"anchor":"x","domain":[0.0,1.0],"title":{"text":"count"}},"legend":{"tracegroupgap":0},"margin":{"t":60},"barmode":"relative"},                        {"responsive": true}                    ).then(function(){
+                            
+var gd = document.getElementById('1114f2f5-c1fc-4dd2-9b37-665f376ef120');
+var x = new MutationObserver(function (mutations, observer) {{
+        var display = window.getComputedStyle(gd).display;
+        if (!display || display === 'none') {{
+            console.log([gd, 'removed!']);
+            Plotly.purge(gd);
+            observer.disconnect();
+        }}
+}});
+
+// Listen for the removal of the full notebook cells
+var notebookContainer = gd.closest('#notebook-container');
+if (notebookContainer) {{
+    x.observe(notebookContainer, {childList: true});
+}}
+
+// Listen for the clearing of the current output cell
+var outputEl = gd.closest('.output');
+if (outputEl) {{
+    x.observe(outputEl, {childList: true});
+}}
+
+                        })                };                });            </script>        </div>
+</div>
+</div>
+</section>
+<section id="trimming-1" class="level5" data-number="6.3.3.10.2">
+<h5 data-number="6.3.3.10.2" class="anchored" data-anchor-id="trimming-1"><span class="header-section-number">6.3.3.10.2</span> Trimming</h5>
+<div class="cell" data-execution_count="2">
+<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Trimming</span></span>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Load Data</span></span>
+<span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a>    df <span class="op">=</span> pd.read_csv(<span class="st">'./data_sampled_100.csv'</span>)</span>
+<span id="cb9-5"><a href="#cb9-5" aria-hidden="true" tabindex="-1"></a>    df_sorted <span class="op">=</span> df.sort_values(by<span class="op">=</span><span class="st">'loudness'</span>)</span>
+<span id="cb9-6"><a href="#cb9-6" aria-hidden="true" tabindex="-1"></a>    df.head()</span>
+<span id="cb9-7"><a href="#cb9-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-8"><a href="#cb9-8" aria-hidden="true" tabindex="-1"></a>    <span class="co"># ambil 1% dari data tersebut, hanya dari tail atau ujung belakang dari dataset. Nilai ini nantinya akan menjadi batas dari trimming.</span></span>
+<span id="cb9-9"><a href="#cb9-9" aria-hidden="true" tabindex="-1"></a>    q <span class="op">=</span> df[<span class="st">'loudness'</span>].sort_values().quantile(<span class="fl">0.01</span>)</span>
+<span id="cb9-10"><a href="#cb9-10" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(q)</span>
+<span id="cb9-11"><a href="#cb9-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-12"><a href="#cb9-12" aria-hidden="true" tabindex="-1"></a>    <span class="co"># batas dari trimming kita adalah -27.3332. Selanjutnya kita akan hilangkan data yang melebihi nilai ini.</span></span>
+<span id="cb9-13"><a href="#cb9-13" aria-hidden="true" tabindex="-1"></a>    df_clean <span class="op">=</span> df[df[<span class="st">'loudness'</span>] <span class="op">&gt;</span> q]</span>
+<span id="cb9-14"><a href="#cb9-14" aria-hidden="true" tabindex="-1"></a>    dx <span class="op">=</span> df[df[<span class="st">'loudness'</span>] <span class="op">&lt;</span> q]</span>
+<span id="cb9-15"><a href="#cb9-15" aria-hidden="true" tabindex="-1"></a>    dx.head()</span>
+<span id="cb9-16"><a href="#cb9-16" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-17"><a href="#cb9-17" aria-hidden="true" tabindex="-1"></a>    <span class="co"># tampilkan dalam scatter plot</span></span>
+<span id="cb9-18"><a href="#cb9-18" aria-hidden="true" tabindex="-1"></a>    fig <span class="op">=</span> px.scatter(df_clean, x<span class="op">=</span><span class="st">'loudness'</span>, y<span class="op">=</span><span class="st">'popularity'</span>, color<span class="op">=</span><span class="st">'loudness'</span>,</span>
+<span id="cb9-19"><a href="#cb9-19" aria-hidden="true" tabindex="-1"></a>                    hover_data<span class="op">=</span>[<span class="st">'artists'</span>, <span class="st">'name'</span>, <span class="st">'loudness'</span>, <span class="st">'popularity'</span>])</span>
+<span id="cb9-20"><a href="#cb9-20" aria-hidden="true" tabindex="-1"></a>    fig.show()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>-27.3332</code></pre>
+</div>
+<div class="cell-output cell-output-display">
+
+<div>                            <div id="a68d613c-a972-4cb4-91ea-e72911c7f014" class="plotly-graph-div" style="height:525px; width:100%;"></div>            <script type="text/javascript">                require(["plotly"], function(Plotly) {                    window.PLOTLYENV=window.PLOTLYENV || {};                                    if (document.getElementById("a68d613c-a972-4cb4-91ea-e72911c7f014")) {                    Plotly.newPlot(                        "a68d613c-a972-4cb4-91ea-e72911c7f014",                        [{"customdata":[["['Los Hor\u00f3scopos De Durango']","Mi Amor Por Ti"],["['Good Charlotte']","Emotionless"],["['Raphael']","Yo soy aqu\u00e9l"],["['Joan Sebastian', 'Pepe Aguilar']","Est\u00e1s Fallando"],["['Vince Guaraldi Trio']","Great Pumpkin Waltz"],["['Sarah Vaughan']","Whatever Lola Wants (Lola Gets)"],["['Lefty Frizzell']","You're Humbuggin' Me"],["['Keith Whitley']","Don't Close Your Eyes"],["['Francisco Canaro', 'Charlo']","Amores de Granada - Remasterizado"],["['Paul Jackson, Jr.']","Let's Wait Awhile"],["['Bhanumathi Ramakrishna', 'Ghantasala']","Jeevanadoli"],["['Billy Joe Shaver']","Black Rose"],["['The Black Keys']","Turn Blue"],["['\u042d\u0440\u0438\u0445 \u041c\u0430\u0440\u0438\u044f \u0420\u0435\u043c\u0430\u0440\u043a']","\u0427\u0430\u0441\u0442\u044c 22.8 - \u041e\u0431\u0440\u0430\u0442\u043d\u044b\u0439 \u043f\u0443\u0442\u044c"],["['Jonzun Crew']","Pack Jam"],["['Disturbed']","Indestructible"],["['The Forester Sisters']","Mama's Never Seen Those Eyes"],["['Tedashii', 'Lecrae']","Dum Dum"],["['Les Paul']","Dream Dust"],["['Ludovico Einaudi']","Nuvole Bianche"],["['Slayer']","Disciple"],["['The Chicks']","Sin Wagon"],["['Anca Elena']","Regard du temps"],["['Arlo Guthrie']","Chilling of the Evening"],["['Toddler Tunes']","Head, Shoulders, Knees and Toes"],["['Simply Red']","Holding Back the Years - Extended Single Mix; 2008 Remaster"],["['Lata Mangeshkar', 'Geeta Dutt', 'Chitalkar']","Tere Bina Soona Soona"],["['Dale Carnegie', 'Till Hagen', 'Stefan Kaminski']","Wie man Freunde gewinnt - Die Kunst, beliebt und einflussreich zu werden, Kapitel 51"],["['Grupo Exterminador']","Las Panteras"],["['Quicksilver Messenger Service']","Dino's Song"],["['Joan Jett & The Blackhearts']","Cherry Bomb"],["['H.P. Lovecraft']","Cap\u00edtulo 1.1 - la Casa Maldita"],["['Roberto Carlos']","Amigo"],["['Linkin Park']","Given Up"],["['Iggy Pop']","Sixteen"],["['Odetta', 'Larry']","Payday at Coal Creek"],["['Wolfgang Amadeus Mozart', 'Budapest String Quartet']","Quartet No. 19 in C Major for Strings, K. 465 (\"Dissonant\"): II. Andante cantabile"],["['John Carpenter']","Reel 9"],["['Duke Ellington']","Pt. III-Newport Up"],["['La Sonora Santanera']","De Qu\u00e9 Manera Te Olvido"],["['Warren Zevon']","Things to Do in Denver When You're Dead - 2008 Remaster"],["['England Dan & John Ford Coley']","Westward Wind"],["['Wayne Shorter']","Tenderfoot"],["['One Direction']","Love You Goodbye"],["['Mayday']","\u7a81\u7136\u597d\u60f3\u4f60"],["['LANY']","Thick And Thin"],["['Frank Zappa']","The Gumbo Variations"],["['Unspecified']","Ela Demetroula (Como Demetroula): Love Song"],["['Three Days Grace']","Last to Know"],["['Townes Van Zandt']","Don't Take It Too Bad"],["['Lil Mosey']","Greet Her"],["['Vicente Fern\u00e1ndez']","Hoy He Visto Pasar A Maria"],["['Lil Uzi Vert']","Safe House"],["['Black Uhuru']","Leaving To Zion"],["['Hampton Hawes Trio']","Carioca"],["['Babyface']","Whip Appeal"],["['Die Antwoord']","Ugly Boy"],["['Johann Sebastian Bach', 'Jascha Heifetz', 'Erick Friedman', 'Thornton Lofthouse', 'The New Symphony Orchestra Of London', 'Sir Malcolm Sargent']","Concerto in D Minor for Two Violins, BWV 1043: Allegro"],["['Les Ya Toupas Du Zaire']","Je Ne Bois Pas Beaucoup"],["['Stan Getz', 'Jo\u00e3o Gilberto', 'Ant\u00f4nio Carlos Jobim']","Vivo Sonhando"],["['Little Richard']","Goodnight Irene"],["['Biggie Smalls']","Players Anthem - Remix"],["['ScHoolboy Q', 'Kid Cudi']","Dangerous (feat. Kid Cudi)"],["['Nico']","Chelsea Girls"],["['Cocteau Twins']","The Thinner the Air"],["['The Beach Boys']","I'd Love Just Once To See You - Remastered 2001"],["['Jay & The Americans']","Only In America"],["['Jon & Vangelis']","Deborah - Remastered"],["['\u00c9dith Piaf']","La Vie en rose"],["['Roza Eskenazi']","Tis Dimitrainas"],["['Adelitas Way']","Last Stand"],["['Ludwig van Beethoven', 'Pablo Casals']","Cello Sonata No. 5 in D Major, Op. 102 No. 2: III. Allegro"],["['A$AP Ferg', 'Brent Faiyaz', 'Salaam Remi']","Dreams, Fairytales, Fantasies (feat. Brent Faiyaz & Salaam Remi)"],["['G-Eazy']","Calm Down"],["['Django Reinhardt']","Brazil"],["['Fr\u00e9d\u00e9ric Chopin', 'Arthur Rubinstein']","Nocturnes, Op. 9: No. 1 in B-Flat Minor"],["['Otis Redding']","(Sittin' On) the Dock of the Bay"],["['Skid Row']","18 and Life"],["['The Hoosiers']","A Sadness Runs Through Him"],["['Eric Clapton']","Knockin' On Heaven's Door"],["['Andrew Lloyd Webber', 'Kriszta Kovats']","Evita: Don't Cry for Me Argentina (Sung in Hungarian)"],["['Ricardo Montaner']","Ojos negros"],["['Led Zeppelin']","Communication Breakdown - Remaster"],["['Korn']","Am I Going Crazy"],["['Cannonball Adderley', 'Bill Evans']","Know What I Mean?"],["['Vino Nuevo']","En Totalidad a Ti"],["['FLETCHER']","I Believe You"],["['CAN']","Bel Air"],["['DJ Drama', 'Chris Brown', 'Jhen\u00e9 Aiko', 'Tory Lanez', 'Fabolous', 'Trey Songz']","Wishing Remix (feat. Chris Brown, Fabolous, Trey Songz, Jhene Aiko & Tory Lanez)"],["[\"Marcel's\"]","Le Tango De Lola"],["['Pixies']","Cactus"],["['Georgette Heyer', 'Irina Salkow']","Kapitel 272 - Der Page und die Herzogin"],["['Sam Cooke']","Rome (Wasn't Built In A Day)"],["['Kendrick Lamar', 'JaVont\u00e9']","Opposites Attract (Tomorrow W\u002fO Her)"],["['Andy Williams']","The First No\u00ebl"],["['Bob Dylan']","If You Gotta Go, Go Now (Or Else You Got to Stay All Night) - Live at Philharmonic Hall, New York, NY - October 1964"],["['Johannes Brahms', 'Pierre Monteux']","Song of Destiny, Op. 54: III. Adagio"],["['John Zacherle']","I'm The Ghoul From Wolverton Mountain"],["['Dr. John']","Danse Fambeaux"]],"hovertemplate":"loudness=%{marker.color}\u003cbr\u003epopularity=%{y}\u003cbr\u003eartists=%{customdata[0]}\u003cbr\u003ename=%{customdata[1]}\u003cextra\u003e\u003c\u002fextra\u003e","legendgroup":"","marker":{"color":[-2.478,-6.176,-11.328,-7.087999999999999,-16.851,-13.0,-12.783,-16.116,-12.942,-13.892,-18.122,-16.500999999999998,-10.272,-15.06,-7.207000000000002,-4.605,-12.276,-4.783,-15.744000000000002,-25.398000000000003,-3.5780000000000003,-6.313,-27.288,-13.74,-6.6160000000000005,-11.634,-10.047,-13.693,-10.168,-11.235,-6.138999999999999,-12.996,-13.509,-4.1160000000000005,-5.9460000000000015,-4.9510000000000005,-20.07,-20.822,-12.001,-12.576,-9.145,-12.404000000000002,-13.363,-4.787,-6.485,-6.178999999999999,-10.265999999999998,-13.711,-6.603,-18.026,-7.864,-9.554,-5.1720000000000015,-18.357,-18.576,-9.694,-5.358,-19.052,-7.997000000000001,-12.569,-3.838,-8.632,-9.455,-17.811,-19.345,-8.729,-8.927,-15.411,-8.596,-8.234,-5.4110000000000005,-15.681,-7.332999999999997,-8.794,-15.537,-23.594,-13.522,-11.101,-4.8210000000000015,-11.314,-18.58,-8.597000000000001,-7.077999999999999,-11.915,-17.778,-7.34,-6.312,-14.974,-4.464,-11.246,-14.498,-21.337,-9.832,-5.908,-15.49,-8.395,-22.986,-11.436,-15.666],"coloraxis":"coloraxis","symbol":"circle"},"mode":"markers","name":"","orientation":"v","showlegend":false,"x":[-2.478,-6.176,-11.328,-7.087999999999999,-16.851,-13.0,-12.783,-16.116,-12.942,-13.892,-18.122,-16.500999999999998,-10.272,-15.06,-7.207000000000002,-4.605,-12.276,-4.783,-15.744000000000002,-25.398000000000003,-3.5780000000000003,-6.313,-27.288,-13.74,-6.6160000000000005,-11.634,-10.047,-13.693,-10.168,-11.235,-6.138999999999999,-12.996,-13.509,-4.1160000000000005,-5.9460000000000015,-4.9510000000000005,-20.07,-20.822,-12.001,-12.576,-9.145,-12.404000000000002,-13.363,-4.787,-6.485,-6.178999999999999,-10.265999999999998,-13.711,-6.603,-18.026,-7.864,-9.554,-5.1720000000000015,-18.357,-18.576,-9.694,-5.358,-19.052,-7.997000000000001,-12.569,-3.838,-8.632,-9.455,-17.811,-19.345,-8.729,-8.927,-15.411,-8.596,-8.234,-5.4110000000000005,-15.681,-7.332999999999997,-8.794,-15.537,-23.594,-13.522,-11.101,-4.8210000000000015,-11.314,-18.58,-8.597000000000001,-7.077999999999999,-11.915,-17.778,-7.34,-6.312,-14.974,-4.464,-11.246,-14.498,-21.337,-9.832,-5.908,-15.49,-8.395,-22.986,-11.436,-15.666],"xaxis":"x","y":[48,42,38,48,55,39,11,58,0,36,0,44,54,0,33,71,40,48,5,72,49,47,0,24,57,41,0,16,36,28,40,0,46,68,37,1,0,24,12,5,29,28,10,70,60,66,29,0,57,36,65,21,51,29,19,40,60,17,36,50,26,55,63,35,30,26,19,30,38,0,54,0,73,63,36,31,56,69,48,32,0,46,39,41,22,47,63,26,57,0,47,1,42,48,43,18,0,16,29],"yaxis":"y","type":"scatter"}],                        {"template":{"data":{"histogram2dcontour":[{"type":"histogram2dcontour","colorbar":{"outlinewidth":0,"ticks":""},"colorscale":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]]}],"choropleth":[{"type":"choropleth","colorbar":{"outlinewidth":0,"ticks":""}}],"histogram2d":[{"type":"histogram2d","colorbar":{"outlinewidth":0,"ticks":""},"colorscale":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]]}],"heatmap":[{"type":"heatmap","colorbar":{"outlinewidth":0,"ticks":""},"colorscale":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]]}],"heatmapgl":[{"type":"heatmapgl","colorbar":{"outlinewidth":0,"ticks":""},"colorscale":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]]}],"contourcarpet":[{"type":"contourcarpet","colorbar":{"outlinewidth":0,"ticks":""}}],"contour":[{"type":"contour","colorbar":{"outlinewidth":0,"ticks":""},"colorscale":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]]}],"surface":[{"type":"surface","colorbar":{"outlinewidth":0,"ticks":""},"colorscale":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]]}],"mesh3d":[{"type":"mesh3d","colorbar":{"outlinewidth":0,"ticks":""}}],"scatter":[{"fillpattern":{"fillmode":"overlay","size":10,"solidity":0.2},"type":"scatter"}],"parcoords":[{"type":"parcoords","line":{"colorbar":{"outlinewidth":0,"ticks":""}}}],"scatterpolargl":[{"type":"scatterpolargl","marker":{"colorbar":{"outlinewidth":0,"ticks":""}}}],"bar":[{"error_x":{"color":"#2a3f5f"},"error_y":{"color":"#2a3f5f"},"marker":{"line":{"color":"#E5ECF6","width":0.5},"pattern":{"fillmode":"overlay","size":10,"solidity":0.2}},"type":"bar"}],"scattergeo":[{"type":"scattergeo","marker":{"colorbar":{"outlinewidth":0,"ticks":""}}}],"scatterpolar":[{"type":"scatterpolar","marker":{"colorbar":{"outlinewidth":0,"ticks":""}}}],"histogram":[{"marker":{"pattern":{"fillmode":"overlay","size":10,"solidity":0.2}},"type":"histogram"}],"scattergl":[{"type":"scattergl","marker":{"colorbar":{"outlinewidth":0,"ticks":""}}}],"scatter3d":[{"type":"scatter3d","line":{"colorbar":{"outlinewidth":0,"ticks":""}},"marker":{"colorbar":{"outlinewidth":0,"ticks":""}}}],"scattermapbox":[{"type":"scattermapbox","marker":{"colorbar":{"outlinewidth":0,"ticks":""}}}],"scatterternary":[{"type":"scatterternary","marker":{"colorbar":{"outlinewidth":0,"ticks":""}}}],"scattercarpet":[{"type":"scattercarpet","marker":{"colorbar":{"outlinewidth":0,"ticks":""}}}],"carpet":[{"aaxis":{"endlinecolor":"#2a3f5f","gridcolor":"white","linecolor":"white","minorgridcolor":"white","startlinecolor":"#2a3f5f"},"baxis":{"endlinecolor":"#2a3f5f","gridcolor":"white","linecolor":"white","minorgridcolor":"white","startlinecolor":"#2a3f5f"},"type":"carpet"}],"table":[{"cells":{"fill":{"color":"#EBF0F8"},"line":{"color":"white"}},"header":{"fill":{"color":"#C8D4E3"},"line":{"color":"white"}},"type":"table"}],"barpolar":[{"marker":{"line":{"color":"#E5ECF6","width":0.5},"pattern":{"fillmode":"overlay","size":10,"solidity":0.2}},"type":"barpolar"}],"pie":[{"automargin":true,"type":"pie"}]},"layout":{"autotypenumbers":"strict","colorway":["#636efa","#EF553B","#00cc96","#ab63fa","#FFA15A","#19d3f3","#FF6692","#B6E880","#FF97FF","#FECB52"],"font":{"color":"#2a3f5f"},"hovermode":"closest","hoverlabel":{"align":"left"},"paper_bgcolor":"white","plot_bgcolor":"#E5ECF6","polar":{"bgcolor":"#E5ECF6","angularaxis":{"gridcolor":"white","linecolor":"white","ticks":""},"radialaxis":{"gridcolor":"white","linecolor":"white","ticks":""}},"ternary":{"bgcolor":"#E5ECF6","aaxis":{"gridcolor":"white","linecolor":"white","ticks":""},"baxis":{"gridcolor":"white","linecolor":"white","ticks":""},"caxis":{"gridcolor":"white","linecolor":"white","ticks":""}},"coloraxis":{"colorbar":{"outlinewidth":0,"ticks":""}},"colorscale":{"sequential":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]],"sequentialminus":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]],"diverging":[[0,"#8e0152"],[0.1,"#c51b7d"],[0.2,"#de77ae"],[0.3,"#f1b6da"],[0.4,"#fde0ef"],[0.5,"#f7f7f7"],[0.6,"#e6f5d0"],[0.7,"#b8e186"],[0.8,"#7fbc41"],[0.9,"#4d9221"],[1,"#276419"]]},"xaxis":{"gridcolor":"white","linecolor":"white","ticks":"","title":{"standoff":15},"zerolinecolor":"white","automargin":true,"zerolinewidth":2},"yaxis":{"gridcolor":"white","linecolor":"white","ticks":"","title":{"standoff":15},"zerolinecolor":"white","automargin":true,"zerolinewidth":2},"scene":{"xaxis":{"backgroundcolor":"#E5ECF6","gridcolor":"white","linecolor":"white","showbackground":true,"ticks":"","zerolinecolor":"white","gridwidth":2},"yaxis":{"backgroundcolor":"#E5ECF6","gridcolor":"white","linecolor":"white","showbackground":true,"ticks":"","zerolinecolor":"white","gridwidth":2},"zaxis":{"backgroundcolor":"#E5ECF6","gridcolor":"white","linecolor":"white","showbackground":true,"ticks":"","zerolinecolor":"white","gridwidth":2}},"shapedefaults":{"line":{"color":"#2a3f5f"}},"annotationdefaults":{"arrowcolor":"#2a3f5f","arrowhead":0,"arrowwidth":1},"geo":{"bgcolor":"white","landcolor":"#E5ECF6","subunitcolor":"white","showland":true,"showlakes":true,"lakecolor":"white"},"title":{"x":0.05},"mapbox":{"style":"light"}}},"xaxis":{"anchor":"y","domain":[0.0,1.0],"title":{"text":"loudness"}},"yaxis":{"anchor":"x","domain":[0.0,1.0],"title":{"text":"popularity"}},"coloraxis":{"colorbar":{"title":{"text":"loudness"}},"colorscale":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]]},"legend":{"tracegroupgap":0},"margin":{"t":60}},                        {"responsive": true}                    ).then(function(){
+                            
+var gd = document.getElementById('a68d613c-a972-4cb4-91ea-e72911c7f014');
+var x = new MutationObserver(function (mutations, observer) {{
+        var display = window.getComputedStyle(gd).display;
+        if (!display || display === 'none') {{
+            console.log([gd, 'removed!']);
+            Plotly.purge(gd);
+            observer.disconnect();
+        }}
+}});
+
+// Listen for the removal of the full notebook cells
+var notebookContainer = gd.closest('#notebook-container');
+if (notebookContainer) {{
+    x.observe(notebookContainer, {childList: true});
+}}
+
+// Listen for the clearing of the current output cell
+var outputEl = gd.closest('.output');
+if (outputEl) {{
+    x.observe(outputEl, {childList: true});
+}}
+
+                        })                };                });            </script>        </div>
+</div>
+</div>
+<p>Lagu Thursday Afternoon - 2005 digital remaster, oleh Brian Eno yang mempunyai loudness kurang dari batas trimming sudah hilang.</p>
+</section>
+<section id="winsorizing-1" class="level5" data-number="6.3.3.10.3">
+<h5 data-number="6.3.3.10.3" class="anchored" data-anchor-id="winsorizing-1"><span class="header-section-number">6.3.3.10.3</span> Winsorizing</h5>
+<p>Menggunakan nilai yang sama dengan metode sebelumnya(trimming) yaitu 1% dan batas trimming <code>-27.3332</code>.</p>
+<div class="cell" data-execution_count="3">
+<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a>df <span class="op">=</span> pd.read_csv(<span class="st">'./data_sampled_100.csv'</span>)</span>
+<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a>df_sorted <span class="op">=</span> df.sort_values(by<span class="op">=</span><span class="st">'loudness'</span>)</span>
+<span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a>df.head()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="13">
+<div>
+
+
+<table class="dataframe table table-sm table-striped small" data-quarto-postprocess="true" data-border="1">
+<thead>
+<tr class="header">
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th">valence</th>
+<th data-quarto-table-cell-role="th">year</th>
+<th data-quarto-table-cell-role="th">acousticness</th>
+<th data-quarto-table-cell-role="th">artists</th>
+<th data-quarto-table-cell-role="th">danceability</th>
+<th data-quarto-table-cell-role="th">duration_ms</th>
+<th data-quarto-table-cell-role="th">energy</th>
+<th data-quarto-table-cell-role="th">explicit</th>
+<th data-quarto-table-cell-role="th">id</th>
+<th data-quarto-table-cell-role="th">instrumentalness</th>
+<th data-quarto-table-cell-role="th">key</th>
+<th data-quarto-table-cell-role="th">liveness</th>
+<th data-quarto-table-cell-role="th">loudness</th>
+<th data-quarto-table-cell-role="th">mode</th>
+<th data-quarto-table-cell-role="th">name</th>
+<th data-quarto-table-cell-role="th">popularity</th>
+<th data-quarto-table-cell-role="th">release_date</th>
+<th data-quarto-table-cell-role="th">speechiness</th>
+<th data-quarto-table-cell-role="th">tempo</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">0</td>
+<td>0.940</td>
+<td>2006</td>
+<td>0.330</td>
+<td>['Los Horóscopos De Durango']</td>
+<td>0.687</td>
+<td>204587</td>
+<td>0.724</td>
+<td>0</td>
+<td>2KIUMqD9ZkcxhgSVyIDP4t</td>
+<td>0.000273</td>
+<td>4</td>
+<td>0.248</td>
+<td>-2.478</td>
+<td>0</td>
+<td>Mi Amor Por Ti</td>
+<td>48</td>
+<td>2006-01-01</td>
+<td>0.0301</td>
+<td>141.507</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">1</td>
+<td>0.165</td>
+<td>2002</td>
+<td>0.109</td>
+<td>['Good Charlotte']</td>
+<td>0.515</td>
+<td>242933</td>
+<td>0.566</td>
+<td>0</td>
+<td>0eYcZLnlLKaItC1WC4B1pc</td>
+<td>0.000000</td>
+<td>6</td>
+<td>0.160</td>
+<td>-6.176</td>
+<td>1</td>
+<td>Emotionless</td>
+<td>42</td>
+<td>2002-10-04</td>
+<td>0.0303</td>
+<td>154.320</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">2</td>
+<td>0.551</td>
+<td>1987</td>
+<td>0.795</td>
+<td>['Raphael']</td>
+<td>0.402</td>
+<td>159560</td>
+<td>0.427</td>
+<td>0</td>
+<td>6b3ub116kE1T15h1yzaiTy</td>
+<td>0.000000</td>
+<td>2</td>
+<td>0.222</td>
+<td>-11.328</td>
+<td>0</td>
+<td>Yo soy aquél</td>
+<td>38</td>
+<td>1987-08-25</td>
+<td>0.0359</td>
+<td>111.065</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">3</td>
+<td>0.557</td>
+<td>1998</td>
+<td>0.790</td>
+<td>['Joan Sebastian', 'Pepe Aguilar']</td>
+<td>0.392</td>
+<td>180976</td>
+<td>0.426</td>
+<td>0</td>
+<td>2bWImXJQNVfgrROo4Xj630</td>
+<td>0.000004</td>
+<td>9</td>
+<td>0.208</td>
+<td>-7.088</td>
+<td>1</td>
+<td>Estás Fallando</td>
+<td>48</td>
+<td>1998-09-10</td>
+<td>0.0404</td>
+<td>183.039</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">4</td>
+<td>0.480</td>
+<td>1965</td>
+<td>0.988</td>
+<td>['Vince Guaraldi Trio']</td>
+<td>0.339</td>
+<td>149227</td>
+<td>0.243</td>
+<td>0</td>
+<td>5dwY5r2PfjMteikJViyNIT</td>
+<td>0.893000</td>
+<td>0</td>
+<td>0.113</td>
+<td>-16.851</td>
+<td>0</td>
+<td>Great Pumpkin Waltz</td>
+<td>55</td>
+<td>1965</td>
+<td>0.0382</td>
+<td>151.481</td>
+</tr>
+</tbody>
+</table>
+
+</div>
+</div>
+</div>
+<p>Perbedaan utama antara trimming dan winsorizing adalah, di proses trimming, nilai dibawah batas dihilangkan, namun di proses winsorizing, nilai dibawah batas digantikan dengan nilai diantara quartil 1 dan quartil 3.</p>
+<p>Untuk itu, kita akan menggunakan box plot karena box plot sudah memberikan nilai high fence dan low fence secara langsung.</p>
+<div class="cell" data-execution_count="4">
+<div class="sourceCode cell-code" id="cb12"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a>fig <span class="op">=</span> px.box(df, x<span class="op">=</span><span class="st">'loudness'</span>)</span>
+<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a>fig.show()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display">
+
+<div>                            <div id="d1a9cb4d-b83a-4548-877e-576a025adfef" class="plotly-graph-div" style="height:525px; width:100%;"></div>            <script type="text/javascript">                require(["plotly"], function(Plotly) {                    window.PLOTLYENV=window.PLOTLYENV || {};                                    if (document.getElementById("d1a9cb4d-b83a-4548-877e-576a025adfef")) {                    Plotly.newPlot(                        "d1a9cb4d-b83a-4548-877e-576a025adfef",                        [{"alignmentgroup":"True","hovertemplate":"loudness=%{x}\u003cextra\u003e\u003c\u002fextra\u003e","legendgroup":"","marker":{"color":"#636efa"},"name":"","notched":false,"offsetgroup":"","orientation":"h","showlegend":false,"x":[-2.478,-6.176,-11.328,-7.087999999999999,-16.851,-13.0,-12.783,-16.116,-12.942,-13.892,-18.122,-16.500999999999998,-10.272,-15.06,-7.207000000000002,-4.605,-12.276,-4.783,-15.744000000000002,-25.398000000000003,-3.5780000000000003,-6.313,-27.288,-13.74,-6.6160000000000005,-11.634,-10.047,-13.693,-10.168,-11.235,-6.138999999999999,-12.996,-13.509,-4.1160000000000005,-5.9460000000000015,-4.9510000000000005,-20.07,-20.822,-12.001,-12.576,-9.145,-12.404000000000002,-13.363,-4.787,-6.485,-6.178999999999999,-10.265999999999998,-13.711,-6.603,-18.026,-7.864,-9.554,-5.1720000000000015,-18.357,-18.576,-9.694,-5.358,-19.052,-7.997000000000001,-12.569,-3.838,-8.632,-9.455,-17.811,-19.345,-8.729,-8.927,-15.411,-8.596,-31.808000000000003,-8.234,-5.4110000000000005,-15.681,-7.332999999999997,-8.794,-15.537,-23.594,-13.522,-11.101,-4.8210000000000015,-11.314,-18.58,-8.597000000000001,-7.077999999999999,-11.915,-17.778,-7.34,-6.312,-14.974,-4.464,-11.246,-14.498,-21.337,-9.832,-5.908,-15.49,-8.395,-22.986,-11.436,-15.666],"x0":" ","xaxis":"x","y0":" ","yaxis":"y","type":"box"}],                        {"template":{"data":{"histogram2dcontour":[{"type":"histogram2dcontour","colorbar":{"outlinewidth":0,"ticks":""},"colorscale":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]]}],"choropleth":[{"type":"choropleth","colorbar":{"outlinewidth":0,"ticks":""}}],"histogram2d":[{"type":"histogram2d","colorbar":{"outlinewidth":0,"ticks":""},"colorscale":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]]}],"heatmap":[{"type":"heatmap","colorbar":{"outlinewidth":0,"ticks":""},"colorscale":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]]}],"heatmapgl":[{"type":"heatmapgl","colorbar":{"outlinewidth":0,"ticks":""},"colorscale":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]]}],"contourcarpet":[{"type":"contourcarpet","colorbar":{"outlinewidth":0,"ticks":""}}],"contour":[{"type":"contour","colorbar":{"outlinewidth":0,"ticks":""},"colorscale":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]]}],"surface":[{"type":"surface","colorbar":{"outlinewidth":0,"ticks":""},"colorscale":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]]}],"mesh3d":[{"type":"mesh3d","colorbar":{"outlinewidth":0,"ticks":""}}],"scatter":[{"fillpattern":{"fillmode":"overlay","size":10,"solidity":0.2},"type":"scatter"}],"parcoords":[{"type":"parcoords","line":{"colorbar":{"outlinewidth":0,"ticks":""}}}],"scatterpolargl":[{"type":"scatterpolargl","marker":{"colorbar":{"outlinewidth":0,"ticks":""}}}],"bar":[{"error_x":{"color":"#2a3f5f"},"error_y":{"color":"#2a3f5f"},"marker":{"line":{"color":"#E5ECF6","width":0.5},"pattern":{"fillmode":"overlay","size":10,"solidity":0.2}},"type":"bar"}],"scattergeo":[{"type":"scattergeo","marker":{"colorbar":{"outlinewidth":0,"ticks":""}}}],"scatterpolar":[{"type":"scatterpolar","marker":{"colorbar":{"outlinewidth":0,"ticks":""}}}],"histogram":[{"marker":{"pattern":{"fillmode":"overlay","size":10,"solidity":0.2}},"type":"histogram"}],"scattergl":[{"type":"scattergl","marker":{"colorbar":{"outlinewidth":0,"ticks":""}}}],"scatter3d":[{"type":"scatter3d","line":{"colorbar":{"outlinewidth":0,"ticks":""}},"marker":{"colorbar":{"outlinewidth":0,"ticks":""}}}],"scattermapbox":[{"type":"scattermapbox","marker":{"colorbar":{"outlinewidth":0,"ticks":""}}}],"scatterternary":[{"type":"scatterternary","marker":{"colorbar":{"outlinewidth":0,"ticks":""}}}],"scattercarpet":[{"type":"scattercarpet","marker":{"colorbar":{"outlinewidth":0,"ticks":""}}}],"carpet":[{"aaxis":{"endlinecolor":"#2a3f5f","gridcolor":"white","linecolor":"white","minorgridcolor":"white","startlinecolor":"#2a3f5f"},"baxis":{"endlinecolor":"#2a3f5f","gridcolor":"white","linecolor":"white","minorgridcolor":"white","startlinecolor":"#2a3f5f"},"type":"carpet"}],"table":[{"cells":{"fill":{"color":"#EBF0F8"},"line":{"color":"white"}},"header":{"fill":{"color":"#C8D4E3"},"line":{"color":"white"}},"type":"table"}],"barpolar":[{"marker":{"line":{"color":"#E5ECF6","width":0.5},"pattern":{"fillmode":"overlay","size":10,"solidity":0.2}},"type":"barpolar"}],"pie":[{"automargin":true,"type":"pie"}]},"layout":{"autotypenumbers":"strict","colorway":["#636efa","#EF553B","#00cc96","#ab63fa","#FFA15A","#19d3f3","#FF6692","#B6E880","#FF97FF","#FECB52"],"font":{"color":"#2a3f5f"},"hovermode":"closest","hoverlabel":{"align":"left"},"paper_bgcolor":"white","plot_bgcolor":"#E5ECF6","polar":{"bgcolor":"#E5ECF6","angularaxis":{"gridcolor":"white","linecolor":"white","ticks":""},"radialaxis":{"gridcolor":"white","linecolor":"white","ticks":""}},"ternary":{"bgcolor":"#E5ECF6","aaxis":{"gridcolor":"white","linecolor":"white","ticks":""},"baxis":{"gridcolor":"white","linecolor":"white","ticks":""},"caxis":{"gridcolor":"white","linecolor":"white","ticks":""}},"coloraxis":{"colorbar":{"outlinewidth":0,"ticks":""}},"colorscale":{"sequential":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]],"sequentialminus":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]],"diverging":[[0,"#8e0152"],[0.1,"#c51b7d"],[0.2,"#de77ae"],[0.3,"#f1b6da"],[0.4,"#fde0ef"],[0.5,"#f7f7f7"],[0.6,"#e6f5d0"],[0.7,"#b8e186"],[0.8,"#7fbc41"],[0.9,"#4d9221"],[1,"#276419"]]},"xaxis":{"gridcolor":"white","linecolor":"white","ticks":"","title":{"standoff":15},"zerolinecolor":"white","automargin":true,"zerolinewidth":2},"yaxis":{"gridcolor":"white","linecolor":"white","ticks":"","title":{"standoff":15},"zerolinecolor":"white","automargin":true,"zerolinewidth":2},"scene":{"xaxis":{"backgroundcolor":"#E5ECF6","gridcolor":"white","linecolor":"white","showbackground":true,"ticks":"","zerolinecolor":"white","gridwidth":2},"yaxis":{"backgroundcolor":"#E5ECF6","gridcolor":"white","linecolor":"white","showbackground":true,"ticks":"","zerolinecolor":"white","gridwidth":2},"zaxis":{"backgroundcolor":"#E5ECF6","gridcolor":"white","linecolor":"white","showbackground":true,"ticks":"","zerolinecolor":"white","gridwidth":2}},"shapedefaults":{"line":{"color":"#2a3f5f"}},"annotationdefaults":{"arrowcolor":"#2a3f5f","arrowhead":0,"arrowwidth":1},"geo":{"bgcolor":"white","landcolor":"#E5ECF6","subunitcolor":"white","showland":true,"showlakes":true,"lakecolor":"white"},"title":{"x":0.05},"mapbox":{"style":"light"}}},"xaxis":{"anchor":"y","domain":[0.0,1.0],"title":{"text":"loudness"}},"yaxis":{"anchor":"x","domain":[0.0,1.0]},"legend":{"tracegroupgap":0},"margin":{"t":60},"boxmode":"group"},                        {"responsive": true}                    ).then(function(){
+                            
+var gd = document.getElementById('d1a9cb4d-b83a-4548-877e-576a025adfef');
+var x = new MutationObserver(function (mutations, observer) {{
+        var display = window.getComputedStyle(gd).display;
+        if (!display || display === 'none') {{
+            console.log([gd, 'removed!']);
+            Plotly.purge(gd);
+            observer.disconnect();
+        }}
+}});
+
+// Listen for the removal of the full notebook cells
+var notebookContainer = gd.closest('#notebook-container');
+if (notebookContainer) {{
+    x.observe(notebookContainer, {childList: true});
+}}
+
+// Listen for the clearing of the current output cell
+var outputEl = gd.closest('.output');
+if (outputEl) {{
+    x.observe(outputEl, {childList: true});
+}}
+
+                        })                };                });            </script>        </div>
+</div>
+</div>
+<p>Selanjutnya, kita akan menghitung berapa banyak data yang ada dibawah batas trimming</p>
+<div class="cell" data-execution_count="5">
+<div class="sourceCode cell-code" id="cb13"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a>q <span class="op">=</span> df[<span class="st">'loudness'</span>].sort_values().quantile(<span class="fl">0.01</span>)</span>
+<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a>outlier <span class="op">=</span> df[df[<span class="st">'loudness'</span>] <span class="op">&lt;</span> q]</span>
+<span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a>outlier</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="15">
+<div>
+
+
+<table class="dataframe table table-sm table-striped small" data-quarto-postprocess="true" data-border="1">
+<thead>
+<tr class="header">
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th">valence</th>
+<th data-quarto-table-cell-role="th">year</th>
+<th data-quarto-table-cell-role="th">acousticness</th>
+<th data-quarto-table-cell-role="th">artists</th>
+<th data-quarto-table-cell-role="th">danceability</th>
+<th data-quarto-table-cell-role="th">duration_ms</th>
+<th data-quarto-table-cell-role="th">energy</th>
+<th data-quarto-table-cell-role="th">explicit</th>
+<th data-quarto-table-cell-role="th">id</th>
+<th data-quarto-table-cell-role="th">instrumentalness</th>
+<th data-quarto-table-cell-role="th">key</th>
+<th data-quarto-table-cell-role="th">liveness</th>
+<th data-quarto-table-cell-role="th">loudness</th>
+<th data-quarto-table-cell-role="th">mode</th>
+<th data-quarto-table-cell-role="th">name</th>
+<th data-quarto-table-cell-role="th">popularity</th>
+<th data-quarto-table-cell-role="th">release_date</th>
+<th data-quarto-table-cell-role="th">speechiness</th>
+<th data-quarto-table-cell-role="th">tempo</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">69</td>
+<td>0.0528</td>
+<td>1985</td>
+<td>0.976</td>
+<td>['Brian Eno']</td>
+<td>0.0918</td>
+<td>3650800</td>
+<td>0.0569</td>
+<td>0</td>
+<td>4t3Yh6tKkxXrc458pNI7zZ</td>
+<td>0.884</td>
+<td>0</td>
+<td>0.0842</td>
+<td>-31.808</td>
+<td>1</td>
+<td>Thursday Afternoon - 2005 Digital Remaster</td>
+<td>39</td>
+<td>1985-10-01</td>
+<td>0.0358</td>
+<td>81.944</td>
+</tr>
+</tbody>
+</table>
+
+</div>
+</div>
+</div>
+<p>Diketahui ada 1 buah outlier. Selanjutnya kita akan menentukan nilai q1 dan q3 sebagai batasan nilai winsorizing kita.</p>
+<div class="cell" data-execution_count="6">
+<div class="sourceCode cell-code" id="cb14"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a>q1 <span class="op">=</span> np.percentile(df[<span class="st">'loudness'</span>], <span class="dv">25</span>)</span>
+<span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a>q3 <span class="op">=</span> np.percentile(df[<span class="st">'loudness'</span>], <span class="dv">75</span>)</span>
+<span id="cb14-3"><a href="#cb14-3" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f'q1 = '</span>, q1)</span>
+<span id="cb14-4"><a href="#cb14-4" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f'q3 = '</span>, q3)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>q1 =  -15.43075
+q3 =  -7.177250000000001</code></pre>
+</div>
+</div>
+<p>Nilai q1 dan q3 ini akan kita gunakan untuk memberi batasan terhadap angka random yang akan kita generate sebagai nilai winsorizing kita.</p>
+<div class="cell" data-execution_count="7">
+<div class="sourceCode cell-code" id="cb16"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> random</span>
+<span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> time</span>
+<span id="cb16-3"><a href="#cb16-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb16-4"><a href="#cb16-4" aria-hidden="true" tabindex="-1"></a><span class="co"># nilai n menyesuaikan jumlah data outlier</span></span>
+<span id="cb16-5"><a href="#cb16-5" aria-hidden="true" tabindex="-1"></a>outliercount <span class="op">=</span> <span class="bu">len</span>(outlier)</span>
+<span id="cb16-6"><a href="#cb16-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb16-7"><a href="#cb16-7" aria-hidden="true" tabindex="-1"></a><span class="co"># generate random number</span></span>
+<span id="cb16-8"><a href="#cb16-8" aria-hidden="true" tabindex="-1"></a>random.seed(time.time_ns())</span>
+<span id="cb16-9"><a href="#cb16-9" aria-hidden="true" tabindex="-1"></a>winsorized_outlier <span class="op">=</span> [random.randint(<span class="bu">int</span>(q1), <span class="bu">int</span>(q3))</span>
+<span id="cb16-10"><a href="#cb16-10" aria-hidden="true" tabindex="-1"></a>                      <span class="cf">for</span> i <span class="kw">in</span> <span class="bu">range</span>(outliercount)]</span>
+<span id="cb16-11"><a href="#cb16-11" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(winsorized_outlier)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[-14]</code></pre>
+</div>
+</div>
+<p>Ingat, nilai ini di generate secara random, jadi nilai akan berubah setiap code di run.<br>
+Selanjutnya, kita akan memasukkan nilai winsorizing ke outlier, lalu masukkan outlier ke dataset kita.</p>
+<div class="cell" data-execution_count="8">
+<div class="sourceCode cell-code" id="cb18"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> i <span class="kw">in</span> <span class="bu">range</span>(<span class="bu">len</span>(winsorized_outlier)):</span>
+<span id="cb18-2"><a href="#cb18-2" aria-hidden="true" tabindex="-1"></a>    outlier.iloc[i, <span class="dv">12</span>] <span class="op">=</span> winsorized_outlier[i]</span>
+<span id="cb18-3"><a href="#cb18-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb18-4"><a href="#cb18-4" aria-hidden="true" tabindex="-1"></a><span class="co"># masukkan outlier ke dataset induk</span></span>
+<span id="cb18-5"><a href="#cb18-5" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> i <span class="kw">in</span> <span class="bu">range</span>(<span class="bu">len</span>(outlier)):</span>
+<span id="cb18-6"><a href="#cb18-6" aria-hidden="true" tabindex="-1"></a>    <span class="bu">id</span> <span class="op">=</span> outlier.iloc[i, <span class="dv">8</span>]  <span class="co"># ambil ID dari data outlier</span></span>
+<span id="cb18-7"><a href="#cb18-7" aria-hidden="true" tabindex="-1"></a>    <span class="co"># cari index dari data outlier di dataset</span></span>
+<span id="cb18-8"><a href="#cb18-8" aria-hidden="true" tabindex="-1"></a>    index <span class="op">=</span> df[df[<span class="st">'id'</span>] <span class="op">==</span> <span class="bu">id</span>].index[<span class="dv">0</span>]</span>
+<span id="cb18-9"><a href="#cb18-9" aria-hidden="true" tabindex="-1"></a>    df.iloc[index, <span class="dv">12</span>] <span class="op">=</span> outlier.iloc[i, <span class="dv">12</span>]  <span class="co"># gantikan dataset dengan outlier</span></span>
+<span id="cb18-10"><a href="#cb18-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb18-11"><a href="#cb18-11" aria-hidden="true" tabindex="-1"></a>df <span class="op">=</span> df.sort_values(by<span class="op">=</span><span class="st">'loudness'</span>)</span>
+<span id="cb18-12"><a href="#cb18-12" aria-hidden="true" tabindex="-1"></a>display(df)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display">
+<div>
+
+
+<table class="dataframe table table-sm table-striped small" data-quarto-postprocess="true" data-border="1">
+<thead>
+<tr class="header">
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th">valence</th>
+<th data-quarto-table-cell-role="th">year</th>
+<th data-quarto-table-cell-role="th">acousticness</th>
+<th data-quarto-table-cell-role="th">artists</th>
+<th data-quarto-table-cell-role="th">danceability</th>
+<th data-quarto-table-cell-role="th">duration_ms</th>
+<th data-quarto-table-cell-role="th">energy</th>
+<th data-quarto-table-cell-role="th">explicit</th>
+<th data-quarto-table-cell-role="th">id</th>
+<th data-quarto-table-cell-role="th">instrumentalness</th>
+<th data-quarto-table-cell-role="th">key</th>
+<th data-quarto-table-cell-role="th">liveness</th>
+<th data-quarto-table-cell-role="th">loudness</th>
+<th data-quarto-table-cell-role="th">mode</th>
+<th data-quarto-table-cell-role="th">name</th>
+<th data-quarto-table-cell-role="th">popularity</th>
+<th data-quarto-table-cell-role="th">release_date</th>
+<th data-quarto-table-cell-role="th">speechiness</th>
+<th data-quarto-table-cell-role="th">tempo</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">22</td>
+<td>0.0447</td>
+<td>1945</td>
+<td>0.90100</td>
+<td>['Anca Elena']</td>
+<td>0.573</td>
+<td>214571</td>
+<td>0.00574</td>
+<td>0</td>
+<td>4SriIcIMNhfwyA8oMH79KP</td>
+<td>0.317000</td>
+<td>9</td>
+<td>0.1660</td>
+<td>-27.288</td>
+<td>1</td>
+<td>Regard du temps</td>
+<td>0</td>
+<td>1945</td>
+<td>0.0678</td>
+<td>131.582</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">19</td>
+<td>0.0454</td>
+<td>2004</td>
+<td>0.96100</td>
+<td>['Ludovico Einaudi']</td>
+<td>0.191</td>
+<td>357707</td>
+<td>0.05820</td>
+<td>0</td>
+<td>3weNRklVDqb4Rr5MhKBR3D</td>
+<td>0.890000</td>
+<td>8</td>
+<td>0.0941</td>
+<td>-25.398</td>
+<td>1</td>
+<td>Nuvole Bianche</td>
+<td>72</td>
+<td>2004-01-01</td>
+<td>0.0578</td>
+<td>132.614</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">76</td>
+<td>0.0590</td>
+<td>1965</td>
+<td>0.99200</td>
+<td>['Frédéric Chopin', 'Arthur Rubinstein']</td>
+<td>0.260</td>
+<td>325893</td>
+<td>0.01910</td>
+<td>0</td>
+<td>6mry9fDj4oTFudQAMRo1lV</td>
+<td>0.892000</td>
+<td>3</td>
+<td>0.0864</td>
+<td>-23.594</td>
+<td>0</td>
+<td>Nocturnes, Op. 9: No. 1 in B-Flat Minor</td>
+<td>31</td>
+<td>1965</td>
+<td>0.0410</td>
+<td>62.106</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">97</td>
+<td>0.0562</td>
+<td>1952</td>
+<td>0.22700</td>
+<td>['Johannes Brahms', 'Pierre Monteux']</td>
+<td>0.183</td>
+<td>122600</td>
+<td>0.12800</td>
+<td>0</td>
+<td>1kzteGupSBIJVs0Aff51SC</td>
+<td>0.785000</td>
+<td>0</td>
+<td>0.1570</td>
+<td>-22.986</td>
+<td>1</td>
+<td>Song of Destiny, Op. 54: III. Adagio</td>
+<td>0</td>
+<td>1952</td>
+<td>0.0368</td>
+<td>111.440</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">92</td>
+<td>0.2360</td>
+<td>1926</td>
+<td>0.47500</td>
+<td>['Georgette Heyer', 'Irina Salkow']</td>
+<td>0.679</td>
+<td>134571</td>
+<td>0.12100</td>
+<td>0</td>
+<td>5bsAPgurneSpyfqfNCSElq</td>
+<td>0.000000</td>
+<td>4</td>
+<td>0.1160</td>
+<td>-21.337</td>
+<td>1</td>
+<td>Kapitel 272 - Der Page und die Herzogin</td>
+<td>1</td>
+<td>1926</td>
+<td>0.9440</td>
+<td>145.910</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">...</td>
+<td>...</td>
+<td>...</td>
+<td>...</td>
+<td>...</td>
+<td>...</td>
+<td>...</td>
+<td>...</td>
+<td>...</td>
+<td>...</td>
+<td>...</td>
+<td>...</td>
+<td>...</td>
+<td>...</td>
+<td>...</td>
+<td>...</td>
+<td>...</td>
+<td>...</td>
+<td>...</td>
+<td>...</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">89</td>
+<td>0.5670</td>
+<td>2016</td>
+<td>0.19700</td>
+<td>['DJ Drama', 'Chris Brown', 'Jhené Aiko', 'Tor...</td>
+<td>0.563</td>
+<td>330387</td>
+<td>0.69100</td>
+<td>1</td>
+<td>6Op6z8dK5XC9lGRZe4XRF2</td>
+<td>0.000000</td>
+<td>3</td>
+<td>0.0886</td>
+<td>-4.464</td>
+<td>0</td>
+<td>Wishing Remix (feat. Chris Brown, Fabolous, Tr...</td>
+<td>57</td>
+<td>2016-09-29</td>
+<td>0.3820</td>
+<td>108.406</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">33</td>
+<td>0.9380</td>
+<td>2007</td>
+<td>0.00117</td>
+<td>['Linkin Park']</td>
+<td>0.655</td>
+<td>189293</td>
+<td>0.88500</td>
+<td>1</td>
+<td>1fLlRApgzxWweF1JTf8yM5</td>
+<td>0.000473</td>
+<td>7</td>
+<td>0.0448</td>
+<td>-4.116</td>
+<td>1</td>
+<td>Given Up</td>
+<td>68</td>
+<td>2007-05-14</td>
+<td>0.0438</td>
+<td>100.088</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">60</td>
+<td>0.6930</td>
+<td>1964</td>
+<td>0.47200</td>
+<td>['Little Richard']</td>
+<td>0.337</td>
+<td>159200</td>
+<td>0.79700</td>
+<td>0</td>
+<td>6oSoqM0Otpmuowlzx0jYvK</td>
+<td>0.000015</td>
+<td>8</td>
+<td>0.1370</td>
+<td>-3.838</td>
+<td>1</td>
+<td>Goodnight Irene</td>
+<td>26</td>
+<td>1964-08</td>
+<td>0.0756</td>
+<td>173.437</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">20</td>
+<td>0.0839</td>
+<td>2001</td>
+<td>0.00179</td>
+<td>['Slayer']</td>
+<td>0.238</td>
+<td>215693</td>
+<td>0.99400</td>
+<td>1</td>
+<td>0esBc6VgM4lFk3SOlL3Ys4</td>
+<td>0.009440</td>
+<td>8</td>
+<td>0.2020</td>
+<td>-3.578</td>
+<td>1</td>
+<td>Disciple</td>
+<td>49</td>
+<td>2001-01-01</td>
+<td>0.2500</td>
+<td>95.569</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">0</td>
+<td>0.9400</td>
+<td>2006</td>
+<td>0.33000</td>
+<td>['Los Horóscopos De Durango']</td>
+<td>0.687</td>
+<td>204587</td>
+<td>0.72400</td>
+<td>0</td>
+<td>2KIUMqD9ZkcxhgSVyIDP4t</td>
+<td>0.000273</td>
+<td>4</td>
+<td>0.2480</td>
+<td>-2.478</td>
+<td>0</td>
+<td>Mi Amor Por Ti</td>
+<td>48</td>
+<td>2006-01-01</td>
+<td>0.0301</td>
+<td>141.507</td>
+</tr>
+</tbody>
+</table>
+
+<p>100 rows × 19 columns</p>
+</div>
+</div>
+</div>
+</section>
+<section id="normalisasi" class="level5" data-number="6.3.3.10.4">
+<h5 data-number="6.3.3.10.4" class="anchored" data-anchor-id="normalisasi"><span class="header-section-number">6.3.3.10.4</span> Normalisasi</h5>
+<div class="cell" data-execution_count="9">
+<div class="sourceCode cell-code" id="cb19"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> sklearn.preprocessing <span class="im">import</span> MinMaxScaler</span>
+<span id="cb19-2"><a href="#cb19-2" aria-hidden="true" tabindex="-1"></a><span class="co"># Normalisasi</span></span>
+<span id="cb19-3"><a href="#cb19-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb19-4"><a href="#cb19-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Load Data</span></span>
+<span id="cb19-5"><a href="#cb19-5" aria-hidden="true" tabindex="-1"></a>df <span class="op">=</span> pd.read_csv(<span class="st">'./data_sampled_100.csv'</span>)</span>
+<span id="cb19-6"><a href="#cb19-6" aria-hidden="true" tabindex="-1"></a>df[<span class="st">'loudness'</span>].head()</span>
+<span id="cb19-7"><a href="#cb19-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb19-8"><a href="#cb19-8" aria-hidden="true" tabindex="-1"></a><span class="co"># batas minimum data adalah 31.808000 dan dan batas maksimum data adalah -2.478000</span></span>
+<span id="cb19-9"><a href="#cb19-9" aria-hidden="true" tabindex="-1"></a><span class="co"># Batas data ini akan diubah menjadi 0 - 1 menggunakan metode normalization. Cek menggunakan histogram</span></span>
+<span id="cb19-10"><a href="#cb19-10" aria-hidden="true" tabindex="-1"></a>fig <span class="op">=</span> px.histogram(df, x<span class="op">=</span><span class="st">'loudness'</span>)</span>
+<span id="cb19-11"><a href="#cb19-11" aria-hidden="true" tabindex="-1"></a>fig.show()</span>
+<span id="cb19-12"><a href="#cb19-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb19-13"><a href="#cb19-13" aria-hidden="true" tabindex="-1"></a><span class="co"># buat objek scaler</span></span>
+<span id="cb19-14"><a href="#cb19-14" aria-hidden="true" tabindex="-1"></a>scaler <span class="op">=</span> MinMaxScaler()</span>
+<span id="cb19-15"><a href="#cb19-15" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb19-16"><a href="#cb19-16" aria-hidden="true" tabindex="-1"></a><span class="co"># transformasi data tempo menggunakan objek scaler</span></span>
+<span id="cb19-17"><a href="#cb19-17" aria-hidden="true" tabindex="-1"></a>df[<span class="st">'loudness'</span>] <span class="op">=</span> scaler.fit_transform(df[[<span class="st">'loudness'</span>]])</span>
+<span id="cb19-18"><a href="#cb19-18" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb19-19"><a href="#cb19-19" aria-hidden="true" tabindex="-1"></a><span class="co"># grafik histogram untuk fitur tempo</span></span>
+<span id="cb19-20"><a href="#cb19-20" aria-hidden="true" tabindex="-1"></a>fig <span class="op">=</span> px.histogram(df, x<span class="op">=</span><span class="st">'loudness'</span>)</span>
+<span id="cb19-21"><a href="#cb19-21" aria-hidden="true" tabindex="-1"></a>fig.show()</span>
+<span id="cb19-22"><a href="#cb19-22" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb19-23"><a href="#cb19-23" aria-hidden="true" tabindex="-1"></a><span class="co"># cek batas-batas data dari data yang sudah di normalisasi.</span></span>
+<span id="cb19-24"><a href="#cb19-24" aria-hidden="true" tabindex="-1"></a>df[<span class="st">'loudness'</span>].describe()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display">
+
+<div>                            <div id="c76a1276-78ff-4b50-b0ed-6c281e7a89a8" class="plotly-graph-div" style="height:525px; width:100%;"></div>            <script type="text/javascript">                require(["plotly"], function(Plotly) {                    window.PLOTLYENV=window.PLOTLYENV || {};                                    if (document.getElementById("c76a1276-78ff-4b50-b0ed-6c281e7a89a8")) {                    Plotly.newPlot(                        "c76a1276-78ff-4b50-b0ed-6c281e7a89a8",                        [{"alignmentgroup":"True","bingroup":"x","hovertemplate":"loudness=%{x}\u003cbr\u003ecount=%{y}\u003cextra\u003e\u003c\u002fextra\u003e","legendgroup":"","marker":{"color":"#636efa","pattern":{"shape":""}},"name":"","offsetgroup":"","orientation":"v","showlegend":false,"x":[-2.478,-6.176,-11.328,-7.087999999999999,-16.851,-13.0,-12.783,-16.116,-12.942,-13.892,-18.122,-16.500999999999998,-10.272,-15.06,-7.207000000000002,-4.605,-12.276,-4.783,-15.744000000000002,-25.398000000000003,-3.5780000000000003,-6.313,-27.288,-13.74,-6.6160000000000005,-11.634,-10.047,-13.693,-10.168,-11.235,-6.138999999999999,-12.996,-13.509,-4.1160000000000005,-5.9460000000000015,-4.9510000000000005,-20.07,-20.822,-12.001,-12.576,-9.145,-12.404000000000002,-13.363,-4.787,-6.485,-6.178999999999999,-10.265999999999998,-13.711,-6.603,-18.026,-7.864,-9.554,-5.1720000000000015,-18.357,-18.576,-9.694,-5.358,-19.052,-7.997000000000001,-12.569,-3.838,-8.632,-9.455,-17.811,-19.345,-8.729,-8.927,-15.411,-8.596,-31.808000000000003,-8.234,-5.4110000000000005,-15.681,-7.332999999999997,-8.794,-15.537,-23.594,-13.522,-11.101,-4.8210000000000015,-11.314,-18.58,-8.597000000000001,-7.077999999999999,-11.915,-17.778,-7.34,-6.312,-14.974,-4.464,-11.246,-14.498,-21.337,-9.832,-5.908,-15.49,-8.395,-22.986,-11.436,-15.666],"xaxis":"x","yaxis":"y","type":"histogram"}],                        {"template":{"data":{"histogram2dcontour":[{"type":"histogram2dcontour","colorbar":{"outlinewidth":0,"ticks":""},"colorscale":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]]}],"choropleth":[{"type":"choropleth","colorbar":{"outlinewidth":0,"ticks":""}}],"histogram2d":[{"type":"histogram2d","colorbar":{"outlinewidth":0,"ticks":""},"colorscale":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]]}],"heatmap":[{"type":"heatmap","colorbar":{"outlinewidth":0,"ticks":""},"colorscale":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]]}],"heatmapgl":[{"type":"heatmapgl","colorbar":{"outlinewidth":0,"ticks":""},"colorscale":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]]}],"contourcarpet":[{"type":"contourcarpet","colorbar":{"outlinewidth":0,"ticks":""}}],"contour":[{"type":"contour","colorbar":{"outlinewidth":0,"ticks":""},"colorscale":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]]}],"surface":[{"type":"surface","colorbar":{"outlinewidth":0,"ticks":""},"colorscale":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]]}],"mesh3d":[{"type":"mesh3d","colorbar":{"outlinewidth":0,"ticks":""}}],"scatter":[{"fillpattern":{"fillmode":"overlay","size":10,"solidity":0.2},"type":"scatter"}],"parcoords":[{"type":"parcoords","line":{"colorbar":{"outlinewidth":0,"ticks":""}}}],"scatterpolargl":[{"type":"scatterpolargl","marker":{"colorbar":{"outlinewidth":0,"ticks":""}}}],"bar":[{"error_x":{"color":"#2a3f5f"},"error_y":{"color":"#2a3f5f"},"marker":{"line":{"color":"#E5ECF6","width":0.5},"pattern":{"fillmode":"overlay","size":10,"solidity":0.2}},"type":"bar"}],"scattergeo":[{"type":"scattergeo","marker":{"colorbar":{"outlinewidth":0,"ticks":""}}}],"scatterpolar":[{"type":"scatterpolar","marker":{"colorbar":{"outlinewidth":0,"ticks":""}}}],"histogram":[{"marker":{"pattern":{"fillmode":"overlay","size":10,"solidity":0.2}},"type":"histogram"}],"scattergl":[{"type":"scattergl","marker":{"colorbar":{"outlinewidth":0,"ticks":""}}}],"scatter3d":[{"type":"scatter3d","line":{"colorbar":{"outlinewidth":0,"ticks":""}},"marker":{"colorbar":{"outlinewidth":0,"ticks":""}}}],"scattermapbox":[{"type":"scattermapbox","marker":{"colorbar":{"outlinewidth":0,"ticks":""}}}],"scatterternary":[{"type":"scatterternary","marker":{"colorbar":{"outlinewidth":0,"ticks":""}}}],"scattercarpet":[{"type":"scattercarpet","marker":{"colorbar":{"outlinewidth":0,"ticks":""}}}],"carpet":[{"aaxis":{"endlinecolor":"#2a3f5f","gridcolor":"white","linecolor":"white","minorgridcolor":"white","startlinecolor":"#2a3f5f"},"baxis":{"endlinecolor":"#2a3f5f","gridcolor":"white","linecolor":"white","minorgridcolor":"white","startlinecolor":"#2a3f5f"},"type":"carpet"}],"table":[{"cells":{"fill":{"color":"#EBF0F8"},"line":{"color":"white"}},"header":{"fill":{"color":"#C8D4E3"},"line":{"color":"white"}},"type":"table"}],"barpolar":[{"marker":{"line":{"color":"#E5ECF6","width":0.5},"pattern":{"fillmode":"overlay","size":10,"solidity":0.2}},"type":"barpolar"}],"pie":[{"automargin":true,"type":"pie"}]},"layout":{"autotypenumbers":"strict","colorway":["#636efa","#EF553B","#00cc96","#ab63fa","#FFA15A","#19d3f3","#FF6692","#B6E880","#FF97FF","#FECB52"],"font":{"color":"#2a3f5f"},"hovermode":"closest","hoverlabel":{"align":"left"},"paper_bgcolor":"white","plot_bgcolor":"#E5ECF6","polar":{"bgcolor":"#E5ECF6","angularaxis":{"gridcolor":"white","linecolor":"white","ticks":""},"radialaxis":{"gridcolor":"white","linecolor":"white","ticks":""}},"ternary":{"bgcolor":"#E5ECF6","aaxis":{"gridcolor":"white","linecolor":"white","ticks":""},"baxis":{"gridcolor":"white","linecolor":"white","ticks":""},"caxis":{"gridcolor":"white","linecolor":"white","ticks":""}},"coloraxis":{"colorbar":{"outlinewidth":0,"ticks":""}},"colorscale":{"sequential":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]],"sequentialminus":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]],"diverging":[[0,"#8e0152"],[0.1,"#c51b7d"],[0.2,"#de77ae"],[0.3,"#f1b6da"],[0.4,"#fde0ef"],[0.5,"#f7f7f7"],[0.6,"#e6f5d0"],[0.7,"#b8e186"],[0.8,"#7fbc41"],[0.9,"#4d9221"],[1,"#276419"]]},"xaxis":{"gridcolor":"white","linecolor":"white","ticks":"","title":{"standoff":15},"zerolinecolor":"white","automargin":true,"zerolinewidth":2},"yaxis":{"gridcolor":"white","linecolor":"white","ticks":"","title":{"standoff":15},"zerolinecolor":"white","automargin":true,"zerolinewidth":2},"scene":{"xaxis":{"backgroundcolor":"#E5ECF6","gridcolor":"white","linecolor":"white","showbackground":true,"ticks":"","zerolinecolor":"white","gridwidth":2},"yaxis":{"backgroundcolor":"#E5ECF6","gridcolor":"white","linecolor":"white","showbackground":true,"ticks":"","zerolinecolor":"white","gridwidth":2},"zaxis":{"backgroundcolor":"#E5ECF6","gridcolor":"white","linecolor":"white","showbackground":true,"ticks":"","zerolinecolor":"white","gridwidth":2}},"shapedefaults":{"line":{"color":"#2a3f5f"}},"annotationdefaults":{"arrowcolor":"#2a3f5f","arrowhead":0,"arrowwidth":1},"geo":{"bgcolor":"white","landcolor":"#E5ECF6","subunitcolor":"white","showland":true,"showlakes":true,"lakecolor":"white"},"title":{"x":0.05},"mapbox":{"style":"light"}}},"xaxis":{"anchor":"y","domain":[0.0,1.0],"title":{"text":"loudness"}},"yaxis":{"anchor":"x","domain":[0.0,1.0],"title":{"text":"count"}},"legend":{"tracegroupgap":0},"margin":{"t":60},"barmode":"relative"},                        {"responsive": true}                    ).then(function(){
+                            
+var gd = document.getElementById('c76a1276-78ff-4b50-b0ed-6c281e7a89a8');
+var x = new MutationObserver(function (mutations, observer) {{
+        var display = window.getComputedStyle(gd).display;
+        if (!display || display === 'none') {{
+            console.log([gd, 'removed!']);
+            Plotly.purge(gd);
+            observer.disconnect();
+        }}
+}});
+
+// Listen for the removal of the full notebook cells
+var notebookContainer = gd.closest('#notebook-container');
+if (notebookContainer) {{
+    x.observe(notebookContainer, {childList: true});
+}}
+
+// Listen for the clearing of the current output cell
+var outputEl = gd.closest('.output');
+if (outputEl) {{
+    x.observe(outputEl, {childList: true});
+}}
+
+                        })                };                });            </script>        </div>
+</div>
+<div class="cell-output cell-output-display">
+
+<div>                            <div id="31d9728e-cea1-48f9-954b-3eec0273e7e1" class="plotly-graph-div" style="height:525px; width:100%;"></div>            <script type="text/javascript">                require(["plotly"], function(Plotly) {                    window.PLOTLYENV=window.PLOTLYENV || {};                                    if (document.getElementById("31d9728e-cea1-48f9-954b-3eec0273e7e1")) {                    Plotly.newPlot(                        "31d9728e-cea1-48f9-954b-3eec0273e7e1",                        [{"alignmentgroup":"True","bingroup":"x","hovertemplate":"loudness=%{x}\u003cbr\u003ecount=%{y}\u003cextra\u003e\u003c\u002fextra\u003e","legendgroup":"","marker":{"color":"#636efa","pattern":{"shape":""}},"name":"","offsetgroup":"","orientation":"v","showlegend":false,"x":[1.0,0.8739174906239345,0.6982611660415957,0.8428230480736448,0.5099556767814525,0.641254688032731,0.6486532560518241,0.5350153426525742,0.6432321854756222,0.6108421411524037,0.4666212069553358,0.5218888510057962,0.7342652574156154,0.5710194340265939,0.8387657688373679,0.9274803954994886,0.6659393112853733,0.9214115240368224,0.5476986021138766,0.21854756222297977,0.9624957381520628,0.8692465052846915,0.15410842141152403,0.6160245482441187,0.8589157858847596,0.6878281622911695,0.7419365837026934,0.6176270030685306,0.7378111148994204,0.7014319809069213,0.8751789976133653,0.6413910671667236,0.6239004432321855,0.9441527446300716,0.8817592908285032,0.9156836004091374,0.40020456870098875,0.37456529151039897,0.6753153767473576,0.6557108762359359,0.7726900784180021,0.6615751789976133,0.6288782816229117,0.9212751449028299,0.863382202523014,0.8738152062734402,0.7344698261166043,0.6170132969655643,0.8593590180702353,0.4698943061711558,0.8163654960790999,0.758745311967269,0.9081486532560519,0.45860893283327653,0.45114217524718714,0.7539720422775316,0.9018070235254007,0.4349130583020798,0.8118308898738493,0.6559495397204228,0.9536310944425503,0.7901807023525401,0.7621206955335834,0.4772246846232526,0.4249232867371293,0.786873508353222,0.7801227412205933,0.5590521650187522,0.7914081145584726,0.0,0.8037504261847938,0.9,0.5498465734742585,0.8344698261166044,0.7846573474258438,0.5547562222979884,0.28005455165359694,0.6234572110467098,0.7060006818956699,0.9201159222638936,0.6987384930105693,0.4510057961131948,0.7913740197749743,0.843163995908626,0.6782475281281964,0.4783498124786908,0.8342311626321173,0.8692806000681896,0.5739515854074326,0.9322877599727242,0.701056938288442,0.59018070235254,0.35700647800886465,0.7492669621547903,0.883054892601432,0.5563586771224003,0.7982611660415957,0.3007841800204568,0.6945789294237982,0.5503579952267303],"xaxis":"x","yaxis":"y","type":"histogram"}],                        {"template":{"data":{"histogram2dcontour":[{"type":"histogram2dcontour","colorbar":{"outlinewidth":0,"ticks":""},"colorscale":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]]}],"choropleth":[{"type":"choropleth","colorbar":{"outlinewidth":0,"ticks":""}}],"histogram2d":[{"type":"histogram2d","colorbar":{"outlinewidth":0,"ticks":""},"colorscale":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]]}],"heatmap":[{"type":"heatmap","colorbar":{"outlinewidth":0,"ticks":""},"colorscale":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]]}],"heatmapgl":[{"type":"heatmapgl","colorbar":{"outlinewidth":0,"ticks":""},"colorscale":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]]}],"contourcarpet":[{"type":"contourcarpet","colorbar":{"outlinewidth":0,"ticks":""}}],"contour":[{"type":"contour","colorbar":{"outlinewidth":0,"ticks":""},"colorscale":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]]}],"surface":[{"type":"surface","colorbar":{"outlinewidth":0,"ticks":""},"colorscale":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]]}],"mesh3d":[{"type":"mesh3d","colorbar":{"outlinewidth":0,"ticks":""}}],"scatter":[{"fillpattern":{"fillmode":"overlay","size":10,"solidity":0.2},"type":"scatter"}],"parcoords":[{"type":"parcoords","line":{"colorbar":{"outlinewidth":0,"ticks":""}}}],"scatterpolargl":[{"type":"scatterpolargl","marker":{"colorbar":{"outlinewidth":0,"ticks":""}}}],"bar":[{"error_x":{"color":"#2a3f5f"},"error_y":{"color":"#2a3f5f"},"marker":{"line":{"color":"#E5ECF6","width":0.5},"pattern":{"fillmode":"overlay","size":10,"solidity":0.2}},"type":"bar"}],"scattergeo":[{"type":"scattergeo","marker":{"colorbar":{"outlinewidth":0,"ticks":""}}}],"scatterpolar":[{"type":"scatterpolar","marker":{"colorbar":{"outlinewidth":0,"ticks":""}}}],"histogram":[{"marker":{"pattern":{"fillmode":"overlay","size":10,"solidity":0.2}},"type":"histogram"}],"scattergl":[{"type":"scattergl","marker":{"colorbar":{"outlinewidth":0,"ticks":""}}}],"scatter3d":[{"type":"scatter3d","line":{"colorbar":{"outlinewidth":0,"ticks":""}},"marker":{"colorbar":{"outlinewidth":0,"ticks":""}}}],"scattermapbox":[{"type":"scattermapbox","marker":{"colorbar":{"outlinewidth":0,"ticks":""}}}],"scatterternary":[{"type":"scatterternary","marker":{"colorbar":{"outlinewidth":0,"ticks":""}}}],"scattercarpet":[{"type":"scattercarpet","marker":{"colorbar":{"outlinewidth":0,"ticks":""}}}],"carpet":[{"aaxis":{"endlinecolor":"#2a3f5f","gridcolor":"white","linecolor":"white","minorgridcolor":"white","startlinecolor":"#2a3f5f"},"baxis":{"endlinecolor":"#2a3f5f","gridcolor":"white","linecolor":"white","minorgridcolor":"white","startlinecolor":"#2a3f5f"},"type":"carpet"}],"table":[{"cells":{"fill":{"color":"#EBF0F8"},"line":{"color":"white"}},"header":{"fill":{"color":"#C8D4E3"},"line":{"color":"white"}},"type":"table"}],"barpolar":[{"marker":{"line":{"color":"#E5ECF6","width":0.5},"pattern":{"fillmode":"overlay","size":10,"solidity":0.2}},"type":"barpolar"}],"pie":[{"automargin":true,"type":"pie"}]},"layout":{"autotypenumbers":"strict","colorway":["#636efa","#EF553B","#00cc96","#ab63fa","#FFA15A","#19d3f3","#FF6692","#B6E880","#FF97FF","#FECB52"],"font":{"color":"#2a3f5f"},"hovermode":"closest","hoverlabel":{"align":"left"},"paper_bgcolor":"white","plot_bgcolor":"#E5ECF6","polar":{"bgcolor":"#E5ECF6","angularaxis":{"gridcolor":"white","linecolor":"white","ticks":""},"radialaxis":{"gridcolor":"white","linecolor":"white","ticks":""}},"ternary":{"bgcolor":"#E5ECF6","aaxis":{"gridcolor":"white","linecolor":"white","ticks":""},"baxis":{"gridcolor":"white","linecolor":"white","ticks":""},"caxis":{"gridcolor":"white","linecolor":"white","ticks":""}},"coloraxis":{"colorbar":{"outlinewidth":0,"ticks":""}},"colorscale":{"sequential":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]],"sequentialminus":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]],"diverging":[[0,"#8e0152"],[0.1,"#c51b7d"],[0.2,"#de77ae"],[0.3,"#f1b6da"],[0.4,"#fde0ef"],[0.5,"#f7f7f7"],[0.6,"#e6f5d0"],[0.7,"#b8e186"],[0.8,"#7fbc41"],[0.9,"#4d9221"],[1,"#276419"]]},"xaxis":{"gridcolor":"white","linecolor":"white","ticks":"","title":{"standoff":15},"zerolinecolor":"white","automargin":true,"zerolinewidth":2},"yaxis":{"gridcolor":"white","linecolor":"white","ticks":"","title":{"standoff":15},"zerolinecolor":"white","automargin":true,"zerolinewidth":2},"scene":{"xaxis":{"backgroundcolor":"#E5ECF6","gridcolor":"white","linecolor":"white","showbackground":true,"ticks":"","zerolinecolor":"white","gridwidth":2},"yaxis":{"backgroundcolor":"#E5ECF6","gridcolor":"white","linecolor":"white","showbackground":true,"ticks":"","zerolinecolor":"white","gridwidth":2},"zaxis":{"backgroundcolor":"#E5ECF6","gridcolor":"white","linecolor":"white","showbackground":true,"ticks":"","zerolinecolor":"white","gridwidth":2}},"shapedefaults":{"line":{"color":"#2a3f5f"}},"annotationdefaults":{"arrowcolor":"#2a3f5f","arrowhead":0,"arrowwidth":1},"geo":{"bgcolor":"white","landcolor":"#E5ECF6","subunitcolor":"white","showland":true,"showlakes":true,"lakecolor":"white"},"title":{"x":0.05},"mapbox":{"style":"light"}}},"xaxis":{"anchor":"y","domain":[0.0,1.0],"title":{"text":"loudness"}},"yaxis":{"anchor":"x","domain":[0.0,1.0],"title":{"text":"count"}},"legend":{"tracegroupgap":0},"margin":{"t":60},"barmode":"relative"},                        {"responsive": true}                    ).then(function(){
+                            
+var gd = document.getElementById('31d9728e-cea1-48f9-954b-3eec0273e7e1');
+var x = new MutationObserver(function (mutations, observer) {{
+        var display = window.getComputedStyle(gd).display;
+        if (!display || display === 'none') {{
+            console.log([gd, 'removed!']);
+            Plotly.purge(gd);
+            observer.disconnect();
+        }}
+}});
+
+// Listen for the removal of the full notebook cells
+var notebookContainer = gd.closest('#notebook-container');
+if (notebookContainer) {{
+    x.observe(notebookContainer, {childList: true});
+}}
+
+// Listen for the clearing of the current output cell
+var outputEl = gd.closest('.output');
+if (outputEl) {{
+    x.observe(outputEl, {childList: true});
+}}
+
+                        })                };                });            </script>        </div>
+</div>
+<div class="cell-output cell-output-display" data-execution_count="19">
+<pre><code>count    100.000000
+mean       0.683209
+std        0.193857
+min        0.000000
+25%        0.558379
+50%        0.699898
+75%        0.839780
+max        1.000000
+Name: loudness, dtype: float64</code></pre>
+</div>
+</div>
+</section>
+<section id="standarization" class="level5" data-number="6.3.3.10.5">
+<h5 data-number="6.3.3.10.5" class="anchored" data-anchor-id="standarization"><span class="header-section-number">6.3.3.10.5</span> Standarization</h5>
+<div class="cell" data-execution_count="10">
+<div class="sourceCode cell-code" id="cb21"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a><span class="co"># standarization </span></span>
+<span id="cb21-2"><a href="#cb21-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb21-3"><a href="#cb21-3" aria-hidden="true" tabindex="-1"></a><span class="co"># Load data</span></span>
+<span id="cb21-4"><a href="#cb21-4" aria-hidden="true" tabindex="-1"></a>df <span class="op">=</span> pd.read_csv(<span class="st">'./data_sampled_100.csv'</span>)</span>
+<span id="cb21-5"><a href="#cb21-5" aria-hidden="true" tabindex="-1"></a>df[<span class="st">'loudness'</span>].describe()</span>
+<span id="cb21-6"><a href="#cb21-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb21-7"><a href="#cb21-7" aria-hidden="true" tabindex="-1"></a><span class="co"># visualisasi data dengan bar chart</span></span>
+<span id="cb21-8"><a href="#cb21-8" aria-hidden="true" tabindex="-1"></a>fig <span class="op">=</span> px.histogram(df, x<span class="op">=</span><span class="st">'loudness'</span>)</span>
+<span id="cb21-9"><a href="#cb21-9" aria-hidden="true" tabindex="-1"></a>fig.show()</span>
+<span id="cb21-10"><a href="#cb21-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb21-11"><a href="#cb21-11" aria-hidden="true" tabindex="-1"></a><span class="co"># gunakan function z-score scaler untuk melakukan proses normalisasi terhadap data loudness.</span></span>
+<span id="cb21-12"><a href="#cb21-12" aria-hidden="true" tabindex="-1"></a>mean <span class="op">=</span> <span class="bu">round</span>(np.mean(df[<span class="st">'loudness'</span>]), <span class="dv">2</span>)</span>
+<span id="cb21-13"><a href="#cb21-13" aria-hidden="true" tabindex="-1"></a>std <span class="op">=</span> <span class="bu">round</span>(np.std(df[<span class="st">'loudness'</span>]), <span class="dv">2</span>)</span>
+<span id="cb21-14"><a href="#cb21-14" aria-hidden="true" tabindex="-1"></a>normalized <span class="op">=</span> <span class="bu">round</span>((df[<span class="st">'loudness'</span>]<span class="op">-</span>mean)<span class="op">/</span>std, <span class="dv">2</span>)</span>
+<span id="cb21-15"><a href="#cb21-15" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb21-16"><a href="#cb21-16" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f'mean = '</span>, mean)</span>
+<span id="cb21-17"><a href="#cb21-17" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f'std deviation = '</span>, std)</span>
+<span id="cb21-18"><a href="#cb21-18" aria-hidden="true" tabindex="-1"></a>normalized.describe()</span>
+<span id="cb21-19"><a href="#cb21-19" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb21-20"><a href="#cb21-20" aria-hidden="true" tabindex="-1"></a><span class="co"># buat diagram histogramnya untuk mengecek perubahan distribusi data.</span></span>
+<span id="cb21-21"><a href="#cb21-21" aria-hidden="true" tabindex="-1"></a>fig <span class="op">=</span> px.histogram(normalized, x<span class="op">=</span><span class="st">"loudness"</span>)</span>
+<span id="cb21-22"><a href="#cb21-22" aria-hidden="true" tabindex="-1"></a>fig.show()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display">
+
+<div>                            <div id="5adadc85-9455-4c94-9661-e1c0578d8152" class="plotly-graph-div" style="height:525px; width:100%;"></div>            <script type="text/javascript">                require(["plotly"], function(Plotly) {                    window.PLOTLYENV=window.PLOTLYENV || {};                                    if (document.getElementById("5adadc85-9455-4c94-9661-e1c0578d8152")) {                    Plotly.newPlot(                        "5adadc85-9455-4c94-9661-e1c0578d8152",                        [{"alignmentgroup":"True","bingroup":"x","hovertemplate":"loudness=%{x}\u003cbr\u003ecount=%{y}\u003cextra\u003e\u003c\u002fextra\u003e","legendgroup":"","marker":{"color":"#636efa","pattern":{"shape":""}},"name":"","offsetgroup":"","orientation":"v","showlegend":false,"x":[-2.478,-6.176,-11.328,-7.087999999999999,-16.851,-13.0,-12.783,-16.116,-12.942,-13.892,-18.122,-16.500999999999998,-10.272,-15.06,-7.207000000000002,-4.605,-12.276,-4.783,-15.744000000000002,-25.398000000000003,-3.5780000000000003,-6.313,-27.288,-13.74,-6.6160000000000005,-11.634,-10.047,-13.693,-10.168,-11.235,-6.138999999999999,-12.996,-13.509,-4.1160000000000005,-5.9460000000000015,-4.9510000000000005,-20.07,-20.822,-12.001,-12.576,-9.145,-12.404000000000002,-13.363,-4.787,-6.485,-6.178999999999999,-10.265999999999998,-13.711,-6.603,-18.026,-7.864,-9.554,-5.1720000000000015,-18.357,-18.576,-9.694,-5.358,-19.052,-7.997000000000001,-12.569,-3.838,-8.632,-9.455,-17.811,-19.345,-8.729,-8.927,-15.411,-8.596,-31.808000000000003,-8.234,-5.4110000000000005,-15.681,-7.332999999999997,-8.794,-15.537,-23.594,-13.522,-11.101,-4.8210000000000015,-11.314,-18.58,-8.597000000000001,-7.077999999999999,-11.915,-17.778,-7.34,-6.312,-14.974,-4.464,-11.246,-14.498,-21.337,-9.832,-5.908,-15.49,-8.395,-22.986,-11.436,-15.666],"xaxis":"x","yaxis":"y","type":"histogram"}],                        {"template":{"data":{"histogram2dcontour":[{"type":"histogram2dcontour","colorbar":{"outlinewidth":0,"ticks":""},"colorscale":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]]}],"choropleth":[{"type":"choropleth","colorbar":{"outlinewidth":0,"ticks":""}}],"histogram2d":[{"type":"histogram2d","colorbar":{"outlinewidth":0,"ticks":""},"colorscale":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]]}],"heatmap":[{"type":"heatmap","colorbar":{"outlinewidth":0,"ticks":""},"colorscale":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]]}],"heatmapgl":[{"type":"heatmapgl","colorbar":{"outlinewidth":0,"ticks":""},"colorscale":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]]}],"contourcarpet":[{"type":"contourcarpet","colorbar":{"outlinewidth":0,"ticks":""}}],"contour":[{"type":"contour","colorbar":{"outlinewidth":0,"ticks":""},"colorscale":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]]}],"surface":[{"type":"surface","colorbar":{"outlinewidth":0,"ticks":""},"colorscale":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]]}],"mesh3d":[{"type":"mesh3d","colorbar":{"outlinewidth":0,"ticks":""}}],"scatter":[{"fillpattern":{"fillmode":"overlay","size":10,"solidity":0.2},"type":"scatter"}],"parcoords":[{"type":"parcoords","line":{"colorbar":{"outlinewidth":0,"ticks":""}}}],"scatterpolargl":[{"type":"scatterpolargl","marker":{"colorbar":{"outlinewidth":0,"ticks":""}}}],"bar":[{"error_x":{"color":"#2a3f5f"},"error_y":{"color":"#2a3f5f"},"marker":{"line":{"color":"#E5ECF6","width":0.5},"pattern":{"fillmode":"overlay","size":10,"solidity":0.2}},"type":"bar"}],"scattergeo":[{"type":"scattergeo","marker":{"colorbar":{"outlinewidth":0,"ticks":""}}}],"scatterpolar":[{"type":"scatterpolar","marker":{"colorbar":{"outlinewidth":0,"ticks":""}}}],"histogram":[{"marker":{"pattern":{"fillmode":"overlay","size":10,"solidity":0.2}},"type":"histogram"}],"scattergl":[{"type":"scattergl","marker":{"colorbar":{"outlinewidth":0,"ticks":""}}}],"scatter3d":[{"type":"scatter3d","line":{"colorbar":{"outlinewidth":0,"ticks":""}},"marker":{"colorbar":{"outlinewidth":0,"ticks":""}}}],"scattermapbox":[{"type":"scattermapbox","marker":{"colorbar":{"outlinewidth":0,"ticks":""}}}],"scatterternary":[{"type":"scatterternary","marker":{"colorbar":{"outlinewidth":0,"ticks":""}}}],"scattercarpet":[{"type":"scattercarpet","marker":{"colorbar":{"outlinewidth":0,"ticks":""}}}],"carpet":[{"aaxis":{"endlinecolor":"#2a3f5f","gridcolor":"white","linecolor":"white","minorgridcolor":"white","startlinecolor":"#2a3f5f"},"baxis":{"endlinecolor":"#2a3f5f","gridcolor":"white","linecolor":"white","minorgridcolor":"white","startlinecolor":"#2a3f5f"},"type":"carpet"}],"table":[{"cells":{"fill":{"color":"#EBF0F8"},"line":{"color":"white"}},"header":{"fill":{"color":"#C8D4E3"},"line":{"color":"white"}},"type":"table"}],"barpolar":[{"marker":{"line":{"color":"#E5ECF6","width":0.5},"pattern":{"fillmode":"overlay","size":10,"solidity":0.2}},"type":"barpolar"}],"pie":[{"automargin":true,"type":"pie"}]},"layout":{"autotypenumbers":"strict","colorway":["#636efa","#EF553B","#00cc96","#ab63fa","#FFA15A","#19d3f3","#FF6692","#B6E880","#FF97FF","#FECB52"],"font":{"color":"#2a3f5f"},"hovermode":"closest","hoverlabel":{"align":"left"},"paper_bgcolor":"white","plot_bgcolor":"#E5ECF6","polar":{"bgcolor":"#E5ECF6","angularaxis":{"gridcolor":"white","linecolor":"white","ticks":""},"radialaxis":{"gridcolor":"white","linecolor":"white","ticks":""}},"ternary":{"bgcolor":"#E5ECF6","aaxis":{"gridcolor":"white","linecolor":"white","ticks":""},"baxis":{"gridcolor":"white","linecolor":"white","ticks":""},"caxis":{"gridcolor":"white","linecolor":"white","ticks":""}},"coloraxis":{"colorbar":{"outlinewidth":0,"ticks":""}},"colorscale":{"sequential":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]],"sequentialminus":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]],"diverging":[[0,"#8e0152"],[0.1,"#c51b7d"],[0.2,"#de77ae"],[0.3,"#f1b6da"],[0.4,"#fde0ef"],[0.5,"#f7f7f7"],[0.6,"#e6f5d0"],[0.7,"#b8e186"],[0.8,"#7fbc41"],[0.9,"#4d9221"],[1,"#276419"]]},"xaxis":{"gridcolor":"white","linecolor":"white","ticks":"","title":{"standoff":15},"zerolinecolor":"white","automargin":true,"zerolinewidth":2},"yaxis":{"gridcolor":"white","linecolor":"white","ticks":"","title":{"standoff":15},"zerolinecolor":"white","automargin":true,"zerolinewidth":2},"scene":{"xaxis":{"backgroundcolor":"#E5ECF6","gridcolor":"white","linecolor":"white","showbackground":true,"ticks":"","zerolinecolor":"white","gridwidth":2},"yaxis":{"backgroundcolor":"#E5ECF6","gridcolor":"white","linecolor":"white","showbackground":true,"ticks":"","zerolinecolor":"white","gridwidth":2},"zaxis":{"backgroundcolor":"#E5ECF6","gridcolor":"white","linecolor":"white","showbackground":true,"ticks":"","zerolinecolor":"white","gridwidth":2}},"shapedefaults":{"line":{"color":"#2a3f5f"}},"annotationdefaults":{"arrowcolor":"#2a3f5f","arrowhead":0,"arrowwidth":1},"geo":{"bgcolor":"white","landcolor":"#E5ECF6","subunitcolor":"white","showland":true,"showlakes":true,"lakecolor":"white"},"title":{"x":0.05},"mapbox":{"style":"light"}}},"xaxis":{"anchor":"y","domain":[0.0,1.0],"title":{"text":"loudness"}},"yaxis":{"anchor":"x","domain":[0.0,1.0],"title":{"text":"count"}},"legend":{"tracegroupgap":0},"margin":{"t":60},"barmode":"relative"},                        {"responsive": true}                    ).then(function(){
+                            
+var gd = document.getElementById('5adadc85-9455-4c94-9661-e1c0578d8152');
+var x = new MutationObserver(function (mutations, observer) {{
+        var display = window.getComputedStyle(gd).display;
+        if (!display || display === 'none') {{
+            console.log([gd, 'removed!']);
+            Plotly.purge(gd);
+            observer.disconnect();
+        }}
+}});
+
+// Listen for the removal of the full notebook cells
+var notebookContainer = gd.closest('#notebook-container');
+if (notebookContainer) {{
+    x.observe(notebookContainer, {childList: true});
+}}
+
+// Listen for the clearing of the current output cell
+var outputEl = gd.closest('.output');
+if (outputEl) {{
+    x.observe(outputEl, {childList: true});
+}}
+
+                        })                };                });            </script>        </div>
+</div>
+<div class="cell-output cell-output-stdout">
+<pre><code>mean =  -11.77
+std deviation =  5.66</code></pre>
+</div>
+<div class="cell-output cell-output-display">
+
+<div>                            <div id="f68e0acd-ef47-4477-9304-5f9bf69e2514" class="plotly-graph-div" style="height:525px; width:100%;"></div>            <script type="text/javascript">                require(["plotly"], function(Plotly) {                    window.PLOTLYENV=window.PLOTLYENV || {};                                    if (document.getElementById("f68e0acd-ef47-4477-9304-5f9bf69e2514")) {                    Plotly.newPlot(                        "f68e0acd-ef47-4477-9304-5f9bf69e2514",                        [{"alignmentgroup":"True","bingroup":"x","hovertemplate":"loudness=%{x}\u003cbr\u003ecount=%{y}\u003cextra\u003e\u003c\u002fextra\u003e","legendgroup":"","marker":{"color":"#636efa","pattern":{"shape":""}},"name":"","offsetgroup":"","orientation":"v","showlegend":false,"x":[1.64,0.99,0.08,0.83,-0.9,-0.22,-0.18,-0.77,-0.21,-0.37,-1.12,-0.84,0.26,-0.58,0.81,1.27,-0.09,1.23,-0.7,-2.41,1.45,0.96,-2.74,-0.35,0.91,0.02,0.3,-0.34,0.28,0.09,0.99,-0.22,-0.31,1.35,1.03,1.2,-1.47,-1.6,-0.04,-0.14,0.46,-0.11,-0.28,1.23,0.93,0.99,0.27,-0.34,0.91,-1.11,0.69,0.39,1.17,-1.16,-1.2,0.37,1.13,-1.29,0.67,-0.14,1.4,0.55,0.41,-1.07,-1.34,0.54,0.5,-0.64,0.56,-3.54,0.62,1.12,-0.69,0.78,0.53,-0.67,-2.09,-0.31,0.12,1.23,0.08,-1.2,0.56,0.83,-0.03,-1.06,0.78,0.96,-0.57,1.29,0.09,-0.48,-1.69,0.34,1.04,-0.66,0.6,-1.98,0.06,-0.69],"xaxis":"x","yaxis":"y","type":"histogram"}],                        {"template":{"data":{"histogram2dcontour":[{"type":"histogram2dcontour","colorbar":{"outlinewidth":0,"ticks":""},"colorscale":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]]}],"choropleth":[{"type":"choropleth","colorbar":{"outlinewidth":0,"ticks":""}}],"histogram2d":[{"type":"histogram2d","colorbar":{"outlinewidth":0,"ticks":""},"colorscale":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]]}],"heatmap":[{"type":"heatmap","colorbar":{"outlinewidth":0,"ticks":""},"colorscale":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]]}],"heatmapgl":[{"type":"heatmapgl","colorbar":{"outlinewidth":0,"ticks":""},"colorscale":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]]}],"contourcarpet":[{"type":"contourcarpet","colorbar":{"outlinewidth":0,"ticks":""}}],"contour":[{"type":"contour","colorbar":{"outlinewidth":0,"ticks":""},"colorscale":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]]}],"surface":[{"type":"surface","colorbar":{"outlinewidth":0,"ticks":""},"colorscale":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]]}],"mesh3d":[{"type":"mesh3d","colorbar":{"outlinewidth":0,"ticks":""}}],"scatter":[{"fillpattern":{"fillmode":"overlay","size":10,"solidity":0.2},"type":"scatter"}],"parcoords":[{"type":"parcoords","line":{"colorbar":{"outlinewidth":0,"ticks":""}}}],"scatterpolargl":[{"type":"scatterpolargl","marker":{"colorbar":{"outlinewidth":0,"ticks":""}}}],"bar":[{"error_x":{"color":"#2a3f5f"},"error_y":{"color":"#2a3f5f"},"marker":{"line":{"color":"#E5ECF6","width":0.5},"pattern":{"fillmode":"overlay","size":10,"solidity":0.2}},"type":"bar"}],"scattergeo":[{"type":"scattergeo","marker":{"colorbar":{"outlinewidth":0,"ticks":""}}}],"scatterpolar":[{"type":"scatterpolar","marker":{"colorbar":{"outlinewidth":0,"ticks":""}}}],"histogram":[{"marker":{"pattern":{"fillmode":"overlay","size":10,"solidity":0.2}},"type":"histogram"}],"scattergl":[{"type":"scattergl","marker":{"colorbar":{"outlinewidth":0,"ticks":""}}}],"scatter3d":[{"type":"scatter3d","line":{"colorbar":{"outlinewidth":0,"ticks":""}},"marker":{"colorbar":{"outlinewidth":0,"ticks":""}}}],"scattermapbox":[{"type":"scattermapbox","marker":{"colorbar":{"outlinewidth":0,"ticks":""}}}],"scatterternary":[{"type":"scatterternary","marker":{"colorbar":{"outlinewidth":0,"ticks":""}}}],"scattercarpet":[{"type":"scattercarpet","marker":{"colorbar":{"outlinewidth":0,"ticks":""}}}],"carpet":[{"aaxis":{"endlinecolor":"#2a3f5f","gridcolor":"white","linecolor":"white","minorgridcolor":"white","startlinecolor":"#2a3f5f"},"baxis":{"endlinecolor":"#2a3f5f","gridcolor":"white","linecolor":"white","minorgridcolor":"white","startlinecolor":"#2a3f5f"},"type":"carpet"}],"table":[{"cells":{"fill":{"color":"#EBF0F8"},"line":{"color":"white"}},"header":{"fill":{"color":"#C8D4E3"},"line":{"color":"white"}},"type":"table"}],"barpolar":[{"marker":{"line":{"color":"#E5ECF6","width":0.5},"pattern":{"fillmode":"overlay","size":10,"solidity":0.2}},"type":"barpolar"}],"pie":[{"automargin":true,"type":"pie"}]},"layout":{"autotypenumbers":"strict","colorway":["#636efa","#EF553B","#00cc96","#ab63fa","#FFA15A","#19d3f3","#FF6692","#B6E880","#FF97FF","#FECB52"],"font":{"color":"#2a3f5f"},"hovermode":"closest","hoverlabel":{"align":"left"},"paper_bgcolor":"white","plot_bgcolor":"#E5ECF6","polar":{"bgcolor":"#E5ECF6","angularaxis":{"gridcolor":"white","linecolor":"white","ticks":""},"radialaxis":{"gridcolor":"white","linecolor":"white","ticks":""}},"ternary":{"bgcolor":"#E5ECF6","aaxis":{"gridcolor":"white","linecolor":"white","ticks":""},"baxis":{"gridcolor":"white","linecolor":"white","ticks":""},"caxis":{"gridcolor":"white","linecolor":"white","ticks":""}},"coloraxis":{"colorbar":{"outlinewidth":0,"ticks":""}},"colorscale":{"sequential":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]],"sequentialminus":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]],"diverging":[[0,"#8e0152"],[0.1,"#c51b7d"],[0.2,"#de77ae"],[0.3,"#f1b6da"],[0.4,"#fde0ef"],[0.5,"#f7f7f7"],[0.6,"#e6f5d0"],[0.7,"#b8e186"],[0.8,"#7fbc41"],[0.9,"#4d9221"],[1,"#276419"]]},"xaxis":{"gridcolor":"white","linecolor":"white","ticks":"","title":{"standoff":15},"zerolinecolor":"white","automargin":true,"zerolinewidth":2},"yaxis":{"gridcolor":"white","linecolor":"white","ticks":"","title":{"standoff":15},"zerolinecolor":"white","automargin":true,"zerolinewidth":2},"scene":{"xaxis":{"backgroundcolor":"#E5ECF6","gridcolor":"white","linecolor":"white","showbackground":true,"ticks":"","zerolinecolor":"white","gridwidth":2},"yaxis":{"backgroundcolor":"#E5ECF6","gridcolor":"white","linecolor":"white","showbackground":true,"ticks":"","zerolinecolor":"white","gridwidth":2},"zaxis":{"backgroundcolor":"#E5ECF6","gridcolor":"white","linecolor":"white","showbackground":true,"ticks":"","zerolinecolor":"white","gridwidth":2}},"shapedefaults":{"line":{"color":"#2a3f5f"}},"annotationdefaults":{"arrowcolor":"#2a3f5f","arrowhead":0,"arrowwidth":1},"geo":{"bgcolor":"white","landcolor":"#E5ECF6","subunitcolor":"white","showland":true,"showlakes":true,"lakecolor":"white"},"title":{"x":0.05},"mapbox":{"style":"light"}}},"xaxis":{"anchor":"y","domain":[0.0,1.0],"title":{"text":"loudness"}},"yaxis":{"anchor":"x","domain":[0.0,1.0],"title":{"text":"count"}},"legend":{"tracegroupgap":0},"margin":{"t":60},"barmode":"relative"},                        {"responsive": true}                    ).then(function(){
+                            
+var gd = document.getElementById('f68e0acd-ef47-4477-9304-5f9bf69e2514');
+var x = new MutationObserver(function (mutations, observer) {{
+        var display = window.getComputedStyle(gd).display;
+        if (!display || display === 'none') {{
+            console.log([gd, 'removed!']);
+            Plotly.purge(gd);
+            observer.disconnect();
+        }}
+}});
+
+// Listen for the removal of the full notebook cells
+var notebookContainer = gd.closest('#notebook-container');
+if (notebookContainer) {{
+    x.observe(notebookContainer, {childList: true});
+}}
+
+// Listen for the clearing of the current output cell
+var outputEl = gd.closest('.output');
+if (outputEl) {{
+    x.observe(outputEl, {childList: true});
+}}
+
+                        })                };                });            </script>        </div>
+</div>
+</div>
+<p>Jika kita bandingkan histogram data asli dengan data yang di standarisasi, distribusi data tidak berbeda jauh. Selain itu, batas data minimal mengecil dari -31 menjadi -3, dan batas data maksimal membesar dari -2 menjadi 1.</p>
+</section>
+</section>
+</section>
 </section>
 <section id="menangani-format-yang-tidak-konsisten" class="level2" data-number="6.4">
-<h2 data-number="6.4" class="anchored" data-anchor-id="menangani-format-yang-tidak-konsisten"><span class="header-section-number">6.4</span> - Menangani Format yang Tidak Konsisten</h2>
+<h2 data-number="6.4" class="anchored" data-anchor-id="menangani-format-yang-tidak-konsisten"><span class="header-section-number">6.4</span> Menangani Format yang Tidak Konsisten</h2>
 <p><strong>Format Tidak Konsisten</strong> terjadi ketika data memiliki format yang sama atau tidak sesuai dengan format yang diharapkan. Sering terjadi pada pemformatan tanggal, bulan, dan tahun.</p>
 <ul>
 <li>Strategi dalam mengatasi Format Tidak Konsisten
@@ -509,52 +1573,52 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </ul></li>
 </ul>
 <p>Pilih strategi yang paling sesuai tergantung pada tipe data dan tujuan analisis</p>
-<section id="mengubah-format-data-menjadi-format-yang-konsisten-seperti-mengubah-format-tanggal-menjadi-format-yang-sama" class="level3 unnumbered">
-<h3 class="unnumbered anchored" data-anchor-id="mengubah-format-data-menjadi-format-yang-konsisten-seperti-mengubah-format-tanggal-menjadi-format-yang-sama">- Mengubah format data menjadi format yang konsisten seperti mengubah format tanggal menjadi format yang sama</h3>
-<div class="sourceCode" id="cb8"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
-<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a><span class="co"># Contoh dataset dengan kolom tanggal dalam format yang berbeda</span></span>
-<span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a>data <span class="op">=</span> {</span>
-<span id="cb8-5"><a href="#cb8-5" aria-hidden="true" tabindex="-1"></a>    <span class="st">'Tanggal'</span>: [<span class="st">'2021-08-01'</span>, <span class="st">'02-08-2021'</span>, <span class="st">'2021/08/03'</span>, <span class="st">'20210804'</span>]</span>
-<span id="cb8-6"><a href="#cb8-6" aria-hidden="true" tabindex="-1"></a>}</span>
-<span id="cb8-7"><a href="#cb8-7" aria-hidden="true" tabindex="-1"></a>df <span class="op">=</span> pd.DataFrame(data)</span>
-<span id="cb8-8"><a href="#cb8-8" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb8-9"><a href="#cb8-9" aria-hidden="true" tabindex="-1"></a><span class="co"># Tampilkan dataset sebelum perubahan format</span></span>
-<span id="cb8-10"><a href="#cb8-10" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"Dataset sebelum perubahan format:"</span>)</span>
-<span id="cb8-11"><a href="#cb8-11" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(df)</span>
-<span id="cb8-12"><a href="#cb8-12" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb8-13"><a href="#cb8-13" aria-hidden="true" tabindex="-1"></a><span class="co"># Ubah format tanggal menjadi format yang sama (YYYY-MM-DD)</span></span>
-<span id="cb8-14"><a href="#cb8-14" aria-hidden="true" tabindex="-1"></a>df[<span class="st">'Tanggal'</span>] <span class="op">=</span> pd.to_datetime(df[<span class="st">'Tanggal'</span>], errors<span class="op">=</span><span class="st">'coerce'</span>).dt.strftime(<span class="st">'%Y-%m-</span><span class="sc">%d</span><span class="st">'</span>)</span>
-<span id="cb8-15"><a href="#cb8-15" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb8-16"><a href="#cb8-16" aria-hidden="true" tabindex="-1"></a><span class="co"># Tampilkan dataset setelah perubahan format</span></span>
-<span id="cb8-17"><a href="#cb8-17" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"</span><span class="ch">\n</span><span class="st">Dataset setelah perubahan format:"</span>)</span>
-<span id="cb8-18"><a href="#cb8-18" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(df)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<section id="mengubah-format-data-menjadi-format-yang-konsisten-seperti-mengubah-format-tanggal-menjadi-format-yang-sama" class="level3" data-number="6.4.1">
+<h3 data-number="6.4.1" class="anchored" data-anchor-id="mengubah-format-data-menjadi-format-yang-konsisten-seperti-mengubah-format-tanggal-menjadi-format-yang-sama"><span class="header-section-number">6.4.1</span> Mengubah format data menjadi format yang konsisten seperti mengubah format tanggal menjadi format yang sama</h3>
+<div class="sourceCode" id="cb23"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
+<span id="cb23-2"><a href="#cb23-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb23-3"><a href="#cb23-3" aria-hidden="true" tabindex="-1"></a><span class="co"># Contoh dataset dengan kolom tanggal dalam format yang berbeda</span></span>
+<span id="cb23-4"><a href="#cb23-4" aria-hidden="true" tabindex="-1"></a>data <span class="op">=</span> {</span>
+<span id="cb23-5"><a href="#cb23-5" aria-hidden="true" tabindex="-1"></a>    <span class="st">'Tanggal'</span>: [<span class="st">'2021-08-01'</span>, <span class="st">'02-08-2021'</span>, <span class="st">'2021/08/03'</span>, <span class="st">'20210804'</span>]</span>
+<span id="cb23-6"><a href="#cb23-6" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb23-7"><a href="#cb23-7" aria-hidden="true" tabindex="-1"></a>df <span class="op">=</span> pd.DataFrame(data)</span>
+<span id="cb23-8"><a href="#cb23-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb23-9"><a href="#cb23-9" aria-hidden="true" tabindex="-1"></a><span class="co"># Tampilkan dataset sebelum perubahan format</span></span>
+<span id="cb23-10"><a href="#cb23-10" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"Dataset sebelum perubahan format:"</span>)</span>
+<span id="cb23-11"><a href="#cb23-11" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(df)</span>
+<span id="cb23-12"><a href="#cb23-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb23-13"><a href="#cb23-13" aria-hidden="true" tabindex="-1"></a><span class="co"># Ubah format tanggal menjadi format yang sama (YYYY-MM-DD)</span></span>
+<span id="cb23-14"><a href="#cb23-14" aria-hidden="true" tabindex="-1"></a>df[<span class="st">'Tanggal'</span>] <span class="op">=</span> pd.to_datetime(df[<span class="st">'Tanggal'</span>], errors<span class="op">=</span><span class="st">'coerce'</span>).dt.strftime(<span class="st">'%Y-%m-</span><span class="sc">%d</span><span class="st">'</span>)</span>
+<span id="cb23-15"><a href="#cb23-15" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb23-16"><a href="#cb23-16" aria-hidden="true" tabindex="-1"></a><span class="co"># Tampilkan dataset setelah perubahan format</span></span>
+<span id="cb23-17"><a href="#cb23-17" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"</span><span class="ch">\n</span><span class="st">Dataset setelah perubahan format:"</span>)</span>
+<span id="cb23-18"><a href="#cb23-18" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(df)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </section>
-<section id="memperbaiki-data-yang-salah-ketik-atau-typo" class="level3 unnumbered">
-<h3 class="unnumbered anchored" data-anchor-id="memperbaiki-data-yang-salah-ketik-atau-typo">- Memperbaiki data yang salah ketik atau typo</h3>
-<div class="sourceCode" id="cb9"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
-<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> sklearn.datasets <span class="im">import</span> load_iris</span>
-<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Load dataset Iris dari scikit-learn</span></span>
-<span id="cb9-5"><a href="#cb9-5" aria-hidden="true" tabindex="-1"></a>data <span class="op">=</span> load_iris()</span>
-<span id="cb9-6"><a href="#cb9-6" aria-hidden="true" tabindex="-1"></a>iris_df <span class="op">=</span> pd.DataFrame(data.data, columns<span class="op">=</span>data.feature_names)</span>
-<span id="cb9-7"><a href="#cb9-7" aria-hidden="true" tabindex="-1"></a>iris_df[<span class="st">'species'</span>] <span class="op">=</span> data.target_names[data.target]</span>
-<span id="cb9-8"><a href="#cb9-8" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb9-9"><a href="#cb9-9" aria-hidden="true" tabindex="-1"></a><span class="co"># Contoh data dengan salah ketik atau typo</span></span>
-<span id="cb9-10"><a href="#cb9-10" aria-hidden="true" tabindex="-1"></a>iris_df.iloc[<span class="dv">0</span>, <span class="dv">0</span>] <span class="op">=</span> <span class="fl">5.1</span></span>
-<span id="cb9-11"><a href="#cb9-11" aria-hidden="true" tabindex="-1"></a>iris_df.iloc[<span class="dv">1</span>, <span class="dv">1</span>] <span class="op">=</span> <span class="fl">3.6</span></span>
-<span id="cb9-12"><a href="#cb9-12" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb9-13"><a href="#cb9-13" aria-hidden="true" tabindex="-1"></a><span class="co"># Tampilkan dataset sebelum pembersihan data</span></span>
-<span id="cb9-14"><a href="#cb9-14" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"Dataset sebelum pembersihan data:"</span>)</span>
-<span id="cb9-15"><a href="#cb9-15" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(iris_df)</span>
-<span id="cb9-16"><a href="#cb9-16" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb9-17"><a href="#cb9-17" aria-hidden="true" tabindex="-1"></a><span class="co"># Koreksi data salah ketik atau typo</span></span>
-<span id="cb9-18"><a href="#cb9-18" aria-hidden="true" tabindex="-1"></a><span class="co"># Misalnya, jika nilai 3.6 pada kolom 'sepal width (cm)' seharusnya 3.0</span></span>
-<span id="cb9-19"><a href="#cb9-19" aria-hidden="true" tabindex="-1"></a>iris_df.loc[iris_df[<span class="st">'sepal width (cm)'</span>] <span class="op">==</span> <span class="fl">3.6</span>, <span class="st">'sepal width (cm)'</span>] <span class="op">=</span> <span class="fl">3.0</span></span>
-<span id="cb9-20"><a href="#cb9-20" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb9-21"><a href="#cb9-21" aria-hidden="true" tabindex="-1"></a><span class="co"># Tampilkan dataset setelah pembersihan data</span></span>
-<span id="cb9-22"><a href="#cb9-22" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"</span><span class="ch">\n</span><span class="st">Dataset setelah pembersihan data:"</span>)</span>
-<span id="cb9-23"><a href="#cb9-23" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(iris_df)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<section id="memperbaiki-data-yang-salah-ketik-atau-typo" class="level3" data-number="6.4.2">
+<h3 data-number="6.4.2" class="anchored" data-anchor-id="memperbaiki-data-yang-salah-ketik-atau-typo"><span class="header-section-number">6.4.2</span> - Memperbaiki data yang salah ketik atau typo</h3>
+<div class="sourceCode" id="cb24"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
+<span id="cb24-2"><a href="#cb24-2" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> sklearn.datasets <span class="im">import</span> load_iris</span>
+<span id="cb24-3"><a href="#cb24-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb24-4"><a href="#cb24-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Load dataset Iris dari scikit-learn</span></span>
+<span id="cb24-5"><a href="#cb24-5" aria-hidden="true" tabindex="-1"></a>data <span class="op">=</span> load_iris()</span>
+<span id="cb24-6"><a href="#cb24-6" aria-hidden="true" tabindex="-1"></a>iris_df <span class="op">=</span> pd.DataFrame(data.data, columns<span class="op">=</span>data.feature_names)</span>
+<span id="cb24-7"><a href="#cb24-7" aria-hidden="true" tabindex="-1"></a>iris_df[<span class="st">'species'</span>] <span class="op">=</span> data.target_names[data.target]</span>
+<span id="cb24-8"><a href="#cb24-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb24-9"><a href="#cb24-9" aria-hidden="true" tabindex="-1"></a><span class="co"># Contoh data dengan salah ketik atau typo</span></span>
+<span id="cb24-10"><a href="#cb24-10" aria-hidden="true" tabindex="-1"></a>iris_df.iloc[<span class="dv">0</span>, <span class="dv">0</span>] <span class="op">=</span> <span class="fl">5.1</span></span>
+<span id="cb24-11"><a href="#cb24-11" aria-hidden="true" tabindex="-1"></a>iris_df.iloc[<span class="dv">1</span>, <span class="dv">1</span>] <span class="op">=</span> <span class="fl">3.6</span></span>
+<span id="cb24-12"><a href="#cb24-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb24-13"><a href="#cb24-13" aria-hidden="true" tabindex="-1"></a><span class="co"># Tampilkan dataset sebelum pembersihan data</span></span>
+<span id="cb24-14"><a href="#cb24-14" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"Dataset sebelum pembersihan data:"</span>)</span>
+<span id="cb24-15"><a href="#cb24-15" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(iris_df)</span>
+<span id="cb24-16"><a href="#cb24-16" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb24-17"><a href="#cb24-17" aria-hidden="true" tabindex="-1"></a><span class="co"># Koreksi data salah ketik atau typo</span></span>
+<span id="cb24-18"><a href="#cb24-18" aria-hidden="true" tabindex="-1"></a><span class="co"># Misalnya, jika nilai 3.6 pada kolom 'sepal width (cm)' seharusnya 3.0</span></span>
+<span id="cb24-19"><a href="#cb24-19" aria-hidden="true" tabindex="-1"></a>iris_df.loc[iris_df[<span class="st">'sepal width (cm)'</span>] <span class="op">==</span> <span class="fl">3.6</span>, <span class="st">'sepal width (cm)'</span>] <span class="op">=</span> <span class="fl">3.0</span></span>
+<span id="cb24-20"><a href="#cb24-20" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb24-21"><a href="#cb24-21" aria-hidden="true" tabindex="-1"></a><span class="co"># Tampilkan dataset setelah pembersihan data</span></span>
+<span id="cb24-22"><a href="#cb24-22" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"</span><span class="ch">\n</span><span class="st">Dataset setelah pembersihan data:"</span>)</span>
+<span id="cb24-23"><a href="#cb24-23" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(iris_df)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </section>
 </section>
 <section id="menangani-malformed-record" class="level2" data-number="6.5">
@@ -568,44 +1632,44 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </ul></li>
 </ul>
 <p>Pilih strategi yang paling sesuai tergantung pada tipe data dan tujuan analisis.</p>
-<section id="menghapus-record-yang-tidak-sesuai-dengan-format-atau-struktur-yang-diharapkan" class="level3 unnumbered">
-<h3 class="unnumbered anchored" data-anchor-id="menghapus-record-yang-tidak-sesuai-dengan-format-atau-struktur-yang-diharapkan">- Menghapus record yang tidak sesuai dengan format atau struktur yang diharapkan</h3>
-<div class="sourceCode" id="cb10"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
-<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a><span class="co"># membaca dataset</span></span>
-<span id="cb10-4"><a href="#cb10-4" aria-hidden="true" tabindex="-1"></a>data <span class="op">=</span> pd.read_csv(<span class="st">"nama_file.csv"</span>)</span>
-<span id="cb10-5"><a href="#cb10-5" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb10-6"><a href="#cb10-6" aria-hidden="true" tabindex="-1"></a><span class="co"># mengecek dan menghapus record yang tidak sesuai dengan format atau struktur yang diharapkan</span></span>
-<span id="cb10-7"><a href="#cb10-7" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> i, row <span class="kw">in</span> data.iterrows():</span>
-<span id="cb10-8"><a href="#cb10-8" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> <span class="kw">not</span> format_check(row):</span>
-<span id="cb10-9"><a href="#cb10-9" aria-hidden="true" tabindex="-1"></a>        data.drop(i, inplace<span class="op">=</span><span class="va">True</span>)</span>
-<span id="cb10-10"><a href="#cb10-10" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb10-11"><a href="#cb10-11" aria-hidden="true" tabindex="-1"></a><span class="co"># menampilkan dataset yang telah diubah</span></span>
-<span id="cb10-12"><a href="#cb10-12" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(data)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<section id="menghapus-record-yang-tidak-sesuai-dengan-format-atau-struktur-yang-diharapkan" class="level3" data-number="6.5.1">
+<h3 data-number="6.5.1" class="anchored" data-anchor-id="menghapus-record-yang-tidak-sesuai-dengan-format-atau-struktur-yang-diharapkan"><span class="header-section-number">6.5.1</span> - Menghapus record yang tidak sesuai dengan format atau struktur yang diharapkan</h3>
+<div class="sourceCode" id="cb25"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb25-1"><a href="#cb25-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
+<span id="cb25-2"><a href="#cb25-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb25-3"><a href="#cb25-3" aria-hidden="true" tabindex="-1"></a><span class="co"># membaca dataset</span></span>
+<span id="cb25-4"><a href="#cb25-4" aria-hidden="true" tabindex="-1"></a>data <span class="op">=</span> pd.read_csv(<span class="st">"nama_file.csv"</span>)</span>
+<span id="cb25-5"><a href="#cb25-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb25-6"><a href="#cb25-6" aria-hidden="true" tabindex="-1"></a><span class="co"># mengecek dan menghapus record yang tidak sesuai dengan format atau struktur yang diharapkan</span></span>
+<span id="cb25-7"><a href="#cb25-7" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> i, row <span class="kw">in</span> data.iterrows():</span>
+<span id="cb25-8"><a href="#cb25-8" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> <span class="kw">not</span> format_check(row):</span>
+<span id="cb25-9"><a href="#cb25-9" aria-hidden="true" tabindex="-1"></a>        data.drop(i, inplace<span class="op">=</span><span class="va">True</span>)</span>
+<span id="cb25-10"><a href="#cb25-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb25-11"><a href="#cb25-11" aria-hidden="true" tabindex="-1"></a><span class="co"># menampilkan dataset yang telah diubah</span></span>
+<span id="cb25-12"><a href="#cb25-12" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(data)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p>Kode di atas menggunakan library pandas untuk membaca dataset dari file csv dan melakukan pengecekan format atau struktur pada setiap record dalam dataset dengan fungsi format_check(). Jika record tidak sesuai dengan format atau struktur yang diharapkan, maka record tersebut dihapus dari dataset menggunakan fungsi drop(). Fungsi iterrows() digunakan untuk mengiterasi setiap record dalam dataset. Setelah proses penghapusan selesai, dataset yang telah diubah ditampilkan menggunakan fungsi print(). Penting untuk menyesuaikan kode dengan format atau struktur dataset yang digunakan dan memastikan menggunakan fungsi format_check() yang sesuai.</p>
 </section>
-<section id="mengubah-record-yang-tidak-sesuai-dengan-format-atau-struktur-yang-diharapkan" class="level3 unnumbered">
-<h3 class="unnumbered anchored" data-anchor-id="mengubah-record-yang-tidak-sesuai-dengan-format-atau-struktur-yang-diharapkan">- Mengubah record yang tidak sesuai dengan format atau struktur yang diharapkan</h3>
-<div class="sourceCode" id="cb11"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="co">#| code-fold: true</span></span>
-<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
-<span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb11-4"><a href="#cb11-4" aria-hidden="true" tabindex="-1"></a><span class="co"># membaca dataset dari file csv</span></span>
-<span id="cb11-5"><a href="#cb11-5" aria-hidden="true" tabindex="-1"></a>data <span class="op">=</span> pd.read_csv(<span class="st">'nama_file.csv'</span>)</span>
-<span id="cb11-6"><a href="#cb11-6" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb11-7"><a href="#cb11-7" aria-hidden="true" tabindex="-1"></a><span class="co"># fungsi untuk melakukan pengecekan format atau struktur pada setiap record dalam dataset</span></span>
-<span id="cb11-8"><a href="#cb11-8" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> format_check(record):</span>
-<span id="cb11-9"><a href="#cb11-9" aria-hidden="true" tabindex="-1"></a>    <span class="co"># implementasi pengecekan format atau struktur pada satu record</span></span>
-<span id="cb11-10"><a href="#cb11-10" aria-hidden="true" tabindex="-1"></a>    <span class="co"># return True jika format atau struktur sesuai, False jika tidak sesuai</span></span>
-<span id="cb11-11"><a href="#cb11-11" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb11-12"><a href="#cb11-12" aria-hidden="true" tabindex="-1"></a><span class="co"># melakukan iterasi pada setiap record dalam dataset</span></span>
-<span id="cb11-13"><a href="#cb11-13" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> index, row <span class="kw">in</span> data.iterrows():</span>
-<span id="cb11-14"><a href="#cb11-14" aria-hidden="true" tabindex="-1"></a>    <span class="co"># cek apakah format atau struktur record sesuai dengan yang diharapkan</span></span>
-<span id="cb11-15"><a href="#cb11-15" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> <span class="kw">not</span> format_check(row):</span>
-<span id="cb11-16"><a href="#cb11-16" aria-hidden="true" tabindex="-1"></a>        <span class="co"># jika tidak sesuai, hapus record dari dataset</span></span>
-<span id="cb11-17"><a href="#cb11-17" aria-hidden="true" tabindex="-1"></a>        data <span class="op">=</span> data.drop(index)</span>
-<span id="cb11-18"><a href="#cb11-18" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb11-19"><a href="#cb11-19" aria-hidden="true" tabindex="-1"></a><span class="co"># menampilkan dataset yang telah diubah</span></span>
-<span id="cb11-20"><a href="#cb11-20" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(data)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<section id="mengubah-record-yang-tidak-sesuai-dengan-format-atau-struktur-yang-diharapkan" class="level3" data-number="6.5.2">
+<h3 data-number="6.5.2" class="anchored" data-anchor-id="mengubah-record-yang-tidak-sesuai-dengan-format-atau-struktur-yang-diharapkan"><span class="header-section-number">6.5.2</span> - Mengubah record yang tidak sesuai dengan format atau struktur yang diharapkan</h3>
+<div class="sourceCode" id="cb26"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb26-1"><a href="#cb26-1" aria-hidden="true" tabindex="-1"></a><span class="co">#| code-fold: true</span></span>
+<span id="cb26-2"><a href="#cb26-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
+<span id="cb26-3"><a href="#cb26-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb26-4"><a href="#cb26-4" aria-hidden="true" tabindex="-1"></a><span class="co"># membaca dataset dari file csv</span></span>
+<span id="cb26-5"><a href="#cb26-5" aria-hidden="true" tabindex="-1"></a>data <span class="op">=</span> pd.read_csv(<span class="st">'nama_file.csv'</span>)</span>
+<span id="cb26-6"><a href="#cb26-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb26-7"><a href="#cb26-7" aria-hidden="true" tabindex="-1"></a><span class="co"># fungsi untuk melakukan pengecekan format atau struktur pada setiap record dalam dataset</span></span>
+<span id="cb26-8"><a href="#cb26-8" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> format_check(record):</span>
+<span id="cb26-9"><a href="#cb26-9" aria-hidden="true" tabindex="-1"></a>    <span class="co"># implementasi pengecekan format atau struktur pada satu record</span></span>
+<span id="cb26-10"><a href="#cb26-10" aria-hidden="true" tabindex="-1"></a>    <span class="co"># return True jika format atau struktur sesuai, False jika tidak sesuai</span></span>
+<span id="cb26-11"><a href="#cb26-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb26-12"><a href="#cb26-12" aria-hidden="true" tabindex="-1"></a><span class="co"># melakukan iterasi pada setiap record dalam dataset</span></span>
+<span id="cb26-13"><a href="#cb26-13" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> index, row <span class="kw">in</span> data.iterrows():</span>
+<span id="cb26-14"><a href="#cb26-14" aria-hidden="true" tabindex="-1"></a>    <span class="co"># cek apakah format atau struktur record sesuai dengan yang diharapkan</span></span>
+<span id="cb26-15"><a href="#cb26-15" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> <span class="kw">not</span> format_check(row):</span>
+<span id="cb26-16"><a href="#cb26-16" aria-hidden="true" tabindex="-1"></a>        <span class="co"># jika tidak sesuai, hapus record dari dataset</span></span>
+<span id="cb26-17"><a href="#cb26-17" aria-hidden="true" tabindex="-1"></a>        data <span class="op">=</span> data.drop(index)</span>
+<span id="cb26-18"><a href="#cb26-18" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb26-19"><a href="#cb26-19" aria-hidden="true" tabindex="-1"></a><span class="co"># menampilkan dataset yang telah diubah</span></span>
+<span id="cb26-20"><a href="#cb26-20" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(data)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p>Pada contoh di atas, dataset dibaca dari file csv menggunakan fungsi read_csv() dari library pandas. Kemudian, dilakukan iterasi pada setiap record dalam dataset menggunakan fungsi iterrows(). Pada setiap iterasi, record dicek dengan fungsi format_check() untuk memastikan bahwa format atau struktur record sesuai dengan yang diharapkan. Jika tidak sesuai, record tersebut dihapus dari dataset menggunakan fungsi drop(). Setelah proses penghapusan selesai, dataset yang telah diubah ditampilkan menggunakan fungsi print(). Harap diingat bahwa fungsi format_check() harus disesuaikan dengan format atau struktur yang diharapkan pada dataset yang digunakan.</p>
 </section>
 </section>

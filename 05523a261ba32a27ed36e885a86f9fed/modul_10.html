@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.3.353">
+<meta name="generator" content="quarto-1.3.450">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
@@ -93,7 +93,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     "search-more-matches-text": "more matches in this document",
     "search-clear-button-title": "Clear",
     "search-detached-cancel-button-title": "Cancel",
-    "search-submit-button-title": "Submit"
+    "search-submit-button-title": "Submit",
+    "search-label": "Search"
   }
 }</script>
 
@@ -112,7 +113,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
       <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./konsep.html"><b>Konsep</b></a></li><li class="breadcrumb-item"><a href="./modul_10.html"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">Deployment</span></a></li></ol></nav>
       <a class="flex-grow-1" role="button" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
       </a>
-      <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
+      <button type="button" class="btn quarto-search-button" aria-label="" onclick="window.quartoOpenSearch();">
         <i class="bi bi-search"></i>
       </button>
     </div>
@@ -161,19 +162,19 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./modul_2.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Data Understanding</span></span></a>
+ <span class="menu-text"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Telaah Data</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./modul_3.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Telaah Data</span></span></a>
+ <span class="menu-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Libraries for Data Preprocessing</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./modul_4.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Validasi Data</span></span></a>
+ <span class="menu-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Validasi dan Visualisasi Data</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
@@ -262,10 +263,9 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   <li><a href="#write" id="toc-write" class="nav-link" data-scroll-target="#write"><span class="header-section-number">10.4.2</span> Write</a></li>
   <li><a href="#sidebar" id="toc-sidebar" class="nav-link" data-scroll-target="#sidebar"><span class="header-section-number">10.4.3</span> Sidebar</a></li>
   <li><a href="#input-user" id="toc-input-user" class="nav-link" data-scroll-target="#input-user"><span class="header-section-number">10.4.4</span> Input User</a></li>
-  <li><a href="#handling-input-user" id="toc-handling-input-user" class="nav-link" data-scroll-target="#handling-input-user"><span class="header-section-number">10.4.5</span> Handling Input User</a></li>
-  <li><a href="#pengecekan-dataframe" id="toc-pengecekan-dataframe" class="nav-link" data-scroll-target="#pengecekan-dataframe"><span class="header-section-number">10.4.6</span> Pengecekan Dataframe</a></li>
-  <li><a href="#prediksi" id="toc-prediksi" class="nav-link" data-scroll-target="#prediksi"><span class="header-section-number">10.4.7</span> Prediksi</a></li>
-  <li><a href="#hasil-akhir" id="toc-hasil-akhir" class="nav-link" data-scroll-target="#hasil-akhir"><span class="header-section-number">10.4.8</span> Hasil akhir</a></li>
+  <li><a href="#pengecekan-dataframe" id="toc-pengecekan-dataframe" class="nav-link" data-scroll-target="#pengecekan-dataframe"><span class="header-section-number">10.4.5</span> Pengecekan Dataframe</a></li>
+  <li><a href="#prediksi" id="toc-prediksi" class="nav-link" data-scroll-target="#prediksi"><span class="header-section-number">10.4.6</span> Prediksi</a></li>
+  <li><a href="#hasil-akhir" id="toc-hasil-akhir" class="nav-link" data-scroll-target="#hasil-akhir"><span class="header-section-number">10.4.7</span> Hasil akhir</a></li>
   </ul></li>
   </ul>
 </nav>
@@ -302,10 +302,9 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <section id="membuat-aplikasi-web-dengan-streamlit" class="level2" data-number="10.3">
 <h2 data-number="10.3" class="anchored" data-anchor-id="membuat-aplikasi-web-dengan-streamlit"><span class="header-section-number">10.3</span> Membuat Aplikasi Web dengan Streamlit</h2>
 <p>Setelah Streamlit terinstall, langkah selanjutnya adalah membuat aplikasi web dengan menggunakan Streamlit. Untuk membuat aplikasi web dengan Streamlit, dapat dilakukan dengan cara membuat file python baru dengan nama app.py. Kemudian, pada file tersebut, tuliskan kode berikut:</p>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="co"># streamlit umumnya diinisialisasi dengan 'st'</span></span>
+<div class="sourceCode" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="co"># streamlit umumnya diinisialisasi dengan 'st'</span></span>
 <span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> streamlit <span class="im">as</span> st</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
+<p>Link Dataset : <a href="https://drive.google.com/file/d/1Dn3iZWAhRsFqKMJoO_8rbyLBYo3FgxSl/view?usp=sharing">Here</a></p>
 </section>
 <section id="api-streamlit" class="level2" data-number="10.4">
 <h2 data-number="10.4" class="anchored" data-anchor-id="api-streamlit"><span class="header-section-number">10.4</span> API Streamlit</h2>
@@ -313,150 +312,72 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <section id="page-config" class="level3" data-number="10.4.1">
 <h3 data-number="10.4.1" class="anchored" data-anchor-id="page-config"><span class="header-section-number">10.4.1</span> Page Config</h3>
 <p><code>st.set_page_config</code> dapat digunakan untuk mengatur konfigurasi halaman. Beberapa konfigurasi yang dapat diatur adalah judul halaman, layout halaman, dan lain-lain. Berikut adalah contoh penggunaan <code>st.set_page_config</code> untuk mengatur judul halaman:</p>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>st.set_page_config(</span>
-<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>    page_title<span class="op">=</span><span class="st">"Estimasi Hotel Yogyakarta"</span>,</span>
-<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>    page_icon<span class="op">=</span><span class="st">':hotel:'</span> <span class="co"># :hotel: merupakan nama emoji</span></span>
+<div class="sourceCode" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>st.set_page_config(</span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>    page_title <span class="op">=</span> <span class="st">"Estimasi CO2 Emissions"</span>,</span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>    page_icon <span class="op">=</span> <span class="st">':car: | :red_car:'</span> <span class="co">#nama emoji </span></span>
 <span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
 <div class="quarto-figure quarto-figure-left">
 <figure class="figure">
-<p><img src="images/st_page_config.png" class="img-fluid figure-img" width="300"></p>
+<p><img src="images/pageconfig.png" class="img-fluid figure-img" width="300"></p>
 </figure>
 </div>
 </section>
 <section id="write" class="level3" data-number="10.4.2">
 <h3 data-number="10.4.2" class="anchored" data-anchor-id="write"><span class="header-section-number">10.4.2</span> Write</h3>
 <p><code>st.write</code> dapat digunakan untuk menampilkan teks, dataframe, dan visualisasi. Format penulisan dalam method ini adalah format markdown. Berikut adalah contoh penggunaan <code>st.write</code> untuk menampilkan teks:</p>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>st.title(<span class="st">'Yogyakarta Hotel Price Estimation'</span>)</span>
-<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>st.write(</span>
-<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>    <span class="st">'For more info about this project, please visit my [**Github**](https://github.com/Liore-S/hotel-yoyakarta)'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
+<div class="sourceCode" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="co"># st.write dapat digunakan menampilkan test,dataframe,visualisasi</span></span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>st.title(<span class="st">'Estimasi CO2 Emissions'</span>)</span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>st.write(<span class="st">'information about Co2 Emission'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="quarto-figure quarto-figure-left">
 <figure class="figure">
-<p><img src="images/st_write.png" class="img-fluid figure-img" width="300"></p>
+<p><img src="images/st_write2.png" class="img-fluid figure-img" width="300"></p>
 </figure>
 </div>
 </section>
 <section id="sidebar" class="level3" data-number="10.4.3">
 <h3 data-number="10.4.3" class="anchored" data-anchor-id="sidebar"><span class="header-section-number">10.4.3</span> Sidebar</h3>
 <p><code>st.sidebar</code> dapat digunakan untuk membuat sidebar. Sidebar bisa digunakan sekedar untuk informasi tambahan atau bahka bisa sebagai input user. Berikut adalah contoh penggunaan <code>st.sidebar</code> untuk membuat sidebar:</p>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>st.sidebar.header(<span class="st">'User Input Features'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
+<div class="sourceCode" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a><span class="co"># st.sidebar dapat digunakan untuk membuat sidebar</span></span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>st.sidebar.header(<span class="st">"User Input Features"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </section>
 <section id="input-user" class="level3" data-number="10.4.4">
 <h3 data-number="10.4.4" class="anchored" data-anchor-id="input-user"><span class="header-section-number">10.4.4</span> Input User</h3>
-<p>Untuk memasukkan elemen input user dalam sidebar dapat dilakukan dengan menggunakan <code>st.sidebar.slider</code>, <code>st.sidebar.selectbox</code> dan lain sebagainya . Berikut adalah contoh input data pada sidebar:</p>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> user_input_features():</span>
-<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>    starRating <span class="op">=</span> st.sidebar.slider(<span class="st">'Star Rating'</span>, <span class="dv">0</span>, <span class="dv">5</span>, <span class="dv">3</span>)</span>
-<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a>    builtYear <span class="op">=</span> st.sidebar.slider(<span class="st">'Built Year'</span>, <span class="dv">1900</span>, <span class="dv">2023</span>, <span class="dv">1960</span>)</span>
-<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a>    size <span class="op">=</span> st.sidebar.slider(<span class="st">'Room Size (m2)'</span>, <span class="fl">2.0</span>,</span>
-<span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a>                             <span class="fl">100.0</span>, <span class="fl">50.0</span>, <span class="fl">0.1</span>, <span class="bu">format</span><span class="op">=</span><span class="st">'</span><span class="sc">%0.1f</span><span class="st">'</span>)</span>
-<span id="cb6-6"><a href="#cb6-6" aria-hidden="true" tabindex="-1"></a>    occupancy <span class="op">=</span> st.sidebar.slider(<span class="st">'Occupancy'</span>, <span class="dv">1</span>, <span class="dv">5</span>, <span class="dv">3</span>)</span>
-<span id="cb6-7"><a href="#cb6-7" aria-hidden="true" tabindex="-1"></a>    childAge <span class="op">=</span> st.sidebar.slider(<span class="st">'Child Age'</span>, <span class="dv">0</span>, <span class="dv">18</span>, <span class="dv">9</span>)</span>
-<span id="cb6-8"><a href="#cb6-8" aria-hidden="true" tabindex="-1"></a>    childOccupancy <span class="op">=</span> st.sidebar.slider(<span class="st">'Child Occupancy'</span>, <span class="dv">0</span>, <span class="dv">5</span>, <span class="dv">2</span>)</span>
-<span id="cb6-9"><a href="#cb6-9" aria-hidden="true" tabindex="-1"></a>    breakfast <span class="op">=</span> st.sidebar.checkbox(<span class="st">'Breakfast Included'</span>)</span>
-<span id="cb6-10"><a href="#cb6-10" aria-hidden="true" tabindex="-1"></a>    wifi <span class="op">=</span> st.sidebar.checkbox(<span class="st">'Wifi Included'</span>)</span>
-<span id="cb6-11"><a href="#cb6-11" aria-hidden="true" tabindex="-1"></a>    refund <span class="op">=</span> st.sidebar.checkbox(<span class="st">'Free Cancellation / Refund'</span>)</span>
-<span id="cb6-12"><a href="#cb6-12" aria-hidden="true" tabindex="-1"></a>    livingRoom <span class="op">=</span> st.sidebar.checkbox(<span class="st">'Living Room'</span>)</span>
-<span id="cb6-13"><a href="#cb6-13" aria-hidden="true" tabindex="-1"></a>    hotelFacilitie <span class="op">=</span> st.sidebar.multiselect(</span>
-<span id="cb6-14"><a href="#cb6-14" aria-hidden="true" tabindex="-1"></a>        <span class="st">'Hotel Facilities'</span>, (hotelFacilities))</span>
-<span id="cb6-15"><a href="#cb6-15" aria-hidden="true" tabindex="-1"></a>    roomFacilitie <span class="op">=</span> st.sidebar.multiselect(</span>
-<span id="cb6-16"><a href="#cb6-16" aria-hidden="true" tabindex="-1"></a>        <span class="st">'Room Facilities'</span>, (roomFacilities))</span>
-<span id="cb6-17"><a href="#cb6-17" aria-hidden="true" tabindex="-1"></a>    pointInterest <span class="op">=</span> st.sidebar.multiselect(</span>
-<span id="cb6-18"><a href="#cb6-18" aria-hidden="true" tabindex="-1"></a>        <span class="st">'Point of Interest'</span>, (nearestPoint))</span>
-<span id="cb6-19"><a href="#cb6-19" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb6-20"><a href="#cb6-20" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Handle Checkbox</span></span>
-<span id="cb6-21"><a href="#cb6-21" aria-hidden="true" tabindex="-1"></a>    breakfast <span class="op">=</span> <span class="dv">1</span> <span class="cf">if</span> breakfast <span class="cf">else</span> <span class="dv">0</span></span>
-<span id="cb6-22"><a href="#cb6-22" aria-hidden="true" tabindex="-1"></a>    wifi <span class="op">=</span> <span class="dv">1</span> <span class="cf">if</span> wifi <span class="cf">else</span> <span class="dv">0</span></span>
-<span id="cb6-23"><a href="#cb6-23" aria-hidden="true" tabindex="-1"></a>    refund <span class="op">=</span> <span class="dv">1</span> <span class="cf">if</span> refund <span class="cf">else</span> <span class="dv">0</span></span>
-<span id="cb6-24"><a href="#cb6-24" aria-hidden="true" tabindex="-1"></a>    livingRoom <span class="op">=</span> <span class="dv">1</span> <span class="cf">if</span> livingRoom <span class="cf">else</span> <span class="dv">0</span></span>
-<span id="cb6-25"><a href="#cb6-25" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb6-26"><a href="#cb6-26" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Handle Multiselect</span></span>
-<span id="cb6-27"><a href="#cb6-27" aria-hidden="true" tabindex="-1"></a>    hotelFacilitie <span class="op">=</span> <span class="st">','</span>.join(hotelFacilitie)</span>
-<span id="cb6-28"><a href="#cb6-28" aria-hidden="true" tabindex="-1"></a>    roomFacilitie <span class="op">=</span> <span class="st">','</span>.join(roomFacilitie)</span>
-<span id="cb6-29"><a href="#cb6-29" aria-hidden="true" tabindex="-1"></a>    pointInterest <span class="op">=</span> <span class="st">','</span>.join(pointInterest)</span>
-<span id="cb6-30"><a href="#cb6-30" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb6-31"><a href="#cb6-31" aria-hidden="true" tabindex="-1"></a>    data <span class="op">=</span> {</span>
-<span id="cb6-32"><a href="#cb6-32" aria-hidden="true" tabindex="-1"></a>            <span class="st">'starRating'</span>: starRating,</span>
-<span id="cb6-33"><a href="#cb6-33" aria-hidden="true" tabindex="-1"></a>            <span class="st">'builtYear'</span>: builtYear,</span>
-<span id="cb6-34"><a href="#cb6-34" aria-hidden="true" tabindex="-1"></a>            <span class="st">'size'</span>: size,</span>
-<span id="cb6-35"><a href="#cb6-35" aria-hidden="true" tabindex="-1"></a>            <span class="st">'baseOccupancy'</span>: occupancy,</span>
-<span id="cb6-36"><a href="#cb6-36" aria-hidden="true" tabindex="-1"></a>            <span class="st">'maxChildAge'</span>: childAge,</span>
-<span id="cb6-37"><a href="#cb6-37" aria-hidden="true" tabindex="-1"></a>            <span class="st">'maxChildOccupancy'</span>: childOccupancy,</span>
-<span id="cb6-38"><a href="#cb6-38" aria-hidden="true" tabindex="-1"></a>            <span class="st">'isBreakfastIncluded'</span>: breakfast,</span>
-<span id="cb6-39"><a href="#cb6-39" aria-hidden="true" tabindex="-1"></a>            <span class="st">'isWifiIncluded'</span>: wifi,</span>
-<span id="cb6-40"><a href="#cb6-40" aria-hidden="true" tabindex="-1"></a>            <span class="st">'isRefundable'</span>: refund,</span>
-<span id="cb6-41"><a href="#cb6-41" aria-hidden="true" tabindex="-1"></a>            <span class="st">'hasLivingRoom'</span>: livingRoom,</span>
-<span id="cb6-42"><a href="#cb6-42" aria-hidden="true" tabindex="-1"></a>            <span class="st">'hotelFacilities'</span>: hotelFacilitie,</span>
-<span id="cb6-43"><a href="#cb6-43" aria-hidden="true" tabindex="-1"></a>            <span class="st">'roomFacilities'</span>: roomFacilitie,</span>
-<span id="cb6-44"><a href="#cb6-44" aria-hidden="true" tabindex="-1"></a>            <span class="st">'nearestPoint'</span>: pointInterest</span>
-<span id="cb6-45"><a href="#cb6-45" aria-hidden="true" tabindex="-1"></a>            }</span>
-<span id="cb6-46"><a href="#cb6-46" aria-hidden="true" tabindex="-1"></a>    features <span class="op">=</span> pd.DataFrame(data, index<span class="op">=</span>[<span class="dv">0</span>])</span>
-<span id="cb6-47"><a href="#cb6-47" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> features</span>
-<span id="cb6-48"><a href="#cb6-48" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb6-49"><a href="#cb6-49" aria-hidden="true" tabindex="-1"></a>st.sidebar.header(<span class="st">'User Input Features'</span>)</span>
-<span id="cb6-50"><a href="#cb6-50" aria-hidden="true" tabindex="-1"></a>df <span class="op">=</span> user_input_features()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
+<p>Untuk memasukkan elemen input user dalam sidebar dapat dilakukan dengan menggunakan <code>st.sidebar.slider</code>, <code>st.sidebar.selectbox</code> ,<code>sidebar.number_input</code> dan lain sebagainya . Berikut adalah contoh input data pada sidebar:</p>
+<div class="sourceCode" id="cb6"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> user_input_features():</span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>    EngineSize <span class="op">=</span> st.sidebar.number_input(<span class="st">'Insert a Engine Size'</span>, <span class="fl">1.0</span> , <span class="fl">8.4</span>) <span class="co">#(label,minvalues,maxvalues,initial values)</span></span>
+<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a>    Cylinders <span class="op">=</span> st.sidebar.number_input(<span class="st">'Insert a Cylinders'</span>, <span class="dv">3</span> , <span class="dv">16</span>)</span>
+<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a>    FuelConsumptionTotal <span class="op">=</span> st.sidebar.number_input(<span class="st">'Insert a Total Fuel Comsumption (L/100 km)'</span>, <span class="fl">1.0</span> , <span class="fl">25.8</span>)</span>
+<span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb6-6"><a href="#cb6-6" aria-hidden="true" tabindex="-1"></a>    data <span class="op">=</span> {<span class="st">'ENGINESIZE'</span>: EngineSize,</span>
+<span id="cb6-7"><a href="#cb6-7" aria-hidden="true" tabindex="-1"></a>            <span class="st">'CYLINDERS'</span>: Cylinders,</span>
+<span id="cb6-8"><a href="#cb6-8" aria-hidden="true" tabindex="-1"></a>            <span class="st">'FUELCONSUMPTION_COMB'</span>: FuelConsumptionTotal</span>
+<span id="cb6-9"><a href="#cb6-9" aria-hidden="true" tabindex="-1"></a>            }</span>
+<span id="cb6-10"><a href="#cb6-10" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb6-11"><a href="#cb6-11" aria-hidden="true" tabindex="-1"></a>    features <span class="op">=</span> pd.DataFrame(data,index<span class="op">=</span>[<span class="dv">0</span>])</span>
+<span id="cb6-12"><a href="#cb6-12" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> features</span>
+<span id="cb6-13"><a href="#cb6-13" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-14"><a href="#cb6-14" aria-hidden="true" tabindex="-1"></a>df <span class="op">=</span> user_input_features()</span>
+<span id="cb6-15"><a href="#cb6-15" aria-hidden="true" tabindex="-1"></a>st.header(<span class="st">"User Input Features"</span>)</span>
+<span id="cb6-16"><a href="#cb6-16" aria-hidden="true" tabindex="-1"></a>st.write(df)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <ul>
 <li><strong>slider</strong> digunakan untuk memasukkan elemen input user berupa angka</li>
 <li><strong>checkbox</strong> digunakan untuk memasukkan elemen input user berupa boolean</li>
 <li><strong>multiselect</strong> digunakan untuk memasukkan elemen input user berupa list</li>
+<li><strong>number_input</strong> digunakan untuk memasukkan elemen input user berupa numeric</li>
 </ul>
 </section>
-<section id="handling-input-user" class="level3" data-number="10.4.5">
-<h3 data-number="10.4.5" class="anchored" data-anchor-id="handling-input-user"><span class="header-section-number">10.4.5</span> Handling Input User</h3>
-<p>Setelah input user diterima, input user perlu diubah menjadi bentuk yang dapat digunakan oleh model. Untuk model ini perlu dilakukan multi-hot encoding untuk kolom fasilitas hotel, fasilitas kamar, dan <em>point of interests</em>, Berikut code untuk melakukan multi-hot encoding:</p>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="co"># create function to create dataframe with 0 and 1 value</span></span>
-<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> create_df(dfOri, df_name, df, prefix):</span>
-<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a>    value <span class="op">=</span> prefix<span class="op">+</span>dfOri[df_name][<span class="dv">0</span>]</span>
-<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> i <span class="kw">in</span> <span class="bu">range</span>(<span class="dv">0</span>, <span class="bu">len</span>(df.columns)):</span>
-<span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a>        column_name <span class="op">=</span> df.columns[i]</span>
-<span id="cb7-6"><a href="#cb7-6" aria-hidden="true" tabindex="-1"></a>        <span class="cf">if</span> column_name <span class="kw">in</span> value:</span>
-<span id="cb7-7"><a href="#cb7-7" aria-hidden="true" tabindex="-1"></a>            df.loc[<span class="dv">0</span>, column_name] <span class="op">=</span> <span class="dv">1</span></span>
-<span id="cb7-8"><a href="#cb7-8" aria-hidden="true" tabindex="-1"></a>        <span class="cf">else</span>:</span>
-<span id="cb7-9"><a href="#cb7-9" aria-hidden="true" tabindex="-1"></a>            df.loc[<span class="dv">0</span>, column_name] <span class="op">=</span> <span class="dv">0</span></span>
-<span id="cb7-10"><a href="#cb7-10" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> df</span>
-<span id="cb7-11"><a href="#cb7-11" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb7-12"><a href="#cb7-12" aria-hidden="true" tabindex="-1"></a><span class="co"># create empty dataframe for hotelFacilities, roomFacilities, nearestPoint, with column name from hotelFacilities, roomFacilities, nearestPoint</span></span>
-<span id="cb7-13"><a href="#cb7-13" aria-hidden="true" tabindex="-1"></a>roomFacilities_df <span class="op">=</span> pd.DataFrame(columns<span class="op">=</span>roomFacilities)</span>
-<span id="cb7-14"><a href="#cb7-14" aria-hidden="true" tabindex="-1"></a>hotelFacilities_df <span class="op">=</span> pd.DataFrame(columns<span class="op">=</span>hotelFacilities)</span>
-<span id="cb7-15"><a href="#cb7-15" aria-hidden="true" tabindex="-1"></a>nearestPoint_df <span class="op">=</span> pd.DataFrame(columns<span class="op">=</span>nearestPoint)</span>
-<span id="cb7-16"><a href="#cb7-16" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb7-17"><a href="#cb7-17" aria-hidden="true" tabindex="-1"></a>create_df(df, <span class="st">'roomFacilities'</span>, roomFacilities_df, <span class="st">'Room_'</span>)</span>
-<span id="cb7-18"><a href="#cb7-18" aria-hidden="true" tabindex="-1"></a>create_df(df, <span class="st">'hotelFacilities'</span>, hotelFacilities_df, <span class="st">'Hotel_'</span>)</span>
-<span id="cb7-19"><a href="#cb7-19" aria-hidden="true" tabindex="-1"></a>create_df(df, <span class="st">'nearestPoint'</span>, nearestPoint_df, <span class="st">'Point_'</span>)</span>
-<span id="cb7-20"><a href="#cb7-20" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb7-21"><a href="#cb7-21" aria-hidden="true" tabindex="-1"></a>df <span class="op">=</span> df.drop([<span class="st">'hotelFacilities'</span>, <span class="st">'roomFacilities'</span>, <span class="st">'nearestPoint'</span>], axis<span class="op">=</span><span class="dv">1</span>)</span>
-<span id="cb7-22"><a href="#cb7-22" aria-hidden="true" tabindex="-1"></a>df <span class="op">=</span> pd.concat([df, hotelFacilities_df, roomFacilities_df, nearestPoint_df], axis<span class="op">=</span><span class="dv">1</span>)</span>
-<span id="cb7-23"><a href="#cb7-23" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb7-24"><a href="#cb7-24" aria-hidden="true" tabindex="-1"></a><span class="co"># change all column data type to unit8 except the first column</span></span>
-<span id="cb7-25"><a href="#cb7-25" aria-hidden="true" tabindex="-1"></a>df <span class="op">=</span> df.astype({col: <span class="st">'float64'</span> <span class="cf">for</span> col <span class="kw">in</span> df.columns[:<span class="dv">2</span>]})</span>
-<span id="cb7-26"><a href="#cb7-26" aria-hidden="true" tabindex="-1"></a>df <span class="op">=</span> df.astype({col: <span class="st">'uint8'</span> <span class="cf">for</span> col <span class="kw">in</span> df.columns[<span class="dv">2</span>:]})</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
-<p>Code diatas digunakan untuk membuat data input user menjadi sama pada data yang dilakukan training. Hal ini dilakukan agar model dapat melakukan prediksi dengan benar.</p>
-</section>
-<section id="pengecekan-dataframe" class="level3" data-number="10.4.6">
-<h3 data-number="10.4.6" class="anchored" data-anchor-id="pengecekan-dataframe"><span class="header-section-number">10.4.6</span> Pengecekan Dataframe</h3>
+<section id="pengecekan-dataframe" class="level3" data-number="10.4.5">
+<h3 data-number="10.4.5" class="anchored" data-anchor-id="pengecekan-dataframe"><span class="header-section-number">10.4.5</span> Pengecekan Dataframe</h3>
 <p>Setelah data input user diubah menjadi dataframe, perlu dilakukan pengecekan apakah dataframe tersebut sudah sesuai dengan dataframe yang digunakan untuk training. Berikut adalah code untuk mengecek dataframe:</p>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="co"># check df column order with model column order using colOri, if not the same print the worng column</span></span>
-<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a><span class="co"># colOri merupakan kolom pada data training yang di export menggunaka pickle</span></span>
-<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a>colOri <span class="op">=</span> colOri[<span class="dv">1</span>:]</span>
-<span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span> df.columns.tolist() <span class="op">==</span> colOri.<span class="bu">all</span>():</span>
-<span id="cb8-5"><a href="#cb8-5" aria-hidden="true" tabindex="-1"></a>    st.info(<span class="st">"Column order is correct."</span>)</span>
-<span id="cb8-6"><a href="#cb8-6" aria-hidden="true" tabindex="-1"></a><span class="cf">else</span>:</span>
-<span id="cb8-7"><a href="#cb8-7" aria-hidden="true" tabindex="-1"></a>    mismatched_columns <span class="op">=</span> [(idx, df_col, model_col) <span class="cf">for</span> idx, (df_col, model_col) <span class="kw">in</span> <span class="bu">enumerate</span>(<span class="bu">zip</span>(df.columns.tolist(), colOri)) <span class="cf">if</span> df_col <span class="op">!=</span> model_col]</span>
-<span id="cb8-8"><a href="#cb8-8" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb8-9"><a href="#cb8-9" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> <span class="bu">len</span>(mismatched_columns) <span class="op">&gt;</span> <span class="dv">0</span>:</span>
-<span id="cb8-10"><a href="#cb8-10" aria-hidden="true" tabindex="-1"></a>        st.warning(<span class="st">"The order of the columns is not the same as the model. Mismatched columns:"</span>)</span>
-<span id="cb8-11"><a href="#cb8-11" aria-hidden="true" tabindex="-1"></a>        <span class="cf">for</span> idx, df_col, model_col <span class="kw">in</span> mismatched_columns:</span>
-<span id="cb8-12"><a href="#cb8-12" aria-hidden="true" tabindex="-1"></a>            st.write(<span class="ss">f"At index </span><span class="sc">{</span>idx<span class="sc">}</span><span class="ss">: DataFrame column '</span><span class="sc">{</span>df_col<span class="sc">}</span><span class="ss">' - Model column '</span><span class="sc">{</span>model_col<span class="sc">}</span><span class="ss">'"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
+<div class="sourceCode" id="cb7"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>dfModel <span class="op">=</span> pd.read_csv(<span class="st">'data/FuelConsumption.csv'</span>)</span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>dfModel <span class="op">=</span> dfModel[[<span class="st">'ENGINESIZE'</span>,<span class="st">'CYLINDERS'</span>,<span class="st">'FUELCONSUMPTION_COMB'</span>,<span class="st">'CO2EMISSIONS'</span>]]</span>
+<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a>df2 <span class="op">=</span> dfModel.iloc[:,:<span class="op">-</span><span class="dv">1</span>]</span>
+<span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span> df.columns.equals(df2.columns):</span>
+<span id="cb7-6"><a href="#cb7-6" aria-hidden="true" tabindex="-1"></a>    st.write(<span class="st">"Column names are the same."</span>)</span>
+<span id="cb7-7"><a href="#cb7-7" aria-hidden="true" tabindex="-1"></a><span class="cf">else</span>:</span>
+<span id="cb7-8"><a href="#cb7-8" aria-hidden="true" tabindex="-1"></a>    st.write(<span class="st">"Column names are different."</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="callout callout-style-default callout-warning callout-titled">
 <div class="callout-header d-flex align-content-center">
 <div class="callout-icon-container">
@@ -471,100 +392,48 @@ Warning
 </div>
 </div>
 </section>
-<section id="prediksi" class="level3" data-number="10.4.7">
-<h3 data-number="10.4.7" class="anchored" data-anchor-id="prediksi"><span class="header-section-number">10.4.7</span> Prediksi</h3>
+<section id="prediksi" class="level3" data-number="10.4.6">
+<h3 data-number="10.4.6" class="anchored" data-anchor-id="prediksi"><span class="header-section-number">10.4.6</span> Prediksi</h3>
 <p>Untuk melakukan prediksi, model perlu di-load terlebih dahulu. Berikut adalah code untuk melakukan prediksi:</p>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Load Model</span></span>
-<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a>xgbModel <span class="op">=</span> pickle.load(<span class="bu">open</span>(<span class="st">'Model/xgbModel.pkl'</span>, <span class="st">'rb'</span>))</span>
-<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a>svrModel <span class="op">=</span> pickle.load(<span class="bu">open</span>(<span class="st">'Model/svrModel.pkl'</span>, <span class="st">'rb'</span>))</span>
-<span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a>rfModel <span class="op">=</span> pickle.load(<span class="bu">open</span>(<span class="st">'Model/rfModel.pkl'</span>, <span class="st">'rb'</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
-<p>Dalam contoh ini digunakan 3 model, yaitu XGBoost, Support Vector Regression, dan Random Forest. Untuk melakukan prediksi, dapat dilakukan dengan menggunakan code berikut:</p>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a>st.write(<span class="st">'Press button below to predict :'</span>)</span>
-<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a>model <span class="op">=</span> st.selectbox(<span class="st">'Select Model'</span>, (<span class="st">'XGBoost'</span>, <span class="st">'Random Forest'</span>, <span class="st">'SVR'</span>))</span>
-<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb10-4"><a href="#cb10-4" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span> model <span class="op">==</span> <span class="st">'XGBoost'</span> <span class="kw">and</span> st.button(<span class="st">'Predict'</span>):</span>
-<span id="cb10-5"><a href="#cb10-5" aria-hidden="true" tabindex="-1"></a>    bar <span class="op">=</span> st.progress(<span class="dv">0</span>)</span>
-<span id="cb10-6"><a href="#cb10-6" aria-hidden="true" tabindex="-1"></a>    status_text <span class="op">=</span> st.empty()</span>
-<span id="cb10-7"><a href="#cb10-7" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> i <span class="kw">in</span> <span class="bu">range</span>(<span class="dv">1</span>, <span class="dv">101</span>):</span>
-<span id="cb10-8"><a href="#cb10-8" aria-hidden="true" tabindex="-1"></a>        status_text.text(<span class="st">"</span><span class="sc">%i%%</span><span class="st"> Complete"</span> <span class="op">%</span> i)</span>
-<span id="cb10-9"><a href="#cb10-9" aria-hidden="true" tabindex="-1"></a>        bar.progress(i)</span>
-<span id="cb10-10"><a href="#cb10-10" aria-hidden="true" tabindex="-1"></a>        time.sleep(<span class="fl">0.01</span>)</span>
-<span id="cb10-11"><a href="#cb10-11" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb10-12"><a href="#cb10-12" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Formatting the prediction</span></span>
-<span id="cb10-13"><a href="#cb10-13" aria-hidden="true" tabindex="-1"></a>    prediction <span class="op">=</span> xgbModel.predict(df)</span>
-<span id="cb10-14"><a href="#cb10-14" aria-hidden="true" tabindex="-1"></a>    </span>
-<span id="cb10-15"><a href="#cb10-15" aria-hidden="true" tabindex="-1"></a>    formaString <span class="op">=</span> <span class="st">"Rp{:,.2f}"</span></span>
-<span id="cb10-16"><a href="#cb10-16" aria-hidden="true" tabindex="-1"></a>    prediction <span class="op">=</span> <span class="bu">float</span>(prediction[<span class="dv">0</span>])</span>
-<span id="cb10-17"><a href="#cb10-17" aria-hidden="true" tabindex="-1"></a>    formatted_prediction <span class="op">=</span> formaString.<span class="bu">format</span>(prediction)</span>
-<span id="cb10-18"><a href="#cb10-18" aria-hidden="true" tabindex="-1"></a>    time.sleep(<span class="fl">0.08</span>)</span>
-<span id="cb10-19"><a href="#cb10-19" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb10-20"><a href="#cb10-20" aria-hidden="true" tabindex="-1"></a>    <span class="co"># print the prediction</span></span>
-<span id="cb10-21"><a href="#cb10-21" aria-hidden="true" tabindex="-1"></a>    st.subheader(<span class="st">'Prediction'</span>)</span>
-<span id="cb10-22"><a href="#cb10-22" aria-hidden="true" tabindex="-1"></a>    st.metric(<span class="st">'Price (IDR)'</span>, formatted_prediction)</span>
-<span id="cb10-23"><a href="#cb10-23" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb10-24"><a href="#cb10-24" aria-hidden="true" tabindex="-1"></a>    <span class="co"># empty the progress bar and status text</span></span>
-<span id="cb10-25"><a href="#cb10-25" aria-hidden="true" tabindex="-1"></a>    time.sleep(<span class="fl">0.08</span>)</span>
-<span id="cb10-26"><a href="#cb10-26" aria-hidden="true" tabindex="-1"></a>    bar.empty()</span>
-<span id="cb10-27"><a href="#cb10-27" aria-hidden="true" tabindex="-1"></a>    status_text.empty()</span>
-<span id="cb10-28"><a href="#cb10-28" aria-hidden="true" tabindex="-1"></a>   </span>
-<span id="cb10-29"><a href="#cb10-29" aria-hidden="true" tabindex="-1"></a><span class="cf">elif</span> model <span class="op">==</span> <span class="st">'Random Forest'</span> <span class="kw">and</span> st.button(<span class="st">'Predict'</span>):</span>
-<span id="cb10-30"><a href="#cb10-30" aria-hidden="true" tabindex="-1"></a>    bar <span class="op">=</span> st.progress(<span class="dv">0</span>)</span>
-<span id="cb10-31"><a href="#cb10-31" aria-hidden="true" tabindex="-1"></a>    status_text <span class="op">=</span> st.empty()</span>
-<span id="cb10-32"><a href="#cb10-32" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> i <span class="kw">in</span> <span class="bu">range</span>(<span class="dv">1</span>, <span class="dv">101</span>):</span>
-<span id="cb10-33"><a href="#cb10-33" aria-hidden="true" tabindex="-1"></a>        status_text.text(<span class="st">"</span><span class="sc">%i%%</span><span class="st"> Complete"</span> <span class="op">%</span> i)</span>
-<span id="cb10-34"><a href="#cb10-34" aria-hidden="true" tabindex="-1"></a>        bar.progress(i)</span>
-<span id="cb10-35"><a href="#cb10-35" aria-hidden="true" tabindex="-1"></a>        time.sleep(<span class="fl">0.01</span>)</span>
-<span id="cb10-36"><a href="#cb10-36" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb10-37"><a href="#cb10-37" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Formatting the prediction</span></span>
-<span id="cb10-38"><a href="#cb10-38" aria-hidden="true" tabindex="-1"></a>    prediction <span class="op">=</span> rfModel.predict(df)</span>
-<span id="cb10-39"><a href="#cb10-39" aria-hidden="true" tabindex="-1"></a>    </span>
-<span id="cb10-40"><a href="#cb10-40" aria-hidden="true" tabindex="-1"></a>    formaString <span class="op">=</span> <span class="st">"Rp{:,.2f}"</span></span>
-<span id="cb10-41"><a href="#cb10-41" aria-hidden="true" tabindex="-1"></a>    prediction <span class="op">=</span> <span class="bu">float</span>(prediction[<span class="dv">0</span>])</span>
-<span id="cb10-42"><a href="#cb10-42" aria-hidden="true" tabindex="-1"></a>    formatted_prediction <span class="op">=</span> formaString.<span class="bu">format</span>(prediction)</span>
-<span id="cb10-43"><a href="#cb10-43" aria-hidden="true" tabindex="-1"></a>    time.sleep(<span class="fl">0.08</span>)</span>
-<span id="cb10-44"><a href="#cb10-44" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb10-45"><a href="#cb10-45" aria-hidden="true" tabindex="-1"></a>    <span class="co"># print the prediction</span></span>
-<span id="cb10-46"><a href="#cb10-46" aria-hidden="true" tabindex="-1"></a>    st.subheader(<span class="st">'Prediction'</span>)</span>
-<span id="cb10-47"><a href="#cb10-47" aria-hidden="true" tabindex="-1"></a>    st.metric(<span class="st">'Price (IDR)'</span>, formatted_prediction)</span>
-<span id="cb10-48"><a href="#cb10-48" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb10-49"><a href="#cb10-49" aria-hidden="true" tabindex="-1"></a>    <span class="co"># empty the progress bar and status text</span></span>
-<span id="cb10-50"><a href="#cb10-50" aria-hidden="true" tabindex="-1"></a>    time.sleep(<span class="fl">0.08</span>)</span>
-<span id="cb10-51"><a href="#cb10-51" aria-hidden="true" tabindex="-1"></a>    bar.empty()</span>
-<span id="cb10-52"><a href="#cb10-52" aria-hidden="true" tabindex="-1"></a>    status_text.empty()</span>
-<span id="cb10-53"><a href="#cb10-53" aria-hidden="true" tabindex="-1"></a>    </span>
-<span id="cb10-54"><a href="#cb10-54" aria-hidden="true" tabindex="-1"></a><span class="cf">elif</span> model <span class="op">==</span> <span class="st">'SVR'</span> <span class="kw">and</span> st.button(<span class="st">'Predict'</span>):</span>
-<span id="cb10-55"><a href="#cb10-55" aria-hidden="true" tabindex="-1"></a>    bar <span class="op">=</span> st.progress(<span class="dv">0</span>)</span>
-<span id="cb10-56"><a href="#cb10-56" aria-hidden="true" tabindex="-1"></a>    status_text <span class="op">=</span> st.empty()</span>
-<span id="cb10-57"><a href="#cb10-57" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> i <span class="kw">in</span> <span class="bu">range</span>(<span class="dv">1</span>, <span class="dv">101</span>):</span>
-<span id="cb10-58"><a href="#cb10-58" aria-hidden="true" tabindex="-1"></a>        status_text.text(<span class="st">"</span><span class="sc">%i%%</span><span class="st"> Complete"</span> <span class="op">%</span> i)</span>
-<span id="cb10-59"><a href="#cb10-59" aria-hidden="true" tabindex="-1"></a>        bar.progress(i)</span>
-<span id="cb10-60"><a href="#cb10-60" aria-hidden="true" tabindex="-1"></a>        time.sleep(<span class="fl">0.01</span>)</span>
-<span id="cb10-61"><a href="#cb10-61" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb10-62"><a href="#cb10-62" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Formatting the prediction</span></span>
-<span id="cb10-63"><a href="#cb10-63" aria-hidden="true" tabindex="-1"></a>    prediction <span class="op">=</span> svrModel.predict(df)</span>
-<span id="cb10-64"><a href="#cb10-64" aria-hidden="true" tabindex="-1"></a>    </span>
-<span id="cb10-65"><a href="#cb10-65" aria-hidden="true" tabindex="-1"></a>    formaString <span class="op">=</span> <span class="st">"Rp{:,.2f}"</span></span>
-<span id="cb10-66"><a href="#cb10-66" aria-hidden="true" tabindex="-1"></a>    prediction <span class="op">=</span> <span class="bu">float</span>(prediction[<span class="dv">0</span>])</span>
-<span id="cb10-67"><a href="#cb10-67" aria-hidden="true" tabindex="-1"></a>    formatted_prediction <span class="op">=</span> formaString.<span class="bu">format</span>(prediction)</span>
-<span id="cb10-68"><a href="#cb10-68" aria-hidden="true" tabindex="-1"></a>    <span class="co"># prediction = rfModel.predict(df)</span></span>
-<span id="cb10-69"><a href="#cb10-69" aria-hidden="true" tabindex="-1"></a>    time.sleep(<span class="fl">0.08</span>)</span>
-<span id="cb10-70"><a href="#cb10-70" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb10-71"><a href="#cb10-71" aria-hidden="true" tabindex="-1"></a>    <span class="co"># print the prediction</span></span>
-<span id="cb10-72"><a href="#cb10-72" aria-hidden="true" tabindex="-1"></a>    st.subheader(<span class="st">'Prediction'</span>)</span>
-<span id="cb10-73"><a href="#cb10-73" aria-hidden="true" tabindex="-1"></a>    st.metric(<span class="st">'Price (IDR)'</span>, formatted_prediction)</span>
-<span id="cb10-74"><a href="#cb10-74" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb10-75"><a href="#cb10-75" aria-hidden="true" tabindex="-1"></a>    <span class="co"># empty the progress bar and status text</span></span>
-<span id="cb10-76"><a href="#cb10-76" aria-hidden="true" tabindex="-1"></a>    time.sleep(<span class="fl">0.08</span>)</span>
-<span id="cb10-77"><a href="#cb10-77" aria-hidden="true" tabindex="-1"></a>    bar.empty()</span>
-<span id="cb10-78"><a href="#cb10-78" aria-hidden="true" tabindex="-1"></a>    status_text.empty()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
+<div class="sourceCode" id="cb8"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="co"># separate the feature and target</span></span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>X <span class="op">=</span> dfModel.iloc[:,:<span class="op">-</span><span class="dv">1</span>]</span>
+<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a>Y <span class="op">=</span> dfModel.iloc[:,<span class="op">-</span><span class="dv">1</span>]</span>
+<span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-5"><a href="#cb8-5" aria-hidden="true" tabindex="-1"></a><span class="co"># splitting data into data train and test</span></span>
+<span id="cb8-6"><a href="#cb8-6" aria-hidden="true" tabindex="-1"></a>x_train,x_test,y_train,y_test <span class="op">=</span> train_test_split(X,Y,test_size <span class="op">=</span> <span class="fl">0.3</span> ,random_state <span class="op">=</span> <span class="dv">42</span>)</span>
+<span id="cb8-7"><a href="#cb8-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-8"><a href="#cb8-8" aria-hidden="true" tabindex="-1"></a><span class="co"># creating model</span></span>
+<span id="cb8-9"><a href="#cb8-9" aria-hidden="true" tabindex="-1"></a>LinearReg <span class="op">=</span> LinearRegression()</span>
+<span id="cb8-10"><a href="#cb8-10" aria-hidden="true" tabindex="-1"></a>LinearReg.fit(x_train,y_train)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Dalam contoh ini menggunkan model Linear Regression . Untuk melakukan prediksi, dapat dilakukan dengan menggunakan code berikut:</p>
+<div class="sourceCode" id="cb9"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a>st.write(<span class="st">'press button below to predict : '</span>)</span>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span> st.button(<span class="st">'Predict'</span>):</span>
+<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a>    <span class="co"># create progres bar widget with initial progress is 0%</span></span>
+<span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a>    bar <span class="op">=</span> st.progress(<span class="dv">0</span>)</span>
+<span id="cb9-5"><a href="#cb9-5" aria-hidden="true" tabindex="-1"></a>        <span class="co"># create an empty container or space</span></span>
+<span id="cb9-6"><a href="#cb9-6" aria-hidden="true" tabindex="-1"></a>    status_text <span class="op">=</span> st.empty()</span>
+<span id="cb9-7"><a href="#cb9-7" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> i <span class="kw">in</span> <span class="bu">range</span>(<span class="dv">1</span>,<span class="dv">101</span>):</span>
+<span id="cb9-8"><a href="#cb9-8" aria-hidden="true" tabindex="-1"></a>        <span class="co"># create a text to showing a percentage process</span></span>
+<span id="cb9-9"><a href="#cb9-9" aria-hidden="true" tabindex="-1"></a>        status_text.text(<span class="st">"</span><span class="sc">%i%%</span><span class="st"> complete"</span> <span class="op">%</span>i)</span>
+<span id="cb9-10"><a href="#cb9-10" aria-hidden="true" tabindex="-1"></a>        <span class="co"># give bar progress values</span></span>
+<span id="cb9-11"><a href="#cb9-11" aria-hidden="true" tabindex="-1"></a>        bar.progress(i)</span>
+<span id="cb9-12"><a href="#cb9-12" aria-hidden="true" tabindex="-1"></a>        <span class="co"># give bar progress time to execute the values</span></span>
+<span id="cb9-13"><a href="#cb9-13" aria-hidden="true" tabindex="-1"></a>        time.sleep(<span class="fl">0.01</span>)</span>
+<span id="cb9-14"><a href="#cb9-14" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-15"><a href="#cb9-15" aria-hidden="true" tabindex="-1"></a>    ypred <span class="op">=</span> LinearReg.predict(df)</span>
+<span id="cb9-16"><a href="#cb9-16" aria-hidden="true" tabindex="-1"></a>    ypred <span class="op">=</span> <span class="bu">float</span>(ypred[<span class="dv">0</span>])</span>
+<span id="cb9-17"><a href="#cb9-17" aria-hidden="true" tabindex="-1"></a>    ypred <span class="op">=</span> <span class="st">"</span><span class="sc">{:.2f}</span><span class="st">"</span>.<span class="bu">format</span>(ypred)</span>
+<span id="cb9-18"><a href="#cb9-18" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-19"><a href="#cb9-19" aria-hidden="true" tabindex="-1"></a>    st.subheader(<span class="st">'Prediction'</span>)</span>
+<span id="cb9-20"><a href="#cb9-20" aria-hidden="true" tabindex="-1"></a>    st.metric(<span class="st">'CO2 Emission'</span>,ypred,<span class="st">' g/km'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </section>
-<section id="hasil-akhir" class="level3" data-number="10.4.8">
-<h3 data-number="10.4.8" class="anchored" data-anchor-id="hasil-akhir"><span class="header-section-number">10.4.8</span> Hasil akhir</h3>
-<p>Unutuk contoh hasil akhir dapat dilihat pada link berikut: <a href="https://hotel-yogyakarta.streamlit.app/">Sreamlit hotel Yogyakarta</a> <br> <img src="images/streamlit_full.png" class="img-fluid" data-fig-align="left" width="600"></p>
+<section id="hasil-akhir" class="level3" data-number="10.4.7">
+<h3 data-number="10.4.7" class="anchored" data-anchor-id="hasil-akhir"><span class="header-section-number">10.4.7</span> Hasil akhir</h3>
+<div class="quarto-figure quarto-figure-left">
+<figure class="figure">
+<p><img src="images/hasilDeploy.png" class="img-fluid figure-img" width="600"></p>
+</figure>
+</div>
 
 
 </section>

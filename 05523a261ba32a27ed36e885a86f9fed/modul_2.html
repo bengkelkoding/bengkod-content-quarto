@@ -2,12 +2,12 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.3.353">
+<meta name="generator" content="quarto-1.3.450">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>Associate Data Science - 2&nbsp; Data Understanding</title>
+<title>Associate Data Science - 2&nbsp; Telaah Data</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -19,6 +19,40 @@ ul.task-list li input[type="checkbox"] {
   width: 0.8em;
   margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
+}
+/* CSS for syntax highlighting */
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
 }
 </style>
 
@@ -59,7 +93,8 @@ ul.task-list li input[type="checkbox"] {
     "search-more-matches-text": "more matches in this document",
     "search-clear-button-title": "Clear",
     "search-detached-cancel-button-title": "Cancel",
-    "search-submit-button-title": "Submit"
+    "search-submit-button-title": "Submit",
+    "search-label": "Search"
   }
 }</script>
 
@@ -75,10 +110,10 @@ ul.task-list li input[type="checkbox"] {
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-      <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./konsep.html"><b>Konsep</b></a></li><li class="breadcrumb-item"><a href="./modul_2.html"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Data Understanding</span></a></li></ol></nav>
+      <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./konsep.html"><b>Konsep</b></a></li><li class="breadcrumb-item"><a href="./modul_2.html"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Telaah Data</span></a></li></ol></nav>
       <a class="flex-grow-1" role="button" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
       </a>
-      <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
+      <button type="button" class="btn quarto-search-button" aria-label="" onclick="window.quartoOpenSearch();">
         <i class="bi bi-search"></i>
       </button>
     </div>
@@ -127,19 +162,19 @@ ul.task-list li input[type="checkbox"] {
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./modul_2.html" class="sidebar-item-text sidebar-link active">
- <span class="menu-text"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Data Understanding</span></span></a>
+ <span class="menu-text"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Telaah Data</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./modul_3.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Telaah Data</span></span></a>
+ <span class="menu-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Libraries for Data Preprocessing</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./modul_4.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Validasi Data</span></span></a>
+ <span class="menu-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Validasi dan Visualisasi Data</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
@@ -219,33 +254,39 @@ ul.task-list li input[type="checkbox"] {
     <h2 id="toc-title">Table of contents</h2>
    
   <ul>
-  <li><a href="#mengapa-kita-perlu-data-understanding" id="toc-mengapa-kita-perlu-data-understanding" class="nav-link active" data-scroll-target="#mengapa-kita-perlu-data-understanding"><span class="header-section-number">2.1</span> Mengapa Kita Perlu Data Understanding</a></li>
-  <li><a href="#data-understanding-documentation" id="toc-data-understanding-documentation" class="nav-link" data-scroll-target="#data-understanding-documentation"><span class="header-section-number">2.2</span> Data Understanding Documentation</a></li>
-  <li><a href="#sumber-susunan-tipe-dan-model-data" id="toc-sumber-susunan-tipe-dan-model-data" class="nav-link" data-scroll-target="#sumber-susunan-tipe-dan-model-data"><span class="header-section-number">3</span> Sumber, Susunan, Tipe dan Model Data</a>
+  <li><a href="#apa-itu-telaah-data" id="toc-apa-itu-telaah-data" class="nav-link active" data-scroll-target="#apa-itu-telaah-data"><span class="header-section-number">2.1</span> Apa itu telaah data?</a></li>
+  <li><a href="#mengapa-perlu-telaah-data" id="toc-mengapa-perlu-telaah-data" class="nav-link" data-scroll-target="#mengapa-perlu-telaah-data"><span class="header-section-number">2.2</span> Mengapa perlu telaah data?</a></li>
+  <li><a href="#data-understanding" id="toc-data-understanding" class="nav-link" data-scroll-target="#data-understanding"><span class="header-section-number">3</span> Data Understanding</a>
   <ul class="collapse">
-  <li><a href="#sumber-data" id="toc-sumber-data" class="nav-link" data-scroll-target="#sumber-data"><span class="header-section-number">3.1</span> Sumber Data</a>
-  <ul class="collapse">
-  <li><a href="#internal" id="toc-internal" class="nav-link" data-scroll-target="#internal"><span class="header-section-number">3.1.1</span> Internal</a></li>
-  <li><a href="#external" id="toc-external" class="nav-link" data-scroll-target="#external"><span class="header-section-number">3.1.2</span> External</a></li>
+  <li><a href="#mengapa-kita-perlu-data-understanding" id="toc-mengapa-kita-perlu-data-understanding" class="nav-link" data-scroll-target="#mengapa-kita-perlu-data-understanding"><span class="header-section-number">3.1</span> Mengapa Kita Perlu Data Understanding</a></li>
+  <li><a href="#data-understanding-documentation" id="toc-data-understanding-documentation" class="nav-link" data-scroll-target="#data-understanding-documentation"><span class="header-section-number">3.2</span> Data Understanding Documentation</a></li>
   </ul></li>
-  <li><a href="#susunan-data" id="toc-susunan-data" class="nav-link" data-scroll-target="#susunan-data"><span class="header-section-number">3.2</span> Susunan Data</a>
+  <li><a href="#sumber-susunan-tipe-dan-model-data" id="toc-sumber-susunan-tipe-dan-model-data" class="nav-link" data-scroll-target="#sumber-susunan-tipe-dan-model-data"><span class="header-section-number">4</span> Sumber, Susunan, Tipe dan Model Data</a>
   <ul class="collapse">
-  <li><a href="#structured" id="toc-structured" class="nav-link" data-scroll-target="#structured"><span class="header-section-number">3.2.1</span> Structured</a></li>
-  <li><a href="#unstructured" id="toc-unstructured" class="nav-link" data-scroll-target="#unstructured"><span class="header-section-number">3.2.2</span> Unstructured</a></li>
-  </ul></li>
-  <li><a href="#tipe-data" id="toc-tipe-data" class="nav-link" data-scroll-target="#tipe-data"><span class="header-section-number">3.3</span> Tipe Data</a>
+  <li><a href="#susunan-data" id="toc-susunan-data" class="nav-link" data-scroll-target="#susunan-data"><span class="header-section-number">4.1</span> Susunan Data</a>
   <ul class="collapse">
-  <li><a href="#tipe-data-berdasarkan-sifatnya" id="toc-tipe-data-berdasarkan-sifatnya" class="nav-link" data-scroll-target="#tipe-data-berdasarkan-sifatnya"><span class="header-section-number">3.3.1</span> Tipe Data Berdasarkan Sifatnya</a></li>
-  <li><a href="#tipe-data-berdasarkan-cara-pengumpulan" id="toc-tipe-data-berdasarkan-cara-pengumpulan" class="nav-link" data-scroll-target="#tipe-data-berdasarkan-cara-pengumpulan"><span class="header-section-number">3.3.2</span> Tipe Data Berdasarkan Cara Pengumpulan</a></li>
-  <li><a href="#tipe-data-berdasarkan-seri-waktu" id="toc-tipe-data-berdasarkan-seri-waktu" class="nav-link" data-scroll-target="#tipe-data-berdasarkan-seri-waktu"><span class="header-section-number">3.3.3</span> Tipe Data Berdasarkan Seri Waktu</a></li>
+  <li><a href="#structured" id="toc-structured" class="nav-link" data-scroll-target="#structured"><span class="header-section-number">4.1.1</span> Structured</a></li>
+  <li><a href="#unstructured" id="toc-unstructured" class="nav-link" data-scroll-target="#unstructured"><span class="header-section-number">4.1.2</span> Unstructured</a></li>
   </ul></li>
-  </ul></li>
-  <li><a href="#pengambilan-data" id="toc-pengambilan-data" class="nav-link" data-scroll-target="#pengambilan-data"><span class="header-section-number">4</span> Pengambilan Data</a>
+  <li><a href="#sumber-data" id="toc-sumber-data" class="nav-link" data-scroll-target="#sumber-data"><span class="header-section-number">4.2</span> Sumber Data</a>
   <ul class="collapse">
-  <li><a href="#web-scraping" id="toc-web-scraping" class="nav-link" data-scroll-target="#web-scraping"><span class="header-section-number">4.1</span> Web Scraping</a></li>
-  <li><a href="#application-program-interface-api" id="toc-application-program-interface-api" class="nav-link" data-scroll-target="#application-program-interface-api"><span class="header-section-number">4.2</span> Application Program Interface (API)</a></li>
-  <li><a href="#manual-kaggle.com" id="toc-manual-kaggle.com" class="nav-link" data-scroll-target="#manual-kaggle.com"><span class="header-section-number">4.3</span> Manual (Kaggle.com)</a></li>
-  <li><a href="#direct-database" id="toc-direct-database" class="nav-link" data-scroll-target="#direct-database"><span class="header-section-number">4.4</span> Direct Database</a></li>
+  <li><a href="#internal" id="toc-internal" class="nav-link" data-scroll-target="#internal"><span class="header-section-number">4.2.1</span> Internal</a></li>
+  <li><a href="#external" id="toc-external" class="nav-link" data-scroll-target="#external"><span class="header-section-number">4.2.2</span> External</a></li>
+  </ul></li>
+  <li><a href="#daftar-sumber-data-daring" id="toc-daftar-sumber-data-daring" class="nav-link" data-scroll-target="#daftar-sumber-data-daring"><span class="header-section-number">4.3</span> Daftar Sumber Data Daring</a></li>
+  <li><a href="#tipe-data" id="toc-tipe-data" class="nav-link" data-scroll-target="#tipe-data"><span class="header-section-number">4.4</span> Tipe Data</a>
+  <ul class="collapse">
+  <li><a href="#tipe-data-berdasarkan-sifatnya" id="toc-tipe-data-berdasarkan-sifatnya" class="nav-link" data-scroll-target="#tipe-data-berdasarkan-sifatnya"><span class="header-section-number">4.4.1</span> Tipe Data Berdasarkan Sifatnya</a></li>
+  <li><a href="#tipe-data-berdasarkan-cara-pengumpulan" id="toc-tipe-data-berdasarkan-cara-pengumpulan" class="nav-link" data-scroll-target="#tipe-data-berdasarkan-cara-pengumpulan"><span class="header-section-number">4.4.2</span> Tipe Data Berdasarkan Cara Pengumpulan</a></li>
+  <li><a href="#tipe-data-berdasarkan-seri-waktu" id="toc-tipe-data-berdasarkan-seri-waktu" class="nav-link" data-scroll-target="#tipe-data-berdasarkan-seri-waktu"><span class="header-section-number">4.4.3</span> Tipe Data Berdasarkan Seri Waktu</a></li>
+  </ul></li>
+  </ul></li>
+  <li><a href="#pengambilan-data" id="toc-pengambilan-data" class="nav-link" data-scroll-target="#pengambilan-data"><span class="header-section-number">5</span> Pengambilan Data</a>
+  <ul class="collapse">
+  <li><a href="#web-scraping" id="toc-web-scraping" class="nav-link" data-scroll-target="#web-scraping"><span class="header-section-number">5.1</span> Web Scraping</a></li>
+  <li><a href="#application-program-interface-api" id="toc-application-program-interface-api" class="nav-link" data-scroll-target="#application-program-interface-api"><span class="header-section-number">5.2</span> Application Program Interface (API)</a></li>
+  <li><a href="#manual-kaggle.com" id="toc-manual-kaggle.com" class="nav-link" data-scroll-target="#manual-kaggle.com"><span class="header-section-number">5.3</span> Manual (Kaggle.com)</a></li>
+  <li><a href="#direct-database" id="toc-direct-database" class="nav-link" data-scroll-target="#direct-database"><span class="header-section-number">5.4</span> Direct Database</a></li>
   </ul></li>
   </ul>
 </nav>
@@ -255,7 +296,7 @@ ul.task-list li input[type="checkbox"] {
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Data Understanding</span></h1>
+<h1 class="title"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Telaah Data</span></h1>
 </div>
 
 
@@ -270,6 +311,35 @@ ul.task-list li input[type="checkbox"] {
 
 </header>
 
+<section id="apa-itu-telaah-data" class="level2" data-number="2.1">
+<h2 data-number="2.1" class="anchored" data-anchor-id="apa-itu-telaah-data"><span class="header-section-number">2.1</span> Apa itu telaah data?</h2>
+<!-- &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; -->
+<p>Telaah data merujuk pada proses pengumpulan, pembersihan, eksplorasi, dan analisis data untuk mendapatkan pemahaman yang lebih yang terkandung dalam data tersebut. Tujuan dari telaah data adalah mendukung pengambilan keputusan berdasarkan bukti yang ditemukan dalam data.</p>
+</section>
+<section id="mengapa-perlu-telaah-data" class="level2" data-number="2.2">
+<h2 data-number="2.2" class="anchored" data-anchor-id="mengapa-perlu-telaah-data"><span class="header-section-number">2.2</span> Mengapa perlu telaah data?</h2>
+<!-- &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; -->
+<ol type="1">
+<li>Data dari masing-masing sumber belum tentu dapat langsung dipakai karena:</li>
+</ol>
+<ul>
+<li>maksud dan tujuan data berbeda-beda</li>
+<li>keadaan asal terpisah-pisah atau justru terintegrasi secara ketat.</li>
+<li>tingkat kekayaan (richness) berbeda-beda</li>
+<li>tingkat keandalan (reliability) berbeda-beda</li>
+</ul>
+<ol start="2" type="1">
+<li>Data understanding memberikan gambaran awal tentang:</li>
+</ol>
+<ul>
+<li>kekuatan data</li>
+<li>kekurangan dan batasan penggunaan data</li>
+<li>tingkat kesesuaian data dengan masalah bisnis yang akan dipecahkan</li>
+<li>ketersediaan data (terbuka/tertutup, biaya akses, dsb.)</li>
+</ul>
+</section>
+<section id="data-understanding" class="level1" data-number="3">
+<h1 data-number="3"><span class="header-section-number">3</span> Data Understanding</h1>
 <p>Di dunia bisnis, proses data understanding dilakukan setelah problem bisnis didefinisikan. Tujuan utama dari data understanding adalah untuk memberikan gambaran utuh terhadap sebuah data. Setelah Data Understanding, kita dapat melanjutkan proses persiapan data.</p>
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
@@ -277,8 +347,8 @@ ul.task-list li input[type="checkbox"] {
 <figcaption class="figure-caption">Gambar1. Data Understanding</figcaption>
 </figure>
 </div>
-<section id="mengapa-kita-perlu-data-understanding" class="level2" data-number="2.1">
-<h2 data-number="2.1" class="anchored" data-anchor-id="mengapa-kita-perlu-data-understanding"><span class="header-section-number">2.1</span> Mengapa Kita Perlu Data Understanding</h2>
+<section id="mengapa-kita-perlu-data-understanding" class="level2" data-number="3.1">
+<h2 data-number="3.1" class="anchored" data-anchor-id="mengapa-kita-perlu-data-understanding"><span class="header-section-number">3.1</span> Mengapa Kita Perlu Data Understanding</h2>
 <p>Di bidang machine learning, ada sebuah mantra yang semua data scientists harus ikuti; Garbage in, garbage out. Artinya, jika data yang dimasukkan ke model itu jelek, maka apapun yang terjadi, hasil dari model akan selalu jelek.<br>
 Semua data yang kita dapatkan belum tentu bagus dan bisa kita olah lebih lanjut karena:</p>
 <ul>
@@ -291,58 +361,10 @@ Semua data yang kita dapatkan belum tentu bagus dan bisa kita olah lebih lanjut 
 <li>Keandalan atau reliability data berbeda beda</li>
 </ul>
 </section>
-<section id="data-understanding-documentation" class="level2" data-number="2.2">
-<h2 data-number="2.2" class="anchored" data-anchor-id="data-understanding-documentation"><span class="header-section-number">2.2</span> Data Understanding Documentation</h2>
+<section id="data-understanding-documentation" class="level2" data-number="3.2">
+<h2 data-number="3.2" class="anchored" data-anchor-id="data-understanding-documentation"><span class="header-section-number">3.2</span> Data Understanding Documentation</h2>
 <p>Data Understanding Documentation adalah sebuah prosedur yang harus kita ikuti untuk mempelajari data yang akan kita gunakan dan menulis hasil pekerjaan kita secara terstruktur agar dapat dicerna oleh orang lain dengan mudah.<br>
 Data Understanding Documentation mempunyai 4 komponen, yaitu:</p>
-<ul>
-<li>Collection
-<ul>
-<li>Data Sources<br>
-</li>
-<li>Data Attribute<br>
-</li>
-<li>Data Count<br>
-</li>
-<li>Data Merge</li>
-</ul></li>
-<li>Description
-<ul>
-<li>Describing data<br>
-</li>
-<li>Data Quantity<br>
-</li>
-<li>Data Type<br>
-</li>
-<li>Key Attributes<br>
-</li>
-<li>Priority of Attributes</li>
-</ul></li>
-<li>Exploration
-<ul>
-<li>Hypothesis of Data<br>
-</li>
-<li>Attribute selection<br>
-</li>
-<li>Exploration of data characteristics<br>
-</li>
-<li>Compare with goal<br>
-</li>
-<li>Identify subset of data</li>
-</ul></li>
-<li>Quality
-<ul>
-<li>Missing values<br>
-</li>
-<li>Data errors/corruptions<br>
-</li>
-<li>Inconsistencies<br>
-</li>
-<li>Outliers<br>
-</li>
-<li>Noise</li>
-</ul></li>
-</ul>
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
 <p><img src="./2.dudocs.png" class="img-fluid figure-img"></p>
@@ -350,8 +372,9 @@ Data Understanding Documentation mempunyai 4 komponen, yaitu:</p>
 </figure>
 </div>
 </section>
-<section id="sumber-susunan-tipe-dan-model-data" class="level1" data-number="3">
-<h1 data-number="3"><span class="header-section-number">3</span> Sumber, Susunan, Tipe dan Model Data</h1>
+</section>
+<section id="sumber-susunan-tipe-dan-model-data" class="level1" data-number="4">
+<h1 data-number="4"><span class="header-section-number">4</span> Sumber, Susunan, Tipe dan Model Data</h1>
 <p>Data mempunyai berbagai jenis, bentuk, ukuran dan nilai. Sebagai Data Scientist, kita harus mengetahui sifat, jenis, asal, dan bentuk dari data yang kita olah.</p>
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
@@ -359,26 +382,8 @@ Data Understanding Documentation mempunyai 4 komponen, yaitu:</p>
 <figcaption class="figure-caption">Gambar3. Susunan dan Jenis Data</figcaption>
 </figure>
 </div>
-<section id="sumber-data" class="level2" data-number="3.1">
-<h2 data-number="3.1" class="anchored" data-anchor-id="sumber-data"><span class="header-section-number">3.1</span> Sumber Data</h2>
-<section id="internal" class="level3" data-number="3.1.1">
-<h3 data-number="3.1.1" class="anchored" data-anchor-id="internal"><span class="header-section-number">3.1.1</span> Internal</h3>
-<p>Data internal merupakan data yang sumbernya berasal dari dalam pihak yang dijadikan objek penelitian. Contoh data meliputi :<br>
-- Spreadsheet (excel, csv, json)<br>
-- Database (sql)<br>
-- Teks (txt, rtf)<br>
-- Media (video, audio)</p>
-</section>
-<section id="external" class="level3" data-number="3.1.2">
-<h3 data-number="3.1.2" class="anchored" data-anchor-id="external"><span class="header-section-number">3.1.2</span> External</h3>
-<p>Data eksternal merupakan data yang sumbernya berasal dari luar pihak objek yang diteliti. Contoh data meliputi :<br>
-- Website repository data (Kaggle, sklearn)<br>
-- Web page domain public (wikipedia, dbdata, data.go.id)<br>
-- Public Dataset (worldbank, UNICEF, WHO)</p>
-</section>
-</section>
-<section id="susunan-data" class="level2" data-number="3.2">
-<h2 data-number="3.2" class="anchored" data-anchor-id="susunan-data"><span class="header-section-number">3.2</span> Susunan Data</h2>
+<section id="susunan-data" class="level2" data-number="4.1">
+<h2 data-number="4.1" class="anchored" data-anchor-id="susunan-data"><span class="header-section-number">4.1</span> Susunan Data</h2>
 <p>Susunan data, juga dikenal sebagai struktur data, merujuk pada cara data disimpan, diatur, dan dihubungkan satu sama lain dalam suatu sistem komputasi. Ini melibatkan pemilihan format dan metode penyimpanan yang tepat agar data dapat diakses, dimanipulasi, dan dicari dengan efisien. Susunan data yang baik membantu meningkatkan efisiensi operasional, performa sistem, dan kemampuan pengambilan keputusan.</p>
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
@@ -392,27 +397,79 @@ Data Understanding Documentation mempunyai 4 komponen, yaitu:</p>
 <p>Jika kita analisa sebuah dataset, kita akan mendapatkan sebuah hipotesis yang dapat dikonversi menjadi fakta atau knowledge setelah diverifikasi.</p>
 <p>Dari sekumpulan knowledge, kita dapat menyusun sebuah decision atau keputusan yang sangat berpengaruh di kehidupan kita sehari-hari</p>
 <p>Susunan Data dibagi menjadi 2, yaitu :</p>
-<section id="structured" class="level3" data-number="3.2.1">
-<h3 data-number="3.2.1" class="anchored" data-anchor-id="structured"><span class="header-section-number">3.2.1</span> Structured</h3>
+<section id="structured" class="level3" data-number="4.1.1">
+<h3 data-number="4.1.1" class="anchored" data-anchor-id="structured"><span class="header-section-number">4.1.1</span> Structured</h3>
 <p>Data terstruktur adalah jenis data yang memiliki format atau skema yang terorganisir dengan jelas. Setiap kolom dalam data terstruktur memiliki tipe data yang konsisten, dan setiap baris berisi entitas atau objek yang serupa.</p>
-<p>Contoh data terstruktur meliputi :<br>
-- Tabular Data<br>
-- Object Oriented Data<br>
-- Time-series data</p>
+<p>Contoh data terstruktur meliputi :</p>
+<ul>
+<li>Tabular Data<br>
+</li>
+<li>Object Oriented Data<br>
+</li>
+<li>Time-series data</li>
+</ul>
 </section>
-<section id="unstructured" class="level3" data-number="3.2.2">
-<h3 data-number="3.2.2" class="anchored" data-anchor-id="unstructured"><span class="header-section-number">3.2.2</span> Unstructured</h3>
+<section id="unstructured" class="level3" data-number="4.1.2">
+<h3 data-number="4.1.2" class="anchored" data-anchor-id="unstructured"><span class="header-section-number">4.1.2</span> Unstructured</h3>
 <p>Data tidak terstruktur merujuk pada jenis data yang tidak memiliki format atau skema yang terorganisir dengan jelas. Data ini seringkali memiliki struktur yang tidak teratur atau tidak terprediksi, sehingga sulit untuk mengklasifikasikan, mengatur, atau memodelkannya secara tradisional.</p>
-<p>Contoh data tidak terstruktur meliputi :<br>
-- Video atau audio<br>
-- Dokumen HTML<br>
-- Tweet atau postingan sosial media</p>
+<p>Contoh data tidak terstruktur meliputi :</p>
+<ul>
+<li>Video atau audio<br>
+</li>
+<li>Dokumen HTML<br>
+</li>
+<li>Tweet atau postingan sosial media</li>
+</ul>
 </section>
 </section>
-<section id="tipe-data" class="level2" data-number="3.3">
-<h2 data-number="3.3" class="anchored" data-anchor-id="tipe-data"><span class="header-section-number">3.3</span> Tipe Data</h2>
-<section id="tipe-data-berdasarkan-sifatnya" class="level3" data-number="3.3.1">
-<h3 data-number="3.3.1" class="anchored" data-anchor-id="tipe-data-berdasarkan-sifatnya"><span class="header-section-number">3.3.1</span> Tipe Data Berdasarkan Sifatnya</h3>
+<section id="sumber-data" class="level2" data-number="4.2">
+<h2 data-number="4.2" class="anchored" data-anchor-id="sumber-data"><span class="header-section-number">4.2</span> Sumber Data</h2>
+<section id="internal" class="level3" data-number="4.2.1">
+<h3 data-number="4.2.1" class="anchored" data-anchor-id="internal"><span class="header-section-number">4.2.1</span> Internal</h3>
+<p>Data internal merupakan data yang sumbernya berasal dari dalam pihak yang dijadikan objek penelitian. Sumber data internal biasanya dihasilkan oleh perusahaan sendiri atau oleh perusahaan lain yang terkait dengan perusahaan tersebut. Contoh data meliputi :</p>
+<ul>
+<li>Spreadsheet (excel, csv, json)<br>
+</li>
+<li>Database (sql)<br>
+</li>
+<li>Teks (txt, rtf)<br>
+</li>
+<li>Media (video, audio)</li>
+</ul>
+</section>
+<section id="external" class="level3" data-number="4.2.2">
+<h3 data-number="4.2.2" class="anchored" data-anchor-id="external"><span class="header-section-number">4.2.2</span> External</h3>
+<p>Data eksternal merupakan data yang sumbernya berasal dari luar pihak objek yang diteliti. Sumber data eksernal biasanya didapatkan dari repositori data publik dan halaman web publik. Contoh data meliputi :</p>
+<ul>
+<li>Website repository data (Kaggle, sklearn)<br>
+</li>
+<li>Web page domain public (wikipedia, dbdata, data.go.id)<br>
+</li>
+<li>Public Dataset (worldbank, UNICEF, WHO)</li>
+</ul>
+</section>
+</section>
+<section id="daftar-sumber-data-daring" class="level2" data-number="4.3">
+<h2 data-number="4.3" class="anchored" data-anchor-id="daftar-sumber-data-daring"><span class="header-section-number">4.3</span> Daftar Sumber Data Daring</h2>
+<ul>
+<li><a href="https://data.go.id">Portal Satu Data Indonesia</a></li>
+<li><a href="https://data.jakarta.go.id">Portal Data Jakarta</a></li>
+<li><a href="http://data.bandung.go.id">Portal Data Bandung</a><br>
+</li>
+<li><a href="https://www.bps.go.id">Badan Pusat Statistik</a><br>
+</li>
+<li><a href="https://tanahair.indonesia.go.id/">Badan Informasi Geospasial</a><br>
+</li>
+<li><a href="https://archive.ics.uci.edu/ml/index.php">UCI Machine Learning repository</a></li>
+<li><a href="https://www.kaggle.com/datasets">Kaggle</a><br>
+</li>
+<li><a href="https://data.worldbank.org">World Bank Open Data</a></li>
+</ul>
+</section>
+<section id="tipe-data" class="level2" data-number="4.4">
+<h2 data-number="4.4" class="anchored" data-anchor-id="tipe-data"><span class="header-section-number">4.4</span> Tipe Data</h2>
+<section id="tipe-data-berdasarkan-sifatnya" class="level3" data-number="4.4.1">
+<h3 data-number="4.4.1" class="anchored" data-anchor-id="tipe-data-berdasarkan-sifatnya"><span class="header-section-number">4.4.1</span> Tipe Data Berdasarkan Sifatnya</h3>
 <ul>
 <li><strong>Data dikotomi</strong>, merupakan data yang bersifat pilah satu sama lain, misalnya suku, agama, jenis kelamin, pendidikan, dan lain sebagainya.<br>
 </li>
@@ -421,16 +478,16 @@ Data Understanding Documentation mempunyai 4 komponen, yaitu:</p>
 <li><strong>Data kontinum</strong>, merupakan data pengumpulan datanya didapatkan dengan cara mengukur dengan alat ukur yang memakai skala tertentu. Seperti misalnya, Suhu, berat, bakat, kecerdasan, dan lainnya.</li>
 </ul>
 </section>
-<section id="tipe-data-berdasarkan-cara-pengumpulan" class="level3" data-number="3.3.2">
-<h3 data-number="3.3.2" class="anchored" data-anchor-id="tipe-data-berdasarkan-cara-pengumpulan"><span class="header-section-number">3.3.2</span> Tipe Data Berdasarkan Cara Pengumpulan</h3>
+<section id="tipe-data-berdasarkan-cara-pengumpulan" class="level3" data-number="4.4.2">
+<h3 data-number="4.4.2" class="anchored" data-anchor-id="tipe-data-berdasarkan-cara-pengumpulan"><span class="header-section-number">4.4.2</span> Tipe Data Berdasarkan Cara Pengumpulan</h3>
 <ul>
 <li><strong>Data primer</strong>, merupakan data yang didapatkan dari sumber pertama, atau dapat dikatakan pengumpulannya dilakukan sendiri oleh si peneliti secara langsung, seperti hasil wawancara dan hasil pengisian kuesioner (angket).<br>
 </li>
 <li><strong>Data sekunder</strong>, merupakan data yang didapatkan dari sumber kedua. Menurut Purwanto (2007), data sekunder yaitu data yang dikumpulkan oleh orang atau lembaga lain. Data sekunder adalah data yang digunakan atau diterbitkan oleh organisasi yang bukan pengolahnya (Soeratno dan Arsyad (2003;76).</li>
 </ul>
 </section>
-<section id="tipe-data-berdasarkan-seri-waktu" class="level3" data-number="3.3.3">
-<h3 data-number="3.3.3" class="anchored" data-anchor-id="tipe-data-berdasarkan-seri-waktu"><span class="header-section-number">3.3.3</span> Tipe Data Berdasarkan Seri Waktu</h3>
+<section id="tipe-data-berdasarkan-seri-waktu" class="level3" data-number="4.4.3">
+<h3 data-number="4.4.3" class="anchored" data-anchor-id="tipe-data-berdasarkan-seri-waktu"><span class="header-section-number">4.4.3</span> Tipe Data Berdasarkan Seri Waktu</h3>
 <ul>
 <li><strong>Data Cross Section</strong>, Data cross-section adalah data yang menunjukkan titik waktu tertentu. Contohnya laporan keuangan per 31 Desember 2020, data pelanggan PT. Data Indah bulan mei 2004, dan lain sebagainya.<br>
 </li>
@@ -439,25 +496,26 @@ Data Understanding Documentation mempunyai 4 komponen, yaitu:</p>
 </section>
 </section>
 </section>
-<section id="pengambilan-data" class="level1" data-number="4">
-<h1 data-number="4"><span class="header-section-number">4</span> Pengambilan Data</h1>
+<section id="pengambilan-data" class="level1" data-number="5">
+<h1 data-number="5"><span class="header-section-number">5</span> Pengambilan Data</h1>
 <p>Proses pengambilan data, juga dikenal sebagai proses ekstraksi data, merujuk pada langkah-langkah yang dilakukan untuk mengumpulkan, mengakses, dan memperoleh data dari sumber yang relevan</p>
 <p>Ada beberapa Cara untuk mengambil data, yaitu:<br>
 <img src="./5.pengambilandata.png" class="img-fluid" alt="Gambar5. Metode Pengambilan Data"></p>
-<section id="web-scraping" class="level2" data-number="4.1">
-<h2 data-number="4.1" class="anchored" data-anchor-id="web-scraping"><span class="header-section-number">4.1</span> Web Scraping</h2>
+<section id="web-scraping" class="level2" data-number="5.1">
+<h2 data-number="5.1" class="anchored" data-anchor-id="web-scraping"><span class="header-section-number">5.1</span> Web Scraping</h2>
 <p>Web scraping artinya mengekstraksi data secara langsung dari suatu halaman web.<br>
 Langkah-langkah umum (contoh detil dapat dilihat di https://realpython.com/beautiful-soup-web-scraper-python/)</p>
 <ul>
-<li>Tentukan URL halaman web (HTML) yang akan di-scrape.<br>
-</li>
-<li>Gunakan fungsi requests.get untuk mengakses URL tersebut. Teks HTML akan tersimpan pada atribut text dari object yang dikembalikan requests.get.<br>
-</li>
-<li>Lakukan parsing pada HTML dengan library beautifulsoup untuk memperoleh tabel data yang diinginkan (dengan mengekstraksi elemen-elemen HTML yang relevan).</li>
+<li><p>Tentukan URL halaman web (HTML) yang akan di-scrape.<br>
+</p></li>
+<li><p>Gunakan fungsi requests.get untuk mengakses URL tersebut. Teks HTML akan tersimpan pada atribut text dari object yang dikembalikan requests.get.<br>
+</p></li>
+<li><p>Lakukan parsing pada HTML dengan library beautifulsoup untuk memperoleh tabel data yang diinginkan (dengan mengekstraksi elemen-elemen HTML yang relevan).</p></li>
+<li><p>Contoh pengambilan data melalui web scraping kometar video youtube</p></li>
 </ul>
 </section>
-<section id="application-program-interface-api" class="level2" data-number="4.2">
-<h2 data-number="4.2" class="anchored" data-anchor-id="application-program-interface-api"><span class="header-section-number">4.2</span> Application Program Interface (API)</h2>
+<section id="application-program-interface-api" class="level2" data-number="5.2">
+<h2 data-number="5.2" class="anchored" data-anchor-id="application-program-interface-api"><span class="header-section-number">5.2</span> Application Program Interface (API)</h2>
 <p>API adalah sebuah alat untuk memudahkan website dan pengguna saling bertukar informasi. API disediakan oleh berbagai website atau perusahaan seperti Kaggle dan Twitter. Biasanya API yang dimiliki perusahaan bersifat private, sehingga dibutuhkan sebuah token khusus untuk mengaksesnya. Namun ada beberapa API publik yang dapat diakses oleh siapa saja seperti PokeAPI.</p>
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
@@ -465,9 +523,77 @@ Langkah-langkah umum (contoh detil dapat dilihat di https://realpython.com/beaut
 <figcaption class="figure-caption">Gambar6. Contoh Penggunaan API</figcaption>
 </figure>
 </div>
+<ul>
+<li>Contoh melalui API Kaggle (pip install kaggle)(<code>kaggle datasets download -d mauryansshivam/paytm-revenue-users-transactions</code>)
+<ul>
+<li>Contoh melalui API Portal Data Bandung (<code>http://data.bandung.go.id/index.php/portal/api/1db4a0cc-dc0f-4362-91f1-d0ad1b4bce98</code>)</li>
+</ul></li>
+</ul>
+<div class="sourceCode" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>    <span class="co">#| code-fold: true</span></span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Jalankan instalasi library berikut jika belum terinstall</span></span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a>    <span class="co"># pip install google-api-python-client</span></span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a>    <span class="im">import</span> csv</span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a>    <span class="im">from</span> googleapiclient.discovery <span class="im">import</span> build</span>
+<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Set up the API key and YouTube Data API service</span></span>
+<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a>    <span class="co">## Masukkan API key yang sudah dibuat di Google Cloud Platform</span></span>
+<span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a>    <span class="co">## Contoh : AIzaSyCFjru8dOZbGtZUi_AQu1Cz1MLoANaY22k</span></span>
+<span id="cb1-13"><a href="#cb1-13" aria-hidden="true" tabindex="-1"></a>    API_KEY <span class="op">=</span> <span class="st">""</span></span>
+<span id="cb1-14"><a href="#cb1-14" aria-hidden="true" tabindex="-1"></a>    youtube <span class="op">=</span> build(<span class="st">"youtube"</span>, <span class="st">"v3"</span>, developerKey<span class="op">=</span>API_KEY)</span>
+<span id="cb1-15"><a href="#cb1-15" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-16"><a href="#cb1-16" aria-hidden="true" tabindex="-1"></a>    <span class="kw">def</span> scrape_comments(video_id):</span>
+<span id="cb1-17"><a href="#cb1-17" aria-hidden="true" tabindex="-1"></a>        <span class="co"># Get the video details</span></span>
+<span id="cb1-18"><a href="#cb1-18" aria-hidden="true" tabindex="-1"></a>        video_response <span class="op">=</span> youtube.videos().<span class="bu">list</span>(</span>
+<span id="cb1-19"><a href="#cb1-19" aria-hidden="true" tabindex="-1"></a>            part<span class="op">=</span><span class="st">"snippet"</span>,</span>
+<span id="cb1-20"><a href="#cb1-20" aria-hidden="true" tabindex="-1"></a>            <span class="bu">id</span><span class="op">=</span>video_id</span>
+<span id="cb1-21"><a href="#cb1-21" aria-hidden="true" tabindex="-1"></a>        ).execute()</span>
+<span id="cb1-22"><a href="#cb1-22" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-23"><a href="#cb1-23" aria-hidden="true" tabindex="-1"></a>        video_title <span class="op">=</span> video_response[<span class="st">'items'</span>][<span class="dv">0</span>][<span class="st">'snippet'</span>][<span class="st">'title'</span>]</span>
+<span id="cb1-24"><a href="#cb1-24" aria-hidden="true" tabindex="-1"></a>        <span class="bu">print</span>(<span class="st">"Scraping comments for video:"</span>, video_title)</span>
+<span id="cb1-25"><a href="#cb1-25" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-26"><a href="#cb1-26" aria-hidden="true" tabindex="-1"></a>        <span class="co"># Get the video comments</span></span>
+<span id="cb1-27"><a href="#cb1-27" aria-hidden="true" tabindex="-1"></a>        comments <span class="op">=</span> []</span>
+<span id="cb1-28"><a href="#cb1-28" aria-hidden="true" tabindex="-1"></a>        next_page_token <span class="op">=</span> <span class="va">None</span></span>
+<span id="cb1-29"><a href="#cb1-29" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-30"><a href="#cb1-30" aria-hidden="true" tabindex="-1"></a>        <span class="cf">while</span> <span class="va">True</span>:</span>
+<span id="cb1-31"><a href="#cb1-31" aria-hidden="true" tabindex="-1"></a>            comment_response <span class="op">=</span> youtube.commentThreads().<span class="bu">list</span>(</span>
+<span id="cb1-32"><a href="#cb1-32" aria-hidden="true" tabindex="-1"></a>                part<span class="op">=</span><span class="st">"snippet"</span>,</span>
+<span id="cb1-33"><a href="#cb1-33" aria-hidden="true" tabindex="-1"></a>                videoId<span class="op">=</span>video_id,</span>
+<span id="cb1-34"><a href="#cb1-34" aria-hidden="true" tabindex="-1"></a>                maxResults<span class="op">=</span><span class="dv">100</span>,</span>
+<span id="cb1-35"><a href="#cb1-35" aria-hidden="true" tabindex="-1"></a>                pageToken<span class="op">=</span>next_page_token</span>
+<span id="cb1-36"><a href="#cb1-36" aria-hidden="true" tabindex="-1"></a>            ).execute()</span>
+<span id="cb1-37"><a href="#cb1-37" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-38"><a href="#cb1-38" aria-hidden="true" tabindex="-1"></a>            <span class="cf">for</span> item <span class="kw">in</span> comment_response[<span class="st">"items"</span>]:</span>
+<span id="cb1-39"><a href="#cb1-39" aria-hidden="true" tabindex="-1"></a>                comment <span class="op">=</span> item[<span class="st">"snippet"</span>][<span class="st">"topLevelComment"</span>][<span class="st">"snippet"</span>][<span class="st">"textDisplay"</span>]</span>
+<span id="cb1-40"><a href="#cb1-40" aria-hidden="true" tabindex="-1"></a>                comments.append(comment)</span>
+<span id="cb1-41"><a href="#cb1-41" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-42"><a href="#cb1-42" aria-hidden="true" tabindex="-1"></a>            next_page_token <span class="op">=</span> comment_response.get(<span class="st">"nextPageToken"</span>)</span>
+<span id="cb1-43"><a href="#cb1-43" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-44"><a href="#cb1-44" aria-hidden="true" tabindex="-1"></a>            <span class="cf">if</span> <span class="kw">not</span> next_page_token:</span>
+<span id="cb1-45"><a href="#cb1-45" aria-hidden="true" tabindex="-1"></a>                <span class="cf">break</span></span>
+<span id="cb1-46"><a href="#cb1-46" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-47"><a href="#cb1-47" aria-hidden="true" tabindex="-1"></a>        <span class="cf">return</span> comments</span>
+<span id="cb1-48"><a href="#cb1-48" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-49"><a href="#cb1-49" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Test the function</span></span>
+<span id="cb1-50"><a href="#cb1-50" aria-hidden="true" tabindex="-1"></a>    <span class="co">## Masukkan ID video youtube yang ingin diambil komentarnya</span></span>
+<span id="cb1-51"><a href="#cb1-51" aria-hidden="true" tabindex="-1"></a>    <span class="co">## Contoh : 5kAF9QV5nYQ</span></span>
+<span id="cb1-52"><a href="#cb1-52" aria-hidden="true" tabindex="-1"></a>    video_id <span class="op">=</span> <span class="st">""</span></span>
+<span id="cb1-53"><a href="#cb1-53" aria-hidden="true" tabindex="-1"></a>    comments <span class="op">=</span> scrape_comments(video_id)</span>
+<span id="cb1-54"><a href="#cb1-54" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-55"><a href="#cb1-55" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Save comments to CSV file</span></span>
+<span id="cb1-56"><a href="#cb1-56" aria-hidden="true" tabindex="-1"></a>    filename <span class="op">=</span> <span class="st">"comments.csv"</span></span>
+<span id="cb1-57"><a href="#cb1-57" aria-hidden="true" tabindex="-1"></a>    <span class="cf">with</span> <span class="bu">open</span>(filename, <span class="st">"w"</span>, newline<span class="op">=</span><span class="st">""</span>, encoding<span class="op">=</span><span class="st">"utf-8"</span>) <span class="im">as</span> csvfile:</span>
+<span id="cb1-58"><a href="#cb1-58" aria-hidden="true" tabindex="-1"></a>        writer <span class="op">=</span> csv.writer(csvfile)</span>
+<span id="cb1-59"><a href="#cb1-59" aria-hidden="true" tabindex="-1"></a>        writer.writerow([<span class="st">"Comment"</span>])</span>
+<span id="cb1-60"><a href="#cb1-60" aria-hidden="true" tabindex="-1"></a>        writer.writerows(<span class="bu">zip</span>(comments))</span>
+<span id="cb1-61"><a href="#cb1-61" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-62"><a href="#cb1-62" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="st">"Comments saved to"</span>, filename)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </section>
-<section id="manual-kaggle.com" class="level2" data-number="4.3">
-<h2 data-number="4.3" class="anchored" data-anchor-id="manual-kaggle.com"><span class="header-section-number">4.3</span> Manual (Kaggle.com)</h2>
+<section id="manual-kaggle.com" class="level2" data-number="5.3">
+<h2 data-number="5.3" class="anchored" data-anchor-id="manual-kaggle.com"><span class="header-section-number">5.3</span> Manual (Kaggle.com)</h2>
 <ul>
 <li>Kita akan mengakses data dari “Goal Dataset – Top 5 European Leagues” dari Kaggle.<br>
 </li>
@@ -484,8 +610,8 @@ Langkah-langkah umum (contoh detil dapat dilihat di https://realpython.com/beaut
 </figure>
 </div>
 </section>
-<section id="direct-database" class="level2" data-number="4.4">
-<h2 data-number="4.4" class="anchored" data-anchor-id="direct-database"><span class="header-section-number">4.4</span> Direct Database</h2>
+<section id="direct-database" class="level2" data-number="5.4">
+<h2 data-number="5.4" class="anchored" data-anchor-id="direct-database"><span class="header-section-number">5.4</span> Direct Database</h2>
 <p>Data juga dapat bersumber dari basis data relasional (RDB, Mysql, Postgres) organisasi. Berikut langkah-langkahnya :</p>
 <ul>
 <li>Install sqlalchemy (pip install sqlalchemy), pandas (pip install pandas), dan mysql connector (pip install mysql-connector-python)<br>
@@ -866,7 +992,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
   </div>
   <div class="nav-page nav-page-next">
       <a href="./modul_3.html" class="pagination-link">
-        <span class="nav-page-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Telaah Data</span></span> <i class="bi bi-arrow-right-short"></i>
+        <span class="nav-page-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Libraries for Data Preprocessing</span></span> <i class="bi bi-arrow-right-short"></i>
       </a>
   </div>
 </nav>
