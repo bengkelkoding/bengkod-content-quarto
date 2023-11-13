@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>Kursus Flutter - 7&nbsp; Akses Data Melalui API</title>
+<title>Kursus Flutter - 7&nbsp; Akses Data melalu API</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -19,6 +19,40 @@ ul.task-list li input[type="checkbox"] {
   width: 0.8em;
   margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
+}
+/* CSS for syntax highlighting */
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
 }
 </style>
 
@@ -76,7 +110,7 @@ ul.task-list li input[type="checkbox"] {
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-      <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./konsep.html">Konsep</a></li><li class="breadcrumb-item"><a href="./7_akses_data_api.html"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Akses Data Melalui API</span></a></li></ol></nav>
+      <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./konsep.html">Konsep</a></li><li class="breadcrumb-item"><a href="./7_akses_data_api.html"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Akses Data melalu API</span></a></li></ol></nav>
       <a class="flex-grow-1" role="button" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
       </a>
       <button type="button" class="btn quarto-search-button" aria-label="" onclick="window.quartoOpenSearch();">
@@ -158,7 +192,7 @@ ul.task-list li input[type="checkbox"] {
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./7_akses_data_api.html" class="sidebar-item-text sidebar-link active">
- <span class="menu-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Akses Data Melalui API</span></span></a>
+ <span class="menu-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Akses Data melalu API</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
@@ -216,20 +250,26 @@ ul.task-list li input[type="checkbox"] {
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
+  <a href="./studi_kasus_5.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">15</span>&nbsp; <span class="chapter-title">Studi Kasus 5</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
   <a href="./proyek_1.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">15</span>&nbsp; <span class="chapter-title">Proyek Kalkulator</span></span></a>
+ <span class="menu-text"><span class="chapter-number">16</span>&nbsp; <span class="chapter-title">Proyek Kalkulator</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./proyek_2.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">16</span>&nbsp; <span class="chapter-title">Proyek 2</span></span></a>
+ <span class="menu-text"><span class="chapter-number">17</span>&nbsp; <span class="chapter-title">Proyek 2</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./proyek_3.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">17</span>&nbsp; <span class="chapter-title">Proyek 3</span></span></a>
+ <span class="menu-text"><span class="chapter-number">18</span>&nbsp; <span class="chapter-title">Proyek 3</span></span></a>
   </div>
 </li>
       </ul>
@@ -262,7 +302,7 @@ ul.task-list li input[type="checkbox"] {
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Akses Data Melalui API</span></h1>
+<h1 class="title"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Akses Data melalu API</span></h1>
 </div>
 
 
@@ -284,15 +324,341 @@ categories: [REST, API, data, web service]
 --- -->
 <section id="konsep-dasar-rest-api" class="level2" data-number="7.1">
 <h2 data-number="7.1" class="anchored" data-anchor-id="konsep-dasar-rest-api"><span class="header-section-number">7.1</span> Konsep Dasar REST API</h2>
+<p>REST API adalah salah satu cara untuk mengakses data dari server. REST API menggunakan protokol HTTP untuk mengakses data. REST API menggunakan metode HTTP Request seperti GET, POST, PUT, DELETE.</p>
+<p>Flutter menyediakan package <code>http</code> untuk menggunakan resource HTTP. <code>http</code> adalah library berbasis <code>Future</code> dan menggunakan fitur <code>await</code> dan <code>async</code>. <code>http</code> menyediakan banyak metode tingkat tinggi dan menyederhanakan pengembangan mobile application berbasis REST.</p>
+<p>Beberapa method di package <code>http</code> yang sering digunakan</p>
+<ul>
+<li><p><code>get</code> : Digunakan untuk membuat permintaan HTTP GET ke URL yang ditentukan dan mengembalikan responsnya sebagai <code>Future&lt;Response&gt;</code>. <code>Response</code> adalah objek yang berisi respons dari server setelah membuat permintaan HTTP. Anda dapat menggunakan objek <code>Response</code> untuk mengakses data respons body, status code, header, dan lainnya.</p>
+<p>Contoh penggunaan :</p>
+<div class="sourceCode" id="cb1"><pre class="sourceCode js code-with-copy"><code class="sourceCode javascript"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>Future<span class="op">&lt;</span><span class="kw">void</span><span class="op">&gt;</span> <span class="fu">fetctData</span>() <span class="kw">async</span> {</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>  <span class="kw">var</span> response <span class="op">=</span> <span class="cf">await</span> http<span class="op">.</span><span class="fu">get</span>(Uri<span class="op">.</span><span class="fu">parse</span>(<span class="st">'url'</span>))<span class="op">;</span></span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>  <span class="cf">if</span> (response<span class="op">.</span><span class="at">statusCode</span> <span class="op">==</span> <span class="dv">200</span>) {</span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>    <span class="fu">print</span>(<span class="st">'Response data: ${response.body}'</span>)<span class="op">;</span></span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a>  } <span class="cf">else</span> {</span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a>    <span class="fu">print</span>(<span class="st">'Request failed with status: ${response.statusCode}'</span>)<span class="op">;</span></span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a>  }</span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a>}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div></li>
+<li><p><code>post</code>: Digunakan untuk membuat permintaan HTTP POST ke URL yang ditentukan. Anda dapat mengirim data dalam bentuk body yang akan dikirim ke server. Dan juga akan mengembalikan respons sebagai <code>Future&lt;Response&gt;</code>. (Response yang sering di gunakan adalah status code, untuk mengetahui apakah berhasil atau gagal) Contoh penggunaan :</p>
+<div class="sourceCode" id="cb2"><pre class="sourceCode js code-with-copy"><code class="sourceCode javascript"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>Future<span class="op">&lt;</span><span class="kw">void</span><span class="op">&gt;</span> <span class="fu">sendData</span>() <span class="kw">async</span> {</span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>  <span class="kw">var</span> response <span class="op">=</span> <span class="cf">await</span> http<span class="op">.</span><span class="fu">post</span>(</span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>    Uri<span class="op">.</span><span class="fu">parse</span>(<span class="st">'url'</span>)<span class="op">,</span></span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a>    <span class="dt">body</span><span class="op">:</span> {<span class="st">'key1'</span><span class="op">:</span> <span class="st">'value1'</span><span class="op">,</span> <span class="st">'key2'</span><span class="op">:</span> <span class="st">'value2'</span>}<span class="op">,</span></span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a>  )<span class="op">;</span></span>
+<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a>  <span class="cf">if</span> (response<span class="op">.</span><span class="at">statusCode</span> <span class="op">==</span> <span class="dv">200</span>) {</span>
+<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a>    <span class="fu">print</span>(<span class="st">'Response data: ${response.body}'</span>)<span class="op">;</span></span>
+<span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a>  } <span class="cf">else</span> {</span>
+<span id="cb2-9"><a href="#cb2-9" aria-hidden="true" tabindex="-1"></a>    <span class="fu">print</span>(<span class="st">'Request failed with status: ${response.statusCode}'</span>)<span class="op">;</span></span>
+<span id="cb2-10"><a href="#cb2-10" aria-hidden="true" tabindex="-1"></a>  }</span>
+<span id="cb2-11"><a href="#cb2-11" aria-hidden="true" tabindex="-1"></a>}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div></li>
+<li><p><code>put</code>: Digunakan untuk membuat permintaan HTTP PUT ke URL yang ditentukan. Ini digunakan untuk memperbarui data di server dengan data yang diberikan dalam body. Dan juga akan mengembalikan respons sebagai <code>Future&lt;Response&gt;</code>.</p>
+<p>Contoh penggunaan :</p>
+<div class="sourceCode" id="cb3"><pre class="sourceCode js code-with-copy"><code class="sourceCode javascript"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>Future<span class="op">&lt;</span><span class="kw">void</span><span class="op">&gt;</span> <span class="fu">updateData</span>() <span class="kw">async</span> {</span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>  <span class="kw">var</span> response <span class="op">=</span> <span class="cf">await</span> http<span class="op">.</span><span class="fu">put</span>(</span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>    Uri<span class="op">.</span><span class="fu">parse</span>(<span class="st">'url'</span>)<span class="op">,</span></span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a>    <span class="dt">body</span><span class="op">:</span> {<span class="st">'key1'</span><span class="op">:</span> <span class="st">'new-value1'</span><span class="op">,</span> <span class="st">'key2'</span><span class="op">:</span> <span class="st">'new-value2'</span>}<span class="op">,</span></span>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a>  )<span class="op">;</span></span>
+<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a>  <span class="cf">if</span> (response<span class="op">.</span><span class="at">statusCode</span> <span class="op">==</span> <span class="dv">200</span>) {</span>
+<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a>    <span class="fu">print</span>(<span class="st">'Response data: ${response.body}'</span>)<span class="op">;</span></span>
+<span id="cb3-8"><a href="#cb3-8" aria-hidden="true" tabindex="-1"></a>  } <span class="cf">else</span> {</span>
+<span id="cb3-9"><a href="#cb3-9" aria-hidden="true" tabindex="-1"></a>    <span class="fu">print</span>(<span class="st">'Request failed with status: ${response.statusCode}'</span>)<span class="op">;</span></span>
+<span id="cb3-10"><a href="#cb3-10" aria-hidden="true" tabindex="-1"></a>  }</span>
+<span id="cb3-11"><a href="#cb3-11" aria-hidden="true" tabindex="-1"></a>}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div></li>
+<li><p><code>patch</code> : Digunakan untuk membuat permintaan HTTP PATCH ke URL yang ditentukan. Ini digunakan untuk memperbarui data di server dengan data yang diberikan dalam body. Dan juga akan mengembalikan respons sebagai <code>Future&lt;Response&gt;</code>.</p>
+<div class="callout callout-style-default callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Tip
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<ul>
+<li>Bedanya <code>patch</code> dengan <code>put</code> adalah kalau <code>put</code> mengubah data seluruhnya atau replace data, kalau <code>patch</code> untuk memperbarui atribut tertentu</li>
+</ul>
+</div>
+</div>
+<p>Contoh penggunaan :</p>
+<div class="sourceCode" id="cb4"><pre class="sourceCode js code-with-copy"><code class="sourceCode javascript"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>Future<span class="op">&lt;</span><span class="kw">void</span><span class="op">&gt;</span> <span class="fu">partiallyUpdateData</span>() <span class="kw">async</span> {</span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>  <span class="kw">var</span> response <span class="op">=</span> <span class="cf">await</span> http<span class="op">.</span><span class="fu">patch</span>(</span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>    Uri<span class="op">.</span><span class="fu">parse</span>(<span class="st">'url'</span>)<span class="op">,</span></span>
+<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a>    <span class="dt">body</span><span class="op">:</span> {<span class="st">'key1'</span><span class="op">:</span> <span class="st">'new-value1'</span>}<span class="op">,</span></span>
+<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a>  )<span class="op">;</span></span>
+<span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a>  <span class="cf">if</span> (response<span class="op">.</span><span class="at">statusCode</span> <span class="op">==</span> <span class="dv">200</span>) {</span>
+<span id="cb4-7"><a href="#cb4-7" aria-hidden="true" tabindex="-1"></a>    <span class="fu">print</span>(<span class="st">'Response data: ${response.body}'</span>)<span class="op">;</span></span>
+<span id="cb4-8"><a href="#cb4-8" aria-hidden="true" tabindex="-1"></a>  } <span class="cf">else</span> {</span>
+<span id="cb4-9"><a href="#cb4-9" aria-hidden="true" tabindex="-1"></a>    <span class="fu">print</span>(<span class="st">'Request failed with status: ${response.statusCode}'</span>)<span class="op">;</span></span>
+<span id="cb4-10"><a href="#cb4-10" aria-hidden="true" tabindex="-1"></a>  }</span>
+<span id="cb4-11"><a href="#cb4-11" aria-hidden="true" tabindex="-1"></a>}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div></li>
+<li><p><code>delete</code> : digunakan untuk membuat permintaan HTTP DELETE ke URL yang ditentukan. Ini digunakan untuk menghapus data dari server. Dan mengembalikan respons sebagai <code>Future&lt;Response&gt;</code>.</p>
+<p>Contoh penggunaan :</p>
+<div class="sourceCode" id="cb5"><pre class="sourceCode js code-with-copy"><code class="sourceCode javascript"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>Future<span class="op">&lt;</span><span class="kw">void</span><span class="op">&gt;</span> <span class="fu">deleteData</span>() <span class="kw">async</span> {</span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>  <span class="kw">var</span> response <span class="op">=</span> <span class="cf">await</span> http<span class="op">.</span><span class="fu">delete</span>(Uri<span class="op">.</span><span class="fu">parse</span>(<span class="st">'url'</span>))<span class="op">;</span></span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>  <span class="cf">if</span> (response<span class="op">.</span><span class="at">statusCode</span> <span class="op">==</span> <span class="dv">200</span>) {</span>
+<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a>      <span class="fu">print</span>(<span class="st">'Resource deleted successfully'</span>)<span class="op">;</span></span>
+<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a>  } <span class="cf">else</span> {</span>
+<span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a>      <span class="fu">print</span>(<span class="st">'Request failed with status: ${response.statusCode}'</span>)<span class="op">;</span></span>
+<span id="cb5-7"><a href="#cb5-7" aria-hidden="true" tabindex="-1"></a>  }</span>
+<span id="cb5-8"><a href="#cb5-8" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb5-9"><a href="#cb5-9" aria-hidden="true" tabindex="-1"></a></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Pada intinya, REST API mirip dengan jembatan yang menghubungkan aplikasi Anda ke server. Ini memberikan cara standar bagi aplikasi untuk berkomunikasi dan bertukar informasi melalui web. Komunikasi ini sering terjadi melalui HTTP (HyperText Transfer Protocol), yang berfungsi sebagai sarana transfer data. REST API ditentukan oleh serangkaian batasan yang menentukan struktur dan perilakunya, menjadikannya alat serbaguna untuk mengambil, mengirim, memperbarui, dan menghapus data.</p></li>
+</ul>
 </section>
 <section id="menggunakan-package-http" class="level2" data-number="7.2">
 <h2 data-number="7.2" class="anchored" data-anchor-id="menggunakan-package-http"><span class="header-section-number">7.2</span> Menggunakan Package HTTP</h2>
+<p>Di Flutter untuk menggunakan fitur rest API perlu menggunakan package / dependency tambahan yaitu <code>http</code>. Dalam project flutter, di file <code>pubspec.yaml</code>, di scope dependencies ketik <code>http:</code> dan flutter akan otomatis merekomendasikan versi terakhir.</p>
+<div class="sourceCode" id="cb6"><pre class="sourceCode js code-with-copy"><code class="sourceCode javascript"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>dependencies<span class="op">:</span></span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>  flutter<span class="op">:</span></span>
+<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a>    sdk<span class="op">:</span> flutter</span>
+<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a>  http<span class="op">:</span> <span class="op">^</span><span class="fl">1.1.0</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Untuk import, aliaskan sebagai <code>http</code> agar mempermudah pemanggilan</p>
+<div class="sourceCode" id="cb7"><pre class="sourceCode js code-with-copy"><code class="sourceCode javascript"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="vs">`import 'package:http/http.dart' as http;`</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </section>
 <section id="mengambil-data-dari-rest-api" class="level2" data-number="7.3">
 <h2 data-number="7.3" class="anchored" data-anchor-id="mengambil-data-dari-rest-api"><span class="header-section-number">7.3</span> Mengambil Data dari REST API</h2>
+<p>Untuk mengambil data (metode <code>GET</code>), kita harus import dulu dependency yang diperlukan</p>
+<div class="sourceCode" id="cb8"><pre class="sourceCode js code-with-copy"><code class="sourceCode javascript"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> <span class="st">'package:http/http.dart'</span> <span class="im">as</span> http<span class="op">;</span></span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> <span class="st">'dart:convert'</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="callout callout-style-default callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Penjelasan
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<ul>
+<li>Disini library dart convert digunakan untuk mengubah atau decode data dari API yang berbentuk JSON ke dalam bentuk Map dan List.</li>
+</ul>
+</div>
+</div>
+<p>Contoh API kita ambil data dari reqres.in, kita pilih yang GET List Users.</p>
+<p>Berikut URL API dan data nya : <a href="https://reqres.in/api/users?page=2">https://reqres.in/api/users?page=2</a></p>
+<div class="sourceCode" id="cb9"><pre class="sourceCode json code-with-copy"><code class="sourceCode json"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="fu">{</span></span>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a>    <span class="dt">"page"</span><span class="fu">:</span> <span class="dv">2</span><span class="fu">,</span></span>
+<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a>    <span class="dt">"per_page"</span><span class="fu">:</span> <span class="dv">6</span><span class="fu">,</span></span>
+<span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a>    <span class="dt">"total"</span><span class="fu">:</span> <span class="dv">12</span><span class="fu">,</span></span>
+<span id="cb9-5"><a href="#cb9-5" aria-hidden="true" tabindex="-1"></a>    <span class="dt">"total_pages"</span><span class="fu">:</span> <span class="dv">2</span><span class="fu">,</span></span>
+<span id="cb9-6"><a href="#cb9-6" aria-hidden="true" tabindex="-1"></a>    <span class="dt">"data"</span><span class="fu">:</span> <span class="ot">[</span></span>
+<span id="cb9-7"><a href="#cb9-7" aria-hidden="true" tabindex="-1"></a>        <span class="fu">{</span></span>
+<span id="cb9-8"><a href="#cb9-8" aria-hidden="true" tabindex="-1"></a>            <span class="dt">"id"</span><span class="fu">:</span> <span class="dv">7</span><span class="fu">,</span></span>
+<span id="cb9-9"><a href="#cb9-9" aria-hidden="true" tabindex="-1"></a>            <span class="dt">"email"</span><span class="fu">:</span> <span class="st">"michael.lawson@reqres.in"</span><span class="fu">,</span></span>
+<span id="cb9-10"><a href="#cb9-10" aria-hidden="true" tabindex="-1"></a>            <span class="dt">"first_name"</span><span class="fu">:</span> <span class="st">"Michael"</span><span class="fu">,</span></span>
+<span id="cb9-11"><a href="#cb9-11" aria-hidden="true" tabindex="-1"></a>            <span class="dt">"last_name"</span><span class="fu">:</span> <span class="st">"Lawson"</span><span class="fu">,</span></span>
+<span id="cb9-12"><a href="#cb9-12" aria-hidden="true" tabindex="-1"></a>            <span class="dt">"avatar"</span><span class="fu">:</span> <span class="st">"https://reqres.in/img/faces/7-image.jpg"</span></span>
+<span id="cb9-13"><a href="#cb9-13" aria-hidden="true" tabindex="-1"></a>        <span class="fu">}</span><span class="ot">,</span></span>
+<span id="cb9-14"><a href="#cb9-14" aria-hidden="true" tabindex="-1"></a>        <span class="fu">{</span></span>
+<span id="cb9-15"><a href="#cb9-15" aria-hidden="true" tabindex="-1"></a>            <span class="dt">"id"</span><span class="fu">:</span> <span class="dv">8</span><span class="fu">,</span></span>
+<span id="cb9-16"><a href="#cb9-16" aria-hidden="true" tabindex="-1"></a>            <span class="dt">"email"</span><span class="fu">:</span> <span class="st">"lindsay.ferguson@reqres.in"</span><span class="fu">,</span></span>
+<span id="cb9-17"><a href="#cb9-17" aria-hidden="true" tabindex="-1"></a>            <span class="dt">"first_name"</span><span class="fu">:</span> <span class="st">"Lindsay"</span><span class="fu">,</span></span>
+<span id="cb9-18"><a href="#cb9-18" aria-hidden="true" tabindex="-1"></a>            <span class="dt">"last_name"</span><span class="fu">:</span> <span class="st">"Ferguson"</span><span class="fu">,</span></span>
+<span id="cb9-19"><a href="#cb9-19" aria-hidden="true" tabindex="-1"></a>            <span class="dt">"avatar"</span><span class="fu">:</span> <span class="st">"https://reqres.in/img/faces/8-image.jpg"</span></span>
+<span id="cb9-20"><a href="#cb9-20" aria-hidden="true" tabindex="-1"></a>        <span class="fu">}</span><span class="ot">,</span></span>
+<span id="cb9-21"><a href="#cb9-21" aria-hidden="true" tabindex="-1"></a>        <span class="fu">{</span></span>
+<span id="cb9-22"><a href="#cb9-22" aria-hidden="true" tabindex="-1"></a>            <span class="dt">"id"</span><span class="fu">:</span> <span class="dv">9</span><span class="fu">,</span></span>
+<span id="cb9-23"><a href="#cb9-23" aria-hidden="true" tabindex="-1"></a>            <span class="dt">"email"</span><span class="fu">:</span> <span class="st">"tobias.funke@reqres.in"</span><span class="fu">,</span></span>
+<span id="cb9-24"><a href="#cb9-24" aria-hidden="true" tabindex="-1"></a>            <span class="dt">"first_name"</span><span class="fu">:</span> <span class="st">"Tobias"</span><span class="fu">,</span></span>
+<span id="cb9-25"><a href="#cb9-25" aria-hidden="true" tabindex="-1"></a>            <span class="dt">"last_name"</span><span class="fu">:</span> <span class="st">"Funke"</span><span class="fu">,</span></span>
+<span id="cb9-26"><a href="#cb9-26" aria-hidden="true" tabindex="-1"></a>            <span class="dt">"avatar"</span><span class="fu">:</span> <span class="st">"https://reqres.in/img/faces/9-image.jpg"</span></span>
+<span id="cb9-27"><a href="#cb9-27" aria-hidden="true" tabindex="-1"></a>        <span class="fu">}</span><span class="ot">,</span></span>
+<span id="cb9-28"><a href="#cb9-28" aria-hidden="true" tabindex="-1"></a>        <span class="fu">{</span></span>
+<span id="cb9-29"><a href="#cb9-29" aria-hidden="true" tabindex="-1"></a>            <span class="dt">"id"</span><span class="fu">:</span> <span class="dv">10</span><span class="fu">,</span></span>
+<span id="cb9-30"><a href="#cb9-30" aria-hidden="true" tabindex="-1"></a>            <span class="dt">"email"</span><span class="fu">:</span> <span class="st">"byron.fields@reqres.in"</span><span class="fu">,</span></span>
+<span id="cb9-31"><a href="#cb9-31" aria-hidden="true" tabindex="-1"></a>            <span class="dt">"first_name"</span><span class="fu">:</span> <span class="st">"Byron"</span><span class="fu">,</span></span>
+<span id="cb9-32"><a href="#cb9-32" aria-hidden="true" tabindex="-1"></a>            <span class="dt">"last_name"</span><span class="fu">:</span> <span class="st">"Fields"</span><span class="fu">,</span></span>
+<span id="cb9-33"><a href="#cb9-33" aria-hidden="true" tabindex="-1"></a>            <span class="dt">"avatar"</span><span class="fu">:</span> <span class="st">"https://reqres.in/img/faces/10-image.jpg"</span></span>
+<span id="cb9-34"><a href="#cb9-34" aria-hidden="true" tabindex="-1"></a>        <span class="fu">}</span><span class="ot">,</span></span>
+<span id="cb9-35"><a href="#cb9-35" aria-hidden="true" tabindex="-1"></a>        <span class="fu">{</span></span>
+<span id="cb9-36"><a href="#cb9-36" aria-hidden="true" tabindex="-1"></a>            <span class="dt">"id"</span><span class="fu">:</span> <span class="dv">11</span><span class="fu">,</span></span>
+<span id="cb9-37"><a href="#cb9-37" aria-hidden="true" tabindex="-1"></a>            <span class="dt">"email"</span><span class="fu">:</span> <span class="st">"george.edwards@reqres.in"</span><span class="fu">,</span></span>
+<span id="cb9-38"><a href="#cb9-38" aria-hidden="true" tabindex="-1"></a>            <span class="dt">"first_name"</span><span class="fu">:</span> <span class="st">"George"</span><span class="fu">,</span></span>
+<span id="cb9-39"><a href="#cb9-39" aria-hidden="true" tabindex="-1"></a>            <span class="dt">"last_name"</span><span class="fu">:</span> <span class="st">"Edwards"</span><span class="fu">,</span></span>
+<span id="cb9-40"><a href="#cb9-40" aria-hidden="true" tabindex="-1"></a>            <span class="dt">"avatar"</span><span class="fu">:</span> <span class="st">"https://reqres.in/img/faces/11-image.jpg"</span></span>
+<span id="cb9-41"><a href="#cb9-41" aria-hidden="true" tabindex="-1"></a>        <span class="fu">}</span><span class="ot">,</span></span>
+<span id="cb9-42"><a href="#cb9-42" aria-hidden="true" tabindex="-1"></a>        <span class="fu">{</span></span>
+<span id="cb9-43"><a href="#cb9-43" aria-hidden="true" tabindex="-1"></a>            <span class="dt">"id"</span><span class="fu">:</span> <span class="dv">12</span><span class="fu">,</span></span>
+<span id="cb9-44"><a href="#cb9-44" aria-hidden="true" tabindex="-1"></a>            <span class="dt">"email"</span><span class="fu">:</span> <span class="st">"rachel.howell@reqres.in"</span><span class="fu">,</span></span>
+<span id="cb9-45"><a href="#cb9-45" aria-hidden="true" tabindex="-1"></a>            <span class="dt">"first_name"</span><span class="fu">:</span> <span class="st">"Rachel"</span><span class="fu">,</span></span>
+<span id="cb9-46"><a href="#cb9-46" aria-hidden="true" tabindex="-1"></a>            <span class="dt">"last_name"</span><span class="fu">:</span> <span class="st">"Howell"</span><span class="fu">,</span></span>
+<span id="cb9-47"><a href="#cb9-47" aria-hidden="true" tabindex="-1"></a>            <span class="dt">"avatar"</span><span class="fu">:</span> <span class="st">"https://reqres.in/img/faces/12-image.jpg"</span></span>
+<span id="cb9-48"><a href="#cb9-48" aria-hidden="true" tabindex="-1"></a>        <span class="fu">}</span></span>
+<span id="cb9-49"><a href="#cb9-49" aria-hidden="true" tabindex="-1"></a>    <span class="ot">]</span><span class="fu">,</span></span>
+<span id="cb9-50"><a href="#cb9-50" aria-hidden="true" tabindex="-1"></a>    <span class="dt">"support"</span><span class="fu">:</span> <span class="fu">{</span></span>
+<span id="cb9-51"><a href="#cb9-51" aria-hidden="true" tabindex="-1"></a>        <span class="dt">"url"</span><span class="fu">:</span> <span class="st">"https://reqres.in/#support-heading"</span><span class="fu">,</span></span>
+<span id="cb9-52"><a href="#cb9-52" aria-hidden="true" tabindex="-1"></a>        <span class="dt">"text"</span><span class="fu">:</span> <span class="st">"To keep ReqRes free, contributions towards server costs are appreciated!"</span></span>
+<span id="cb9-53"><a href="#cb9-53" aria-hidden="true" tabindex="-1"></a>    <span class="fu">}</span></span>
+<span id="cb9-54"><a href="#cb9-54" aria-hidden="true" tabindex="-1"></a><span class="fu">}</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Buatlah class model untuk menampung data api nanti sebagai list</p>
+<div class="sourceCode" id="cb10"><pre class="sourceCode js code-with-copy"><code class="sourceCode javascript"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="kw">class</span> Person {</span>
+<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a>  int id<span class="op">;</span></span>
+<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a>  <span class="bu">String</span> email<span class="op">;</span></span>
+<span id="cb10-4"><a href="#cb10-4" aria-hidden="true" tabindex="-1"></a>  <span class="bu">String</span> firstName<span class="op">;</span></span>
+<span id="cb10-5"><a href="#cb10-5" aria-hidden="true" tabindex="-1"></a>  <span class="bu">String</span> lastName<span class="op">;</span></span>
+<span id="cb10-6"><a href="#cb10-6" aria-hidden="true" tabindex="-1"></a>  <span class="bu">String</span> avatar<span class="op">;</span></span>
+<span id="cb10-7"><a href="#cb10-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-8"><a href="#cb10-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">Person</span>({</span>
+<span id="cb10-9"><a href="#cb10-9" aria-hidden="true" tabindex="-1"></a>    required <span class="kw">this</span><span class="op">.</span><span class="at">id</span><span class="op">,</span></span>
+<span id="cb10-10"><a href="#cb10-10" aria-hidden="true" tabindex="-1"></a>    required <span class="kw">this</span><span class="op">.</span><span class="at">email</span><span class="op">,</span></span>
+<span id="cb10-11"><a href="#cb10-11" aria-hidden="true" tabindex="-1"></a>    required <span class="kw">this</span><span class="op">.</span><span class="at">firstName</span><span class="op">,</span></span>
+<span id="cb10-12"><a href="#cb10-12" aria-hidden="true" tabindex="-1"></a>    required <span class="kw">this</span><span class="op">.</span><span class="at">lastName</span><span class="op">,</span></span>
+<span id="cb10-13"><a href="#cb10-13" aria-hidden="true" tabindex="-1"></a>    required <span class="kw">this</span><span class="op">.</span><span class="at">avatar</span><span class="op">,</span></span>
+<span id="cb10-14"><a href="#cb10-14" aria-hidden="true" tabindex="-1"></a>  })<span class="op">;</span></span>
+<span id="cb10-15"><a href="#cb10-15" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-16"><a href="#cb10-16" aria-hidden="true" tabindex="-1"></a>  factory Person<span class="op">.</span><span class="fu">fromMap</span>(<span class="bu">Map</span><span class="op">&lt;</span><span class="bu">String</span><span class="op">,</span> dynamic<span class="op">&gt;</span> json) {</span>
+<span id="cb10-17"><a href="#cb10-17" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> <span class="fu">Person</span>(</span>
+<span id="cb10-18"><a href="#cb10-18" aria-hidden="true" tabindex="-1"></a>      <span class="dt">id</span><span class="op">:</span> json[<span class="st">'id'</span>] <span class="im">as</span> int<span class="op">,</span></span>
+<span id="cb10-19"><a href="#cb10-19" aria-hidden="true" tabindex="-1"></a>      <span class="dt">email</span><span class="op">:</span> json[<span class="st">'email'</span>]<span class="op">,</span></span>
+<span id="cb10-20"><a href="#cb10-20" aria-hidden="true" tabindex="-1"></a>      <span class="dt">firstName</span><span class="op">:</span> json[<span class="st">'first_name'</span>]<span class="op">,</span></span>
+<span id="cb10-21"><a href="#cb10-21" aria-hidden="true" tabindex="-1"></a>      <span class="dt">lastName</span><span class="op">:</span> json[<span class="st">'last_name'</span>]<span class="op">,</span></span>
+<span id="cb10-22"><a href="#cb10-22" aria-hidden="true" tabindex="-1"></a>      <span class="dt">avatar</span><span class="op">:</span> json[<span class="st">'avatar'</span>]<span class="op">,</span></span>
+<span id="cb10-23"><a href="#cb10-23" aria-hidden="true" tabindex="-1"></a>    )<span class="op">;</span></span>
+<span id="cb10-24"><a href="#cb10-24" aria-hidden="true" tabindex="-1"></a>  }</span>
+<span id="cb10-25"><a href="#cb10-25" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb10-26"><a href="#cb10-26" aria-hidden="true" tabindex="-1"></a></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="callout callout-style-default callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Penjelasan
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<ul>
+<li><code>factory</code> adalah keyowrd dart untuk factory constructor, factory constructor digunakan untuk menerapkan constructor yang tidak selalu membuat instance baru dari class tapi dengan mengembalikkan instance dari cache.
+<ul>
+<li>Disini <code>factory</code> digunakan untuk mengubah data Map menjadi objek class Person.</li>
+</ul></li>
+</ul>
+</div>
+</div>
+<p>Buatlah fungsi untuk fetch data dari API dengan class Future dengan tipe data List object dari class yang telah dibuat, ambil data dengan fungsi <code>http.get()</code> isi parameter dengan String URL API, namun harus di parse terlebih dahulu ke class <code>Uri</code>. Masukkan respondnya ke dalam variable <code>final</code>.</p>
+<p>Response http memiliki banyak informasi, yang paling sering digunakan adalah body, dan status code.</p>
+<p>Response body masih berbentuk String, kita dapat men-decode dengan jsonDecode. Karena data dari API reqres.in masih berbentuk <code>Map</code> belum <code>List</code>, maka decode dari response body di masukkan ke variable <code>Map&lt;String, dynamic&gt;</code>.</p>
+<p>Baru kita masukkan data API ke dalam list, disini ambil data dari key “data” saja.</p>
+<p>Lalu baru kita return kan dengan me-mapping <code>List&lt;dynamic&gt;</code> tadi ke List dari objek class yang kita buat.</p>
+<div class="sourceCode" id="cb11"><pre class="sourceCode js code-with-copy"><code class="sourceCode javascript"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a>  Future<span class="op">&lt;</span>List<span class="op">&lt;</span>Person<span class="op">&gt;&gt;</span> <span class="fu">fetchData</span>() <span class="kw">async</span> {</span>
+<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a>    final response <span class="op">=</span></span>
+<span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a>        <span class="cf">await</span> http<span class="op">.</span><span class="fu">get</span>(Uri<span class="op">.</span><span class="fu">parse</span>(<span class="st">'https://reqres.in/api/users?page=2'</span>))<span class="op">;</span></span>
+<span id="cb11-4"><a href="#cb11-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-5"><a href="#cb11-5" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> (response<span class="op">.</span><span class="at">statusCode</span> <span class="op">==</span> <span class="dv">200</span>) {</span>
+<span id="cb11-6"><a href="#cb11-6" aria-hidden="true" tabindex="-1"></a>      <span class="bu">Map</span><span class="op">&lt;</span><span class="bu">String</span><span class="op">,</span> dynamic<span class="op">&gt;</span> data <span class="op">=</span></span>
+<span id="cb11-7"><a href="#cb11-7" aria-hidden="true" tabindex="-1"></a>          <span class="fu">jsonDecode</span>(response<span class="op">.</span><span class="at">body</span>) <span class="im">as</span> <span class="bu">Map</span><span class="op">&lt;</span><span class="bu">String</span><span class="op">,</span> dynamic<span class="op">&gt;;</span></span>
+<span id="cb11-8"><a href="#cb11-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-9"><a href="#cb11-9" aria-hidden="true" tabindex="-1"></a>      List<span class="op">&lt;</span>dynamic<span class="op">&gt;</span> dataPerson <span class="op">=</span> data[<span class="st">'data'</span>] <span class="im">as</span> List<span class="op">;</span></span>
+<span id="cb11-10"><a href="#cb11-10" aria-hidden="true" tabindex="-1"></a>      <span class="cf">return</span> dataPerson<span class="op">.</span><span class="fu">map</span>((e) <span class="kw">=&gt;</span> Person<span class="op">.</span><span class="fu">fromMap</span>(e))<span class="op">.</span><span class="fu">toList</span>()<span class="op">;</span></span>
+<span id="cb11-11"><a href="#cb11-11" aria-hidden="true" tabindex="-1"></a>    } <span class="cf">else</span> {</span>
+<span id="cb11-12"><a href="#cb11-12" aria-hidden="true" tabindex="-1"></a>      <span class="cf">throw</span> <span class="fu">Exception</span>(<span class="st">'Failed to load data'</span>)<span class="op">;</span></span>
+<span id="cb11-13"><a href="#cb11-13" aria-hidden="true" tabindex="-1"></a>    }</span>
+<span id="cb11-14"><a href="#cb11-14" aria-hidden="true" tabindex="-1"></a>  }</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Di luar fungsi fetch data kita siapkan variable List juga dengan class Future untuk menampung data return dari fungsi fetchData.</p>
+<div class="sourceCode" id="cb12"><pre class="sourceCode js code-with-copy"><code class="sourceCode javascript"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a> late Future<span class="op">&lt;</span>List<span class="op">&lt;</span>Person<span class="op">&gt;&gt;</span> listPerson<span class="op">;</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="callout callout-style-default callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Penjelasan
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<ul>
+<li>Kenali data dari api yang anda ambil, disini data dari reqres.in data nya berbentuk map, data utamanya berada di key “data”.</li>
+<li><code>Future</code> dan <code>async</code> <code>await</code> adalah sebuah fitur yang digunakan untuk mengeksekusi sebuah kode secara asynchronous.</li>
+<li><code>Response</code> / <code>http.Response</code> : adalah objek yang berisi respons dari server setelah membuat permintaan HTTP. Anda dapat menggunakan objek Response untuk mengakses data respons, status kode, header, dan lainnya.
+<ul>
+<li>body : berisi data dari response</li>
+<li>status code : status code dari response
+<ul>
+<li>1xx (Informational): Kode status dalam kategori ini adalah respons awal yang mengindikasikan bahwa permintaan telah diterima, dan server sedang memprosesnya.</li>
+<li>2xx (Successful): Kode status dalam kategori ini mengindikasikan bahwa permintaan telah berhasil diterima, dimengerti, dan diproses dengan baik.
+<ul>
+<li>200 OK: Permintaan berhasil dan respons mengandung data yang diminta.</li>
+<li>201 Created: Sumber daya baru berhasil dibuat.</li>
+</ul></li>
+<li>3xx (Redirection): Kode status dalam kategori ini mengindikasikan bahwa klien harus mengambil tindakan tambahan untuk menyelesaikan permintaan.</li>
+<li>4xx (Client Error): Kode status dalam kategori ini mengindikasikan kesalahan yang disebabkan oleh klien dalam permintaan.</li>
+<li>5xx (Server Error): Kode status dalam kategori ini mengindikasikan kesalahan yang terjadi di server saat memproses permintaan.</li>
+</ul></li>
+</ul></li>
+<li><code>jsonDecode</code> : digunakan untuk mengubah data dari API yang berbentuk JSON ke dalam bentuk Map dan List.</li>
+</ul>
+</div>
+</div>
 </section>
 <section id="menampilkan-data-pada-widget" class="level2" data-number="7.4">
 <h2 data-number="7.4" class="anchored" data-anchor-id="menampilkan-data-pada-widget"><span class="header-section-number">7.4</span> Menampilkan Data pada Widget</h2>
+<p>Karena mengambil data dari API memerlukan waktu / loading, maka state widgetnya nya harus dinamis, yang umum adalah menggunakan <code>StatefulWidget</code>. Jika sebelumnya menggunakan <code>StatelessWidget</code>, dapat diubah dengan mudah, yaitu dengan klik kanan -&gt; refactor -&gt; convert to StatefulWidget.</p>
+<p>Setelah menjadi StatefulWidget, dapat membuat fungsi untuk initial state, kita isi dengan meng-assign variable future list penampung dengan fungsi fetch data.</p>
+<div class="sourceCode" id="cb13"><pre class="sourceCode js code-with-copy"><code class="sourceCode javascript"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a>  <span class="kw">void</span> <span class="fu">initState</span>() {</span>
+<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a>    <span class="kw">super</span><span class="op">.</span><span class="fu">initState</span>()<span class="op">;</span></span>
+<span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a>    listPerson <span class="op">=</span> <span class="fu">fetchData</span>()<span class="op">;</span></span>
+<span id="cb13-4"><a href="#cb13-4" aria-hidden="true" tabindex="-1"></a>  }</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Untuk memanggil atau menampilkan data di widget, kita perlu widget <code>FutureBuilder</code>. FutureBuilder memerlukan properti yang wajib diisi yaitu <code>future</code> dan <code>builder</code></p>
+<p><code>future</code> diisi dengan variable future list penampung datanya</p>
+<p><code>builder</code> diisi dengan <code>context</code> dari <code>BuildContext</code> dan <code>snapshot</code>, <code>snapshot</code> adalah variable yang dialiaskan untuk data yang diambil dari future list penampung.</p>
+<p>Lalu kita isi kondisi jika snapshot memiliki data, baru kita return dengan widget untuk tampilan.</p>
+<p>Disini menggunakan ListView.builder, kita isi itemCount sesuai dengan jumlah data di snapshot, untuk item builder kita gunakan list tile.</p>
+<div class="sourceCode" id="cb14"><pre class="sourceCode js code-with-copy"><code class="sourceCode javascript"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="fu">FutureBuilder</span>(</span>
+<span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a>    future<span class="op">:</span> listPerson<span class="op">,</span></span>
+<span id="cb14-3"><a href="#cb14-3" aria-hidden="true" tabindex="-1"></a>    builder<span class="op">:</span> (context<span class="op">,</span> snapshot) {</span>
+<span id="cb14-4"><a href="#cb14-4" aria-hidden="true" tabindex="-1"></a>        <span class="cf">if</span> (snapshot<span class="op">.</span><span class="at">hasData</span>) {</span>
+<span id="cb14-5"><a href="#cb14-5" aria-hidden="true" tabindex="-1"></a>        <span class="cf">return</span> ListView<span class="op">.</span><span class="fu">builder</span>(</span>
+<span id="cb14-6"><a href="#cb14-6" aria-hidden="true" tabindex="-1"></a>            <span class="dt">itemCount</span><span class="op">:</span> snapshot<span class="op">.</span><span class="at">data</span><span class="op">!.</span><span class="at">length</span><span class="op">,</span></span>
+<span id="cb14-7"><a href="#cb14-7" aria-hidden="true" tabindex="-1"></a>            <span class="dt">itemBuilder</span><span class="op">:</span> (context<span class="op">,</span> index) {</span>
+<span id="cb14-8"><a href="#cb14-8" aria-hidden="true" tabindex="-1"></a>                <span class="cf">return</span> <span class="fu">ListTile</span>(</span>
+<span id="cb14-9"><a href="#cb14-9" aria-hidden="true" tabindex="-1"></a>                <span class="dt">leading</span><span class="op">:</span> <span class="fu">CircleAvatar</span>(</span>
+<span id="cb14-10"><a href="#cb14-10" aria-hidden="true" tabindex="-1"></a>                    <span class="dt">backgroundImage</span><span class="op">:</span></span>
+<span id="cb14-11"><a href="#cb14-11" aria-hidden="true" tabindex="-1"></a>                        <span class="fu">NetworkImage</span>(snapshot<span class="op">.</span><span class="at">data</span><span class="op">!</span>[index]<span class="op">.</span><span class="at">avatar</span>)<span class="op">,</span></span>
+<span id="cb14-12"><a href="#cb14-12" aria-hidden="true" tabindex="-1"></a>                )<span class="op">,</span></span>
+<span id="cb14-13"><a href="#cb14-13" aria-hidden="true" tabindex="-1"></a>                <span class="dt">title</span><span class="op">:</span> <span class="bu">Text</span>(</span>
+<span id="cb14-14"><a href="#cb14-14" aria-hidden="true" tabindex="-1"></a>                    <span class="st">'${snapshot.data![index].firstName} ${snapshot.data![index].lastName}'</span>)<span class="op">,</span></span>
+<span id="cb14-15"><a href="#cb14-15" aria-hidden="true" tabindex="-1"></a>                <span class="dt">subtitle</span><span class="op">:</span> <span class="bu">Text</span>(snapshot<span class="op">.</span><span class="at">data</span><span class="op">!</span>[index]<span class="op">.</span><span class="at">email</span>)<span class="op">,</span></span>
+<span id="cb14-16"><a href="#cb14-16" aria-hidden="true" tabindex="-1"></a>                )<span class="op">;</span></span>
+<span id="cb14-17"><a href="#cb14-17" aria-hidden="true" tabindex="-1"></a>            })<span class="op">;</span></span>
+<span id="cb14-18"><a href="#cb14-18" aria-hidden="true" tabindex="-1"></a>        } <span class="cf">else</span> {</span>
+<span id="cb14-19"><a href="#cb14-19" aria-hidden="true" tabindex="-1"></a>        <span class="cf">return</span> <span class="kw">const</span> <span class="fu">Center</span>(</span>
+<span id="cb14-20"><a href="#cb14-20" aria-hidden="true" tabindex="-1"></a>            <span class="dt">child</span><span class="op">:</span> <span class="fu">CircularProgressIndicator</span>()<span class="op">,</span></span>
+<span id="cb14-21"><a href="#cb14-21" aria-hidden="true" tabindex="-1"></a>        )<span class="op">;</span></span>
+<span id="cb14-22"><a href="#cb14-22" aria-hidden="true" tabindex="-1"></a>        }</span>
+<span id="cb14-23"><a href="#cb14-23" aria-hidden="true" tabindex="-1"></a>    }<span class="op">,</span></span>
+<span id="cb14-24"><a href="#cb14-24" aria-hidden="true" tabindex="-1"></a>    )</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="callout callout-style-default callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Penjelasan
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<ul>
+<li>ListView.builder
+<ul>
+<li><code>itemCount</code>: diisi dengan jumlah data di snapshot dengan keyword <code>length</code>,</li>
+<li><code>itemBuilder</code>: diisi dengan widget yang akan di tampilkan, disini menggunakan <code>ListTile</code></li>
+<li><code>ListTile</code> : memiliki beberapa properti yang dapat diisi sesuai dengan kebutuhan, diantaranya:
+<ul>
+<li><code>leading</code> : untuk menampilkan gambar/icon di sebelah kiri</li>
+<li><code>title</code> : untuk menampilkan judul</li>
+<li><code>subtitle</code> : untuk deskripsi</li>
+</ul></li>
+</ul></li>
+</ul>
+</div>
+</div>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="assets/7_api/hasil.png" class="img-fluid figure-img"></p>
+<figcaption class="figure-caption">Hasil</figcaption>
+</figure>
+</div>
 
 
 </section>
