@@ -1,0 +1,26 @@
+@import url('https://fonts.googleapis.com/css2?family=Karla:wght@400;500;600&display=swap');
+
+.justify {
+    text-align: justify;
+}
+
+code {
+    font-size: 17px;
+}
+
+/*
+
+Font Family by Default
+font-family: Lato, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
+
+*/
+
+.auth-code {
+    font-family: 'Karla', arial, helvetica, sans-serif;
+    font-weight: 600;
+    font-size: 18px;
+}
+
+.fig-border {
+    border: 2px solid #C70039;
+}

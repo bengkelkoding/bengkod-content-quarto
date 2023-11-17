@@ -1,0 +1,1106 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.3.450">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+
+<title>Junior Web Developer - [Part II] - Login Form</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+/* CSS for syntax highlighting */
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+</style>
+
+
+<script src="site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="site_libs/quarto-nav/headroom.min.js"></script>
+<script src="site_libs/clipboard/clipboard.min.js"></script>
+<script src="site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="site_libs/quarto-search/fuse.min.js"></script>
+<script src="site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="./">
+<link href="./11_studi_kasus_login_pt-1.html" rel="prev">
+<script src="site_libs/quarto-html/quarto.js"></script>
+<script src="site_libs/quarto-html/popper.min.js"></script>
+<script src="site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="site_libs/quarto-html/anchor.min.js"></script>
+<link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-text-highlighting-styles">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting-dark.css" rel="prefetch" class="quarto-color-scheme quarto-color-alternate" id="quarto-text-highlighting-styles">
+<script src="site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
+<link href="site_libs/bootstrap/bootstrap-dark.min.css" rel="prefetch" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
+<script id="quarto-search-options" type="application/json">{
+  "location": "sidebar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "start",
+  "type": "textbox",
+  "limit": 20,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit",
+    "search-label": "Search"
+  }
+}</script>
+
+
+<link rel="stylesheet" href="styles.css">
+</head>
+
+<body class="nav-sidebar floating">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+  <nav class="quarto-secondary-nav">
+    <div class="container-fluid d-flex">
+      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+        <i class="bi bi-layout-text-sidebar-reverse"></i>
+      </button>
+      <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./studi_kasus.html"><b>Studi Kasus</b></a></li><li class="breadcrumb-item"><a href="./12_studi_kasus_login_pt-2.html">[Part II] - Login Form</a></li></ol></nav>
+      <a class="flex-grow-1" role="button" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
+      </a>
+      <button type="button" class="btn quarto-search-button" aria-label="" onclick="window.quartoOpenSearch();">
+        <i class="bi bi-search"></i>
+      </button>
+    </div>
+  </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article">
+<!-- sidebar -->
+  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal sidebar-navigation floating overflow-auto">
+    <div class="pt-lg-2 mt-2 text-left sidebar-header">
+    <div class="sidebar-title mb-0 py-0">
+      <a href="./">Junior Web Developer</a> 
+        <div class="sidebar-tools-main">
+  <a href="" class="quarto-color-scheme-toggle quarto-navigation-tool  px-1" onclick="window.quartoToggleColorScheme(); return false;" title="Toggle dark mode"><i class="bi"></i></a>
+</div>
+    </div>
+      </div>
+        <div class="mt-2 flex-shrink-0 align-items-center">
+        <div class="sidebar-search">
+        <div id="quarto-search" class="" title="Search"></div>
+        </div>
+        </div>
+    <div class="sidebar-menu-container"> 
+    <ul class="list-unstyled mt-1">
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><strong>Pengantar</strong></span></a>
+  </div>
+</li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a href="./konsep.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><b>Konsep</b></span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./1_konsep_dasar_web.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">1. Konsep Dasar Web Programmming</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./2_pengenalan_tools.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">2. Pengenalan Tools</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./3_responsive_web.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">3. Responsive Web Design</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./4_pembuatan_front_page.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">4. Front Page</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./5_konsep_database.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">5. Konsep Database</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./6_praktik_database_todolist.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">6. Praktik Database</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./9_penguji_web.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">7. Pengujian Web</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a href="./studi_kasus.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><b>Studi Kasus</b></span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-2" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./7_program_todolist.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">To Do List</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./8_studi_kasus_poliklinik.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Poliklinik</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./11_studi_kasus_login_pt-1.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">[Part I] - Login Form</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./12_studi_kasus_login_pt-2.html" class="sidebar-item-text sidebar-link active">
+ <span class="menu-text">[Part II] - Login Form</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+    </ul>
+    </div>
+</nav>
+<div id="quarto-sidebar-glass" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass"></div>
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">On this page</h2>
+   
+  <ul>
+  <li><a href="#memverifikasi-akun-baru" id="toc-memverifikasi-akun-baru" class="nav-link active" data-scroll-target="#memverifikasi-akun-baru">Memverifikasi Akun Baru</a></li>
+  <li><a href="#membentuk-password-baru" id="toc-membentuk-password-baru" class="nav-link" data-scroll-target="#membentuk-password-baru">Membentuk Password Baru</a></li>
+  <li><a href="#melompat-untuk-login-sekarang" id="toc-melompat-untuk-login-sekarang" class="nav-link" data-scroll-target="#melompat-untuk-login-sekarang">Melompat untuk Login Sekarang</a></li>
+  <li><a href="#selamat-datang-di-beranda-website" id="toc-selamat-datang-di-beranda-website" class="nav-link" data-scroll-target="#selamat-datang-di-beranda-website">Selamat Datang di Beranda Website</a></li>
+  <li><a href="#menuju-pintu-keluar" id="toc-menuju-pintu-keluar" class="nav-link" data-scroll-target="#menuju-pintu-keluar">Menuju Pintu Keluar</a></li>
+  <li><a href="#kontroler-sistem" id="toc-kontroler-sistem" class="nav-link" data-scroll-target="#kontroler-sistem">Kontroler Sistem</a>
+  <ul class="collapse">
+  <li><a href="#pendahuluan" id="toc-pendahuluan" class="nav-link" data-scroll-target="#pendahuluan">Pendahuluan</a></li>
+  <li><a href="#c0-langkah-awal" id="toc-c0-langkah-awal" class="nav-link" data-scroll-target="#c0-langkah-awal">C0 – Langkah Awal</a></li>
+  <li><a href="#c1-bagian-pendaftaran-akun" id="toc-c1-bagian-pendaftaran-akun" class="nav-link" data-scroll-target="#c1-bagian-pendaftaran-akun">C1 – Bagian Pendaftaran Akun</a></li>
+  <li><a href="#c2-memverifikasi-akun-baru" id="toc-c2-memverifikasi-akun-baru" class="nav-link" data-scroll-target="#c2-memverifikasi-akun-baru">C2 – Memverifikasi Akun Baru</a></li>
+  <li><a href="#c3-masuk-ke-dalam-sistem" id="toc-c3-masuk-ke-dalam-sistem" class="nav-link" data-scroll-target="#c3-masuk-ke-dalam-sistem">C3 – Masuk ke Dalam Sistem</a></li>
+  <li><a href="#c4-lupa-kata-sandi" id="toc-c4-lupa-kata-sandi" class="nav-link" data-scroll-target="#c4-lupa-kata-sandi">C4 – Lupa Kata Sandi</a></li>
+  <li><a href="#c5-kode-otp-untuk-password-baru" id="toc-c5-kode-otp-untuk-password-baru" class="nav-link" data-scroll-target="#c5-kode-otp-untuk-password-baru">C5 – Kode OTP untuk Password Baru</a></li>
+  <li><a href="#c6-membuat-password-baru" id="toc-c6-membuat-password-baru" class="nav-link" data-scroll-target="#c6-membuat-password-baru">C6 – Membuat Password Baru</a></li>
+  <li><a href="#c7-masuk-kembali-dengan-password-baru" id="toc-c7-masuk-kembali-dengan-password-baru" class="nav-link" data-scroll-target="#c7-masuk-kembali-dengan-password-baru">C7 – Masuk Kembali dengan Password Baru</a></li>
+  <li><a href="#c8-modifikasi-beberapa-halaman" id="toc-c8-modifikasi-beberapa-halaman" class="nav-link" data-scroll-target="#c8-modifikasi-beberapa-halaman">C8 – Modifikasi Beberapa Halaman</a></li>
+  </ul></li>
+  </ul>
+</nav>
+    </div>
+<!-- main -->
+<main class="content" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<h1 class="title">[Part II] - Login Form</h1>
+  <div class="quarto-categories">
+    <div class="quarto-category">studi kasus</div>
+    <div class="quarto-category">session</div>
+    <div class="quarto-category">controller</div>
+  </div>
+  </div>
+
+
+
+<div class="quarto-title-meta">
+
+    
+  
+    
+  </div>
+  
+
+</header>
+
+<section id="memverifikasi-akun-baru" class="level2">
+<h2 class="anchored" data-anchor-id="memverifikasi-akun-baru">Memverifikasi Akun Baru</h2>
+<div class="justify">
+<p>Pada bagian ini, konsep yang digunakan mirip dengan bagian sebelumnya. Namun, halaman ini dibuat khusus untuk memverifikasi akun yang baru saja dibuat. Hal ini ditujukan supaya akun baru tersebut statusnya berubah dari <strong><em>not verified</em></strong> menjadi <strong><em>verified</em></strong>. Untuk tampilan daripada halaman <strong>user-otp.php</strong> ini tidak jauh berbeda dengan yang sebelumnya. Berikut ini tampilan dari halaman tersebut:</p>
+<div id="fig-user-otp" class="quarto-figure quarto-figure-center anchored" style="text-align:center;">
+<figure class="figure">
+<p><img src="assets/login/user-otp.png" class="img-fluid figure-img" style="width:50.0%"></p>
+<figcaption class="figure-caption">Figure&nbsp;1: Preview Halaman Verifikasi Akun Baru (user-otp.php)</figcaption>
+</figure>
+</div>
+<p>Jangan lupa untuk beri identitas pada tiap bagiannya. Untuk input-an kode OTP berikan <strong><code>name="otp"</code></strong> dan <em>button</em> “Submit” dengan <strong><code>name="check"</code></strong>. Tidak perlu khawatir, Anda dapat <strong>menyalin semua kode</strong> Anda yang terdapat di halaman <strong>reset-code.php</strong> ke halaman <strong>user-otp.php, ini termasuk semua komponen yang ada di dalamnya!</strong> Hanya identitas saja yang perlu diubah.</p>
+</div>
+</section>
+<section id="membentuk-password-baru" class="level2">
+<h2 class="anchored" data-anchor-id="membentuk-password-baru">Membentuk Password Baru</h2>
+<div class="justify">
+<p>Saat ini, pengaturan dari SMTP kita telah siap untuk dieksekusi. Kita akan meneruskan perjalanan dengan pembuatan kata sandi atau password baru. Di dalamnya terdapat 2 (dua) input-an, yaitu password baru dan konfirmasi ulang password baru. Selain itu, juga ada button “Change” untuk memvalidasi aksi pengubahan password kita tadi. Berikan file ini dengan nama <strong>new-password.php</strong> dan berikut merupakan tampilan halamannya:</p>
+<div id="fig-new-password" class="quarto-figure quarto-figure-center anchored" style="text-align:center;">
+<figure class="figure">
+<p><img src="assets/login/new-password.png" class="img-fluid figure-img" style="width:50.0%"></p>
+<figcaption class="figure-caption">Figure&nbsp;2: Preview Halaman Password Baru (new-password.php)</figcaption>
+</figure>
+</div>
+<p>Berikan identitas pada masing-masing bagian. Untuk input-an password baru beri atribut <strong><code>name="password"</code></strong> dan input-an konfirmasi ulang password baru, yaitu <strong><code>name="cpassword"</code></strong>. Sedangkan untuk button “Change”, berikan <strong><code>name="change-password"</code></strong>. Pastikan pula di halaman ini <strong>memiliki</strong> kode PHP yang berupa email <em>sessions</em>, notifikasi perintah, dan penanganan error yang sama seperti pada halaman <strong>reset-code.php</strong>.</p>
+</div>
+</section>
+<section id="melompat-untuk-login-sekarang" class="level2">
+<h2 class="anchored" data-anchor-id="melompat-untuk-login-sekarang">Melompat untuk Login Sekarang</h2>
+<div class="justify">
+<p>Setelah kita mengubah password lama kita menjadi yang baru, kita diwajibkan untuk login ke dalam akun kita untuk memastikan bahwasannya kata sandi kita betul-betul telah berhasil diubah. Oleh karena itu, selanjutnya kita akan membuat suatu halaman yang dapat dibilang hanya berupa notifikasi bahwa password kita berhasil diubah dan button “Login Now” saja. Berikan nama file halaman ini dengan judul <strong>password-changed.php</strong>. Berikut tampilan daripada halaman tersebut:</p>
+<div id="fig-password-changed" class="quarto-figure quarto-figure-center anchored" style="text-align:center;">
+<figure class="figure">
+<p><img src="assets/login/password-changed.png" class="img-fluid figure-img" style="width:50.0%"></p>
+<figcaption class="figure-caption">Figure&nbsp;3: Preview Halaman Notifikasi Password Berhasil Diubah (password-changed.php)</figcaption>
+</figure>
+</div>
+<p>Halaman ini dapat dikatakan mudah dalam menyusun komponen-komponen yang ada di dalamnya. Anda dapat berkreasi sendiri sesuai dengan inovasi Anda atau dapat juga salin kode berikut ini untuk membuat halaman <strong>password-changed.php</strong>:</p>
+<div class="sourceCode" id="cb1"><pre class="sourceCode php code-with-copy"><code class="sourceCode php"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="kw">&lt;?php</span></span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> (<span class="va">$_SESSION</span>[<span class="st">'info'</span>] <span class="op">==</span> <span class="kw">false</span>) {</span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>        <span class="fu">header</span>(<span class="st">'Location: login-user.php'</span>)<span class="ot">;</span></span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>    }</span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a><span class="kw">?&gt;</span></span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a><span class="op">&lt;!</span><span class="cn">DOCTYPE</span> html<span class="op">&gt;</span></span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a><span class="op">&lt;</span>html lang<span class="op">=</span><span class="st">"en"</span><span class="op">&gt;</span></span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a><span class="op">&lt;</span>head<span class="op">&gt;</span></span>
+<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a>    <span class="op">&lt;</span>meta charset<span class="op">=</span><span class="st">"UTF-8"</span><span class="op">&gt;</span></span>
+<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a>    <span class="op">&lt;</span>title<span class="op">&gt;</span><span class="cn">L</span>ogin <span class="cn">F</span>orm<span class="op">&lt;/</span>title<span class="op">&gt;</span></span>
+<span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a>    <span class="op">&lt;</span><span class="fu">link</span> rel<span class="op">=</span><span class="st">"stylesheet"</span> href<span class="op">=</span><span class="st">"https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"</span><span class="op">&gt;</span></span>
+<span id="cb1-13"><a href="#cb1-13" aria-hidden="true" tabindex="-1"></a>    <span class="op">&lt;</span><span class="fu">link</span> rel<span class="op">=</span><span class="st">"stylesheet"</span> href<span class="op">=</span><span class="st">"style.css"</span><span class="op">&gt;</span></span>
+<span id="cb1-14"><a href="#cb1-14" aria-hidden="true" tabindex="-1"></a><span class="op">&lt;/</span>head<span class="op">&gt;</span></span>
+<span id="cb1-15"><a href="#cb1-15" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-16"><a href="#cb1-16" aria-hidden="true" tabindex="-1"></a><span class="op">&lt;</span>body<span class="op">&gt;</span></span>
+<span id="cb1-17"><a href="#cb1-17" aria-hidden="true" tabindex="-1"></a>    <span class="op">&lt;</span>div <span class="kw">class</span><span class="op">=</span><span class="st">"container"</span><span class="op">&gt;</span></span>
+<span id="cb1-18"><a href="#cb1-18" aria-hidden="true" tabindex="-1"></a>        <span class="op">&lt;</span>div <span class="kw">class</span><span class="op">=</span><span class="st">"row"</span><span class="op">&gt;</span></span>
+<span id="cb1-19"><a href="#cb1-19" aria-hidden="true" tabindex="-1"></a>            <span class="op">&lt;</span>div <span class="kw">class</span><span class="op">=</span><span class="st">"col-md-4 offset-md-4 form login-form"</span><span class="op">&gt;</span></span>
+<span id="cb1-20"><a href="#cb1-20" aria-hidden="true" tabindex="-1"></a>                <span class="op">&lt;</span><span class="ot">?</span>php</span>
+<span id="cb1-21"><a href="#cb1-21" aria-hidden="true" tabindex="-1"></a>                <span class="cf">if</span> (<span class="kw">isset</span>(<span class="va">$_SESSION</span>[<span class="st">'info'</span>])) {</span>
+<span id="cb1-22"><a href="#cb1-22" aria-hidden="true" tabindex="-1"></a>                <span class="kw">?&gt;</span></span>
+<span id="cb1-23"><a href="#cb1-23" aria-hidden="true" tabindex="-1"></a>                    <span class="op">&lt;</span>div <span class="kw">class</span><span class="op">=</span><span class="st">"alert alert-success text-center"</span> style<span class="op">=</span><span class="st">"font-weight: 600; font-size: 15px;"</span><span class="op">&gt;</span></span>
+<span id="cb1-24"><a href="#cb1-24" aria-hidden="true" tabindex="-1"></a>                        <span class="op">&lt;</span><span class="ot">?</span>php <span class="kw">echo</span> <span class="va">$_SESSION</span>[<span class="st">'info'</span>]<span class="ot">;</span> <span class="kw">?&gt;</span></span>
+<span id="cb1-25"><a href="#cb1-25" aria-hidden="true" tabindex="-1"></a>                    <span class="op">&lt;/</span>div<span class="op">&gt;</span></span>
+<span id="cb1-26"><a href="#cb1-26" aria-hidden="true" tabindex="-1"></a>                <span class="op">&lt;</span><span class="ot">?</span>php</span>
+<span id="cb1-27"><a href="#cb1-27" aria-hidden="true" tabindex="-1"></a>                }</span>
+<span id="cb1-28"><a href="#cb1-28" aria-hidden="true" tabindex="-1"></a>                <span class="kw">?&gt;</span></span>
+<span id="cb1-29"><a href="#cb1-29" aria-hidden="true" tabindex="-1"></a>                <span class="op">&lt;</span>form action<span class="op">=</span><span class="st">"login-user.php"</span> method<span class="op">=</span><span class="st">"POST"</span><span class="op">&gt;</span></span>
+<span id="cb1-30"><a href="#cb1-30" aria-hidden="true" tabindex="-1"></a>                    <span class="op">&lt;</span>div <span class="kw">class</span><span class="op">=</span><span class="st">"form-group"</span><span class="op">&gt;</span></span>
+<span id="cb1-31"><a href="#cb1-31" aria-hidden="true" tabindex="-1"></a>                        <span class="op">&lt;</span>input <span class="kw">class</span><span class="op">=</span><span class="st">"form-control button"</span> type<span class="op">=</span><span class="st">"submit"</span> name<span class="op">=</span><span class="st">"login-now"</span> value<span class="op">=</span><span class="st">"Login Now"</span><span class="op">&gt;</span></span>
+<span id="cb1-32"><a href="#cb1-32" aria-hidden="true" tabindex="-1"></a>                    <span class="op">&lt;/</span>div<span class="op">&gt;</span></span>
+<span id="cb1-33"><a href="#cb1-33" aria-hidden="true" tabindex="-1"></a>                <span class="op">&lt;/</span>form<span class="op">&gt;</span></span>
+<span id="cb1-34"><a href="#cb1-34" aria-hidden="true" tabindex="-1"></a>            <span class="op">&lt;/</span>div<span class="op">&gt;</span></span>
+<span id="cb1-35"><a href="#cb1-35" aria-hidden="true" tabindex="-1"></a>        <span class="op">&lt;/</span>div<span class="op">&gt;</span></span>
+<span id="cb1-36"><a href="#cb1-36" aria-hidden="true" tabindex="-1"></a>    <span class="op">&lt;/</span>div<span class="op">&gt;</span></span>
+<span id="cb1-37"><a href="#cb1-37" aria-hidden="true" tabindex="-1"></a><span class="op">&lt;/</span>body<span class="op">&gt;</span></span>
+<span id="cb1-38"><a href="#cb1-38" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-39"><a href="#cb1-39" aria-hidden="true" tabindex="-1"></a><span class="op">&lt;/</span>html<span class="op">&gt;</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section>
+<section id="selamat-datang-di-beranda-website" class="level2">
+<h2 class="anchored" data-anchor-id="selamat-datang-di-beranda-website">Selamat Datang di Beranda Website</h2>
+<div class="justify">
+<p>Setelah melewati berbagai lika-liku pembuatan sistem login serta registrasi akun, sampailah kita pada halaman beranda atau homepage atau landing page atau dashboard atau sebutan yang lainnya. Dikarenakan judul studi kasus ini hanyalah berupa modul login form, pada halaman ini, Anda bebas mengutarakan kreativitas serta inovasi Anda dalam mengkombinasikan dengan ide proyek milik Anda sendiri.</p>
+<p>Sebagai sarana pendukung modul pembelajaran, pada halaman ini intinya adalah bagaimana kita mengakhiri sessions atau log out dari sistem. Namun sebelum itu, Anda tidak bisa serta merta baru saja masuk langsung keluar. Anda harus melewati halaman beranda atau home dulu setidaknya untuk keluar. Lazimnya, terdapat button “Keluar” atau “Log Out” yang acapkali kita jumpai di suatu halaman website.</p>
+<p>Kendati demikian, kita akan memberikan contoh halaman dari <strong>home.php</strong> yang di mana terdapat button untuk log out dari situs tersebut. Berikut cuplikan sederhana dari halaman tersebut:</p>
+<div id="fig-home-page" class="quarto-figure quarto-figure-center anchored" style="text-align:center;">
+<figure class="figure">
+<p><img src="assets/login/home-page.png" class="fig-border img-fluid figure-img" style="width:100.0%"></p>
+<figcaption class="figure-caption">Figure&nbsp;4: Preview Halaman Beranda (home.php)</figcaption>
+</figure>
+</div>
+<p>Pada halaman di atas, button “Log Out” tersebut hanya merujuk untuk keluar dari sistem. Jadi, apabila button di-klik akan mengembalikkan kita ke halaman login form di awal. Namun, perlu diketahui di halaman <strong>home.php</strong> ada beberapa kode PHP yang perlu <strong>ditambahkan di atas konten HTML</strong>, yaitu berikut ini:</p>
+<div class="sourceCode" id="cb2"><pre class="sourceCode php code-with-copy"><code class="sourceCode php"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="kw">&lt;?php</span></span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>    <span class="co">// SESSIONS FOR EACH ACCOUNTS</span></span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>    <span class="va">$email</span> <span class="op">=</span> <span class="va">$_SESSION</span>[<span class="st">'email'</span>]<span class="ot">;</span></span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a>    <span class="va">$password</span> <span class="op">=</span> <span class="va">$_SESSION</span>[<span class="st">'password'</span>]<span class="ot">;</span></span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a>    <span class="co">// JIKA EMAIL DAN PASSWORD SALAH</span></span>
+<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a>    <span class="co">// JIKA BELUM ADA SESSION DARI EMAIL DAN PASSWORD</span></span>
+<span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> (<span class="va">$email</span> <span class="op">!=</span> <span class="kw">false</span> <span class="op">&amp;&amp;</span> <span class="va">$password</span> <span class="op">!=</span> <span class="kw">false</span>) {</span>
+<span id="cb2-9"><a href="#cb2-9" aria-hidden="true" tabindex="-1"></a>        <span class="va">$sql</span> <span class="op">=</span> <span class="st">"SELECT * FROM usertable WHERE email = '</span><span class="va">$email</span><span class="st">'"</span><span class="ot">;</span></span>
+<span id="cb2-10"><a href="#cb2-10" aria-hidden="true" tabindex="-1"></a>        <span class="va">$run_Sql</span> <span class="op">=</span> <span class="fu">mysqli_query</span>(<span class="va">$con</span><span class="ot">,</span> <span class="va">$sql</span>)<span class="ot">;</span></span>
+<span id="cb2-11"><a href="#cb2-11" aria-hidden="true" tabindex="-1"></a>        <span class="cf">if</span> (<span class="va">$run_Sql</span>) {</span>
+<span id="cb2-12"><a href="#cb2-12" aria-hidden="true" tabindex="-1"></a>            <span class="va">$fetch_info</span> <span class="op">=</span> <span class="fu">mysqli_fetch_assoc</span>(<span class="va">$run_Sql</span>)<span class="ot">;</span></span>
+<span id="cb2-13"><a href="#cb2-13" aria-hidden="true" tabindex="-1"></a>            <span class="va">$status</span> <span class="op">=</span> <span class="va">$fetch_info</span>[<span class="st">'status'</span>]<span class="ot">;</span></span>
+<span id="cb2-14"><a href="#cb2-14" aria-hidden="true" tabindex="-1"></a>            <span class="va">$code</span> <span class="op">=</span> <span class="va">$fetch_info</span>[<span class="st">'code'</span>]<span class="ot">;</span></span>
+<span id="cb2-15"><a href="#cb2-15" aria-hidden="true" tabindex="-1"></a>            <span class="cf">if</span> (<span class="va">$status</span> <span class="op">==</span> <span class="st">"verified"</span>) {</span>
+<span id="cb2-16"><a href="#cb2-16" aria-hidden="true" tabindex="-1"></a>                <span class="cf">if</span> (<span class="va">$code</span> <span class="op">!=</span> <span class="dv">0</span>) {</span>
+<span id="cb2-17"><a href="#cb2-17" aria-hidden="true" tabindex="-1"></a>                    <span class="fu">header</span>(<span class="st">'Location: reset-code.php'</span>)<span class="ot">;</span></span>
+<span id="cb2-18"><a href="#cb2-18" aria-hidden="true" tabindex="-1"></a>                }</span>
+<span id="cb2-19"><a href="#cb2-19" aria-hidden="true" tabindex="-1"></a>            } <span class="cf">else</span> {</span>
+<span id="cb2-20"><a href="#cb2-20" aria-hidden="true" tabindex="-1"></a>                <span class="fu">header</span>(<span class="st">'Location: user-otp.php'</span>)<span class="ot">;</span></span>
+<span id="cb2-21"><a href="#cb2-21" aria-hidden="true" tabindex="-1"></a>            }</span>
+<span id="cb2-22"><a href="#cb2-22" aria-hidden="true" tabindex="-1"></a>        }</span>
+<span id="cb2-23"><a href="#cb2-23" aria-hidden="true" tabindex="-1"></a>    } <span class="cf">else</span> {</span>
+<span id="cb2-24"><a href="#cb2-24" aria-hidden="true" tabindex="-1"></a>        <span class="fu">header</span>(<span class="st">'Location: login-user.php'</span>)<span class="ot">;</span></span>
+<span id="cb2-25"><a href="#cb2-25" aria-hidden="true" tabindex="-1"></a>    }</span>
+<span id="cb2-26"><a href="#cb2-26" aria-hidden="true" tabindex="-1"></a><span class="kw">?&gt;</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Seperti yang lainnya, <strong>letakkan kode tersebut paling atas dari halaman PHP</strong>. Amati tiap conditional sentences yang ada pada source code di atas dan tariklah kesimpulan! Jikalau Anda mendapati kejanggalan “Dari mana variabel atau bahkan isian variabel ini berasal?”. Tenang, tak perlu cemas karena kita akan membangun controller dari keseluruhan sistem yang tengah kita bangun ini.</p>
+</div>
+</section>
+<section id="menuju-pintu-keluar" class="level2">
+<h2 class="anchored" data-anchor-id="menuju-pintu-keluar">Menuju Pintu Keluar</h2>
+<div class="justify">
+<p>Apabila kita merujuk pada halaman home.php pada section sebelumnya, button “Log Out” berisikan tag <strong><code>&lt;a&gt;</code></strong> yang memuat atribut <strong><code>href="logout-user.php"</code></strong>. Oleh karena itu, selanjutnya yang akan kita lakukan adalah membuat file baru yang kita beri nama <strong>logout-user.php</strong>. Sangatlah mudah, Anda hanya perlu menyalin kode berikut ini dan tempelkan pada file <strong>logout-user.php</strong>:</p>
+<div class="sourceCode" id="cb3"><pre class="sourceCode php code-with-copy"><code class="sourceCode php"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="kw">&lt;?php</span></span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>    <span class="fu">session_start</span>()<span class="ot">;</span></span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>    <span class="fu">session_unset</span>()<span class="ot">;</span></span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a>    <span class="fu">session_destroy</span>()<span class="ot">;</span></span>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a>    <span class="fu">header</span>(<span class="st">'location: login-user.php'</span>)<span class="ot">;</span></span>
+<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a><span class="kw">?&gt;</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section>
+<section id="kontroler-sistem" class="level2">
+<h2 class="anchored" data-anchor-id="kontroler-sistem">Kontroler Sistem</h2>
+<section id="pendahuluan" class="level3">
+<h3 class="anchored" data-anchor-id="pendahuluan">Pendahuluan</h3>
+<div class="justify">
+<p>Di dunia <strong>web development</strong>, controller adalah sebuah bagian dari sebuah framework atau kerangka kerja aplikasi web yang bertugas mengatur dan mengelola permintaan (<em>request</em>) serta respon (<em>response</em>) antara interaksi pengguna dan aplikasi web.</p>
+<p>Sebuah controller biasanya bertanggung jawab untuk menerima permintaan dari pengguna melalui URL, mengolah permintaan tersebut, memproses data yang dibutuhkan dari model, dan me-render (menampilkan) tampilan (view) yang sesuai kepada pengguna sebagai respon. Contoh framework yang menggunakan konsep controller adalah Laravel, Express.js, Django, dan masih banyak lagi.</p>
+<p>Dalam pengembangan aplikasi web, penggunaan controller sangat membantu dalam membagi tugas-tugas yang berbeda, seperti tampilan, logika bisnis, dan pengolahan data. Hal ini memudahkan pengembang untuk memelihara dan memperbarui aplikasi web secara efisien dan terstruktur. Bagaimana, apakah Anda sudah paham akan konsep dari controller? Jika sudah, let’s dig deeper into the world of controllers!</p>
+</div>
+</section>
+<section id="c0-langkah-awal" class="level3">
+<h3 class="anchored" data-anchor-id="c0-langkah-awal">C0 – Langkah Awal</h3>
+<div class="justify">
+<p><em>Firstly</em>, buatlah file PHP baru dan beri nama <strong>controllerUserData.php</strong>. Kemudian, buat kode PHP di dalamnya dengan tag <strong><code>&lt;?php ?&gt;</code></strong>. Di dalam file ini, sepenuhnya kita akan membuat fungsi-fungsi <em>procedural</em> yang di mana akan berperan dalam merespon segala tindakan pengguna ke dalam sistem aplikasi. Di bagian awal atau atas file ini, salin kode berikut pada file <strong>controllerUserData.php</strong> Anda:</p>
+<div class="sourceCode" id="cb4"><pre class="sourceCode php code-with-copy"><code class="sourceCode php"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="kw">&lt;?php</span></span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a><span class="fu">session_start</span>()<span class="ot">;</span></span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a><span class="kw">require</span> <span class="st">"connection.php"</span><span class="ot">;</span></span>
+<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a><span class="va">$email</span> <span class="op">=</span> <span class="st">""</span><span class="ot">;</span></span>
+<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a><span class="va">$name</span> <span class="op">=</span> <span class="st">""</span><span class="ot">;</span></span>
+<span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a><span class="va">$errors</span> <span class="op">=</span> <span class="dt">array</span>()<span class="ot">;</span></span>
+<span id="cb4-7"><a href="#cb4-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-8"><a href="#cb4-8" aria-hidden="true" tabindex="-1"></a><span class="co">// [ANOTHER OPTION] REGULAR EXPRESSION FOR EMAIL VALIDATION</span></span>
+<span id="cb4-9"><a href="#cb4-9" aria-hidden="true" tabindex="-1"></a><span class="co">// PREREQUISITE MATA KULIAH OTOMATA &amp; TEORI BAHASA</span></span>
+<span id="cb4-10"><a href="#cb4-10" aria-hidden="true" tabindex="-1"></a><span class="va">$pattern</span> <span class="op">=</span> <span class="st">'/^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}$/'</span><span class="ot">;</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Secara singkat, fungsi <strong><code>session_start()</code></strong> dalam bahasa PHP digunakan untuk memulai atau mengaktifkan sesi pada script PHP. Session adalah suatu cara untuk menyimpan data pengguna antara beberapa permintaan halaman web. Ini memungkinkan kita untuk menyimpan informasi seperti variabel, input-an data pengguna, atau data lainnya yang perlu dipertahankan selama pengguna berinteraksi dengan situs web Anda.</p>
+</div>
+</section>
+<section id="c1-bagian-pendaftaran-akun" class="level3">
+<h3 class="anchored" data-anchor-id="c1-bagian-pendaftaran-akun">C1 – Bagian Pendaftaran Akun</h3>
+<div class="{justify}">
+<p>Masih di dalam file <strong>controllerUserData.php</strong>, selanjutnya kita akan membuat controller pada saat di bagian pendaftaran akun. Berikut adalah source code dari controller program tersebut:</p>
+<div class="sourceCode" id="cb5"><pre class="sourceCode php code-with-copy"><code class="sourceCode php"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="co">// DIGUNAKAN UNTUK PEMBUATAN AKUN PERTAMA KALI [SIGNUP-USER.PHP]</span></span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a><span class="co">// PROSES PENGIRIMAN DATA [SIGNUP BUTTON]</span></span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span> (<span class="kw">isset</span>(<span class="va">$_POST</span>[<span class="st">'signup'</span>])) {</span>
+<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a>    <span class="va">$name</span> <span class="op">=</span> <span class="fu">mysqli_real_escape_string</span>(<span class="va">$con</span><span class="ot">,</span> <span class="va">$_POST</span>[<span class="st">'name'</span>])<span class="ot">;</span></span>
+<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a>    <span class="va">$email</span> <span class="op">=</span> <span class="fu">mysqli_real_escape_string</span>(<span class="va">$con</span><span class="ot">,</span> <span class="va">$_POST</span>[<span class="st">'email'</span>])<span class="ot">;</span></span>
+<span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a>    <span class="va">$password</span> <span class="op">=</span> <span class="fu">mysqli_real_escape_string</span>(<span class="va">$con</span><span class="ot">,</span> <span class="va">$_POST</span>[<span class="st">'password'</span>])<span class="ot">;</span></span>
+<span id="cb5-7"><a href="#cb5-7" aria-hidden="true" tabindex="-1"></a>    <span class="va">$cpassword</span> <span class="op">=</span> <span class="fu">mysqli_real_escape_string</span>(<span class="va">$con</span><span class="ot">,</span> <span class="va">$_POST</span>[<span class="st">'cpassword'</span>])<span class="ot">;</span></span>
+<span id="cb5-8"><a href="#cb5-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-9"><a href="#cb5-9" aria-hidden="true" tabindex="-1"></a>    <span class="co">// DIGUNAKAN UNTUK MEMVALIDASI APAKAH EMAIL VALID ATAU TIDAK</span></span>
+<span id="cb5-10"><a href="#cb5-10" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> (<span class="fu">filter_var</span>(<span class="va">$email</span><span class="ot">,</span> <span class="cn">FILTER_VALIDATE_EMAIL</span>) <span class="op">===</span> <span class="kw">FALSE</span>) {</span>
+<span id="cb5-11"><a href="#cb5-11" aria-hidden="true" tabindex="-1"></a>        <span class="va">$errors</span>[<span class="st">'email'</span>] <span class="op">=</span> <span class="st">"Harap masukkan alamat email yang benar!"</span><span class="ot">;</span></span>
+<span id="cb5-12"><a href="#cb5-12" aria-hidden="true" tabindex="-1"></a>    }</span>
+<span id="cb5-13"><a href="#cb5-13" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-14"><a href="#cb5-14" aria-hidden="true" tabindex="-1"></a>    <span class="co">// DIGUNAKAN UNTUK MEMVERIFIKASI APAKAH ANTARA PASSWORD DAN KONFIRMASI PASSWORD SAMA</span></span>
+<span id="cb5-15"><a href="#cb5-15" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> (<span class="va">$password</span> <span class="op">!==</span> <span class="va">$cpassword</span>) {</span>
+<span id="cb5-16"><a href="#cb5-16" aria-hidden="true" tabindex="-1"></a>        <span class="va">$errors</span>[<span class="st">'password'</span>] <span class="op">=</span> <span class="st">"Konfirmasi kata sandi Anda tidak cocok!"</span><span class="ot">;</span></span>
+<span id="cb5-17"><a href="#cb5-17" aria-hidden="true" tabindex="-1"></a>    }</span>
+<span id="cb5-18"><a href="#cb5-18" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-19"><a href="#cb5-19" aria-hidden="true" tabindex="-1"></a>    <span class="co">// DIGUNAKAN UNTUK MENEGECEK APAKAH EMAIL SUDAH TERDAFTAR/BELUM SEBELUMNYA</span></span>
+<span id="cb5-20"><a href="#cb5-20" aria-hidden="true" tabindex="-1"></a>    <span class="co">// (*) =&gt; Merupakan simbol ASTERISK atau BINTANG KECIL</span></span>
+<span id="cb5-21"><a href="#cb5-21" aria-hidden="true" tabindex="-1"></a>    <span class="va">$email_check</span> <span class="op">=</span> <span class="st">"SELECT * FROM usertable WHERE email = '</span><span class="va">$email</span><span class="st">'"</span><span class="ot">;</span></span>
+<span id="cb5-22"><a href="#cb5-22" aria-hidden="true" tabindex="-1"></a>    <span class="va">$res</span> <span class="op">=</span> <span class="fu">mysqli_query</span>(<span class="va">$con</span><span class="ot">,</span> <span class="va">$email_check</span>)<span class="ot">;</span></span>
+<span id="cb5-23"><a href="#cb5-23" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> (<span class="fu">mysqli_num_rows</span>(<span class="va">$res</span>) <span class="op">&gt;</span> <span class="dv">0</span>) {</span>
+<span id="cb5-24"><a href="#cb5-24" aria-hidden="true" tabindex="-1"></a>        <span class="va">$errors</span>[<span class="st">'email'</span>] <span class="op">=</span> <span class="st">"Alamat email Anda sudah terdaftar!"</span><span class="ot">;</span></span>
+<span id="cb5-25"><a href="#cb5-25" aria-hidden="true" tabindex="-1"></a>    }</span>
+<span id="cb5-26"><a href="#cb5-26" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-27"><a href="#cb5-27" aria-hidden="true" tabindex="-1"></a>    <span class="co">// PROSES INPUT DATA BARU KE DATABASE</span></span>
+<span id="cb5-28"><a href="#cb5-28" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> (<span class="fu">count</span>(<span class="va">$errors</span>) <span class="op">===</span> <span class="dv">0</span>) {</span>
+<span id="cb5-29"><a href="#cb5-29" aria-hidden="true" tabindex="-1"></a>        <span class="co">// Meng-enkripsi atau mengcover password</span></span>
+<span id="cb5-30"><a href="#cb5-30" aria-hidden="true" tabindex="-1"></a>        <span class="va">$encpass</span> <span class="op">=</span> <span class="fu">password_hash</span>(<span class="va">$password</span><span class="ot">,</span> <span class="cn">PASSWORD_BCRYPT</span>)<span class="ot">;</span></span>
+<span id="cb5-31"><a href="#cb5-31" aria-hidden="true" tabindex="-1"></a>        <span class="co">// Fungsi generate random integer atau serangkaian angka acak</span></span>
+<span id="cb5-32"><a href="#cb5-32" aria-hidden="true" tabindex="-1"></a>        <span class="va">$code</span> <span class="op">=</span> <span class="fu">rand</span>(<span class="dv">999999</span><span class="ot">,</span> <span class="dv">111111</span>)<span class="ot">;</span> <span class="co">// Min = 999999; Max = 111111</span></span>
+<span id="cb5-33"><a href="#cb5-33" aria-hidden="true" tabindex="-1"></a>        <span class="va">$status</span> <span class="op">=</span> <span class="st">"notverified"</span><span class="ot">;</span></span>
+<span id="cb5-34"><a href="#cb5-34" aria-hidden="true" tabindex="-1"></a>        <span class="va">$insert_data</span> <span class="op">=</span> <span class="st">"INSERT INTO usertable (name, email, password, code, status)</span></span>
+<span id="cb5-35"><a href="#cb5-35" aria-hidden="true" tabindex="-1"></a><span class="st">                        values('</span><span class="va">$name</span><span class="st">', '</span><span class="va">$email</span><span class="st">', '</span><span class="va">$encpass</span><span class="st">', '</span><span class="va">$code</span><span class="st">', '</span><span class="va">$status</span><span class="st">')"</span><span class="ot">;</span></span>
+<span id="cb5-36"><a href="#cb5-36" aria-hidden="true" tabindex="-1"></a>        <span class="va">$data_check</span> <span class="op">=</span> <span class="fu">mysqli_query</span>(<span class="va">$con</span><span class="ot">,</span> <span class="va">$insert_data</span>)<span class="ot">;</span></span>
+<span id="cb5-37"><a href="#cb5-37" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-38"><a href="#cb5-38" aria-hidden="true" tabindex="-1"></a>        <span class="co">// DIGUNAKAN UNTUK MEM-VERIFIKASI STATUS AKUN DENGAN KODE OTP</span></span>
+<span id="cb5-39"><a href="#cb5-39" aria-hidden="true" tabindex="-1"></a>        <span class="co">// DIBUTUHKAN FUNGSI MAIL DELIVIER (SMTP) UNTUK MENGIRIM EMAIL</span></span>
+<span id="cb5-40"><a href="#cb5-40" aria-hidden="true" tabindex="-1"></a>        <span class="cf">if</span> (<span class="va">$data_check</span>) {</span>
+<span id="cb5-41"><a href="#cb5-41" aria-hidden="true" tabindex="-1"></a>            <span class="va">$subject</span> <span class="op">=</span> <span class="st">"Kode Verifikasi Email"</span><span class="ot">;</span> <span class="co">// Subjek email</span></span>
+<span id="cb5-42"><a href="#cb5-42" aria-hidden="true" tabindex="-1"></a>            <span class="va">$message</span> <span class="op">=</span> <span class="st">"Kode verifikasi Anda adalah </span><span class="va">$code</span><span class="st">"</span><span class="ot">;</span> <span class="co">// Isi pesan email</span></span>
+<span id="cb5-43"><a href="#cb5-43" aria-hidden="true" tabindex="-1"></a>            <span class="co">// ! ALAMAT EMAIL WAJIB SAMA DENGAN SETTING-AN SMTP !</span></span>
+<span id="cb5-44"><a href="#cb5-44" aria-hidden="true" tabindex="-1"></a>            <span class="va">$sender</span> <span class="op">=</span> <span class="st">"From: emailaktif@gmail.com"</span><span class="ot">;</span> <span class="co">// Pengirim email</span></span>
+<span id="cb5-45"><a href="#cb5-45" aria-hidden="true" tabindex="-1"></a>            <span class="co">// PENGIRIMAN KODE OTP VIA EMAIL</span></span>
+<span id="cb5-46"><a href="#cb5-46" aria-hidden="true" tabindex="-1"></a>            <span class="cf">if</span> (<span class="fu">mail</span>(<span class="va">$email</span><span class="ot">,</span> <span class="va">$subject</span><span class="ot">,</span> <span class="va">$message</span><span class="ot">,</span> <span class="va">$sender</span>)) {</span>
+<span id="cb5-47"><a href="#cb5-47" aria-hidden="true" tabindex="-1"></a>                <span class="va">$info</span> <span class="op">=</span> <span class="st">"Kami telah mengirimkan kode verifikasi ke email Anda - </span><span class="va">$email</span><span class="st">"</span><span class="ot">;</span></span>
+<span id="cb5-48"><a href="#cb5-48" aria-hidden="true" tabindex="-1"></a>                <span class="va">$_SESSION</span>[<span class="st">'info'</span>] <span class="op">=</span> <span class="va">$info</span><span class="ot">;</span></span>
+<span id="cb5-49"><a href="#cb5-49" aria-hidden="true" tabindex="-1"></a>                <span class="va">$_SESSION</span>[<span class="st">'email'</span>] <span class="op">=</span> <span class="va">$email</span><span class="ot">;</span></span>
+<span id="cb5-50"><a href="#cb5-50" aria-hidden="true" tabindex="-1"></a>                <span class="va">$_SESSION</span>[<span class="st">'password'</span>] <span class="op">=</span> <span class="va">$password</span><span class="ot">;</span></span>
+<span id="cb5-51"><a href="#cb5-51" aria-hidden="true" tabindex="-1"></a>                <span class="fu">header</span>(<span class="st">'location: user-otp.php'</span>)<span class="ot">;</span></span>
+<span id="cb5-52"><a href="#cb5-52" aria-hidden="true" tabindex="-1"></a>                <span class="cf">exit</span>()<span class="ot">;</span></span>
+<span id="cb5-53"><a href="#cb5-53" aria-hidden="true" tabindex="-1"></a>                <span class="co">// HANDLING ERROR KODE OTP</span></span>
+<span id="cb5-54"><a href="#cb5-54" aria-hidden="true" tabindex="-1"></a>            } <span class="cf">else</span> {</span>
+<span id="cb5-55"><a href="#cb5-55" aria-hidden="true" tabindex="-1"></a>                <span class="va">$errors</span>[<span class="st">'otp-error'</span>] <span class="op">=</span> <span class="st">"Terjadi kesalahan saat mengirim kode OTP!"</span><span class="ot">;</span></span>
+<span id="cb5-56"><a href="#cb5-56" aria-hidden="true" tabindex="-1"></a>            }</span>
+<span id="cb5-57"><a href="#cb5-57" aria-hidden="true" tabindex="-1"></a>        <span class="co">// HANDLING ERROR INSERT INTO DATABASE</span></span>
+<span id="cb5-58"><a href="#cb5-58" aria-hidden="true" tabindex="-1"></a>        } <span class="cf">else</span> {</span>
+<span id="cb5-59"><a href="#cb5-59" aria-hidden="true" tabindex="-1"></a>            <span class="va">$errors</span>[<span class="st">'db-error'</span>] <span class="op">=</span> <span class="st">"Gagal menambahkan data ke database!"</span><span class="ot">;</span></span>
+<span id="cb5-60"><a href="#cb5-60" aria-hidden="true" tabindex="-1"></a>        }</span>
+<span id="cb5-61"><a href="#cb5-61" aria-hidden="true" tabindex="-1"></a>    }</span>
+<span id="cb5-62"><a href="#cb5-62" aria-hidden="true" tabindex="-1"></a>}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="justify">
+<p>Algoritma dari procedural tersebut dimulai apabila terdapat aksi dari user di saat melakukan registrasi akun dengan menekan button “Sign Up”. Jadi, setelah terdapat 4 buah inputan data yang masuk akan melalui serangkaian proses verifikasi serta validasi terlebih dahulu. Di antaranya ada validasi alamat email, konfimasi kecocokan password, mengecek apakah alamat email sudah terdaftar atau belum, enkripsi password, dan melakukan pengiriman kode OTP via email.</p>
+<p>Anda dapat mengamati serta memodifikasi tiap-tiap kode di atas agar dapat mengetahui apa saja perbedaan respon yang diberikan jikalau Anda mengubahnya. Contohnya, Anda dapat mengubah kode validasi email dengan variabel <strong><code>$pattern</code></strong> yang ada di <em>section</em> <strong>C0 – Langkah Awal</strong>. Namun, setidaknya untuk menggunakan variabel tersebut, Anda perlu mengetahui rangkaian karakter, angka, serta simbol yang digunakan dalam memvalidasi alamat email. Hal ini bisa Anda dapatkan dari mata kuliah <span class="auth-code">Otomata &amp; Teori Bahasa</span> di kampus.</p>
+</div>
+</section>
+<section id="c2-memverifikasi-akun-baru" class="level3">
+<h3 class="anchored" data-anchor-id="c2-memverifikasi-akun-baru">C2 – Memverifikasi Akun Baru</h3>
+<div class="justify">
+<p>Masih di dalam file yang sama, kita akan meneruskan perjalanan kita setelah membuat akun dengan memverifikasi akun yang baru saja dibuat oleh user. Perhatikan <em>source code</em> yang ada di bawah ini:</p>
+<div class="sourceCode" id="cb6"><pre class="sourceCode php code-with-copy"><code class="sourceCode php"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="co">// PROSES VERIFIKASI KODE OTP [USER-OTP.PHP]</span></span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a><span class="co">// DIGUNAKAN UNTUK MEMVERIFIKASI AKUN MELALUI KODE OTP YANG TELAH DIKIRIMKAN VIA EMAIL</span></span>
+<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span> (<span class="kw">isset</span>(<span class="va">$_POST</span>[<span class="st">'check'</span>])) {</span>
+<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a>    <span class="co">// DIGUNAKAN UNTUK MENAMPILKAN NOTIFIKASI SUKSES ATAUPUN ERROR</span></span>
+<span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a>    <span class="va">$_SESSION</span>[<span class="st">'info'</span>] <span class="op">=</span> <span class="st">""</span><span class="ot">;</span></span>
+<span id="cb6-6"><a href="#cb6-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-7"><a href="#cb6-7" aria-hidden="true" tabindex="-1"></a>    <span class="co">// DATA YANG DIKIRIM OLEH USER MELALUI INPUTAN BOX OTP [USER-OTP.PHP]</span></span>
+<span id="cb6-8"><a href="#cb6-8" aria-hidden="true" tabindex="-1"></a>    <span class="va">$otp_code</span> <span class="op">=</span> <span class="fu">mysqli_real_escape_string</span>(<span class="va">$con</span><span class="ot">,</span> <span class="va">$_POST</span>[<span class="st">'otp'</span>])<span class="ot">;</span></span>
+<span id="cb6-9"><a href="#cb6-9" aria-hidden="true" tabindex="-1"></a>    <span class="va">$check_code</span> <span class="op">=</span> <span class="st">"SELECT * FROM usertable WHERE code = </span><span class="va">$otp_code</span><span class="st">"</span><span class="ot">;</span></span>
+<span id="cb6-10"><a href="#cb6-10" aria-hidden="true" tabindex="-1"></a>    <span class="va">$code_res</span> <span class="op">=</span> <span class="fu">mysqli_query</span>(<span class="va">$con</span><span class="ot">,</span> <span class="va">$check_code</span>)<span class="ot">;</span></span>
+<span id="cb6-11"><a href="#cb6-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-12"><a href="#cb6-12" aria-hidden="true" tabindex="-1"></a>    <span class="co">// ALGORITMA PEMROSESAN DARI 'NOTVERIFIED' KE 'VERIFIED'</span></span>
+<span id="cb6-13"><a href="#cb6-13" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> (<span class="fu">mysqli_num_rows</span>(<span class="va">$code_res</span>) <span class="op">&gt;</span> <span class="dv">0</span>) {</span>
+<span id="cb6-14"><a href="#cb6-14" aria-hidden="true" tabindex="-1"></a>        <span class="co">// MENGAMBIL DATA DARI SQL</span></span>
+<span id="cb6-15"><a href="#cb6-15" aria-hidden="true" tabindex="-1"></a>        <span class="va">$fetch_data</span> <span class="op">=</span> <span class="fu">mysqli_fetch_assoc</span>(<span class="va">$code_res</span>)<span class="ot">;</span></span>
+<span id="cb6-16"><a href="#cb6-16" aria-hidden="true" tabindex="-1"></a>        <span class="co">// MEMUAT DATA KODE SQL</span></span>
+<span id="cb6-17"><a href="#cb6-17" aria-hidden="true" tabindex="-1"></a>        <span class="va">$fetch_code</span> <span class="op">=</span> <span class="va">$fetch_data</span>[<span class="st">'code'</span>]<span class="ot">;</span></span>
+<span id="cb6-18"><a href="#cb6-18" aria-hidden="true" tabindex="-1"></a>        <span class="va">$email</span> <span class="op">=</span> <span class="va">$fetch_data</span>[<span class="st">'email'</span>]<span class="ot">;</span></span>
+<span id="cb6-19"><a href="#cb6-19" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-20"><a href="#cb6-20" aria-hidden="true" tabindex="-1"></a>        <span class="co">// INISIASI APABILA BERHASIL TERVERIFIKASI, KODE MENJADI 0 SELAIN ITU GAGAL</span></span>
+<span id="cb6-21"><a href="#cb6-21" aria-hidden="true" tabindex="-1"></a>        <span class="va">$code</span> <span class="op">=</span> <span class="dv">0</span><span class="ot">;</span></span>
+<span id="cb6-22"><a href="#cb6-22" aria-hidden="true" tabindex="-1"></a>        <span class="va">$status</span> <span class="op">=</span> <span class="st">'verified'</span><span class="ot">;</span></span>
+<span id="cb6-23"><a href="#cb6-23" aria-hidden="true" tabindex="-1"></a>        <span class="va">$update_otp</span> <span class="op">=</span> <span class="st">"UPDATE usertable SET code = </span><span class="va">$code</span><span class="st">, status = '</span><span class="va">$status</span><span class="st">' WHERE code = </span><span class="va">$fetch_code</span><span class="st">"</span><span class="ot">;</span></span>
+<span id="cb6-24"><a href="#cb6-24" aria-hidden="true" tabindex="-1"></a>        <span class="va">$update_res</span> <span class="op">=</span> <span class="fu">mysqli_query</span>(<span class="va">$con</span><span class="ot">,</span> <span class="va">$update_otp</span>)<span class="ot">;</span></span>
+<span id="cb6-25"><a href="#cb6-25" aria-hidden="true" tabindex="-1"></a>        <span class="cf">if</span> (<span class="va">$update_res</span>) {</span>
+<span id="cb6-26"><a href="#cb6-26" aria-hidden="true" tabindex="-1"></a>            <span class="va">$_SESSION</span>[<span class="st">'name'</span>] <span class="op">=</span> <span class="va">$name</span><span class="ot">;</span></span>
+<span id="cb6-27"><a href="#cb6-27" aria-hidden="true" tabindex="-1"></a>            <span class="va">$_SESSION</span>[<span class="st">'email'</span>] <span class="op">=</span> <span class="va">$email</span><span class="ot">;</span></span>
+<span id="cb6-28"><a href="#cb6-28" aria-hidden="true" tabindex="-1"></a>            <span class="fu">header</span>(<span class="st">'location: home.php'</span>)<span class="ot">;</span></span>
+<span id="cb6-29"><a href="#cb6-29" aria-hidden="true" tabindex="-1"></a>            <span class="cf">exit</span>()<span class="ot">;</span></span>
+<span id="cb6-30"><a href="#cb6-30" aria-hidden="true" tabindex="-1"></a>        } <span class="cf">else</span> {</span>
+<span id="cb6-31"><a href="#cb6-31" aria-hidden="true" tabindex="-1"></a>            <span class="va">$errors</span>[<span class="st">'otp-error'</span>] <span class="op">=</span> <span class="st">"Terjadi kesalahan saat memperbarui kode OTP!"</span><span class="ot">;</span></span>
+<span id="cb6-32"><a href="#cb6-32" aria-hidden="true" tabindex="-1"></a>        }</span>
+<span id="cb6-33"><a href="#cb6-33" aria-hidden="true" tabindex="-1"></a>    } <span class="cf">else</span> {</span>
+<span id="cb6-34"><a href="#cb6-34" aria-hidden="true" tabindex="-1"></a>        <span class="va">$errors</span>[<span class="st">'otp-error'</span>] <span class="op">=</span> <span class="st">"Kode OTP yang Anda masukkan salah!"</span><span class="ot">;</span></span>
+<span id="cb6-35"><a href="#cb6-35" aria-hidden="true" tabindex="-1"></a>    }</span>
+<span id="cb6-36"><a href="#cb6-36" aria-hidden="true" tabindex="-1"></a>}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Pemrosesan verifikasi akun melalui beberapa tahap, yaitu memperbarui kode OTP yang terdapat di phpMyAdmin serta mencocokan antara kode OTP input-an user (didapat dari email) dengan kode yang ada di database. Yang menjadi tolak ukur terverifikasinya suatu akun adalah apabila tiap alamat email yang memiliki kode 0, maka akun dengan alamat email tersebut sudah terverifikasi, selain itu belum. Sangat mudah, bukan?</p>
+</div>
+</section>
+<section id="c3-masuk-ke-dalam-sistem" class="level3">
+<h3 class="anchored" data-anchor-id="c3-masuk-ke-dalam-sistem">C3 – Masuk ke Dalam Sistem</h3>
+<div class="justify">
+<p>Selanjutnya setelah membuat <em>controller</em> verifikasi akun, kita akan membuat untuk yang lainnya, yaitu login. Halaman ini, memuat beberapa <strong><em>conditional cases</em></strong>, seperti apakah bentuknya? Mari kita simak melalui source code berikut ini:</p>
+<div class="sourceCode" id="cb7"><pre class="sourceCode php code-with-copy"><code class="sourceCode php"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="co">// APABILA USER AKAN LOGIN [LOGIN BUTTON]</span></span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a><span class="co">// MASUK KE DALAM SISTEM [LOGIN-USER.PHP]</span></span>
+<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span> (<span class="kw">isset</span>(<span class="va">$_POST</span>[<span class="st">'login'</span>])) {</span>
+<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a>    <span class="va">$email</span> <span class="op">=</span> <span class="fu">mysqli_real_escape_string</span>(<span class="va">$con</span><span class="ot">,</span> <span class="va">$_POST</span>[<span class="st">'email'</span>])<span class="ot">;</span></span>
+<span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a>    <span class="va">$password</span> <span class="op">=</span> <span class="fu">mysqli_real_escape_string</span>(<span class="va">$con</span><span class="ot">,</span> <span class="va">$_POST</span>[<span class="st">'password'</span>])<span class="ot">;</span></span>
+<span id="cb7-6"><a href="#cb7-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-7"><a href="#cb7-7" aria-hidden="true" tabindex="-1"></a>    <span class="co">// DIGUNAKAN APABILA ALAMAT EMAIL BELUM TERDAFTAR</span></span>
+<span id="cb7-8"><a href="#cb7-8" aria-hidden="true" tabindex="-1"></a>    <span class="co">// MENGECEK EMAIL DARI DATABASE</span></span>
+<span id="cb7-9"><a href="#cb7-9" aria-hidden="true" tabindex="-1"></a>    <span class="va">$check_email</span> <span class="op">=</span> <span class="st">"SELECT * FROM usertable WHERE email = '</span><span class="va">$email</span><span class="st">'"</span><span class="ot">;</span></span>
+<span id="cb7-10"><a href="#cb7-10" aria-hidden="true" tabindex="-1"></a>    <span class="va">$res</span> <span class="op">=</span> <span class="fu">mysqli_query</span>(<span class="va">$con</span><span class="ot">,</span> <span class="va">$check_email</span>)<span class="ot">;</span></span>
+<span id="cb7-11"><a href="#cb7-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-12"><a href="#cb7-12" aria-hidden="true" tabindex="-1"></a>    <span class="co">// #1 - APAKAH EMAIL SUDAH TERDAFTAR?</span></span>
+<span id="cb7-13"><a href="#cb7-13" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> (<span class="fu">mysqli_num_rows</span>(<span class="va">$res</span>) <span class="op">&gt;</span> <span class="dv">0</span>) {</span>
+<span id="cb7-14"><a href="#cb7-14" aria-hidden="true" tabindex="-1"></a>        <span class="va">$fetch</span> <span class="op">=</span> <span class="fu">mysqli_fetch_assoc</span>(<span class="va">$res</span>)<span class="ot">;</span></span>
+<span id="cb7-15"><a href="#cb7-15" aria-hidden="true" tabindex="-1"></a>        <span class="va">$fetch_pass</span> <span class="op">=</span> <span class="va">$fetch</span>[<span class="st">'password'</span>]<span class="ot">;</span></span>
+<span id="cb7-16"><a href="#cb7-16" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-17"><a href="#cb7-17" aria-hidden="true" tabindex="-1"></a>        <span class="co">// #2 - APAKAH EMAIL DAN ATAU PASSWORD YANG DIINPUTKAN BENAR?</span></span>
+<span id="cb7-18"><a href="#cb7-18" aria-hidden="true" tabindex="-1"></a>        <span class="cf">if</span> (<span class="fu">password_verify</span>(<span class="va">$password</span><span class="ot">,</span> <span class="va">$fetch_pass</span>)) {</span>
+<span id="cb7-19"><a href="#cb7-19" aria-hidden="true" tabindex="-1"></a>            <span class="va">$_SESSION</span>[<span class="st">'email'</span>] <span class="op">=</span> <span class="va">$email</span><span class="ot">;</span></span>
+<span id="cb7-20"><a href="#cb7-20" aria-hidden="true" tabindex="-1"></a>            <span class="va">$status</span> <span class="op">=</span> <span class="va">$fetch</span>[<span class="st">'status'</span>]<span class="ot">;</span></span>
+<span id="cb7-21"><a href="#cb7-21" aria-hidden="true" tabindex="-1"></a>            </span>
+<span id="cb7-22"><a href="#cb7-22" aria-hidden="true" tabindex="-1"></a>            <span class="co">// #3 - APAKAH AKUN SUDAH TERVERIFIKASI?</span></span>
+<span id="cb7-23"><a href="#cb7-23" aria-hidden="true" tabindex="-1"></a>            <span class="cf">if</span> (<span class="va">$status</span> <span class="op">==</span> <span class="st">'verified'</span>) {</span>
+<span id="cb7-24"><a href="#cb7-24" aria-hidden="true" tabindex="-1"></a>                <span class="va">$_SESSION</span>[<span class="st">'email'</span>] <span class="op">=</span> <span class="va">$email</span><span class="ot">;</span></span>
+<span id="cb7-25"><a href="#cb7-25" aria-hidden="true" tabindex="-1"></a>                <span class="va">$_SESSION</span>[<span class="st">'password'</span>] <span class="op">=</span> <span class="va">$password</span><span class="ot">;</span></span>
+<span id="cb7-26"><a href="#cb7-26" aria-hidden="true" tabindex="-1"></a>                <span class="fu">header</span>(<span class="st">'location: home.php'</span>)<span class="ot">;</span></span>
+<span id="cb7-27"><a href="#cb7-27" aria-hidden="true" tabindex="-1"></a>            } <span class="cf">else</span> {</span>
+<span id="cb7-28"><a href="#cb7-28" aria-hidden="true" tabindex="-1"></a>                <span class="va">$info</span> <span class="op">=</span> <span class="st">"Sepertinya kamu belum memverifikasi emailmu, nih - </span><span class="va">$email</span><span class="st">"</span><span class="ot">;</span></span>
+<span id="cb7-29"><a href="#cb7-29" aria-hidden="true" tabindex="-1"></a>                <span class="va">$_SESSION</span>[<span class="st">'info'</span>] <span class="op">=</span> <span class="va">$info</span><span class="ot">;</span></span>
+<span id="cb7-30"><a href="#cb7-30" aria-hidden="true" tabindex="-1"></a>                <span class="fu">header</span>(<span class="st">'location: user-otp.php'</span>)<span class="ot">;</span></span>
+<span id="cb7-31"><a href="#cb7-31" aria-hidden="true" tabindex="-1"></a>            }</span>
+<span id="cb7-32"><a href="#cb7-32" aria-hidden="true" tabindex="-1"></a>        } <span class="cf">else</span> {</span>
+<span id="cb7-33"><a href="#cb7-33" aria-hidden="true" tabindex="-1"></a>            <span class="va">$errors</span>[<span class="st">'email'</span>] <span class="op">=</span> <span class="st">"Alamat email atau password salah!"</span><span class="ot">;</span></span>
+<span id="cb7-34"><a href="#cb7-34" aria-hidden="true" tabindex="-1"></a>        }</span>
+<span id="cb7-35"><a href="#cb7-35" aria-hidden="true" tabindex="-1"></a>    } <span class="cf">else</span> {</span>
+<span id="cb7-36"><a href="#cb7-36" aria-hidden="true" tabindex="-1"></a>        <span class="va">$errors</span>[<span class="st">'email'</span>] <span class="op">=</span> <span class="st">"Sepertinya Anda belum terdaftar sebagai member! Daftar melalui link di bawah ini."</span><span class="ot">;</span></span>
+<span id="cb7-37"><a href="#cb7-37" aria-hidden="true" tabindex="-1"></a>    }</span>
+<span id="cb7-38"><a href="#cb7-38" aria-hidden="true" tabindex="-1"></a>}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Di dalam script, Anda bisa mengobservasi bahwasannya terdapat beberapa kondisi; jika ini, maka demikian, ini dikarenakan untuk dapat menangani kasus-kasus di saat situasi-situasi tertentu. Misalnya, apa yang harus dilakukan apabila suatu saat ternyata user memasukkan alamat email yang ternyata belum terdaftar pada sistem. Contoh lainnya, apa yang harus dilakukan apabila password dan/atau email yang dimasukkan oleh user salah? Nah, demikianlah peran dari tiap-tiap <strong><em>nested if-else statement</em></strong> di atas. Amati dan tariklah kesimpulan!</p>
+</div>
+</section>
+<section id="c4-lupa-kata-sandi" class="level3">
+<h3 class="anchored" data-anchor-id="c4-lupa-kata-sandi">C4 – Lupa Kata Sandi</h3>
+<div class="justify">
+<p>Acapkali kita lupa akan kata sandi suatu akun terlebih kita memiliki puluhan akun dengan kombinasi password tiap akun berbeda. Oleh karena itu, kita harus membangun <em>controller</em> yang di mana dapat memungkinkan kita untuk mengubah password lama dengan yang baru. Salin kode berikut ini ke dalam file <em>controller</em> Anda (<strong>controllerUserData.php</strong>):</p>
+<div class="sourceCode" id="cb8"><pre class="sourceCode php code-with-copy"><code class="sourceCode php"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="co">// APABILA USER LUPA PASSWORD [FORGOT PASSWORD LINK]</span></span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a><span class="co">// NB: AKSI MELAKUKAN KLIK "CONTINUE" BUTTON [FORGOT-PASSWORD.PHP]</span></span>
+<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span> (<span class="kw">isset</span>(<span class="va">$_POST</span>[<span class="st">'check-email'</span>])) {</span>
+<span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a>    <span class="va">$email</span> <span class="op">=</span> <span class="fu">mysqli_real_escape_string</span>(<span class="va">$con</span><span class="ot">,</span> <span class="va">$_POST</span>[<span class="st">'email'</span>])<span class="ot">;</span></span>
+<span id="cb8-5"><a href="#cb8-5" aria-hidden="true" tabindex="-1"></a>    <span class="va">$check_email</span> <span class="op">=</span> <span class="st">"SELECT * FROM usertable WHERE email='</span><span class="va">$email</span><span class="st">'"</span><span class="ot">;</span></span>
+<span id="cb8-6"><a href="#cb8-6" aria-hidden="true" tabindex="-1"></a>    <span class="va">$run_sql</span> <span class="op">=</span> <span class="fu">mysqli_query</span>(<span class="va">$con</span><span class="ot">,</span> <span class="va">$check_email</span>)<span class="ot">;</span></span>
+<span id="cb8-7"><a href="#cb8-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-8"><a href="#cb8-8" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> (<span class="fu">mysqli_num_rows</span>(<span class="va">$run_sql</span>) <span class="op">&gt;</span> <span class="dv">0</span>) {</span>
+<span id="cb8-9"><a href="#cb8-9" aria-hidden="true" tabindex="-1"></a>        <span class="co">// KODE OTP BARU</span></span>
+<span id="cb8-10"><a href="#cb8-10" aria-hidden="true" tabindex="-1"></a>        <span class="co">// SEBAGAI SYARAT UNTUK MENGUBAH PASSWORD</span></span>
+<span id="cb8-11"><a href="#cb8-11" aria-hidden="true" tabindex="-1"></a>        <span class="va">$code</span> <span class="op">=</span> <span class="fu">rand</span>(<span class="dv">999999</span><span class="ot">,</span> <span class="dv">111111</span>)<span class="ot">;</span></span>
+<span id="cb8-12"><a href="#cb8-12" aria-hidden="true" tabindex="-1"></a>        <span class="va">$insert_code</span> <span class="op">=</span> <span class="st">"UPDATE usertable SET code = </span><span class="va">$code</span><span class="st"> WHERE email = '</span><span class="va">$email</span><span class="st">'"</span><span class="ot">;</span></span>
+<span id="cb8-13"><a href="#cb8-13" aria-hidden="true" tabindex="-1"></a>        <span class="va">$run_query</span> <span class="op">=</span> <span class="fu">mysqli_query</span>(<span class="va">$con</span><span class="ot">,</span> <span class="va">$insert_code</span>)<span class="ot">;</span></span>
+<span id="cb8-14"><a href="#cb8-14" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-15"><a href="#cb8-15" aria-hidden="true" tabindex="-1"></a>        <span class="cf">if</span> (<span class="va">$run_query</span>) {</span>
+<span id="cb8-16"><a href="#cb8-16" aria-hidden="true" tabindex="-1"></a>            <span class="va">$subject</span> <span class="op">=</span> <span class="st">"Kode Reset Password"</span><span class="ot">;</span> <span class="co">// Subjek email</span></span>
+<span id="cb8-17"><a href="#cb8-17" aria-hidden="true" tabindex="-1"></a>            <span class="va">$message</span> <span class="op">=</span> <span class="st">"Kode reset password Anda adalah </span><span class="va">$code</span><span class="st">"</span><span class="ot">;</span> <span class="co">// Isi email</span></span>
+<span id="cb8-18"><a href="#cb8-18" aria-hidden="true" tabindex="-1"></a>            <span class="va">$sender</span> <span class="op">=</span> <span class="st">"From: emailaktif@gmail.com"</span><span class="ot">;</span> <span class="co">// Pengirim email</span></span>
+<span id="cb8-19"><a href="#cb8-19" aria-hidden="true" tabindex="-1"></a>            </span>
+<span id="cb8-20"><a href="#cb8-20" aria-hidden="true" tabindex="-1"></a>            <span class="cf">if</span> (<span class="fu">mail</span>(<span class="va">$email</span><span class="ot">,</span> <span class="va">$subject</span><span class="ot">,</span> <span class="va">$message</span><span class="ot">,</span> <span class="va">$sender</span>)) {</span>
+<span id="cb8-21"><a href="#cb8-21" aria-hidden="true" tabindex="-1"></a>                <span class="va">$info</span> <span class="op">=</span> <span class="st">"Kami telah mengirimkan OTP reset kata sandi ke email Anda - </span><span class="va">$email</span><span class="st">"</span><span class="ot">;</span></span>
+<span id="cb8-22"><a href="#cb8-22" aria-hidden="true" tabindex="-1"></a>                <span class="va">$_SESSION</span>[<span class="st">'info'</span>] <span class="op">=</span> <span class="va">$info</span><span class="ot">;</span></span>
+<span id="cb8-23"><a href="#cb8-23" aria-hidden="true" tabindex="-1"></a>                <span class="va">$_SESSION</span>[<span class="st">'email'</span>] <span class="op">=</span> <span class="va">$email</span><span class="ot">;</span></span>
+<span id="cb8-24"><a href="#cb8-24" aria-hidden="true" tabindex="-1"></a>                <span class="fu">header</span>(<span class="st">'location: reset-code.php'</span>)<span class="ot">;</span></span>
+<span id="cb8-25"><a href="#cb8-25" aria-hidden="true" tabindex="-1"></a>                <span class="cf">exit</span>()<span class="ot">;</span></span>
+<span id="cb8-26"><a href="#cb8-26" aria-hidden="true" tabindex="-1"></a>            } <span class="cf">else</span> {</span>
+<span id="cb8-27"><a href="#cb8-27" aria-hidden="true" tabindex="-1"></a>                <span class="va">$errors</span>[<span class="st">'otp-error'</span>] <span class="op">=</span> <span class="st">"Terjadi kesalahan saat mengirim kode!"</span><span class="ot">;</span></span>
+<span id="cb8-28"><a href="#cb8-28" aria-hidden="true" tabindex="-1"></a>            }</span>
+<span id="cb8-29"><a href="#cb8-29" aria-hidden="true" tabindex="-1"></a>        } <span class="cf">else</span> {</span>
+<span id="cb8-30"><a href="#cb8-30" aria-hidden="true" tabindex="-1"></a>            <span class="va">$errors</span>[<span class="st">'db-error'</span>] <span class="op">=</span> <span class="st">"Whoops.. ada sesuatu yang salah!"</span><span class="ot">;</span></span>
+<span id="cb8-31"><a href="#cb8-31" aria-hidden="true" tabindex="-1"></a>        }</span>
+<span id="cb8-32"><a href="#cb8-32" aria-hidden="true" tabindex="-1"></a>    } <span class="cf">else</span> {</span>
+<span id="cb8-33"><a href="#cb8-33" aria-hidden="true" tabindex="-1"></a>        <span class="va">$errors</span>[<span class="st">'email'</span>] <span class="op">=</span> <span class="st">"Sepertinya email tersebut belum terdaftar, nih!"</span><span class="ot">;</span></span>
+<span id="cb8-34"><a href="#cb8-34" aria-hidden="true" tabindex="-1"></a>    }</span>
+<span id="cb8-35"><a href="#cb8-35" aria-hidden="true" tabindex="-1"></a>}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Di saat lupa password, user akan diminta untuk memasukkan alamat email akun mereka. Kemudian, sistem mulai bekerja dengan mengecek kembali apakah email sudah terdaftar dan sebagainya. Jika Anda mengamati dengan saksama, konsep yang dipakai sama seperti dengan fungsi-fungsi procedural sebelumnya. Di sini pula, kita akan membentuk suatu kode OTP baru guna verifikasi perubahan kata sandi dari yang lama menjadi baru. Ini memiliki kesinambungan dengan controller yang akan kita bahas selanjutnya.</p>
+</div>
+</section>
+<section id="c5-kode-otp-untuk-password-baru" class="level3">
+<h3 class="anchored" data-anchor-id="c5-kode-otp-untuk-password-baru">C5 – Kode OTP untuk Password Baru</h3>
+<div class="justify">
+<p>Pada verifikasi kode OTP yang digunakan untuk reset password ini dapat dikatakan sangat mudah. Kita hanya perlu memuat <em>session</em> dari email dari melakukan proses verifikasi terhadap kecocokan kode OTP yang telah dikirimkan melalui alamat email. Berikut <em>source code</em> dari <em>controller</em> tersebut:</p>
+<div class="sourceCode" id="cb9"><pre class="sourceCode php code-with-copy"><code class="sourceCode php"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="co">// MEMVERIFIKASI KODE OTP KHUSUS UNTUK PASSWORD BARU</span></span>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a><span class="co">// AKSI YANG DILAKUKAN SAAT MEMINTA RESET PASSWORD [RESET-CODE.PHP]</span></span>
+<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span> (<span class="kw">isset</span>(<span class="va">$_POST</span>[<span class="st">'check-reset-otp'</span>])) {</span>
+<span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a>    <span class="va">$_SESSION</span>[<span class="st">'info'</span>] <span class="op">=</span> <span class="st">""</span><span class="ot">;</span></span>
+<span id="cb9-5"><a href="#cb9-5" aria-hidden="true" tabindex="-1"></a>    <span class="va">$otp_code</span> <span class="op">=</span> <span class="fu">mysqli_real_escape_string</span>(<span class="va">$con</span><span class="ot">,</span> <span class="va">$_POST</span>[<span class="st">'otp'</span>])<span class="ot">;</span></span>
+<span id="cb9-6"><a href="#cb9-6" aria-hidden="true" tabindex="-1"></a>    <span class="va">$check_code</span> <span class="op">=</span> <span class="st">"SELECT * FROM usertable WHERE code = </span><span class="va">$otp_code</span><span class="st">"</span><span class="ot">;</span></span>
+<span id="cb9-7"><a href="#cb9-7" aria-hidden="true" tabindex="-1"></a>    <span class="va">$code_res</span> <span class="op">=</span> <span class="fu">mysqli_query</span>(<span class="va">$con</span><span class="ot">,</span> <span class="va">$check_code</span>)<span class="ot">;</span></span>
+<span id="cb9-8"><a href="#cb9-8" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb9-9"><a href="#cb9-9" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> (<span class="fu">mysqli_num_rows</span>(<span class="va">$code_res</span>) <span class="op">&gt;</span> <span class="dv">0</span>) {</span>
+<span id="cb9-10"><a href="#cb9-10" aria-hidden="true" tabindex="-1"></a>        <span class="va">$fetch_data</span> <span class="op">=</span> <span class="fu">mysqli_fetch_assoc</span>(<span class="va">$code_res</span>)<span class="ot">;</span></span>
+<span id="cb9-11"><a href="#cb9-11" aria-hidden="true" tabindex="-1"></a>        <span class="va">$email</span> <span class="op">=</span> <span class="va">$fetch_data</span>[<span class="st">'email'</span>]<span class="ot">;</span></span>
+<span id="cb9-12"><a href="#cb9-12" aria-hidden="true" tabindex="-1"></a>        <span class="va">$_SESSION</span>[<span class="st">'email'</span>] <span class="op">=</span> <span class="va">$email</span><span class="ot">;</span></span>
+<span id="cb9-13"><a href="#cb9-13" aria-hidden="true" tabindex="-1"></a>        <span class="va">$info</span> <span class="op">=</span> <span class="st">"Silakan buat kata sandi baru yang tidak Anda gunakan di situs lain."</span><span class="ot">;</span></span>
+<span id="cb9-14"><a href="#cb9-14" aria-hidden="true" tabindex="-1"></a>        <span class="va">$_SESSION</span>[<span class="st">'info'</span>] <span class="op">=</span> <span class="va">$info</span><span class="ot">;</span></span>
+<span id="cb9-15"><a href="#cb9-15" aria-hidden="true" tabindex="-1"></a>        <span class="fu">header</span>(<span class="st">'location: new-password.php'</span>)<span class="ot">;</span></span>
+<span id="cb9-16"><a href="#cb9-16" aria-hidden="true" tabindex="-1"></a>        <span class="cf">exit</span>()<span class="ot">;</span></span>
+<span id="cb9-17"><a href="#cb9-17" aria-hidden="true" tabindex="-1"></a>    } <span class="cf">else</span> {</span>
+<span id="cb9-18"><a href="#cb9-18" aria-hidden="true" tabindex="-1"></a>        <span class="va">$errors</span>[<span class="st">'otp-error'</span>] <span class="op">=</span> <span class="st">"Kode OTP yang Anda masukkan salah!"</span><span class="ot">;</span></span>
+<span id="cb9-19"><a href="#cb9-19" aria-hidden="true" tabindex="-1"></a>    }</span>
+<span id="cb9-20"><a href="#cb9-20" aria-hidden="true" tabindex="-1"></a>}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Dikarenakan dari awal kita sudah menyinggung controller yang satu ini khusus reset password, ini memiliki makna bahwa alamat email user sudah terdaftar pada sistem. Oleh karenanya, kemungkinan terjadi kondisi-kondisi tertentu sangatlah sedikit. Ini disebabkan ruang lingkup dari controller ini hanya membatasi untuk memverifikasi kode OTP yang diberikan. Penanganan masalah daripada halaman ini hanya berkisar di saat user salah memasukkan kode OTP.</p>
+</div>
+</section>
+<section id="c6-membuat-password-baru" class="level3">
+<h3 class="anchored" data-anchor-id="c6-membuat-password-baru">C6 – Membuat Password Baru</h3>
+<div class="justify">
+<p>Saat ini kita akan memasuki proses pembuatan password baru. Seperti yang kita ketahui, setelah kita mendapat izin dengan verifikasi kode OTP, kita diberikan kewenangan untuk mengubah kata sandi pada akun kita. Kita akan menggabungkan beberapa komponen-komponen seperti yang telah kita lakukan pada <em>controller</em> sebelumnya. Simak <em>source code</em> berikut:</p>
+<div class="sourceCode" id="cb10"><pre class="sourceCode php code-with-copy"><code class="sourceCode php"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="co">// MENGGANTI PASSWORD YANG LAMA DENGAN YANG BARU</span></span>
+<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a><span class="co">// AKSI DILAKUKAN DENGAN BUTTON "CHANGE PASSWORD" [NEW-PASSWORD.PHP]</span></span>
+<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span> (<span class="kw">isset</span>(<span class="va">$_POST</span>[<span class="st">'change-password'</span>])) {</span>
+<span id="cb10-4"><a href="#cb10-4" aria-hidden="true" tabindex="-1"></a>    <span class="va">$_SESSION</span>[<span class="st">'info'</span>] <span class="op">=</span> <span class="st">""</span><span class="ot">;</span></span>
+<span id="cb10-5"><a href="#cb10-5" aria-hidden="true" tabindex="-1"></a>    <span class="va">$password</span> <span class="op">=</span> <span class="fu">mysqli_real_escape_string</span>(<span class="va">$con</span><span class="ot">,</span> <span class="va">$_POST</span>[<span class="st">'password'</span>])<span class="ot">;</span></span>
+<span id="cb10-6"><a href="#cb10-6" aria-hidden="true" tabindex="-1"></a>    <span class="va">$cpassword</span> <span class="op">=</span> <span class="fu">mysqli_real_escape_string</span>(<span class="va">$con</span><span class="ot">,</span> <span class="va">$_POST</span>[<span class="st">'cpassword'</span>])<span class="ot">;</span></span>
+<span id="cb10-7"><a href="#cb10-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-8"><a href="#cb10-8" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> (<span class="va">$password</span> <span class="op">!==</span> <span class="va">$cpassword</span>) {</span>
+<span id="cb10-9"><a href="#cb10-9" aria-hidden="true" tabindex="-1"></a>        <span class="va">$errors</span>[<span class="st">'password'</span>] <span class="op">=</span> <span class="st">"Konfirmasi kata sandi Anda tidak cocok!"</span><span class="ot">;</span></span>
+<span id="cb10-10"><a href="#cb10-10" aria-hidden="true" tabindex="-1"></a>    } <span class="cf">else</span> {</span>
+<span id="cb10-11"><a href="#cb10-11" aria-hidden="true" tabindex="-1"></a>        <span class="va">$code</span> <span class="op">=</span> <span class="dv">0</span><span class="ot">;</span></span>
+<span id="cb10-12"><a href="#cb10-12" aria-hidden="true" tabindex="-1"></a>        <span class="va">$email</span> <span class="op">=</span> <span class="va">$_SESSION</span>[<span class="st">'email'</span>]<span class="ot">;</span></span>
+<span id="cb10-13"><a href="#cb10-13" aria-hidden="true" tabindex="-1"></a>        <span class="va">$encpass</span> <span class="op">=</span> <span class="fu">password_hash</span>(<span class="va">$password</span><span class="ot">,</span> <span class="cn">PASSWORD_BCRYPT</span>)<span class="ot">;</span></span>
+<span id="cb10-14"><a href="#cb10-14" aria-hidden="true" tabindex="-1"></a>        <span class="va">$update_pass</span> <span class="op">=</span> <span class="st">"UPDATE usertable SET code = </span><span class="va">$code</span><span class="st">, password = '</span><span class="va">$encpass</span><span class="st">' WHERE email = '</span><span class="va">$email</span><span class="st">'"</span><span class="ot">;</span></span>
+<span id="cb10-15"><a href="#cb10-15" aria-hidden="true" tabindex="-1"></a>        <span class="va">$run_query</span> <span class="op">=</span> <span class="fu">mysqli_query</span>(<span class="va">$con</span><span class="ot">,</span> <span class="va">$update_pass</span>)<span class="ot">;</span></span>
+<span id="cb10-16"><a href="#cb10-16" aria-hidden="true" tabindex="-1"></a>        </span>
+<span id="cb10-17"><a href="#cb10-17" aria-hidden="true" tabindex="-1"></a>        <span class="cf">if</span> (<span class="va">$run_query</span>) {</span>
+<span id="cb10-18"><a href="#cb10-18" aria-hidden="true" tabindex="-1"></a>            <span class="va">$info</span> <span class="op">=</span> <span class="st">"Kata sandi Anda berhasil diubah. Sekarang Anda dapat login dengan kata sandi yang baru."</span><span class="ot">;</span></span>
+<span id="cb10-19"><a href="#cb10-19" aria-hidden="true" tabindex="-1"></a>            <span class="va">$_SESSION</span>[<span class="st">'info'</span>] <span class="op">=</span> <span class="va">$info</span><span class="ot">;</span></span>
+<span id="cb10-20"><a href="#cb10-20" aria-hidden="true" tabindex="-1"></a>            <span class="fu">header</span>(<span class="st">'Location: password-changed.php'</span>)<span class="ot">;</span></span>
+<span id="cb10-21"><a href="#cb10-21" aria-hidden="true" tabindex="-1"></a>        } <span class="cf">else</span> {</span>
+<span id="cb10-22"><a href="#cb10-22" aria-hidden="true" tabindex="-1"></a>            <span class="va">$errors</span>[<span class="st">'db-error'</span>] <span class="op">=</span> <span class="st">"Gagal untuk mengubah kata sandi Anda!"</span><span class="ot">;</span></span>
+<span id="cb10-23"><a href="#cb10-23" aria-hidden="true" tabindex="-1"></a>        }</span>
+<span id="cb10-24"><a href="#cb10-24" aria-hidden="true" tabindex="-1"></a>    }</span>
+<span id="cb10-25"><a href="#cb10-25" aria-hidden="true" tabindex="-1"></a>}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Jadi, nantinya user akan memasukkan kata sandi mereka yang baru. Kemudian, akan dilakukan kecocokan antara password dan konfirmasi ulang password. Jika sesuai, akan dieksekusi perintah SQL untuk meng-update kode user menjadi 0 dan password yang tentunya sudah dienkripsi. Setelah itu, user akan diarahkan untuk masuk ke dalam sistem (login) dengan ditampilkannya halaman notifikasi bahwa kata sandi berhasil diubah.</p>
+</div>
+</section>
+<section id="c7-masuk-kembali-dengan-password-baru" class="level3">
+<h3 class="anchored" data-anchor-id="c7-masuk-kembali-dengan-password-baru">C7 – Masuk Kembali dengan Password Baru</h3>
+<div class="justify">
+<p>Dikarenakan halaman berikutnya setelah mengubah <em>password</em> hanya berupa halaman notifikasi, kita hanya perlu <em>script</em> singkat seperti berikut ini:</p>
+<div class="sourceCode" id="cb11"><pre class="sourceCode php code-with-copy"><code class="sourceCode php"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="co">// CONTROLLER UNTUK [PASSWORD-CHANGED.PHP]</span></span>
+<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span> (<span class="kw">isset</span>(<span class="va">$_POST</span>[<span class="st">'login-now'</span>])) {</span>
+<span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a>    <span class="fu">header</span>(<span class="st">'Location: login-user.php'</span>)<span class="ot">;</span></span>
+<span id="cb11-4"><a href="#cb11-4" aria-hidden="true" tabindex="-1"></a>}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section>
+<section id="c8-modifikasi-beberapa-halaman" class="level3">
+<h3 class="anchored" data-anchor-id="c8-modifikasi-beberapa-halaman">C8 – Modifikasi Beberapa Halaman</h3>
+<div class="justify">
+<p><strong>Selamat!</strong> Kita telah berhasil membangun kontroler untuk sistem <em>login</em> ini. Pada akhirnya kita akan segera menyelesaikan proyek studi kasus kita kali ini. Hanya tinggal sentuhan terakhir untuk menyempurnakan proyek ini, yaitu dengan salin kode berikut:</p>
+<div class="sourceCode" id="cb12"><pre class="sourceCode php code-with-copy"><code class="sourceCode php"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="kw">&lt;?php</span> <span class="kw">require_once</span> <span class="st">"controllerUserData.php"</span><span class="ot">;</span> <span class="kw">?&gt;</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Salin kode di atas dan <strong>letakkan pada 8 (delapan) file</strong> berikut ini:</p>
+<ol type="1">
+<li>forgot-password.php</li>
+<li>home.php</li>
+<li>login-user.php</li>
+<li>new-password.php</li>
+<li>password-changed.php</li>
+<li>reset-code.php</li>
+<li>signup-user.php</li>
+<li>user-otp.php</li>
+</ol>
+<p>Harap letakkan kode tersebut <strong>PALING ATAS DI DALAM TIAP-TIAP FILE!</strong> Ini ditujukan agar <em>controller</em> dapat memainkan perannya dengan baik. <strong>Selamat, Anda telah berhasil!</strong></p>
+</div>
+
+
+</section>
+</section>
+
+</main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+window.document.addEventListener("DOMContentLoaded", function (event) {
+  const toggleBodyColorMode = (bsSheetEl) => {
+    const mode = bsSheetEl.getAttribute("data-mode");
+    const bodyEl = window.document.querySelector("body");
+    if (mode === "dark") {
+      bodyEl.classList.add("quarto-dark");
+      bodyEl.classList.remove("quarto-light");
+    } else {
+      bodyEl.classList.add("quarto-light");
+      bodyEl.classList.remove("quarto-dark");
+    }
+  }
+  const toggleBodyColorPrimary = () => {
+    const bsSheetEl = window.document.querySelector("link#quarto-bootstrap");
+    if (bsSheetEl) {
+      toggleBodyColorMode(bsSheetEl);
+    }
+  }
+  toggleBodyColorPrimary();  
+  const disableStylesheet = (stylesheets) => {
+    for (let i=0; i < stylesheets.length; i++) {
+      const stylesheet = stylesheets[i];
+      stylesheet.rel = 'prefetch';
+    }
+  }
+  const enableStylesheet = (stylesheets) => {
+    for (let i=0; i < stylesheets.length; i++) {
+      const stylesheet = stylesheets[i];
+      stylesheet.rel = 'stylesheet';
+    }
+  }
+  const manageTransitions = (selector, allowTransitions) => {
+    const els = window.document.querySelectorAll(selector);
+    for (let i=0; i < els.length; i++) {
+      const el = els[i];
+      if (allowTransitions) {
+        el.classList.remove('notransition');
+      } else {
+        el.classList.add('notransition');
+      }
+    }
+  }
+  const toggleColorMode = (alternate) => {
+    // Switch the stylesheets
+    const alternateStylesheets = window.document.querySelectorAll('link.quarto-color-scheme.quarto-color-alternate');
+    manageTransitions('#quarto-margin-sidebar .nav-link', false);
+    if (alternate) {
+      enableStylesheet(alternateStylesheets);
+      for (const sheetNode of alternateStylesheets) {
+        if (sheetNode.id === "quarto-bootstrap") {
+          toggleBodyColorMode(sheetNode);
+        }
+      }
+    } else {
+      disableStylesheet(alternateStylesheets);
+      toggleBodyColorPrimary();
+    }
+    manageTransitions('#quarto-margin-sidebar .nav-link', true);
+    // Switch the toggles
+    const toggles = window.document.querySelectorAll('.quarto-color-scheme-toggle');
+    for (let i=0; i < toggles.length; i++) {
+      const toggle = toggles[i];
+      if (toggle) {
+        if (alternate) {
+          toggle.classList.add("alternate");     
+        } else {
+          toggle.classList.remove("alternate");
+        }
+      }
+    }
+    // Hack to workaround the fact that safari doesn't
+    // properly recolor the scrollbar when toggling (#1455)
+    if (navigator.userAgent.indexOf('Safari') > 0 && navigator.userAgent.indexOf('Chrome') == -1) {
+      manageTransitions("body", false);
+      window.scrollTo(0, 1);
+      setTimeout(() => {
+        window.scrollTo(0, 0);
+        manageTransitions("body", true);
+      }, 40);  
+    }
+  }
+  const isFileUrl = () => { 
+    return window.location.protocol === 'file:';
+  }
+  const hasAlternateSentinel = () => {  
+    let styleSentinel = getColorSchemeSentinel();
+    if (styleSentinel !== null) {
+      return styleSentinel === "alternate";
+    } else {
+      return false;
+    }
+  }
+  const setStyleSentinel = (alternate) => {
+    const value = alternate ? "alternate" : "default";
+    if (!isFileUrl()) {
+      window.localStorage.setItem("quarto-color-scheme", value);
+    } else {
+      localAlternateSentinel = value;
+    }
+  }
+  const getColorSchemeSentinel = () => {
+    if (!isFileUrl()) {
+      const storageValue = window.localStorage.getItem("quarto-color-scheme");
+      return storageValue != null ? storageValue : localAlternateSentinel;
+    } else {
+      return localAlternateSentinel;
+    }
+  }
+  let localAlternateSentinel = 'default';
+  // Dark / light mode switch
+  window.quartoToggleColorScheme = () => {
+    // Read the current dark / light value 
+    let toAlternate = !hasAlternateSentinel();
+    toggleColorMode(toAlternate);
+    setStyleSentinel(toAlternate);
+  };
+  // Ensure there is a toggle, if there isn't float one in the top right
+  if (window.document.querySelector('.quarto-color-scheme-toggle') === null) {
+    const a = window.document.createElement('a');
+    a.classList.add('top-right');
+    a.classList.add('quarto-color-scheme-toggle');
+    a.href = "";
+    a.onclick = function() { try { window.quartoToggleColorScheme(); } catch {} return false; };
+    const i = window.document.createElement("i");
+    i.classList.add('bi');
+    a.appendChild(i);
+    window.document.body.appendChild(a);
+  }
+  // Switch to dark mode if need be
+  if (hasAlternateSentinel()) {
+    toggleColorMode(true);
+  } else {
+    toggleColorMode(false);
+  }
+  const icon = "";
+  const anchorJS = new window.AnchorJS();
+  anchorJS.options = {
+    placement: 'right',
+    icon: icon
+  };
+  anchorJS.add('.anchored');
+  const isCodeAnnotation = (el) => {
+    for (const clz of el.classList) {
+      if (clz.startsWith('code-annotation-')) {                     
+        return true;
+      }
+    }
+    return false;
+  }
+  const clipboard = new window.ClipboardJS('.code-copy-button', {
+    text: function(trigger) {
+      const codeEl = trigger.previousElementSibling.cloneNode(true);
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+    }
+  });
+  clipboard.on('success', function(e) {
+    // button target
+    const button = e.trigger;
+    // don't keep focus
+    button.blur();
+    // flash "checked"
+    button.classList.add('code-copy-button-checked');
+    var currentTitle = button.getAttribute("title");
+    button.setAttribute("title", "Copied!");
+    let tooltip;
+    if (window.bootstrap) {
+      button.setAttribute("data-bs-toggle", "tooltip");
+      button.setAttribute("data-bs-placement", "left");
+      button.setAttribute("data-bs-title", "Copied!");
+      tooltip = new bootstrap.Tooltip(button, 
+        { trigger: "manual", 
+          customClass: "code-copy-button-tooltip",
+          offset: [0, -8]});
+      tooltip.show();    
+    }
+    setTimeout(function() {
+      if (tooltip) {
+        tooltip.hide();
+        button.removeAttribute("data-bs-title");
+        button.removeAttribute("data-bs-toggle");
+        button.removeAttribute("data-bs-placement");
+      }
+      button.setAttribute("title", currentTitle);
+      button.classList.remove('code-copy-button-checked');
+    }, 1000);
+    // clear code selection
+    e.clearSelection();
+  });
+  function tippyHover(el, contentFn) {
+    const config = {
+      allowHTML: true,
+      content: contentFn,
+      maxWidth: 500,
+      delay: 100,
+      arrow: false,
+      appendTo: function(el) {
+          return el.parentElement;
+      },
+      interactive: true,
+      interactiveBorder: 10,
+      theme: 'quarto',
+      placement: 'bottom-start'
+    };
+    window.tippy(el, config); 
+  }
+  const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+  for (var i=0; i<noterefs.length; i++) {
+    const ref = noterefs[i];
+    tippyHover(ref, function() {
+      // use id or data attribute instead here
+      let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+      try { href = new URL(href).hash; } catch {}
+      const id = href.replace(/^#\/?/, "");
+      const note = window.document.getElementById(id);
+      return note.innerHTML;
+    });
+  }
+      let selectedAnnoteEl;
+      const selectorForAnnotation = ( cell, annotation) => {
+        let cellAttr = 'data-code-cell="' + cell + '"';
+        let lineAttr = 'data-code-annotation="' +  annotation + '"';
+        const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+        return selector;
+      }
+      const selectCodeLines = (annoteEl) => {
+        const doc = window.document;
+        const targetCell = annoteEl.getAttribute("data-target-cell");
+        const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+        const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+        const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+        const lineIds = lines.map((line) => {
+          return targetCell + "-" + line;
+        })
+        let top = null;
+        let height = null;
+        let parent = null;
+        if (lineIds.length > 0) {
+            //compute the position of the single el (top and bottom and make a div)
+            const el = window.document.getElementById(lineIds[0]);
+            top = el.offsetTop;
+            height = el.offsetHeight;
+            parent = el.parentElement.parentElement;
+          if (lineIds.length > 1) {
+            const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+            const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+            height = bottom - top;
+          }
+          if (top !== null && height !== null && parent !== null) {
+            // cook up a div (if necessary) and position it 
+            let div = window.document.getElementById("code-annotation-line-highlight");
+            if (div === null) {
+              div = window.document.createElement("div");
+              div.setAttribute("id", "code-annotation-line-highlight");
+              div.style.position = 'absolute';
+              parent.appendChild(div);
+            }
+            div.style.top = top - 2 + "px";
+            div.style.height = height + 4 + "px";
+            let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+            if (gutterDiv === null) {
+              gutterDiv = window.document.createElement("div");
+              gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+              gutterDiv.style.position = 'absolute';
+              const codeCell = window.document.getElementById(targetCell);
+              const gutter = codeCell.querySelector('.code-annotation-gutter');
+              gutter.appendChild(gutterDiv);
+            }
+            gutterDiv.style.top = top - 2 + "px";
+            gutterDiv.style.height = height + 4 + "px";
+          }
+          selectedAnnoteEl = annoteEl;
+        }
+      };
+      const unselectCodeLines = () => {
+        const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+        elementsIds.forEach((elId) => {
+          const div = window.document.getElementById(elId);
+          if (div) {
+            div.remove();
+          }
+        });
+        selectedAnnoteEl = undefined;
+      };
+      // Attach click handler to the DT
+      const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+      for (const annoteDlNode of annoteDls) {
+        annoteDlNode.addEventListener('click', (event) => {
+          const clickedEl = event.target;
+          if (clickedEl !== selectedAnnoteEl) {
+            unselectCodeLines();
+            const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+            if (activeEl) {
+              activeEl.classList.remove('code-annotation-active');
+            }
+            selectCodeLines(clickedEl);
+            clickedEl.classList.add('code-annotation-active');
+          } else {
+            // Unselect the line
+            unselectCodeLines();
+            clickedEl.classList.remove('code-annotation-active');
+          }
+        });
+      }
+  const findCites = (el) => {
+    const parentEl = el.parentElement;
+    if (parentEl) {
+      const cites = parentEl.dataset.cites;
+      if (cites) {
+        return {
+          el,
+          cites: cites.split(' ')
+        };
+      } else {
+        return findCites(el.parentElement)
+      }
+    } else {
+      return undefined;
+    }
+  };
+  var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+  for (var i=0; i<bibliorefs.length; i++) {
+    const ref = bibliorefs[i];
+    const citeInfo = findCites(ref);
+    if (citeInfo) {
+      tippyHover(citeInfo.el, function() {
+        var popup = window.document.createElement('div');
+        citeInfo.cites.forEach(function(cite) {
+          var citeDiv = window.document.createElement('div');
+          citeDiv.classList.add('hanging-indent');
+          citeDiv.classList.add('csl-entry');
+          var biblioDiv = window.document.getElementById('ref-' + cite);
+          if (biblioDiv) {
+            citeDiv.innerHTML = biblioDiv.innerHTML;
+          }
+          popup.appendChild(citeDiv);
+        });
+        return popup.innerHTML;
+      });
+    }
+  }
+});
+</script>
+<nav class="page-navigation">
+  <div class="nav-page nav-page-previous">
+      <a href="./11_studi_kasus_login_pt-1.html" class="pagination-link">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text">[Part I] - Login Form</span>
+      </a>          
+  </div>
+  <div class="nav-page nav-page-next">
+  </div>
+</nav>
+</div> <!-- /content -->
+
+
+
+</body></html>

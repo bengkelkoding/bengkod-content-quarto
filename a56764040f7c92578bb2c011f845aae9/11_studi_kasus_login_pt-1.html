@@ -1,0 +1,1018 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.3.450">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+
+<title>Junior Web Developer - [Part I] - Login Form</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+/* CSS for syntax highlighting */
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+</style>
+
+
+<script src="site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="site_libs/quarto-nav/headroom.min.js"></script>
+<script src="site_libs/clipboard/clipboard.min.js"></script>
+<script src="site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="site_libs/quarto-search/fuse.min.js"></script>
+<script src="site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="./">
+<link href="./12_studi_kasus_login_pt-2.html" rel="next">
+<link href="./8_studi_kasus_poliklinik.html" rel="prev">
+<script src="site_libs/quarto-html/quarto.js"></script>
+<script src="site_libs/quarto-html/popper.min.js"></script>
+<script src="site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="site_libs/quarto-html/anchor.min.js"></script>
+<link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-text-highlighting-styles">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting-dark.css" rel="prefetch" class="quarto-color-scheme quarto-color-alternate" id="quarto-text-highlighting-styles">
+<script src="site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
+<link href="site_libs/bootstrap/bootstrap-dark.min.css" rel="prefetch" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
+<script id="quarto-search-options" type="application/json">{
+  "location": "sidebar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "start",
+  "type": "textbox",
+  "limit": 20,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit",
+    "search-label": "Search"
+  }
+}</script>
+
+
+<link rel="stylesheet" href="styles.css">
+</head>
+
+<body class="nav-sidebar floating">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+  <nav class="quarto-secondary-nav">
+    <div class="container-fluid d-flex">
+      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+        <i class="bi bi-layout-text-sidebar-reverse"></i>
+      </button>
+      <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./studi_kasus.html"><b>Studi Kasus</b></a></li><li class="breadcrumb-item"><a href="./11_studi_kasus_login_pt-1.html">[Part I] - Login Form</a></li></ol></nav>
+      <a class="flex-grow-1" role="button" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
+      </a>
+      <button type="button" class="btn quarto-search-button" aria-label="" onclick="window.quartoOpenSearch();">
+        <i class="bi bi-search"></i>
+      </button>
+    </div>
+  </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article">
+<!-- sidebar -->
+  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal sidebar-navigation floating overflow-auto">
+    <div class="pt-lg-2 mt-2 text-left sidebar-header">
+    <div class="sidebar-title mb-0 py-0">
+      <a href="./">Junior Web Developer</a> 
+        <div class="sidebar-tools-main">
+  <a href="" class="quarto-color-scheme-toggle quarto-navigation-tool  px-1" onclick="window.quartoToggleColorScheme(); return false;" title="Toggle dark mode"><i class="bi"></i></a>
+</div>
+    </div>
+      </div>
+        <div class="mt-2 flex-shrink-0 align-items-center">
+        <div class="sidebar-search">
+        <div id="quarto-search" class="" title="Search"></div>
+        </div>
+        </div>
+    <div class="sidebar-menu-container"> 
+    <ul class="list-unstyled mt-1">
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><strong>Pengantar</strong></span></a>
+  </div>
+</li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a href="./konsep.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><b>Konsep</b></span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./1_konsep_dasar_web.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">1. Konsep Dasar Web Programmming</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./2_pengenalan_tools.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">2. Pengenalan Tools</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./3_responsive_web.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">3. Responsive Web Design</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./4_pembuatan_front_page.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">4. Front Page</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./5_konsep_database.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">5. Konsep Database</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./6_praktik_database_todolist.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">6. Praktik Database</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./9_penguji_web.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">7. Pengujian Web</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a href="./studi_kasus.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><b>Studi Kasus</b></span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-2" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./7_program_todolist.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">To Do List</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./8_studi_kasus_poliklinik.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Poliklinik</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./11_studi_kasus_login_pt-1.html" class="sidebar-item-text sidebar-link active">
+ <span class="menu-text">[Part I] - Login Form</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./12_studi_kasus_login_pt-2.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">[Part II] - Login Form</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+    </ul>
+    </div>
+</nav>
+<div id="quarto-sidebar-glass" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass"></div>
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">On this page</h2>
+   
+  <ul>
+  <li><a href="#pengantar" id="toc-pengantar" class="nav-link active" data-scroll-target="#pengantar">Pengantar</a></li>
+  <li><a href="#merancang-database" id="toc-merancang-database" class="nav-link" data-scroll-target="#merancang-database">Merancang Database</a></li>
+  <li><a href="#koneksi-ke-database" id="toc-koneksi-ke-database" class="nav-link" data-scroll-target="#koneksi-ke-database">Koneksi ke Database</a></li>
+  <li><a href="#membuat-formulir-registrasi" id="toc-membuat-formulir-registrasi" class="nav-link" data-scroll-target="#membuat-formulir-registrasi">Membuat Formulir Registrasi</a></li>
+  <li><a href="#membuat-halaman-login" id="toc-membuat-halaman-login" class="nav-link" data-scroll-target="#membuat-halaman-login">Membuat Halaman Login</a></li>
+  <li><a href="#merancang-forgot-password" id="toc-merancang-forgot-password" class="nav-link" data-scroll-target="#merancang-forgot-password">Merancang Forgot Password</a></li>
+  <li><a href="#menangani-reset-password" id="toc-menangani-reset-password" class="nav-link" data-scroll-target="#menangani-reset-password">Menangani Reset Password</a></li>
+  <li><a href="#akhir-bagian-i" id="toc-akhir-bagian-i" class="nav-link" data-scroll-target="#akhir-bagian-i">Akhir Bagian I</a></li>
+  </ul>
+</nav>
+    </div>
+<!-- main -->
+<main class="content" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<h1 class="title">[Part I] - Login Form</h1>
+  <div class="quarto-categories">
+    <div class="quarto-category">studi kasus</div>
+    <div class="quarto-category">session</div>
+    <div class="quarto-category">controller</div>
+  </div>
+  </div>
+
+
+
+<div class="quarto-title-meta">
+
+    
+  
+    
+  </div>
+  
+
+</header>
+
+<section id="pengantar" class="level2">
+<h2 class="anchored" data-anchor-id="pengantar">Pengantar</h2>
+<div class="justify">
+<p>Acapkali berbagai macam situs website menawarkan kepada kita untuk bergabung sebagai komunitas, anggota, atau peserta. Sebagai contoh, <b>LMS Kulino</b> yang tengah kita pakai saat ini mewajibkan user-nya untuk masuk ke dalam sistem tersebut dengan menggunakan <b>username</b> dan <b>password</b> yang telah terdaftar. Apabila user belum terdaftar, maka mereka akan diarahkan menuju formulir registrasi untuk melakukan pendaftaran akun baru pada laman tersebut.</p>
+<p>Dari formulir registrasi dan login tersebut, pada studi kasus kali ini kita akan menelaah hal-hal apa sajakah yang dibutuhkan untuk membangun komponen yang ada di dalam sistem registrasi serta login tersebut. Hal ini mencakup berbagai hal termasuk <b>sessions</b>, <b>authentication</b>, dan sebagainya di dalam modul ini. So, what are you waiting for? Let’s get started, Champ!</p>
+</div>
+</section>
+<section id="merancang-database" class="level2">
+<h2 class="anchored" data-anchor-id="merancang-database">Merancang Database</h2>
+<div class="justify">
+<p><em>First things first</em>, yang perlu kita persiapkan adalah database. Buatlah database baru dengan nama <b><code>account</code></b>. Database tersebut nantinya akan kita gunakan dalam pembuatan studi kasus kita kali ini. Setelah berhasil dibuat, kita membuat tabel dengan nama <b><code>usertable</code></b> yang di dalamnya memuat <b>id, name, email, password, code, dan status</b>. Anda dapat membuatnya secara manual atau bisa juga salin kueri SQL berikut ini:</p>
+</div>
+<div class="sourceCode" id="cb1"><pre class="sourceCode sql code-with-copy"><code class="sourceCode sql"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="kw">CREATE</span> <span class="kw">TABLE</span> `usertable` (</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>    `id` <span class="dt">int</span>(<span class="dv">11</span>) <span class="kw">NOT</span> <span class="kw">NULL</span> AUTO_INCREMENT,</span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>    `name` <span class="dt">varchar</span>(<span class="dv">255</span>) <span class="kw">NOT</span> <span class="kw">NULL</span>,</span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>    `email` <span class="dt">varchar</span>(<span class="dv">255</span>) <span class="kw">NOT</span> <span class="kw">NULL</span>,</span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a>    `password` <span class="dt">varchar</span>(<span class="dv">255</span>) <span class="kw">NOT</span> <span class="kw">NULL</span>,</span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a>    `code` mediumint(<span class="dv">50</span>) <span class="kw">NOT</span> <span class="kw">NULL</span>,</span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a>    `status` text <span class="kw">NOT</span> <span class="kw">NULL</span>,</span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a>    <span class="kw">PRIMARY</span> <span class="kw">KEY</span> (`id`)</span>
+<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a>) ENGINE<span class="op">=</span>InnoDB <span class="kw">DEFAULT</span> CHARSET<span class="op">=</span>utf8mb4;</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</section>
+<section id="koneksi-ke-database" class="level2">
+<h2 class="anchored" data-anchor-id="koneksi-ke-database">Koneksi ke Database</h2>
+<div class="justify">
+<p>Masih ingat dengan prosedur pengkoneksian ke database phpMyAdmin? Ya, tentu saja, kita akan menerapkan konsep yang sama seperti studi kasus sebelumnya dalam hal ini. Namun apabila Anda lupa, Anda dapat menyalin kode berikut ini:</p>
+</div>
+<div class="sourceCode" id="cb2"><pre class="sourceCode php code-with-copy"><code class="sourceCode php"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="kw">&lt;?php</span></span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="va">$host</span> <span class="op">=</span> <span class="st">"localhost"</span><span class="ot">;</span></span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a><span class="va">$username</span> <span class="op">=</span> <span class="st">"root"</span><span class="ot">;</span></span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a><span class="va">$password</span> <span class="op">=</span> <span class="st">""</span><span class="ot">;</span></span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a><span class="va">$database</span> <span class="op">=</span> <span class="st">"account"</span><span class="ot">;</span></span>
+<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a><span class="va">$con</span> <span class="op">=</span> <span class="kw">new</span> <span class="bu">mysqli</span>(<span class="va">$host</span><span class="ot">,</span> <span class="va">$username</span><span class="ot">,</span> <span class="va">$password</span><span class="ot">,</span> <span class="va">$database</span>)<span class="ot">;</span></span>
+<span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-9"><a href="#cb2-9" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span> (<span class="va">$con</span>-&gt;connect_error) {</span>
+<span id="cb2-10"><a href="#cb2-10" aria-hidden="true" tabindex="-1"></a>    <span class="cf">die</span>(<span class="st">"Connection failed: "</span> <span class="op">.</span> <span class="va">$con</span>-&gt;connect_error)<span class="ot">;</span></span>
+<span id="cb2-11"><a href="#cb2-11" aria-hidden="true" tabindex="-1"></a>}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</section>
+<section id="membuat-formulir-registrasi" class="level2">
+<h2 class="anchored" data-anchor-id="membuat-formulir-registrasi">Membuat Formulir Registrasi</h2>
+<div class="justify">
+<p>Langkah awal dari studi kasus ini adalah membuat formulir registrasi. Sangat sederhana hanya membutuhkan beberapa inputan data, seperti <b>nama lengkap, email, password, dan konfirmasi ulang password</b>. Gunakan konsep yang sama di saat pembuatan formulir studi kasus sebelumnya. Berikan nama file registrasi tersebut dengan nama <b>signup-user.php</b>.</p>
+</div>
+<div id="fig-signup" class="quarto-figure quarto-figure-center anchored" style="text-align:center;">
+<figure class="figure">
+<p><img src="assets/login/signup-user.png" class="img-fluid figure-img" style="width:60.0%"></p>
+<figcaption class="figure-caption">Figure&nbsp;1: Preview Halaman Registrasi (signup-user.php)</figcaption>
+</figure>
+</div>
+<p>Sebagai identitas, berikan atribut dan value pada tiap <b><code>&lt;input&gt;</code></b> dengan parameter sebagai berikut:</p>
+<table class="table-striped table-hover table">
+<caption><b>Parameter Atribut di signup-user.php</b></caption>
+<thead>
+<tr class="header">
+<th>Komponen</th>
+<th>Value</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Nama Lengkap</td>
+<td>name=“name”</td>
+</tr>
+<tr class="even">
+<td>Email</td>
+<td>name=“email”</td>
+</tr>
+<tr class="odd">
+<td>Password</td>
+<td>name=“password”</td>
+</tr>
+<tr class="even">
+<td>Konfirmasi Password</td>
+<td>name=“cpassword”</td>
+</tr>
+<tr class="odd">
+<td>Button Signup</td>
+<td>name=“signup”</td>
+</tr>
+</tbody>
+</table>
+<div class="justify">
+<p>Selain itu, untuk penanganan error dari segala kemungkinan masalah yang dapat terjadi, salin kode berikut ini dengan menempatkannya <b>setelah paragraf</b> “Mudah. Cepat. Praktis.” dan <b>sebelum kotak inputan pertama</b>, yaitu Nama Lengkap.</p>
+</div>
+<div class="sourceCode" id="cb3"><pre class="sourceCode php code-with-copy"><code class="sourceCode php"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="kw">&lt;?php</span></span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> (<span class="fu">count</span>(<span class="va">$errors</span>) <span class="op">==</span> <span class="dv">1</span>) {</span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a><span class="kw">?&gt;</span></span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a>    <span class="op">&lt;</span>div <span class="kw">class</span><span class="op">=</span><span class="st">"alert alert-danger text-center"</span> style<span class="op">=</span><span class="st">"font-weight: 600;"</span><span class="op">&gt;</span></span>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a>        <span class="op">&lt;</span><span class="ot">?</span>php</span>
+<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a>            <span class="cf">foreach</span> (<span class="va">$errors</span> <span class="kw">as</span> <span class="va">$showerror</span>) {</span>
+<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a>                <span class="kw">echo</span> <span class="va">$showerror</span><span class="ot">;</span></span>
+<span id="cb3-8"><a href="#cb3-8" aria-hidden="true" tabindex="-1"></a>            }</span>
+<span id="cb3-9"><a href="#cb3-9" aria-hidden="true" tabindex="-1"></a>        <span class="kw">?&gt;</span></span>
+<span id="cb3-10"><a href="#cb3-10" aria-hidden="true" tabindex="-1"></a>    <span class="op">&lt;/</span>div<span class="op">&gt;</span></span>
+<span id="cb3-11"><a href="#cb3-11" aria-hidden="true" tabindex="-1"></a><span class="op">&lt;</span><span class="ot">?</span>php</span>
+<span id="cb3-12"><a href="#cb3-12" aria-hidden="true" tabindex="-1"></a>    } <span class="cf">elseif</span> (<span class="fu">count</span>(<span class="va">$errors</span>) <span class="op">&gt;</span> <span class="dv">1</span>) {</span>
+<span id="cb3-13"><a href="#cb3-13" aria-hidden="true" tabindex="-1"></a><span class="kw">?&gt;</span></span>
+<span id="cb3-14"><a href="#cb3-14" aria-hidden="true" tabindex="-1"></a>    <span class="op">&lt;</span>div <span class="kw">class</span><span class="op">=</span><span class="st">"alert alert-danger"</span> style<span class="op">=</span><span class="st">"font-weight: 600;"</span><span class="op">&gt;</span></span>
+<span id="cb3-15"><a href="#cb3-15" aria-hidden="true" tabindex="-1"></a>        <span class="op">&lt;</span><span class="ot">?</span>php</span>
+<span id="cb3-16"><a href="#cb3-16" aria-hidden="true" tabindex="-1"></a>            <span class="cf">foreach</span> (<span class="va">$errors</span> <span class="kw">as</span> <span class="va">$showerror</span>) {</span>
+<span id="cb3-17"><a href="#cb3-17" aria-hidden="true" tabindex="-1"></a>        <span class="kw">?&gt;</span></span>
+<span id="cb3-18"><a href="#cb3-18" aria-hidden="true" tabindex="-1"></a>            <span class="op">&lt;</span>li<span class="op">&gt;&lt;</span><span class="ot">?</span>php <span class="kw">echo</span> <span class="va">$showerror</span><span class="ot">;</span> <span class="kw">?&gt;</span><span class="op">&lt;/</span>li<span class="op">&gt;</span></span>
+<span id="cb3-19"><a href="#cb3-19" aria-hidden="true" tabindex="-1"></a>        <span class="op">&lt;</span><span class="ot">?</span>php } <span class="kw">?&gt;</span></span>
+<span id="cb3-20"><a href="#cb3-20" aria-hidden="true" tabindex="-1"></a>    <span class="op">&lt;/</span>div<span class="op">&gt;</span></span>
+<span id="cb3-21"><a href="#cb3-21" aria-hidden="true" tabindex="-1"></a><span class="op">&lt;</span><span class="ot">?</span>php } <span class="kw">?&gt;</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</section>
+<section id="membuat-halaman-login" class="level2">
+<h2 class="anchored" data-anchor-id="membuat-halaman-login">Membuat Halaman Login</h2>
+<div class="justify">
+<p>Setelah halaman pendaftaran selesai dibuat, selanjutnya kita akan beralih ke halaman login (<b>login-user.php</b>). Pada halaman login ini cukup simple, karena kita hanya membutuhkan <b>2 inputan data</b>, yaitu <b>email dan password</b>. Cara penyusunan halaman tersebut terbilang sama dengan halaman registrasi, yang membedakan hanya handling disaat error saja.</p>
+</div>
+<div id="fig-login" class="quarto-figure quarto-figure-center anchored" style="text-align:center;">
+<figure class="figure">
+<p><img src="assets/login/login-user-form.png" class="img-fluid figure-img" style="width:60.0%"></p>
+<figcaption class="figure-caption">Figure&nbsp;2: Preview Halaman Login (login-user.php)</figcaption>
+</figure>
+</div>
+<p>Sebagai identitas, berikan atribut dan value pada tiap <b><code>&lt;input&gt;</code></b> dengan parameter sebagai berikut:</p>
+<table class="table-striped table-hover table">
+<caption><b>Parameter Atribut di login-user.php</b></caption>
+<thead>
+<tr class="header">
+<th>Komponen</th>
+<th>Value</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Email</td>
+<td>name=“email”</td>
+</tr>
+<tr class="even">
+<td>Password</td>
+<td>name=“password”</td>
+</tr>
+<tr class="odd">
+<td>Button Login</td>
+<td>name=“login”</td>
+</tr>
+</tbody>
+</table>
+<div class="justify">
+<p>Untuk menangani permasalahan jika terjadi error, Anda dapat menyalin kode di bawah ini; harap letakkan kode berikut <strong>setelah paragraf</strong> “Masuk dengan email dan password Anda” dan <strong>sebelum kotak inputan email</strong>:</p>
+</div>
+<div class="sourceCode" id="cb4"><pre class="sourceCode php code-with-copy"><code class="sourceCode php"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="kw">&lt;?php</span></span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> (<span class="fu">count</span>(<span class="va">$errors</span>) <span class="op">&gt;</span> <span class="dv">0</span>) {</span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a><span class="kw">?&gt;</span></span>
+<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a>    <span class="op">&lt;</span>div <span class="kw">class</span><span class="op">=</span><span class="st">"alert alert-danger text-center"</span> style<span class="op">=</span><span class="st">"font-weight: 600;"</span><span class="op">&gt;</span></span>
+<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a>        <span class="op">&lt;</span><span class="ot">?</span>php</span>
+<span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a>            <span class="cf">foreach</span> (<span class="va">$errors</span> <span class="kw">as</span> <span class="va">$showerror</span>) {</span>
+<span id="cb4-7"><a href="#cb4-7" aria-hidden="true" tabindex="-1"></a>                <span class="kw">echo</span> <span class="va">$showerror</span><span class="ot">;</span></span>
+<span id="cb4-8"><a href="#cb4-8" aria-hidden="true" tabindex="-1"></a>            }</span>
+<span id="cb4-9"><a href="#cb4-9" aria-hidden="true" tabindex="-1"></a>        <span class="kw">?&gt;</span></span>
+<span id="cb4-10"><a href="#cb4-10" aria-hidden="true" tabindex="-1"></a>    <span class="op">&lt;/</span>div<span class="op">&gt;</span></span>
+<span id="cb4-11"><a href="#cb4-11" aria-hidden="true" tabindex="-1"></a><span class="op">&lt;</span><span class="ot">?</span>php</span>
+<span id="cb4-12"><a href="#cb4-12" aria-hidden="true" tabindex="-1"></a>    }</span>
+<span id="cb4-13"><a href="#cb4-13" aria-hidden="true" tabindex="-1"></a><span class="kw">?&gt;</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</section>
+<section id="merancang-forgot-password" class="level2">
+<h2 class="anchored" data-anchor-id="merancang-forgot-password">Merancang Forgot Password</h2>
+<div class="justify">
+<p>Di dalam container form <em>login</em> terdapat tautan <strong>“Forgot Password”</strong> atau “Lupa Kata Sandi”. Hal ini perlu kita lakukan guna apabila pengguna lupa terhadap kata sandi akun mereka. Sebelum memulai, perlu diketahui bahwa nantinya kita akan menerapkan konsep <strong>One-Time Password (OTP)</strong> untuk studi kasus ini.</p>
+<p><em>Well then</em>, mari kita buat file baru dengan nama <strong>forgot-password.php</strong>. Konsep penyusunan halaman mengikuti alur yang sama seperti halaman-halaman sebelumnya.</p>
+</div>
+<div id="fig-forgot" class="quarto-figure quarto-figure-center anchored" style="text-align:center;">
+<figure class="figure">
+<p><img src="assets/login/forgot-password.png" class="img-fluid figure-img" style="width:60.0%"></p>
+<figcaption class="figure-caption">Figure&nbsp;3: Preview Halaman Lupa Password (forgot-password.php)</figcaption>
+</figure>
+</div>
+<div class="justify">
+<p>Berikan identitas pada tiap-tiap bagian, yaitu <strong>input-an alamat email dan button “Continue”</strong>. Untuk input-an email, <strong><code>name="email"</code></strong>; dan button “Continue”, <strong><code>name="check-email"</code></strong>.</p>
+<p>Pada halaman ini, input-an hanya berupa email dan email ini sebelumnya sudah harus terdaftar dalam sistem terlebih dahulu. Apabila email yang dimasukkan belum terdaftar, maka akan melemparkan alert atau notifikasi berupa “Akun email Anda belum terdaftar”. Praktisi dalam pembuatan kode halaman di atas dapat Anda susun sendiri atau bisa juga salin kode berikut ini:</p>
+</div>
+<div class="sourceCode" id="cb5"><pre class="sourceCode php code-with-copy"><code class="sourceCode php"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="op">&lt;!</span><span class="cn">DOCTYPE</span> html<span class="op">&gt;</span></span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a><span class="op">&lt;</span>html lang<span class="op">=</span><span class="st">"en"</span><span class="op">&gt;</span></span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a><span class="op">&lt;</span>head<span class="op">&gt;</span></span>
+<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a>    <span class="op">&lt;</span>meta charset<span class="op">=</span><span class="st">"UTF-8"</span><span class="op">&gt;</span></span>
+<span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a>    <span class="op">&lt;</span>title<span class="op">&gt;</span><span class="cn">F</span>orgot <span class="cn">P</span>assword<span class="op">&lt;/</span>title<span class="op">&gt;</span></span>
+<span id="cb5-7"><a href="#cb5-7" aria-hidden="true" tabindex="-1"></a>    <span class="op">&lt;</span><span class="fu">link</span> rel<span class="op">=</span><span class="st">"stylesheet"</span> href<span class="op">=</span><span class="st">"https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"</span><span class="op">&gt;</span></span>
+<span id="cb5-8"><a href="#cb5-8" aria-hidden="true" tabindex="-1"></a>    <span class="op">&lt;</span><span class="fu">link</span> rel<span class="op">=</span><span class="st">"stylesheet"</span> href<span class="op">=</span><span class="st">"style.css"</span><span class="op">&gt;</span></span>
+<span id="cb5-9"><a href="#cb5-9" aria-hidden="true" tabindex="-1"></a><span class="op">&lt;/</span>head<span class="op">&gt;</span></span>
+<span id="cb5-10"><a href="#cb5-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-11"><a href="#cb5-11" aria-hidden="true" tabindex="-1"></a><span class="op">&lt;</span>body<span class="op">&gt;</span></span>
+<span id="cb5-12"><a href="#cb5-12" aria-hidden="true" tabindex="-1"></a>    <span class="op">&lt;</span>div <span class="kw">class</span><span class="op">=</span><span class="st">"container"</span><span class="op">&gt;</span></span>
+<span id="cb5-13"><a href="#cb5-13" aria-hidden="true" tabindex="-1"></a>        <span class="op">&lt;</span>div <span class="kw">class</span><span class="op">=</span><span class="st">"row"</span><span class="op">&gt;</span></span>
+<span id="cb5-14"><a href="#cb5-14" aria-hidden="true" tabindex="-1"></a>            <span class="op">&lt;</span>div <span class="kw">class</span><span class="op">=</span><span class="st">"col-md-4 offset-md-4 form"</span><span class="op">&gt;</span></span>
+<span id="cb5-15"><a href="#cb5-15" aria-hidden="true" tabindex="-1"></a>                <span class="op">&lt;</span>form action<span class="op">=</span><span class="st">"forgot-password.php"</span> method<span class="op">=</span><span class="st">"POST"</span> autocomplete<span class="op">=</span><span class="st">""</span><span class="op">&gt;</span></span>
+<span id="cb5-16"><a href="#cb5-16" aria-hidden="true" tabindex="-1"></a>                    <span class="op">&lt;</span>h2 <span class="kw">class</span><span class="op">=</span><span class="st">"text-center"</span><span class="op">&gt;</span><span class="cn">F</span>orgot <span class="cn">P</span>assword<span class="op">&lt;/</span>h2<span class="op">&gt;</span></span>
+<span id="cb5-17"><a href="#cb5-17" aria-hidden="true" tabindex="-1"></a>                    <span class="op">&lt;</span>p <span class="kw">class</span><span class="op">=</span><span class="st">"text-center"</span><span class="op">&gt;</span><span class="cn">M</span>asukkan alamat email <span class="cn">A</span>nda<span class="op">&lt;/</span>p<span class="op">&gt;</span></span>
+<span id="cb5-18"><a href="#cb5-18" aria-hidden="true" tabindex="-1"></a>                    <span class="op">&lt;</span><span class="ot">?</span>php</span>
+<span id="cb5-19"><a href="#cb5-19" aria-hidden="true" tabindex="-1"></a>                        <span class="cf">if</span> (<span class="fu">count</span>(<span class="va">$errors</span>) <span class="op">&gt;</span> <span class="dv">0</span>) {</span>
+<span id="cb5-20"><a href="#cb5-20" aria-hidden="true" tabindex="-1"></a>                    <span class="kw">?&gt;</span></span>
+<span id="cb5-21"><a href="#cb5-21" aria-hidden="true" tabindex="-1"></a>                        <span class="op">&lt;</span>div <span class="kw">class</span><span class="op">=</span><span class="st">"alert alert-danger text-center"</span> style<span class="op">=</span><span class="st">"font-weight: 600;"</span><span class="op">&gt;</span></span>
+<span id="cb5-22"><a href="#cb5-22" aria-hidden="true" tabindex="-1"></a>                            <span class="op">&lt;</span><span class="ot">?</span>php</span>
+<span id="cb5-23"><a href="#cb5-23" aria-hidden="true" tabindex="-1"></a>                                <span class="cf">foreach</span> (<span class="va">$errors</span> <span class="kw">as</span> <span class="va">$error</span>) {</span>
+<span id="cb5-24"><a href="#cb5-24" aria-hidden="true" tabindex="-1"></a>                                    <span class="kw">echo</span> <span class="va">$error</span><span class="ot">;</span></span>
+<span id="cb5-25"><a href="#cb5-25" aria-hidden="true" tabindex="-1"></a>                            }</span>
+<span id="cb5-26"><a href="#cb5-26" aria-hidden="true" tabindex="-1"></a>                            <span class="kw">?&gt;</span></span>
+<span id="cb5-27"><a href="#cb5-27" aria-hidden="true" tabindex="-1"></a>                        <span class="op">&lt;/</span>div<span class="op">&gt;</span></span>
+<span id="cb5-28"><a href="#cb5-28" aria-hidden="true" tabindex="-1"></a>                    <span class="op">&lt;</span><span class="ot">?</span>php </span>
+<span id="cb5-29"><a href="#cb5-29" aria-hidden="true" tabindex="-1"></a>                        } </span>
+<span id="cb5-30"><a href="#cb5-30" aria-hidden="true" tabindex="-1"></a>                    <span class="kw">?&gt;</span></span>
+<span id="cb5-31"><a href="#cb5-31" aria-hidden="true" tabindex="-1"></a>                    <span class="op">&lt;</span>div <span class="kw">class</span><span class="op">=</span><span class="st">"form-group"</span><span class="op">&gt;</span></span>
+<span id="cb5-32"><a href="#cb5-32" aria-hidden="true" tabindex="-1"></a>                        <span class="op">&lt;</span>input <span class="kw">class</span><span class="op">=</span><span class="st">"form-control"</span> type<span class="op">=</span><span class="st">"email"</span> name<span class="op">=</span><span class="st">"email"</span> placeholder<span class="op">=</span><span class="st">"Your email address"</span> required value<span class="op">=</span><span class="st">"&lt;?php echo </span><span class="va">$email</span><span class="st"> ?&gt;"</span><span class="op">&gt;</span></span>
+<span id="cb5-33"><a href="#cb5-33" aria-hidden="true" tabindex="-1"></a>                    <span class="op">&lt;/</span>div<span class="op">&gt;</span></span>
+<span id="cb5-34"><a href="#cb5-34" aria-hidden="true" tabindex="-1"></a>                    <span class="op">&lt;</span>div <span class="kw">class</span><span class="op">=</span><span class="st">"form-group"</span><span class="op">&gt;</span></span>
+<span id="cb5-35"><a href="#cb5-35" aria-hidden="true" tabindex="-1"></a>                        <span class="op">&lt;</span>input <span class="kw">class</span><span class="op">=</span><span class="st">"form-control button"</span> type<span class="op">=</span><span class="st">"submit"</span> name<span class="op">=</span><span class="st">"check-email"</span> value<span class="op">=</span><span class="st">"Continue"</span><span class="op">&gt;</span></span>
+<span id="cb5-36"><a href="#cb5-36" aria-hidden="true" tabindex="-1"></a>                    <span class="op">&lt;/</span>div<span class="op">&gt;</span></span>
+<span id="cb5-37"><a href="#cb5-37" aria-hidden="true" tabindex="-1"></a>                <span class="op">&lt;/</span>form<span class="op">&gt;</span></span>
+<span id="cb5-38"><a href="#cb5-38" aria-hidden="true" tabindex="-1"></a>            <span class="op">&lt;/</span>div<span class="op">&gt;</span></span>
+<span id="cb5-39"><a href="#cb5-39" aria-hidden="true" tabindex="-1"></a>        <span class="op">&lt;/</span>div<span class="op">&gt;</span></span>
+<span id="cb5-40"><a href="#cb5-40" aria-hidden="true" tabindex="-1"></a>    <span class="op">&lt;/</span>div<span class="op">&gt;</span></span>
+<span id="cb5-41"><a href="#cb5-41" aria-hidden="true" tabindex="-1"></a><span class="op">&lt;/</span>body<span class="op">&gt;</span></span>
+<span id="cb5-42"><a href="#cb5-42" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-43"><a href="#cb5-43" aria-hidden="true" tabindex="-1"></a><span class="op">&lt;/</span>html<span class="op">&gt;</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</section>
+<section id="menangani-reset-password" class="level2">
+<h2 class="anchored" data-anchor-id="menangani-reset-password">Menangani Reset Password</h2>
+<div class="justify">
+<p>Setelah pengiriman alamat email melalui halaman forgot-password.php di atas, selanjutnya kita harus memasukkan kode OTP terlebih dahulu yang di mana kode tersebut akan kita dapatkan melalui alamat email. Sebelum itu, jikalau Anda belum pernah <strong>men-<em>setting</em></strong> pengaturan <strong>Simple Mail Transfer Protocol (SMTP)</strong>, harap perhatikan dengan saksama penjelasan berikut ini:</p>
+<ol type="1">
+<li><strong>Pergi</strong> ke dalam <strong>folder XAMPP</strong> Anda dan <strong>buka folder php</strong></li>
+<li><strong>Gulir ke bawah</strong> hingga Anda menemukan <strong>file php.ini</strong>, setelah itu buka file tersebut. (Lihat <a href="#fig-smtp1">Figure&nbsp;<span>4</span></a>)</li>
+</ol>
+<div id="fig-smtp1" class="quarto-figure quarto-figure-center anchored" style="text-align:center;">
+<figure class="figure">
+<p><img src="assets/login/folder-php.png" class="img-fluid figure-img" style="width:93.0%"></p>
+<figcaption class="figure-caption">Figure&nbsp;4: File <strong>php.ini</strong> yang terdapat di direktori <strong>C:/xampp/php</strong></figcaption>
+</figure>
+</div>
+<ol start="3" type="1">
+<li>Setelah itu, <strong>klik kanan</strong> pada <strong>mouse &gt;</strong> Open with <strong>&gt;</strong> pilih <strong>Notepad</strong></li>
+<li>Di dalam file php.ini tersebut, cari <strong>‘SMTP’</strong> dengan shortcut <strong>CTRL + F</strong> (Lihat <a href="#tbl-config-mail">Table&nbsp;<span>1</span></a>)</li>
+</ol>
+<div id="tbl-config-mail" class="anchored">
+<table class="table">
+<caption>Table&nbsp;1: Konfigurasi <strong>SMTP</strong> pada File <strong>php.ini</strong></caption>
+<colgroup>
+<col style="width: 100%">
+</colgroup>
+<tbody>
+<tr class="odd">
+<td style="text-align: center;"><img src="assets/login/mail_func-before.png" class="img-fluid" style="text-align:center;"> <br><strong>Sebelum</strong></td>
+</tr>
+<tr class="even">
+<td style="text-align: center;"><img src="assets/login/main_func-after.png" class="img-fluid" style="text-align:center;"> <br><strong>Sesudah</strong></td>
+</tr>
+</tbody>
+</table>
+</div>
+<ol start="5" type="1">
+<li><p><strong>Hapus tanda titik koma (;) pada tiap bagian-bagian yang diperlukan</strong>. Harap perhatikan dengan teliti tiap bagian yang dibutuhkan agar tidak menimbulkan <em>error</em>/kesalahan.</p></li>
+<li><p>Untuk bagian <strong><code>sendmail_from</code></strong> diisikan dengan alamat email aktif dan valid. Apabila Anda memiliki 2 akun email yang aktif, Anda dapat mempergunakan salah satunya.</p></li>
+<li><p>Selepas itu, gulir ke bawah sedikit, lalu Anda akan menemukan seperti pada <a href="#tbl-direktori-sendmail">Table&nbsp;<span>2</span></a> berikut ini:</p></li>
+</ol>
+<div id="tbl-direktori-sendmail" class="anchored">
+<table class="table">
+<caption>Table&nbsp;2: Direktori Pengiriman Email pada File <strong>php.ini</strong></caption>
+<colgroup>
+<col style="width: 100%">
+</colgroup>
+<tbody>
+<tr class="odd">
+<td style="text-align: center;"><img src="assets/login/sendmail_path-before.png" class="img-fluid" style="text-align:center;"> <br><strong>Sebelum</strong></td>
+</tr>
+<tr class="even">
+<td style="text-align: center;"><img src="assets/login/sendmail_path-after.png" class="img-fluid" style="text-align:center;"> <br><strong>Sesudah</strong></td>
+</tr>
+</tbody>
+</table>
+</div>
+<ol start="8" type="1">
+<li><strong>Hapus titik koma (;)</strong> pada bagian <strong><code>sendmail_path</code></strong>, lalu isikan dengan <em>path</em>/direktori yang <strong>sesuai dengan direktori XAMPP</strong> pada perangkat Anda atau Anda dapat menyalin direktori berikut ini:</li>
+</ol>
+<div class="sourceCode" id="cb6"><pre class="sourceCode php code-with-copy"><code class="sourceCode php"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="st">"</span><span class="sc">\"</span><span class="st">C:</span><span class="sc">\xa</span><span class="st">mpp\sendmail\sendmail.exe</span><span class="sc">\"</span><span class="st"> -t"</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<ol start="9" type="1">
+<li><p><strong>Jangan lupa untuk disimpan</strong> (<strong>CTRL + S</strong>) kemudian tutup.</p></li>
+<li><p>Selanjutnya, kita beralih ke <strong>folder sendmail (C:/xampp/sendmail)</strong> dan <strong>buka file sendmail.ini</strong></p></li>
+<li><p>Pada file tersebut, Anda akan menemukan <strong><code>smtp_server=mail.mydomain.com</code></strong>, ganti isian daripada <strong><code>smtp_server</code></strong> menjadi <strong><code>smtp_server=smtp.gmail.com</code></strong>.</p></li>
+<li><p>Lalu, di bawahnya terdapat <strong><code>smtp_port=25</code></strong>, ganti isian daripada <strong><code>smtp_port</code></strong> menjadi <strong><code>smtp_port=587</code></strong>.</p></li>
+<li><p>Selanjutnya gulir ke bawah, hingga Anda menemukan <strong><code>error_logfile=error.log</code></strong> dan <strong><code>debug_logfile=debug.log</code></strong>. <strong>Hapus titik koma (;)</strong> pada <strong>bagian depan</strong> kedua kode tersebut (Lihat <a href="#fig-error-debug-logfile">Figure&nbsp;<span>5</span></a>)</p></li>
+</ol>
+<div id="fig-error-debug-logfile" class="quarto-figure quarto-figure-center anchored" style="text-align:center;">
+<figure class="figure">
+<p><img src="assets/login/error-logfile-path.png" class="img-fluid figure-img" style="width:90.0%"></p>
+<figcaption class="figure-caption">Figure&nbsp;5: Konfigurasi Enable Error dan Debug Logfile pada File <strong>sendmail.ini</strong></figcaption>
+</figure>
+</div>
+<ol start="14" type="1">
+<li>Setelah itu gulir ke bawah lagi, lalu Anda akan menemukan <strong><code>auth_username</code></strong>, <strong><code>auth_password</code></strong>, dan <strong><code>force_sender</code></strong>. Khusus <strong><code>auth_username</code></strong> dan <strong><code>force_sender</code></strong> isikan dengan alamat email Anda yang aktif dan valid (Lihat <a href="#fig-auth-userpass">Figure&nbsp;<span>6</span></a>)</li>
+</ol>
+<div id="fig-auth-userpass" class="quarto-figure quarto-figure-center anchored" style="text-align:center;">
+<figure class="figure">
+<p><img src="assets/login/auth-userpass.png" class="img-fluid figure-img" style="width:90.0%"></p>
+<figcaption class="figure-caption">Figure&nbsp;6: Konfigurasi Auth &amp; Pengirim Email pada File <strong>sendmail.ini</strong></figcaption>
+</figure>
+</div>
+<ol start="15" type="1">
+<li><p>Selanjutnya teruntuk <strong><code>auth_password</code></strong> dapat Anda <strong>isikan dengan kombinasi password 16-karakter</strong> yang Anda dapatkan dari <strong>alamat email Google Account yang Anda isikan di bagian <code>auth_username</code></strong> dan <strong><code>force_sender</code></strong>. Lantas bagaimana caranya?</p></li>
+<li><p>Pergi ke <a href="https://myaccount.google.com/" class="external" target="_blank"><strong>https://myaccount.google.com/</strong></a>. Harap diperhatikan Anda <strong>wajib</strong> menggunakan <strong>akun email yang sama</strong> dengan alamat email yang telah Anda isikan pada <strong>Langkah ke-14</strong>.</p></li>
+<li><p>Pada laman tersebut, terdapat panel yang berada di sisi kiri layar. Dari halaman <strong>“Beranda”</strong> atau <strong>“Home”</strong> beralihlah ke halaman <strong>“Keamanan”</strong> atau <strong>“Security”</strong>. Pada halaman tersebut, gulir ke bawah lalu Anda akan menemukan <strong>“Cara Anda login ke Google”</strong> atau <strong>“How you sign in to Google”</strong></p></li>
+<li><p>Pada bagian tersebut, klik <strong>“Verifikasi 2 Langkah”</strong> atau <strong>“2-Step Verification”</strong>. <strong>Apabila diminta</strong>, masukkan password akun email Anda, lalu Anda akan diminta untuk memverifikasi via Gmail atau nomor telepon dengan menggunakan kode verifikasi, contoh <span class="auth-code">G-123456</span>. Harap ikuti prosedur yang ada pada laman tersebut!</p></li>
+<li><p>Setelah berhasil masuk, Anda akan melihat tampilan laman seperti berikut ini:</p></li>
+</ol>
+<div id="fig-two-step-verification" class="quarto-figure quarto-figure-center anchored" style="text-align:center;">
+<figure class="figure">
+<p><img src="assets/login/two-step-verif-page.png" class="img-fluid figure-img" style="width:95.0%"></p>
+<figcaption class="figure-caption">Figure&nbsp;7: Halaman Verifikasi 2 Langkah</figcaption>
+</figure>
+</div>
+<ol start="20" type="1">
+<li>Di dalam halaman tersebut, <strong>gulir ke paling bawah</strong>, hingga Anda menemukan section <strong>“Sandi aplikasi”</strong> atau <strong>“App password”</strong>. <strong>Klik <em>section</em> tersebut</strong>, lalu Anda akan melihat tampilan laman seperti berikut ini:</li>
+</ol>
+<div id="fig-page-app-password" class="quarto-figure quarto-figure-center anchored" style="text-align:center;">
+<figure class="figure">
+<p><img src="assets/login/page-app-password.png" class="img-fluid figure-img" style="width:95.0%"></p>
+<figcaption class="figure-caption">Figure&nbsp;8: Tampilan Halaman Sandi Aplikasi</figcaption>
+</figure>
+</div>
+<ol start="21" type="1">
+<li><p>Pada kotak yang ada di bawah, silakan Anda membuat sandi aplikasi yang baru dengan cara <strong>mengisikan judul aplikasi yang ingin Anda buat</strong>, sebagai contoh <strong>“BK-Login”</strong>. Setelah itu, klik button <strong>“Buat”</strong></p></li>
+<li><p>Akan muncul pop-up, seperti pada gambar di bawah ini (Lihat <a href="#fig-popup-app-pass">Figure&nbsp;<span>9</span></a>). Pada popup tersebutlah Anda mendapatkan password 16-karakter yang dapat Anda <strong>copy dan paste</strong> dan Anda isikan ke bagian <strong><code>auth_password</code></strong> di file <strong>sendmail.ini</strong> (Lihat <a href="#fig-auth-userpass">Figure&nbsp;<span>6</span></a>)</p></li>
+</ol>
+<div id="fig-popup-app-pass" class="quarto-figure quarto-figure-center anchored" style="text-align:center;">
+<figure class="figure">
+<p><img src="assets/login/popup-app-pass.png" class="img-fluid figure-img" style="width:65.0%"></p>
+<figcaption class="figure-caption">Figure&nbsp;9: Password 16-Karakter Aplikasi Anda</figcaption>
+</figure>
+</div>
+<ol start="23" type="1">
+<li>Anda sudah siap!</li>
+</ol>
+<p>Pengaturan konfigurasi SMTP Anda telah siap, sekarang kita akan melanjutkan proses pembuatan halaman verifikasi kode OTP. Buat file baru dan beri nama <strong>reset-code.php</strong>, di sini kode OTP akan berperan dalam memverifikasi pembuatan <em>password</em> baru atau saat lupa <em>password</em> atau yang lainnya. Seperti apakah bentuk dari halaman tersebut? Halaman <strong>reset-code.php</strong> sangatlah sederhana sekali seperti pada gambar berikut:</p>
+<div id="fig-reset-code" class="quarto-figure quarto-figure-center anchored" style="text-align:center;">
+<figure class="figure">
+<p><img src="assets/login/reset-code.png" class="img-fluid figure-img" style="width:50.0%"></p>
+<figcaption class="figure-caption">Figure&nbsp;10: Preview Halaman Verifikasi Reset Kode OTP (reset-code.php)</figcaption>
+</figure>
+</div>
+<p>Pada halaman tersebut berikan identitas pada tiap-tiap bagian. Untuk kotak input-an kode OTP berikan atribut dan <em>value</em> <span style="font-weight: bold; font-size: 23px;">→</span> <strong><code>name="otp"</code></strong> dan untuk <em>button</em> “Submit” <span style="font-weight: bold; font-size: 23px;">→</span> <strong><code>name="check-reset-otp"</code></strong>.</p>
+<p>Salah satu hal yang perlu diperhatikan dalam halaman ini adalah <strong><em>sessions</em></strong> yang diambil dari alamat email yang terdaftar pada sistem. Oleh karena itu, kita perlu melampirkan <strong><em>sessions</em></strong> di atas halaman. Salin kode berikut dan <strong>letakkan di atas halaman PHP</strong> Anda:</p>
+<div class="sourceCode" id="cb7"><pre class="sourceCode php code-with-copy"><code class="sourceCode php"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="kw">&lt;?php</span></span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>    <span class="va">$email</span> <span class="op">=</span> <span class="va">$_SESSION</span>[<span class="st">'email'</span>]<span class="ot">;</span></span>
+<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> (<span class="va">$email</span> <span class="op">==</span> <span class="kw">false</span>) {</span>
+<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a>        <span class="fu">header</span>(<span class="st">'Location: login-user.php'</span>)<span class="ot">;</span></span>
+<span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a>    }</span>
+<span id="cb7-6"><a href="#cb7-6" aria-hidden="true" tabindex="-1"></a><span class="kw">?&gt;</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Setelah itu, buatlah kode untuk menampilkan informasi baik itu kode OTP telah dikirimkan melalui email atau notifikasi kemungkinan terjadinya <em>error</em>. Untuk penanganan <em>error</em>, gunakan cara/konsep yang sama seperti halnya pada halaman <strong>forgot-password.php</strong>. Sedangkan untuk menampilkan notifikasi bahwa kode OTP telah dikirimkan ke email, Anda dapat menyalin kode berikut ini:</p>
+</div>
+<div class="sourceCode" id="cb8"><pre class="sourceCode php code-with-copy"><code class="sourceCode php"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="kw">&lt;?php</span></span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> (<span class="kw">isset</span>(<span class="va">$_SESSION</span>[<span class="st">'info'</span>])) {</span>
+<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a><span class="kw">?&gt;</span></span>
+<span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a>    <span class="op">&lt;</span>div <span class="kw">class</span><span class="op">=</span><span class="st">"alert alert-success text-center"</span><span class="op">&gt;</span></span>
+<span id="cb8-5"><a href="#cb8-5" aria-hidden="true" tabindex="-1"></a>        <span class="op">&lt;</span><span class="ot">?</span>php <span class="kw">echo</span> <span class="va">$_SESSION</span>[<span class="st">'info'</span>]<span class="ot">;</span> <span class="kw">?&gt;</span></span>
+<span id="cb8-6"><a href="#cb8-6" aria-hidden="true" tabindex="-1"></a>    <span class="op">&lt;/</span>div<span class="op">&gt;</span></span>
+<span id="cb8-7"><a href="#cb8-7" aria-hidden="true" tabindex="-1"></a><span class="op">&lt;</span><span class="ot">?</span>php</span>
+<span id="cb8-8"><a href="#cb8-8" aria-hidden="true" tabindex="-1"></a>    }</span>
+<span id="cb8-9"><a href="#cb8-9" aria-hidden="true" tabindex="-1"></a><span class="kw">?&gt;</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</section>
+<section id="akhir-bagian-i" class="level2">
+<h2 class="anchored" data-anchor-id="akhir-bagian-i">Akhir Bagian I</h2>
+<div class="justify">
+<p>Selamat Anda telah berhasil menyusun studi kasus hingga pada tahap ini! Harap diingat perjalanan kita masih panjang. Silakan melanjutkan praktik studi kasus ini ke Bagian II. <strong><em>Break a leg, Champ!</em></strong></p>
+</div>
+
+
+</section>
+
+</main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+window.document.addEventListener("DOMContentLoaded", function (event) {
+  const toggleBodyColorMode = (bsSheetEl) => {
+    const mode = bsSheetEl.getAttribute("data-mode");
+    const bodyEl = window.document.querySelector("body");
+    if (mode === "dark") {
+      bodyEl.classList.add("quarto-dark");
+      bodyEl.classList.remove("quarto-light");
+    } else {
+      bodyEl.classList.add("quarto-light");
+      bodyEl.classList.remove("quarto-dark");
+    }
+  }
+  const toggleBodyColorPrimary = () => {
+    const bsSheetEl = window.document.querySelector("link#quarto-bootstrap");
+    if (bsSheetEl) {
+      toggleBodyColorMode(bsSheetEl);
+    }
+  }
+  toggleBodyColorPrimary();  
+  const disableStylesheet = (stylesheets) => {
+    for (let i=0; i < stylesheets.length; i++) {
+      const stylesheet = stylesheets[i];
+      stylesheet.rel = 'prefetch';
+    }
+  }
+  const enableStylesheet = (stylesheets) => {
+    for (let i=0; i < stylesheets.length; i++) {
+      const stylesheet = stylesheets[i];
+      stylesheet.rel = 'stylesheet';
+    }
+  }
+  const manageTransitions = (selector, allowTransitions) => {
+    const els = window.document.querySelectorAll(selector);
+    for (let i=0; i < els.length; i++) {
+      const el = els[i];
+      if (allowTransitions) {
+        el.classList.remove('notransition');
+      } else {
+        el.classList.add('notransition');
+      }
+    }
+  }
+  const toggleColorMode = (alternate) => {
+    // Switch the stylesheets
+    const alternateStylesheets = window.document.querySelectorAll('link.quarto-color-scheme.quarto-color-alternate');
+    manageTransitions('#quarto-margin-sidebar .nav-link', false);
+    if (alternate) {
+      enableStylesheet(alternateStylesheets);
+      for (const sheetNode of alternateStylesheets) {
+        if (sheetNode.id === "quarto-bootstrap") {
+          toggleBodyColorMode(sheetNode);
+        }
+      }
+    } else {
+      disableStylesheet(alternateStylesheets);
+      toggleBodyColorPrimary();
+    }
+    manageTransitions('#quarto-margin-sidebar .nav-link', true);
+    // Switch the toggles
+    const toggles = window.document.querySelectorAll('.quarto-color-scheme-toggle');
+    for (let i=0; i < toggles.length; i++) {
+      const toggle = toggles[i];
+      if (toggle) {
+        if (alternate) {
+          toggle.classList.add("alternate");     
+        } else {
+          toggle.classList.remove("alternate");
+        }
+      }
+    }
+    // Hack to workaround the fact that safari doesn't
+    // properly recolor the scrollbar when toggling (#1455)
+    if (navigator.userAgent.indexOf('Safari') > 0 && navigator.userAgent.indexOf('Chrome') == -1) {
+      manageTransitions("body", false);
+      window.scrollTo(0, 1);
+      setTimeout(() => {
+        window.scrollTo(0, 0);
+        manageTransitions("body", true);
+      }, 40);  
+    }
+  }
+  const isFileUrl = () => { 
+    return window.location.protocol === 'file:';
+  }
+  const hasAlternateSentinel = () => {  
+    let styleSentinel = getColorSchemeSentinel();
+    if (styleSentinel !== null) {
+      return styleSentinel === "alternate";
+    } else {
+      return false;
+    }
+  }
+  const setStyleSentinel = (alternate) => {
+    const value = alternate ? "alternate" : "default";
+    if (!isFileUrl()) {
+      window.localStorage.setItem("quarto-color-scheme", value);
+    } else {
+      localAlternateSentinel = value;
+    }
+  }
+  const getColorSchemeSentinel = () => {
+    if (!isFileUrl()) {
+      const storageValue = window.localStorage.getItem("quarto-color-scheme");
+      return storageValue != null ? storageValue : localAlternateSentinel;
+    } else {
+      return localAlternateSentinel;
+    }
+  }
+  let localAlternateSentinel = 'default';
+  // Dark / light mode switch
+  window.quartoToggleColorScheme = () => {
+    // Read the current dark / light value 
+    let toAlternate = !hasAlternateSentinel();
+    toggleColorMode(toAlternate);
+    setStyleSentinel(toAlternate);
+  };
+  // Ensure there is a toggle, if there isn't float one in the top right
+  if (window.document.querySelector('.quarto-color-scheme-toggle') === null) {
+    const a = window.document.createElement('a');
+    a.classList.add('top-right');
+    a.classList.add('quarto-color-scheme-toggle');
+    a.href = "";
+    a.onclick = function() { try { window.quartoToggleColorScheme(); } catch {} return false; };
+    const i = window.document.createElement("i");
+    i.classList.add('bi');
+    a.appendChild(i);
+    window.document.body.appendChild(a);
+  }
+  // Switch to dark mode if need be
+  if (hasAlternateSentinel()) {
+    toggleColorMode(true);
+  } else {
+    toggleColorMode(false);
+  }
+  const icon = "";
+  const anchorJS = new window.AnchorJS();
+  anchorJS.options = {
+    placement: 'right',
+    icon: icon
+  };
+  anchorJS.add('.anchored');
+  const isCodeAnnotation = (el) => {
+    for (const clz of el.classList) {
+      if (clz.startsWith('code-annotation-')) {                     
+        return true;
+      }
+    }
+    return false;
+  }
+  const clipboard = new window.ClipboardJS('.code-copy-button', {
+    text: function(trigger) {
+      const codeEl = trigger.previousElementSibling.cloneNode(true);
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+    }
+  });
+  clipboard.on('success', function(e) {
+    // button target
+    const button = e.trigger;
+    // don't keep focus
+    button.blur();
+    // flash "checked"
+    button.classList.add('code-copy-button-checked');
+    var currentTitle = button.getAttribute("title");
+    button.setAttribute("title", "Copied!");
+    let tooltip;
+    if (window.bootstrap) {
+      button.setAttribute("data-bs-toggle", "tooltip");
+      button.setAttribute("data-bs-placement", "left");
+      button.setAttribute("data-bs-title", "Copied!");
+      tooltip = new bootstrap.Tooltip(button, 
+        { trigger: "manual", 
+          customClass: "code-copy-button-tooltip",
+          offset: [0, -8]});
+      tooltip.show();    
+    }
+    setTimeout(function() {
+      if (tooltip) {
+        tooltip.hide();
+        button.removeAttribute("data-bs-title");
+        button.removeAttribute("data-bs-toggle");
+        button.removeAttribute("data-bs-placement");
+      }
+      button.setAttribute("title", currentTitle);
+      button.classList.remove('code-copy-button-checked');
+    }, 1000);
+    // clear code selection
+    e.clearSelection();
+  });
+  function tippyHover(el, contentFn) {
+    const config = {
+      allowHTML: true,
+      content: contentFn,
+      maxWidth: 500,
+      delay: 100,
+      arrow: false,
+      appendTo: function(el) {
+          return el.parentElement;
+      },
+      interactive: true,
+      interactiveBorder: 10,
+      theme: 'quarto',
+      placement: 'bottom-start'
+    };
+    window.tippy(el, config); 
+  }
+  const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+  for (var i=0; i<noterefs.length; i++) {
+    const ref = noterefs[i];
+    tippyHover(ref, function() {
+      // use id or data attribute instead here
+      let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+      try { href = new URL(href).hash; } catch {}
+      const id = href.replace(/^#\/?/, "");
+      const note = window.document.getElementById(id);
+      return note.innerHTML;
+    });
+  }
+      let selectedAnnoteEl;
+      const selectorForAnnotation = ( cell, annotation) => {
+        let cellAttr = 'data-code-cell="' + cell + '"';
+        let lineAttr = 'data-code-annotation="' +  annotation + '"';
+        const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+        return selector;
+      }
+      const selectCodeLines = (annoteEl) => {
+        const doc = window.document;
+        const targetCell = annoteEl.getAttribute("data-target-cell");
+        const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+        const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+        const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+        const lineIds = lines.map((line) => {
+          return targetCell + "-" + line;
+        })
+        let top = null;
+        let height = null;
+        let parent = null;
+        if (lineIds.length > 0) {
+            //compute the position of the single el (top and bottom and make a div)
+            const el = window.document.getElementById(lineIds[0]);
+            top = el.offsetTop;
+            height = el.offsetHeight;
+            parent = el.parentElement.parentElement;
+          if (lineIds.length > 1) {
+            const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+            const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+            height = bottom - top;
+          }
+          if (top !== null && height !== null && parent !== null) {
+            // cook up a div (if necessary) and position it 
+            let div = window.document.getElementById("code-annotation-line-highlight");
+            if (div === null) {
+              div = window.document.createElement("div");
+              div.setAttribute("id", "code-annotation-line-highlight");
+              div.style.position = 'absolute';
+              parent.appendChild(div);
+            }
+            div.style.top = top - 2 + "px";
+            div.style.height = height + 4 + "px";
+            let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+            if (gutterDiv === null) {
+              gutterDiv = window.document.createElement("div");
+              gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+              gutterDiv.style.position = 'absolute';
+              const codeCell = window.document.getElementById(targetCell);
+              const gutter = codeCell.querySelector('.code-annotation-gutter');
+              gutter.appendChild(gutterDiv);
+            }
+            gutterDiv.style.top = top - 2 + "px";
+            gutterDiv.style.height = height + 4 + "px";
+          }
+          selectedAnnoteEl = annoteEl;
+        }
+      };
+      const unselectCodeLines = () => {
+        const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+        elementsIds.forEach((elId) => {
+          const div = window.document.getElementById(elId);
+          if (div) {
+            div.remove();
+          }
+        });
+        selectedAnnoteEl = undefined;
+      };
+      // Attach click handler to the DT
+      const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+      for (const annoteDlNode of annoteDls) {
+        annoteDlNode.addEventListener('click', (event) => {
+          const clickedEl = event.target;
+          if (clickedEl !== selectedAnnoteEl) {
+            unselectCodeLines();
+            const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+            if (activeEl) {
+              activeEl.classList.remove('code-annotation-active');
+            }
+            selectCodeLines(clickedEl);
+            clickedEl.classList.add('code-annotation-active');
+          } else {
+            // Unselect the line
+            unselectCodeLines();
+            clickedEl.classList.remove('code-annotation-active');
+          }
+        });
+      }
+  const findCites = (el) => {
+    const parentEl = el.parentElement;
+    if (parentEl) {
+      const cites = parentEl.dataset.cites;
+      if (cites) {
+        return {
+          el,
+          cites: cites.split(' ')
+        };
+      } else {
+        return findCites(el.parentElement)
+      }
+    } else {
+      return undefined;
+    }
+  };
+  var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+  for (var i=0; i<bibliorefs.length; i++) {
+    const ref = bibliorefs[i];
+    const citeInfo = findCites(ref);
+    if (citeInfo) {
+      tippyHover(citeInfo.el, function() {
+        var popup = window.document.createElement('div');
+        citeInfo.cites.forEach(function(cite) {
+          var citeDiv = window.document.createElement('div');
+          citeDiv.classList.add('hanging-indent');
+          citeDiv.classList.add('csl-entry');
+          var biblioDiv = window.document.getElementById('ref-' + cite);
+          if (biblioDiv) {
+            citeDiv.innerHTML = biblioDiv.innerHTML;
+          }
+          popup.appendChild(citeDiv);
+        });
+        return popup.innerHTML;
+      });
+    }
+  }
+});
+</script>
+<nav class="page-navigation">
+  <div class="nav-page nav-page-previous">
+      <a href="./8_studi_kasus_poliklinik.html" class="pagination-link">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text">Poliklinik</span>
+      </a>          
+  </div>
+  <div class="nav-page nav-page-next">
+      <a href="./12_studi_kasus_login_pt-2.html" class="pagination-link">
+        <span class="nav-page-text">[Part II] - Login Form</span> <i class="bi bi-arrow-right-short"></i>
+      </a>
+  </div>
+</nav>
+</div> <!-- /content -->
+
+
+
+</body></html>
